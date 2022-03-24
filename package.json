@@ -1,0 +1,30 @@
+{
+  "name": "fosslight-fe",
+  "version": "1.0.0",
+  "description": "기존 fosslight를 응용해서 만드는 자산관리도구 프론트엔드 레포지토리",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CNUOSS/FOSSLight-FE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CNUOSS/FOSSLight-FE/issues"
+  },
+  "homepage": "https://github.com/CNUOSS/FOSSLight-FE#readme",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^1.0.7",
+    "vite": "^2.8.0"
+  }
+}

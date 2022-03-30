@@ -1,5 +1,5 @@
 {
-  "name": "fosslight-fe",
+  "name": "cnu-oss-fe",
   "version": "1.0.0",
   "description": "기존 fosslight를 응용해서 만드는 자산관리도구 프론트엔드 레포지토리",
   "main": "index.js",
@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CNUOSS/FOSSLight-FE.git"
+    "url": "git+https://github.com/CNUOSS/CNU-OSS-FE.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CNUOSS/FOSSLight-FE/issues"
+    "url": "https://github.com/CNUOSS/CNU-OSS-FE/issues"
   },
-  "homepage": "https://github.com/CNUOSS/FOSSLight-FE#readme",
+  "homepage": "https://github.com/CNUOSS/CNU-OSS-FE#readme",
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",

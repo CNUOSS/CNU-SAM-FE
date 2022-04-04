@@ -4,7 +4,9 @@ interface TabItemProps {
   selected: boolean;
 }
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  width: calc(100% - 30rem);
+`;
 
 export const TabList = styled.ul`
   width: 100%;
@@ -40,5 +42,5 @@ export const IconWrapper = styled.div`
 export const Workspace = styled.main`
   border-top: 1px solid black;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 6rem);
 `;

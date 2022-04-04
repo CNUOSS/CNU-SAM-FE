@@ -1,6 +1,8 @@
 import React from 'react';
 import * as Style from './styled';
+import Dropdown from '../../widgets/Dropdown';
 import logoImage from '../../../assets/images/logo.jpg';
+import { LANGUAGES } from '../../../common/constants';
 
 interface SidebarProps {
   isLogin: boolean;
@@ -13,8 +15,7 @@ function Sidebar({ isLogin }: SidebarProps) {
         <Style.Logo src={logoImage} alt="logo" />
         <Style.Title>소프트웨어 자산관리프로그램</Style.Title>
         <Style.Version>v1.0.0</Style.Version>
-        {/* TODO: changed to widget dropdown */}
-        <Style.Dropdown />
+        <Dropdown items={LANGUAGES} onClickItem={() => {}} />
       </Style.Top>
       {/* TODO: login or userInfo */}
       {isLogin && (

@@ -16,6 +16,11 @@ function GlobalStyle(): React.ReactElement {
         html,
         body {
           font-size: 62.5%;
+          height: 100%;
+
+          #root {
+            height: 100%;
+          }
         }
         body {
         }

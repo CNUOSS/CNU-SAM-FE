@@ -23,14 +23,6 @@ export const Top = styled.div<TopProps>`
   border-bottom: ${(props) => props.isLogin && `2px solid ${props.theme.colors.primary}`};
 `;
 
-export const Dropdown = styled.div`
-  width: 10rem;
-  height: 3rem;
-  margin-top: 1.5rem;
-  background-color: #555;
-  cursor: pointer;
-`;
-
 export const Logo = styled.img`
   width: 100%;
 `;
@@ -42,6 +34,7 @@ export const Title = styled.h1`
 `;
 
 export const Version = styled.span`
+  margin-bottom: 1.5rem;
   font-size: 1.2rem;
 `;
 

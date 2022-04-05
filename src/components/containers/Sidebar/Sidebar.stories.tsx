@@ -1,4 +1,5 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 import Sidebar from '.';
 
 export default {
@@ -6,6 +7,8 @@ export default {
   component: Sidebar,
 };
 
-export const sidebarLogin = () => <Sidebar isLogin />;
+const clickAction = action('click');
 
-export const sidebarLogout = () => <Sidebar isLogin={false} />;
+export const sidebarLogin = () => <Sidebar isLogin addNewTab={clickAction} />;
+
+export const sidebarLogout = () => <Sidebar isLogin={false} addNewTab={clickAction} />;

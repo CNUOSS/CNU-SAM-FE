@@ -10,9 +10,10 @@ import UserInfo from './UserInfo';
 
 interface SidebarProps {
   isLogin: boolean;
+  addNewTab: (name: string, component: React.ReactElement) => void;
 }
 
-function Sidebar({ isLogin }: SidebarProps) {
+function Sidebar({ isLogin, addNewTab }: SidebarProps) {
   const { t } = useTranslation();
   const languageNames = LANGUAGES.map((l) => l.name);
 
@@ -31,10 +32,10 @@ function Sidebar({ isLogin }: SidebarProps) {
       <Style.AuthBox>{isLogin ? <UserInfo /> : <SigninForm />}</Style.AuthBox>
       {isLogin && (
         <Style.MenuList>
-          <Style.MenuItem>{t('page:licenseList')}</Style.MenuItem>
-          <Style.MenuItem>{t('page:softwareList')}</Style.MenuItem>
-          <Style.MenuItem>{t('page:projectList')}</Style.MenuItem>
-          <Style.MenuItem>{t('page:groupList')}</Style.MenuItem>
+          <Style.MenuItem onClick={() => addNewTab('li', <></>)}>{t('page:licenseList')}</Style.MenuItem>
+          <Style.MenuItem onClick={() => addNewTab('sw', <></>)}>{t('page:softwareList')}</Style.MenuItem>
+          <Style.MenuItem onClick={() => addNewTab('pj', <></>)}>{t('page:projectList')}</Style.MenuItem>
+          <Style.MenuItem onClick={() => addNewTab('gp', <></>)}>{t('page:groupList')}</Style.MenuItem>
         </Style.MenuList>
       )}
     </Style.Container>

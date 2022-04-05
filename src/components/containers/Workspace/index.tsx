@@ -1,31 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as Style from './styled';
 import Icon from '../../widgets/Icon';
+import { TabType } from '../../../hooks/useTabs';
 
 interface WorkspaceProps {
-  tabs: string[];
+  tabs: TabType[];
+  currentTabIndex: number;
+  changeTab: (idx: number) => void;
 }
 
-function Workspace({ tabs }: WorkspaceProps) {
-  const [selectedIndex, setSelectedIndex] = useState(tabs.length - 1);
-
-  const changeTabItem = (idx: number) => {
-    setSelectedIndex(idx);
-  };
-
+function Workspace({ tabs, currentTabIndex, changeTab }: WorkspaceProps) {
   return (
     <Style.Container>
       <Style.TabList>
         {tabs.map((tab, idx) => (
-          <Style.TabItem key={tab} selected={selectedIndex === idx} onClick={() => changeTabItem(idx)}>
-            {tab}
+          <Style.TabItem key={tab.name} selected={currentTabIndex === idx} onClick={() => changeTab(idx)}>
+            {tab.name}
             <Style.IconWrapper>
               <Icon icon="close" />
             </Style.IconWrapper>
           </Style.TabItem>
         ))}
       </Style.TabList>
-      <Style.Workspace />
+      <Style.Workspace>{tabs.map((tab, idx) => tab.component)}</Style.Workspace>
     </Style.Container>
   );
 }

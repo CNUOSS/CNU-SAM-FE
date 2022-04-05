@@ -39,7 +39,8 @@ export const Version = styled.span`
 `;
 
 export const AuthBox = styled.div`
-  margin-top: 2rem;
+  margin: 2rem 0;
+  width: calc(100% - 5rem);
 `;
 
 export const MenuList = styled.ul`
@@ -57,4 +58,8 @@ export const MenuItem = styled.li`
   font-weight: bold;
   border-bottom: 2px solid ${(props) => props.theme.colors.primary};
   cursor: pointer;
+
+  &:first-child {
+    border-top: 2px solid ${(props) => props.theme.colors.primary};
+  }
 `;

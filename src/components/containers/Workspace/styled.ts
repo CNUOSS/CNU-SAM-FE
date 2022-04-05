@@ -4,6 +4,10 @@ interface TabItemProps {
   selected: boolean;
 }
 
+interface WorkspaceProps {
+  selected: boolean;
+}
+
 export const Container = styled.div`
   width: calc(100% - 30rem);
 `;
@@ -39,8 +43,9 @@ export const IconWrapper = styled.div`
   width: 1.6rem;
 `;
 
-export const Workspace = styled.main`
+export const Workspace = styled.main<WorkspaceProps>`
   border-top: 1px solid black;
   width: 100%;
   height: calc(100% - 6rem);
+  display: ${(props) => (props.selected ? 'block' : 'none')};
 `;

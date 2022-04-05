@@ -22,7 +22,11 @@ function Workspace({ tabs, currentTabIndex, changeTab }: WorkspaceProps) {
           </Style.TabItem>
         ))}
       </Style.TabList>
-      <Style.Workspace>{tabs.map((tab, idx) => tab.component)}</Style.Workspace>
+      {tabs.map((tab, idx) => (
+        <Style.Workspace key={tab.name} selected={idx === currentTabIndex}>
+          {tab.component}
+        </Style.Workspace>
+      ))}
     </Style.Container>
   );
 }

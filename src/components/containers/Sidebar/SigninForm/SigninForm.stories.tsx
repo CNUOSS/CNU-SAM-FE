@@ -2,7 +2,7 @@ import React from 'react';
 import SigninForm from '.';
 
 export default {
-  title: 'Container/SigninForm',
+  title: 'Container/Sidebar/SigninForm',
   component: SigninForm,
 };
 

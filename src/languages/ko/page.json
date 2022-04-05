@@ -4,6 +4,8 @@
   "softwareList": "소프트웨어 목록",
   "projectList": "프로젝트 목록",
   "groupList": "그룹 목록",
+  "signin": "로그인",
+  "signup": "회원가입",
   "logout": "로그아웃",
   "enrollSW": "소프트웨어 등록하기",
   "enrollPJ": "프로젝트 등록하기"

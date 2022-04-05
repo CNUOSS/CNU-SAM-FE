@@ -38,6 +38,10 @@ export const Version = styled.span`
   font-size: 1.2rem;
 `;
 
+export const AuthBox = styled.div`
+  margin-top: 2rem;
+`;
+
 export const MenuList = styled.ul`
   width: 100%;
   display: flex;

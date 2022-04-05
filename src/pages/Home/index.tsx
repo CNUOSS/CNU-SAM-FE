@@ -2,15 +2,15 @@ import React from 'react';
 import * as Style from './styled';
 import Sidebar from '../../components/containers/Sidebar';
 import Workspace from '../../components/containers/Workspace';
-
-// FIXME: remove
-const DUMMY_TABS = ['tab1', 'tab2', 'tab3'];
+import useTabs from '../../hooks/useTabs';
 
 function HomePage() {
+  const { tabs, currentTabIdx, changeTab, addNewTab } = useTabs();
+
   return (
     <Style.Container>
-      <Sidebar isLogin />
-      <Workspace tabs={DUMMY_TABS} />
+      <Sidebar isLogin addNewTab={addNewTab} />
+      <Workspace tabs={tabs} currentTabIndex={currentTabIdx} changeTab={changeTab} />
     </Style.Container>
   );
 }

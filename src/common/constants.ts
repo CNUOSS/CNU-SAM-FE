@@ -1,1 +1,4 @@
-export const LANGUAGES = ['한국어', 'English'];
+export const LANGUAGES = [
+  { name: '한국어', lang: 'ko' },
+  { name: 'English', lang: 'en' },
+];

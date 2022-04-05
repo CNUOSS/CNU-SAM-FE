@@ -5,6 +5,7 @@ import GlobalStyle from './style/GlobalStyle';
 import App from './App';
 import Helmet from './libs/Helmet';
 import { theme } from './style/theme';
+import './libs/i18n';
 
 ReactDOM.render(
   <React.StrictMode>

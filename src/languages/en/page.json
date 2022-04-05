@@ -4,6 +4,8 @@
   "softwareList": "Software List",
   "projectList": "Project List",
   "groupList": "Group List",
+  "signin": "Login",
+  "signup": "Sign Up",
   "logout": "logout",
   "enrollSW": "Enroll Software",
   "enrollPJ": "Enroll Project"

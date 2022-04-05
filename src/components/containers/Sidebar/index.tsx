@@ -5,6 +5,7 @@ import * as Style from './styled';
 import Dropdown from '../../widgets/Dropdown';
 import logoImage from '../../../assets/images/logo.jpg';
 import { LANGUAGES } from '../../../common/constants';
+import SigninForm from './SigninForm';
 
 interface SidebarProps {
   isLogin: boolean;
@@ -26,7 +27,7 @@ function Sidebar({ isLogin }: SidebarProps) {
         <Style.Version>v1.0.0</Style.Version>
         <Dropdown items={languageNames} onClickItem={changeLanguage} />
       </Style.Top>
-      {/* TODO: login or userInfo */}
+      <Style.AuthBox>{!isLogin && <SigninForm />}</Style.AuthBox>
       {isLogin && (
         <Style.MenuList>
           <Style.MenuItem>{t('page:licenseList')}</Style.MenuItem>

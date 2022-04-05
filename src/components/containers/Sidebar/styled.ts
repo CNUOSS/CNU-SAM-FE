@@ -59,7 +59,7 @@ export const MenuItem = styled.li`
   border-bottom: 2px solid ${(props) => props.theme.colors.primary};
   cursor: pointer;
 
-  &:first-child {
+  &:first-of-type {
     border-top: 2px solid ${(props) => props.theme.colors.primary};
   }
 `;

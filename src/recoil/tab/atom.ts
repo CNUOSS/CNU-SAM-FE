@@ -10,7 +10,9 @@ interface TabState {
   tabs: TabType[];
 }
 
-export const tabState = atom<TabState>({
+const tabState = atom<TabState>({
   key: 'tabState',
   default: { currentIdx: 0, tabs: [] },
 });
+
+export default tabState;

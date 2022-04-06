@@ -1,16 +1,11 @@
 import React from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { DropResult } from 'react-beautiful-dnd';
+
 import * as Style from './styled';
 import Icon from '../../widgets/Icon';
-import { TabType } from '../../../hooks/useTabs';
 import DnD from '../../../components/widgets/DnD';
-
-interface WorkspaceProps {
-  tabs: TabType[];
-  currentTabIndex: number;
-  changeTab: (idx: number) => void;
-  dndTab: (startIdx: number, endIdx: number) => void;
-}
+import { tabState, tabSelector } from '../../../recoil/tab';
 
 function TabList({ children, refs, ...props }: any) {
   return (
@@ -31,7 +26,19 @@ function TabItem({ children, refs, ...props }: any) {
   );
 }
 
-function Workspace({ tabs, currentTabIndex, changeTab, dndTab }: WorkspaceProps) {
+function Workspace() {
+  const { tabNames } = useRecoilValue(tabSelector);
+  const [{ tabs, currentIdx }, setTabState] = useRecoilState(tabState);
+
+  const changeTab = (idx: number) => setTabState(({ tabs }) => ({ tabs, currentIdx: idx }));
+
+  const dndTab = (startIdx: number, endIdx: number) => {
+    const copiedTabs = [...tabs];
+    const [removed] = copiedTabs.splice(startIdx, 1);
+    copiedTabs.splice(endIdx, 0, removed);
+    setTabState({ tabs: copiedTabs, currentIdx: endIdx });
+  };
+
   const dragEndHandler = (result: DropResult) => {
     if (!result.destination) return;
     dndTab(result.source.index, result.destination?.index);
@@ -42,13 +49,13 @@ function Workspace({ tabs, currentTabIndex, changeTab, dndTab }: WorkspaceProps)
       <DnD
         ListComponent={TabList}
         ItemComponent={TabItem}
-        items={tabs.map((tab) => tab.name)}
+        items={tabNames}
         onDragEnd={dragEndHandler}
-        selectedIndex={currentTabIndex}
+        selectedIndex={currentIdx}
         clickItem={(idx) => changeTab(idx)}
       />
       {tabs.map((tab, idx) => (
-        <Style.Workspace key={tab.name} selected={idx === currentTabIndex}>
+        <Style.Workspace key={tab.name} selected={idx === currentIdx}>
           {tab.component}
         </Style.Workspace>
       ))}

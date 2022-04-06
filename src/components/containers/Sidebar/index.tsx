@@ -25,10 +25,13 @@ function Sidebar({ isLogin }: SidebarProps) {
   };
 
   const addNewTab = (name: string, component: React.ReactElement) =>
-    setTabState((oldState) => ({
-      currentIdx: oldState.tabs.length,
-      tabs: [...oldState.tabs, { name, component }],
-    }));
+    setTabState((oldState) => {
+      const index = oldState.tabs.findIndex((tab) => tab.name === name);
+      return {
+        currentIdx: index < 0 ? oldState.tabs.length : index,
+        tabs: index < 0 ? [...oldState.tabs, { name, component }] : oldState.tabs,
+      };
+    });
 
   return (
     <Style.Container>

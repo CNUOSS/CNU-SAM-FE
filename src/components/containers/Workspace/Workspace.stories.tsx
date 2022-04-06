@@ -8,10 +8,11 @@ export default {
 };
 
 const clickAction = action('click');
+const dndAction = action('dnd');
 const tabs = [
   { name: 'tab1', component: <></> },
   { name: 'tab2', component: <></> },
   { name: 'tab3', component: <></> },
 ];
 
-export const workspace = () => <Workspace tabs={tabs} currentTabIndex={0} changeTab={clickAction} />;
+export const workspace = () => <Workspace tabs={tabs} currentTabIndex={0} changeTab={clickAction} dndTab={dndAction} />;

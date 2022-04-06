@@ -1,7 +1,7 @@
 import { selector } from 'recoil';
-import { tabState } from './atom';
+import { tabState } from '.';
 
-export const tabSelector = selector({
+const tabSelector = selector({
   key: 'todoListStatsState',
   get: ({ get }) => {
     const { tabs } = get(tabState);
@@ -10,3 +10,5 @@ export const tabSelector = selector({
     return { tabNames };
   },
 });
+
+export default tabSelector;

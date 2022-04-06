@@ -1,8 +1,12 @@
 import React from 'react';
-import { Helmet as ReactHelmet } from 'react-helmet';
+import { Helmet as ReactHelmet, HelmetProvider } from 'react-helmet-async';
 
 function Helmet() {
-  return <ReactHelmet title="CNU-SAM" />;
+  return (
+    <HelmetProvider>
+      <ReactHelmet title="CNU-SAM" />
+    </HelmetProvider>
+  );
 }
 
 export default Helmet;

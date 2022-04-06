@@ -1,8 +1,9 @@
 import React from 'react';
-import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
+import { DropResult } from 'react-beautiful-dnd';
 import * as Style from './styled';
 import Icon from '../../widgets/Icon';
 import { TabType } from '../../../hooks/useTabs';
+import DnD from '../../../components/widgets/DnD';
 
 interface WorkspaceProps {
   tabs: TabType[];
@@ -11,41 +12,41 @@ interface WorkspaceProps {
   dndTab: (startIdx: number, endIdx: number) => void;
 }
 
+function TabList({ children, refs, ...props }: any) {
+  return (
+    <Style.TabList ref={refs} {...props}>
+      {children}
+    </Style.TabList>
+  );
+}
+
+function TabItem({ children, refs, ...props }: any) {
+  return (
+    <Style.TabItem {...props} ref={refs}>
+      {children}
+      <Style.IconWrapper>
+        <Icon icon="close" />
+      </Style.IconWrapper>
+    </Style.TabItem>
+  );
+}
+
 function Workspace({ tabs, currentTabIndex, changeTab, dndTab }: WorkspaceProps) {
-  const handleChange = (result: DropResult) => {
+  const dragEndHandler = (result: DropResult) => {
     if (!result.destination) return;
     dndTab(result.source.index, result.destination?.index);
   };
 
   return (
     <Style.Container>
-      <DragDropContext onDragEnd={handleChange}>
-        <Droppable droppableId="tabs" direction="horizontal">
-          {(provided) => (
-            <Style.TabList className="tabs" {...provided.droppableProps} ref={provided.innerRef}>
-              {tabs.map((tab, idx) => (
-                <Draggable key={tab.name} draggableId={tab.name} index={idx}>
-                  {(provided) => (
-                    <Style.TabItem
-                      selected={currentTabIndex === idx}
-                      onClick={() => changeTab(idx)}
-                      ref={provided.innerRef}
-                      {...provided.dragHandleProps}
-                      {...provided.draggableProps}
-                    >
-                      {tab.name}
-                      <Style.IconWrapper>
-                        <Icon icon="close" />
-                      </Style.IconWrapper>
-                    </Style.TabItem>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </Style.TabList>
-          )}
-        </Droppable>
-      </DragDropContext>
+      <DnD
+        ListComponent={TabList}
+        ItemComponent={TabItem}
+        items={tabs.map((tab) => tab.name)}
+        onDragEnd={dragEndHandler}
+        selectedIndex={currentTabIndex}
+        clickItem={(idx) => changeTab(idx)}
+      />
       {tabs.map((tab, idx) => (
         <Style.Workspace key={tab.name} selected={idx === currentTabIndex}>
           {tab.component}

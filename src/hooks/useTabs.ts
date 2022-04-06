@@ -10,6 +10,7 @@ interface UseTabsProps {
   currentTabIdx: number;
   changeTab: (idx: number) => void;
   addNewTab: (name: string, component: React.ReactElement) => void;
+  dndTab: (startIdx: number, endIdx: number) => void;
 }
 
 // if prop drilling exist,
@@ -29,7 +30,14 @@ function useTabs(): UseTabsProps {
     setTabs(newTabs);
   };
 
-  return { tabs, currentTabIdx, changeTab, addNewTab };
+  const dndTab = (startIdx: number, endIdx: number) => {
+    const [removed] = tabs.splice(startIdx, 1);
+    tabs.splice(endIdx, 0, removed);
+    setTabs(tabs);
+    setCurrentTabIdx(endIdx);
+  };
+
+  return { tabs, currentTabIdx, changeTab, addNewTab, dndTab };
 }
 
 export default useTabs;

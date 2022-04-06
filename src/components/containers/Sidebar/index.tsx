@@ -1,25 +1,34 @@
 import React from 'react';
 import i18n from 'i18next';
 import { useTranslation } from 'react-i18next';
+import { useSetRecoilState } from 'recoil';
 import * as Style from './styled';
+
+import UserInfo from './UserInfo';
+import SigninForm from './SigninForm';
 import Dropdown from '../../widgets/Dropdown';
 import logoImage from '../../../assets/images/logo.jpg';
 import { LANGUAGES } from '../../../common/constants';
-import SigninForm from './SigninForm';
-import UserInfo from './UserInfo';
+import { tabState } from '../../../recoil/tab';
 
 interface SidebarProps {
   isLogin: boolean;
-  addNewTab: (name: string, component: React.ReactElement) => void;
 }
 
-function Sidebar({ isLogin, addNewTab }: SidebarProps) {
+function Sidebar({ isLogin }: SidebarProps) {
   const { t } = useTranslation();
+  const setTabState = useSetRecoilState(tabState);
   const languageNames = LANGUAGES.map((l) => l.name);
 
   const changeLanguage = (selectedIdx: number) => {
     i18n.changeLanguage(LANGUAGES[selectedIdx].lang);
   };
+
+  const addNewTab = (name: string, component: React.ReactElement) =>
+    setTabState((oldState) => ({
+      currentIdx: oldState.tabs.length,
+      tabs: [...oldState.tabs, { name, component }],
+    }));
 
   return (
     <Style.Container>

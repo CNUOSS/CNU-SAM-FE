@@ -1,19 +1,18 @@
 import React from 'react';
 import { init } from '../../../../libs/i18n';
-import UserInfo from '.';
+import SigninForm from '.';
 import { render, screen, act } from '../../../../libs/rtl-utils';
 
 const renderApp = () => {
-  render(<UserInfo />);
+  render(<SigninForm />);
 };
 
-describe('Container/Sidebar/UserInfo', () => {
+describe('Container/Sidebar/SigninForm', () => {
   describe('rendering test', () => {
     it('english', () => {
       renderApp();
-      screen.getByText('logout');
-      screen.getByText('Enroll Software');
-      screen.getByText('Enroll Project');
+      screen.getByText('Login');
+      screen.getByText('Sign Up');
     });
 
     it('korean', () => {
@@ -24,9 +23,8 @@ describe('Container/Sidebar/UserInfo', () => {
         init();
       });
 
-      screen.getByText('로그아웃');
-      screen.getByText('소프트웨어 등록하기');
-      screen.getByText('프로젝트 등록하기');
+      screen.getByText('로그인');
+      screen.getByText('회원가입');
     });
   });
 });

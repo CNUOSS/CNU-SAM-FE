@@ -13,11 +13,11 @@ const RecoilObserver = ({ node, onChange }: any) => {
   return null;
 };
 
-const renderApp = () =>
+const renderApp = (isLogin: boolean) =>
   render(
     <>
       <RecoilObserver node={tabState} onChange={onChange} />
-      <Sidebar isLogin />
+      <Sidebar isLogin={isLogin} />
     </>
   );
 
@@ -33,7 +33,7 @@ describe('Container/Sidebar', () => {
       act(() => {
         init();
       });
-      renderApp();
+      renderApp(true);
       screen.getByText('SAM Program');
       screen.getByText('License List');
       screen.getByText('Software List');
@@ -42,18 +42,24 @@ describe('Container/Sidebar', () => {
     });
 
     it('korean(login state)', () => {
-      renderApp();
+      renderApp(true);
       screen.getByText('소프트웨어 자산관리프로그램');
       screen.getByText('라이센스 목록');
       screen.getByText('소프트웨어 목록');
       screen.getByText('프로젝트 목록');
       screen.getByText('그룹 목록');
     });
+
+    it('korean(logout state)', () => {
+      renderApp(false);
+      const list = screen.queryByText('라이센스 목록');
+      expect(list).toBeNull();
+    });
   });
 
   describe('add tab test', () => {
     it('click license list', () => {
-      renderApp();
+      renderApp(true);
       const licenseList = screen.getByText('라이센스 목록');
       fireEvent.click(licenseList);
       expect(onChange).toBeCalledTimes(2);
@@ -61,7 +67,7 @@ describe('Container/Sidebar', () => {
     });
 
     it('click software list', () => {
-      renderApp();
+      renderApp(true);
       const swList = screen.getByText('소프트웨어 목록');
       fireEvent.click(swList);
       expect(onChange).toBeCalledTimes(2);
@@ -69,7 +75,7 @@ describe('Container/Sidebar', () => {
     });
 
     it('click project list', () => {
-      renderApp();
+      renderApp(true);
       const projectList = screen.getByText('프로젝트 목록');
       fireEvent.click(projectList);
       expect(onChange).toBeCalledTimes(2);
@@ -77,14 +83,23 @@ describe('Container/Sidebar', () => {
     });
 
     it('click group list', () => {
-      renderApp();
+      renderApp(true);
       const groupList = screen.getByText('그룹 목록');
       fireEvent.click(groupList);
       expect(onChange).toBeCalledTimes(2);
       expect(onChange).toBeCalledWith({ currentIdx: 0, tabs: [{ name: 'gp', component: <></> }] });
 
-      const projectList = screen.getByText('프로젝트 목록');
-      fireEvent.click(projectList);
+      // click once
+      fireEvent.click(groupList);
     });
+  });
+
+  it('', () => {
+    renderApp(true);
+    const korean = screen.getByText('한국어');
+    fireEvent.click(korean);
+
+    const english = screen.getByText('English');
+    fireEvent.click(english);
   });
 });

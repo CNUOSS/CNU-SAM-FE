@@ -21,7 +21,7 @@ function Dropdown({ items, currentIdx = 0, onClickItem }: DropdownProps) {
 
   return (
     <Style.Container>
-      <Style.CurrentItem onClick={toggleList}>
+      <Style.CurrentItem aria-label="dropdown-selected" onClick={toggleList}>
         {items[selectedIdx]}
         <Style.IconWrapper isOpen={isOpen}>
           <Icon icon="triangle" />

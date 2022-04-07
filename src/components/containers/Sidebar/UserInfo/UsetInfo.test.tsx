@@ -10,6 +10,11 @@ const renderApp = () => {
 describe('Container/Sidebar/UserInfo', () => {
   describe('rendering test', () => {
     it('english', () => {
+      const languageGetter = jest.spyOn(window.navigator, 'language', 'get');
+      languageGetter.mockReturnValue('en');
+      act(() => {
+        init();
+      });
       renderApp();
       screen.getByText('logout');
       screen.getByText('Enroll Software');
@@ -17,12 +22,7 @@ describe('Container/Sidebar/UserInfo', () => {
     });
 
     it('korean', () => {
-      const languageGetter = jest.spyOn(window.navigator, 'language', 'get');
-      languageGetter.mockReturnValue('ko');
       renderApp();
-      act(() => {
-        init();
-      });
 
       screen.getByText('로그아웃');
       screen.getByText('소프트웨어 등록하기');

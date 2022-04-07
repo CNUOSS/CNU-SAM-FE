@@ -28,6 +28,11 @@ beforeEach(() => {
 describe('Container/Sidebar', () => {
   describe('rendering test', () => {
     it('english(login state)', () => {
+      const languageGetter = jest.spyOn(window.navigator, 'language', 'get');
+      languageGetter.mockReturnValue('en');
+      act(() => {
+        init();
+      });
       renderApp();
       screen.getByText('SAM Program');
       screen.getByText('License List');
@@ -37,12 +42,7 @@ describe('Container/Sidebar', () => {
     });
 
     it('korean(login state)', () => {
-      const languageGetter = jest.spyOn(window.navigator, 'language', 'get');
-      languageGetter.mockReturnValue('ko');
       renderApp();
-      act(() => {
-        init();
-      });
       screen.getByText('소프트웨어 자산관리프로그램');
       screen.getByText('라이센스 목록');
       screen.getByText('소프트웨어 목록');

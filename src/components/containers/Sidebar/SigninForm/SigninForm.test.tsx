@@ -10,18 +10,18 @@ const renderApp = () => {
 describe('Container/Sidebar/SigninForm', () => {
   describe('rendering test', () => {
     it('english', () => {
+      const languageGetter = jest.spyOn(window.navigator, 'language', 'get');
+      languageGetter.mockReturnValue('en');
+      act(() => {
+        init();
+      });
       renderApp();
       screen.getByText('Login');
       screen.getByText('Sign Up');
     });
 
     it('korean', () => {
-      const languageGetter = jest.spyOn(window.navigator, 'language', 'get');
-      languageGetter.mockReturnValue('ko');
       renderApp();
-      act(() => {
-        init();
-      });
 
       screen.getByText('로그인');
       screen.getByText('회원가입');

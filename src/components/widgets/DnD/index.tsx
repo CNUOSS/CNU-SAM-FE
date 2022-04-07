@@ -23,7 +23,7 @@ function DnD({
   ItemComponent,
   direction = 'horizontal',
   items,
-  selectedIndex,
+  selectedIndex = -1,
   onDragEnd,
   clickItem,
 }: DnDProps) {
@@ -36,6 +36,7 @@ function DnD({
               <Draggable key={item} draggableId={item} index={idx}>
                 {(provided) => (
                   <ItemComponent
+                    data-testid="dnd-item"
                     onClick={() => clickItem(idx)}
                     refs={provided.innerRef}
                     {...provided.dragHandleProps}

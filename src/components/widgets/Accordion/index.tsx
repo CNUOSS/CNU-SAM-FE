@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { theme } from '../../../style/theme';
 import Icon from '../Icon';
 import * as Style from './styled';
@@ -11,6 +12,7 @@ interface AccordionProps {
 }
 
 function Accordion({ title, items, disable = false, onClickItem }: AccordionProps) {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleList = () => setIsOpen((prev) => !prev);
@@ -19,7 +21,7 @@ function Accordion({ title, items, disable = false, onClickItem }: AccordionProp
   return (
     <Style.Container>
       <Style.Category onClick={toggleList} disable={disable}>
-        {title}
+        {t(`page:${title}`)}
         <Style.IconWrapper isOpen={isOpen}>
           <Icon icon="triangle" color={disable ? 'white' : theme.colors.primary} />
         </Style.IconWrapper>
@@ -27,7 +29,7 @@ function Accordion({ title, items, disable = false, onClickItem }: AccordionProp
       <Style.List isOpen={isOpen} numOfItems={items.length}>
         {items.map((item) => (
           <Style.Item key={item} onClick={() => handleClickItem(item)} disable={disable}>
-            {item}
+            {t(`page:${item}`)}
           </Style.Item>
         ))}
       </Style.List>

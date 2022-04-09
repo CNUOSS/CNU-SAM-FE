@@ -26,7 +26,7 @@ export const Category = styled.div<DisableProps>`
 
   font-size: 2rem;
   font-weight: bold;
-  border: 1px solid ${(props) => (props.disable ? props.theme.colors.gray : props.theme.colors.primary)};
+  border-top: 1px solid ${(props) => (props.disable ? props.theme.colors.gray : props.theme.colors.primary)};
   color: ${(props) => (props.disable ? 'white' : props.theme.colors.primary)};
   background-color: ${(props) => (props.disable ? props.theme.colors.gray : props.theme.colors.quaternary)};
   cursor: pointer;

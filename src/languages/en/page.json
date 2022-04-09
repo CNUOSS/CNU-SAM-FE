@@ -8,5 +8,18 @@
   "signup": "Sign Up",
   "logout": "logout",
   "enrollSW": "Enroll Software",
-  "enrollPJ": "Enroll Project"
+  "enrollPJ": "Enroll Project",
+
+  "usingSW": "Using SW",
+  "project": "Project",
+  "management": "CNU-SAM Management",
+
+  "TotalSWList": "Total SWList",
+  "SubscribingSWList": "Subscribing SWList",
+  "SWDashboard": "SW Dashboard",
+  "PJList": "PJ List",
+  "LicenseList": "License List",
+  "UserManagement": "User Management",
+  "SWManagement": "SW Management",
+  "UserGuide": "CNU-SAM User Guide"
 }

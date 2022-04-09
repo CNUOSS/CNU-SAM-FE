@@ -63,6 +63,7 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
     const { name, component } = getComponents(navItem);
     setTabState((oldState) => {
       const index = oldState.tabs.findIndex((tab) => tab.name === name);
+      if (index === oldState.currentIdx) return oldState;
       return {
         currentIdx: index < 0 ? oldState.tabs.length : index,
         tabs: index < 0 ? [...oldState.tabs, { name, component }] : oldState.tabs,

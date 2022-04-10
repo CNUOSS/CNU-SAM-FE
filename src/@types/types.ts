@@ -10,7 +10,7 @@ export const UserAuth = {
 export type UserAuth = typeof UserAuth[keyof typeof UserAuth];
 
 export const NavItem = {
-  TotalSWList: 'TotalSWList',
+  TotalLectureSWList: 'TotalLectureSWList',
   SubscribingSWList: 'SubscribingSWList',
   SWDashboard: 'SWDashboard',
 

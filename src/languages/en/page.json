@@ -14,7 +14,7 @@
   "project": "Project",
   "management": "CNU-SAM Management",
 
-  "TotalSWList": "Total SWList",
+  "TotalLectureSWList": "Total Lecture SWList",
   "SubscribingSWList": "Subscribing SWList",
   "SWDashboard": "SW Dashboard",
   "PJList": "PJ List",

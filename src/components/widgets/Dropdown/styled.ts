@@ -12,6 +12,12 @@ interface ContainerProps {
   width: string;
 }
 
+export const DropdownWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+`;
+
 export const Container = styled.div<ContainerProps>`
   width: ${(props) => props.width};
   position: relative;
@@ -24,6 +30,7 @@ export const CurrentItem = styled.div`
   align-items: center;
   justify-content: space-between;
 
+  background-color: white;
   border: 1px solid black;
   border-radius: 0.5rem;
   font-size: 1.5rem;
@@ -59,4 +66,8 @@ export const Item = styled.li<ItemProps>`
   &:last-child {
     padding-bottom: 0;
   }
+`;
+
+export const Label = styled.label`
+  font-size: 1.8rem;
 `;

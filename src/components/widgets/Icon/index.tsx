@@ -1,7 +1,7 @@
 import React from 'react';
 import * as SVG from './svg';
 
-type IconType = keyof typeof SVG;
+export type IconType = keyof typeof SVG;
 interface IconProps {
   icon: IconType;
   color?: string;

@@ -6,7 +6,7 @@ interface InputProps {
   label?: string;
   width?: string;
   type?: 'text' | 'password' | 'email';
-  onChange: (event: React.FormEvent<HTMLInputElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface CoverProps {

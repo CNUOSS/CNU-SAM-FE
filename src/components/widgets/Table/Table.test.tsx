@@ -20,7 +20,7 @@ const items = [
 ];
 
 const renderApp = (click: boolean = false) =>
-  render(<Table attributes={attributes} items={items} onRowClick={click ? onClickMock : undefined} />);
+  render(<Table attributes={attributes} items={items} onRowClick={click ? onClickMock : undefined} cellWidth={800} />);
 
 describe('Widget/Table', () => {
   describe('rendering test', () => {

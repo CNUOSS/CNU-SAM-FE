@@ -36,7 +36,7 @@ export const InquireButton = styled.button`
   color: white;
   font-weight: bold;
   border-radius: 1rem;
-  background-color: ${(props) => props.theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.secondary};
 `;
 
 export const TableTitle = styled.h2`
@@ -50,4 +50,14 @@ export const TableTitle = styled.h2`
 export const TableWrapper = styled.div`
   margin-top: 1rem;
   height: 50rem;
+`;
+
+export const AddButton = styled.button`
+  width: 5rem;
+  height: 3.2rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  background-color: ${(props) => props.theme.colors.secondary};
+  border-radius: 1rem;
 `;

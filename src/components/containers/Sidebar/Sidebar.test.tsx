@@ -6,6 +6,8 @@ import { render, screen, act, fireEvent } from '../../../libs/rtl-utils';
 import { tabState } from '../../../recoil/tab';
 import { UserAuth } from '../../../@types/types';
 
+import TotalLectureSWListTab from '../TotalLectureSWListTab';
+
 const onChange = jest.fn();
 
 const RecoilObserver = ({ node, onChange }: any) => {
@@ -62,7 +64,10 @@ describe('Container/Sidebar', () => {
       const licenseList = screen.getByText('전체 수업 용 SW목록');
       fireEvent.click(licenseList);
       expect(onChange).toBeCalledTimes(2);
-      expect(onChange).toBeCalledWith({ currentIdx: 0, tabs: [{ name: '전체 수업 용 SW', component: <></> }] });
+      expect(onChange).toBeCalledWith({
+        currentIdx: 0,
+        tabs: [{ name: '전체 수업 용 SW', component: <TotalLectureSWListTab isAdmin items={[]} /> }],
+      });
     });
 
     it('click SubscribingSWList list', () => {

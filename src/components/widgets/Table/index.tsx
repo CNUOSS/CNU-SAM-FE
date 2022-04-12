@@ -27,13 +27,12 @@ interface ObjType {
 interface TableProps<T, C> {
   attributes: AttributeType<C>[];
   items: T[];
-  cellWidth?: number;
   onRowClick?: () => void;
 }
 
 // TODO: infinite scrolling
 // TODO: if item is Component
-function Table<T extends ObjType, C extends string>({ attributes, items, cellWidth, onRowClick }: TableProps<T, C>) {
+function Table<T extends ObjType, C extends string>({ attributes, items, onRowClick }: TableProps<T, C>) {
   const [dataList, setDataList] = useState<T[]>(items);
   const [sortBy, setSortBy] = useState<string>('');
   const [sortDirection, setSortDirection] = useState<SortDirectionType>(SortDirection.ASC);
@@ -90,10 +89,10 @@ function Table<T extends ObjType, C extends string>({ attributes, items, cellWid
 
   return (
     <Style.Container>
-      <AutoSizer>
+      <AutoSizer defaultWidth={800} defaultHeight={800}>
         {({ height, width }) => (
           <VirtualizedTable
-            width={cellWidth || width}
+            width={width}
             height={height || 800}
             headerHeight={50}
             rowHeight={50}

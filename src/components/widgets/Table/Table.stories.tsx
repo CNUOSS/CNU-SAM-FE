@@ -13,9 +13,15 @@ const attributes: AttributeType<string>[] = [
 const items = [
   { name: 'Brian Vaughn', description: 'Doftware engineer' },
   { name: 'Arian Vaughn', description: 'Fftware engineer' },
-  { name: 'Crian Vaughn', description: 'Eoftware engineer' },
+  { name: 'Crian Vaughn', description: <div style={{ color: 'red' }}>Eoftware engineer</div> },
 ];
 export const basicTable = () => (
+  <div style={{ height: '100%' }}>
+    <Table attributes={attributes} items={items} />
+  </div>
+);
+
+export const componentTable = () => (
   <div style={{ height: '100%' }}>
     <Table attributes={attributes} items={items} />
   </div>

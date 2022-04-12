@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useSetRecoilState } from 'recoil';
 import * as Style from './styled';
 
+import TotalLectureSWListTab from '../TotalLectureSWListTab';
+
 import UserInfo from './UserInfo';
 import SigninForm from './SigninForm';
 import Dropdown from '../../widgets/Dropdown';
@@ -39,7 +41,10 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
     // TODO: apply translation
     switch (navItem) {
       case 'TotalLectureSWList':
-        return { name: '전체 수업 용 SW', component: <></> };
+        return {
+          name: '전체 수업 용 SW',
+          component: <TotalLectureSWListTab isAdmin items={[]} />,
+        };
       case 'SubscribingSWList':
         return { name: '학내 구독 중 SW', component: <></> };
       case 'SWDashboard':

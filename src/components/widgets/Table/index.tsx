@@ -13,9 +13,9 @@ import * as Style from './styled';
 import { theme } from '../../../style/theme';
 import 'react-virtualized/styles.css';
 
-export interface AttributeType {
+export interface AttributeType<T> {
   label: string;
-  dataKey: string;
+  dataKey: T;
   widthPercent: number;
   disableSort: boolean;
 }
@@ -24,15 +24,15 @@ interface ObjType {
   [key: string]: any;
 }
 
-interface TableProps<T> {
-  attributes: AttributeType[];
+interface TableProps<T, C> {
+  attributes: AttributeType<C>[];
   items: T[];
   onRowClick?: () => void;
 }
 
 // TODO: infinite scrolling
 // TODO: if item is Component
-function Table<T extends ObjType>({ attributes, items, onRowClick }: TableProps<T>) {
+function Table<T extends ObjType, C extends string>({ attributes, items, onRowClick }: TableProps<T, C>) {
   const [dataList, setDataList] = useState<T[]>(items);
   const [sortBy, setSortBy] = useState<string>('');
   const [sortDirection, setSortDirection] = useState<SortDirectionType>(SortDirection.ASC);
@@ -92,7 +92,7 @@ function Table<T extends ObjType>({ attributes, items, onRowClick }: TableProps<
       <AutoSizer>
         {({ height, width }) => (
           <VirtualizedTable
-            width={width || 800}
+            width={width}
             height={height || 800}
             headerHeight={50}
             rowHeight={50}

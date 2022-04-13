@@ -15,6 +15,15 @@ export const Container = styled.div`
     background-color: ${(props) => props.theme.colors.quaternary};
   }
 
+  .ReactVirtualized__Table__rowColumn,
+  .ReactVirtualized__Table__row {
+    overflow: visible !important;
+
+    &:first-of-type {
+      z-index: 1;
+    }
+  }
+
   div[aria-label='grid'] {
     background-color: ${(props) => props.theme.colors.tertiary};
   }
@@ -32,6 +41,11 @@ export const HeaderItem = styled.div<HeaderItemProps>`
       fill: ${(props) => props.sortable && props.theme.colors.secondary};
     }
   }
+`;
+
+export const CellItem = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export const IconWrapper = styled.div`

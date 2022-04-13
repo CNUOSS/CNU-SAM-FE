@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState } from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react';
 import {
   AutoSizer,
   Table as VirtualizedTable,
@@ -36,6 +36,10 @@ function Table<T extends ObjType, C extends string>({ attributes, items, onRowCl
   const [dataList, setDataList] = useState<T[]>(items);
   const [sortBy, setSortBy] = useState<string>('');
   const [sortDirection, setSortDirection] = useState<SortDirectionType>(SortDirection.ASC);
+
+  useEffect(() => {
+    setDataList(items);
+  }, [items]);
 
   const sortList = (sortBy: string, sortDirection: SortDirectionType) => {
     dataList.sort((a, b) => {
@@ -84,7 +88,7 @@ function Table<T extends ObjType, C extends string>({ attributes, items, onRowCl
   );
 
   const cellRenderer = (info: TableCellProps, dataKey: string) => (
-    <div data-testid={`table-cell-${dataKey}`}>{info.cellData}</div>
+    <Style.CellItem data-testid={`table-cell-${dataKey}`}>{info.cellData}</Style.CellItem>
   );
 
   return (

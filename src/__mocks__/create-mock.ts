@@ -1,5 +1,5 @@
 import { ItemType as TotalLectureSWItemType } from '../components/containers/TotalLectureSWListTab';
-import { ItemType as AddLectureSWItemType } from '../components/containers/AddLectureSWTab';
+import { ItemType as AddLectureSWItemType } from '../components/containers/AddLectureSWTab/Table';
 
 export const generateString = (num: number = 9) =>
   Math.random()

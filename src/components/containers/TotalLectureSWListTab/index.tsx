@@ -7,6 +7,7 @@ import { TotalLectureSWListAttr } from '../../../@types/types';
 import { totalLectureSWListAttr } from '../../../common/constants';
 import * as Style from './styled';
 
+// FIXME: remove
 const year = new Date().getFullYear();
 const ORGANIZATION = ['학부', '공과대학원'];
 const SEMESTER = ['1학기', '2학기', '계절학기'];

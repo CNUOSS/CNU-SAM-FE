@@ -31,7 +31,6 @@ interface TableProps<T, C> {
 }
 
 // TODO: infinite scrolling
-// TODO: if item is Component
 function Table<T extends ObjType, C extends string>({ attributes, items, onRowClick }: TableProps<T, C>) {
   const [dataList, setDataList] = useState<T[]>(items);
   const [sortBy, setSortBy] = useState<string>('');
@@ -79,11 +78,7 @@ function Table<T extends ObjType, C extends string>({ attributes, items, onRowCl
   const headerRenderer = (info: TableHeaderProps, dataKey: string) => (
     <Style.HeaderItem data-testid="table-attr" sortable={!info.disableSort}>
       {info.label}
-      {!info.disableSort && (
-        <Style.IconWrapper>
-          <Icon icon={getIcon(dataKey, info.sortBy, info.sortDirection)} />
-        </Style.IconWrapper>
-      )}
+      {!info.disableSort && <Icon size="1.5rem" icon={getIcon(dataKey, info.sortBy, info.sortDirection)} />}
     </Style.HeaderItem>
   );
 

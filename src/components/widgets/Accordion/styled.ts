@@ -33,8 +33,6 @@ export const Category = styled.div<DisableProps>`
 `;
 
 export const IconWrapper = styled.div<IsOpenProps>`
-  width: 1.5rem;
-  height: 1.5rem;
   transform: rotate(${(props) => (props.isOpen ? 180 : 90)}deg);
   transition: all 0.3s linear;
   transform-origin: 50% 55%;

@@ -23,7 +23,7 @@ function Accordion({ title, items, disable = false, onClickItem }: AccordionProp
       <Style.Category onClick={toggleList} disable={disable}>
         {t(`page:${title}`)}
         <Style.IconWrapper isOpen={isOpen}>
-          <Icon icon="triangle" color={disable ? 'white' : theme.colors.primary} />
+          <Icon size="1.5rem" icon="triangle" color={disable ? 'white' : theme.colors.primary} />
         </Style.IconWrapper>
       </Style.Category>
       <Style.List isOpen={isOpen} numOfItems={items.length}>

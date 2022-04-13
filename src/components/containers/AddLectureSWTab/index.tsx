@@ -35,11 +35,7 @@ function AddLectureSWTab({ items = [], companyList, productList }: AddLectureSWT
     items.map((item, index) => ({
       ...item,
       number: index + 1,
-      trash: (
-        <Style.IconWrapper>
-          <Icon icon="trashcan" />
-        </Style.IconWrapper>
-      ),
+      trash: <Icon size="2rem" icon="trashcan" />,
     }));
   const [companyName, setCompanyName] = useState('');
   const [productName, setProductName] = useState('');
@@ -55,22 +51,14 @@ function AddLectureSWTab({ items = [], companyList, productList }: AddLectureSWT
       productName,
       company: companyName,
       license: licenseName,
-      trash: (
-        <Style.IconWrapper>
-          <Icon icon="trashcan" />
-        </Style.IconWrapper>
-      ),
+      trash: <Icon size="2rem" icon="trashcan" />,
     };
     const numberUpdated = parsedItems.map(({ number, ...others }) => ({ number: (number as number) + 1, ...others }));
     setParsedItems([newItem, ...numberUpdated]);
   };
 
   const addRow: RowType = {
-    number: (
-      <Style.IconWrapper onClick={addNewItem}>
-        <Icon icon="plus" />
-      </Style.IconWrapper>
-    ),
+    number: <Icon onClick={addNewItem} size="2rem" icon="plus" />,
     company: <Dropdown items={companyList} width="20rem" onClickItem={changeCompanyName} />,
     productName: <Dropdown items={productList} width="35rem" onClickItem={changeProductName} />,
     license: <Input value={licenseName} width="35rem" onChange={changeLicenseName} />,

@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import Dropdown from '../../widgets/Dropdown';
 import Input from '../../widgets/Input';
-import { AddLectureSWListAttr, Trash, Number } from '../../../@types/types';
-import { addLectureSWListAttr } from '../../../common/constants';
 import * as Style from './styled';
-import Table from '../../widgets/Table';
-import Icon from '../../widgets/Icon';
+import Table, { ItemType } from './Table';
 
 const year = new Date().getFullYear();
 const ORGANIZATION = ['학부', '공과대학원'];
@@ -13,62 +10,18 @@ const SEMESTER = ['1학기', '2학기', '계절학기'];
 const DIVISION = ['전공(핵심)', '교양(필수)'];
 const YEARS = [year - 1, year, year + 1].map((year) => String(year));
 
-export type ItemType = {
-  [key in AddLectureSWListAttr]: string | React.ReactElement;
-};
-
-interface RowType extends ItemType {
-  [Number]: number | React.ReactElement;
-  [Trash]: React.ReactElement;
-}
-
 interface AddLectureSWTabProps {
-  items?: ItemType[];
+  receivedItems?: ItemType[];
   companyList: string[];
   productList: string[];
 }
 
-function AddLectureSWTab({ items = [], companyList, productList }: AddLectureSWTabProps) {
-  const parseItems: RowType[] = items.map((item, index) => ({
-    ...item,
-    number: index + 1,
-    trash: <Icon onClick={() => deleteItem(item.productName as string)} size="2rem" icon="trashcan" />,
-  }));
-  const [companyName, setCompanyName] = useState(companyList[0]);
-  const [productName, setProductName] = useState(productList[0]);
-  const [licenseName, setLicenseName] = useState('');
-  const [parsedItems, setParsedItems] = useState<RowType[]>(parseItems);
+function AddLectureSWTab({ receivedItems = [], companyList, productList }: AddLectureSWTabProps) {
+  const [items, setItems] = useState<ItemType[]>(receivedItems);
 
-  const changeCompanyName = (selectedIndex: number) => setCompanyName(companyList[selectedIndex]);
-  const changeProductName = (selectedIndex: number) => setProductName(productList[selectedIndex]);
-  const changeLicenseName = (event: React.ChangeEvent<HTMLInputElement>) => setLicenseName(event.target.value);
-  const deleteItem = (selectedProduct: string) =>
-    setParsedItems((prev) =>
-      prev
-        .filter(({ productName }) => productName !== selectedProduct)
-        .map((item, index) => ({ ...item, number: index + 1 }))
-    );
-  const addNewItem = () =>
-    setParsedItems((prev) => [
-      {
-        number: 1,
-        productName,
-        company: companyName,
-        license: licenseName,
-        trash: <Icon onClick={() => deleteItem(productName)} size="2rem" icon="trashcan" />,
-      },
-      ...prev.map(({ number, ...others }) => ({ number: (number as number) + 1, ...others })),
-    ]);
+  const addNewItem = (newItem: ItemType) => setItems((prev) => [newItem, ...prev]);
+  const deleteItem = (selectedIndex: number) => setItems((prev) => prev.filter((_, i: number) => i !== selectedIndex));
 
-  const addRow: RowType = {
-    number: <Icon onClick={addNewItem} size="2rem" icon="plus" />,
-    company: <Dropdown items={companyList} width="20rem" onClickItem={changeCompanyName} />,
-    productName: <Dropdown items={productList} width="35rem" onClickItem={changeProductName} />,
-    license: <Input value={licenseName} width="35rem" onChange={changeLicenseName} />,
-    trash: <></>,
-  };
-
-  // TODO: seperate table logic
   return (
     <Style.Container>
       <Style.Description>Description</Style.Description>
@@ -89,7 +42,13 @@ function AddLectureSWTab({ items = [], companyList, productList }: AddLectureSWT
       </Style.Form>
       <Style.TableTitle>등록된 수업용 SW</Style.TableTitle>
       <Style.TableWrapper>
-        <Table items={[addRow, ...parsedItems]} attributes={addLectureSWListAttr} />
+        <Table
+          items={items}
+          companyList={companyList}
+          productList={productList}
+          onAddNewItem={addNewItem}
+          onDeleteItem={deleteItem}
+        />
       </Style.TableWrapper>
     </Style.Container>
   );

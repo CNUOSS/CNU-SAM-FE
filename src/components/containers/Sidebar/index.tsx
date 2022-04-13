@@ -93,7 +93,7 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
           <Style.GuideMenu onClick={() => addNewTab('UserGuide')}>
             {t('page:UserGuide')}
             <Style.IconWrapper>
-              <Icon icon="triangle" color={theme.colors.primary} />
+              <Icon size="1.5rem" icon="triangle" color={theme.colors.primary} />
             </Style.IconWrapper>
           </Style.GuideMenu>
         </Style.MenuList>

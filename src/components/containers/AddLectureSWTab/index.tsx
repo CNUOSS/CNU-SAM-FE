@@ -28,34 +28,37 @@ interface AddLectureSWTabProps {
   productList: string[];
 }
 
-// TODO: seperate Trash component
-// TODO: add delete logic to trash component
 function AddLectureSWTab({ items = [], companyList, productList }: AddLectureSWTabProps) {
-  const parseItems = (): RowType[] =>
-    items.map((item, index) => ({
-      ...item,
-      number: index + 1,
-      trash: <Icon size="2rem" icon="trashcan" />,
-    }));
-  const [companyName, setCompanyName] = useState('');
-  const [productName, setProductName] = useState('');
+  const parseItems: RowType[] = items.map((item, index) => ({
+    ...item,
+    number: index + 1,
+    trash: <Icon onClick={() => deleteItem(item.productName as string)} size="2rem" icon="trashcan" />,
+  }));
+  const [companyName, setCompanyName] = useState(companyList[0]);
+  const [productName, setProductName] = useState(productList[0]);
   const [licenseName, setLicenseName] = useState('');
-  const [parsedItems, setParsedItems] = useState<RowType[]>(parseItems());
+  const [parsedItems, setParsedItems] = useState<RowType[]>(parseItems);
 
   const changeCompanyName = (selectedIndex: number) => setCompanyName(companyList[selectedIndex]);
   const changeProductName = (selectedIndex: number) => setProductName(productList[selectedIndex]);
   const changeLicenseName = (event: React.ChangeEvent<HTMLInputElement>) => setLicenseName(event.target.value);
-  const addNewItem = () => {
-    const newItem: RowType = {
-      number: 1,
-      productName,
-      company: companyName,
-      license: licenseName,
-      trash: <Icon size="2rem" icon="trashcan" />,
-    };
-    const numberUpdated = parsedItems.map(({ number, ...others }) => ({ number: (number as number) + 1, ...others }));
-    setParsedItems([newItem, ...numberUpdated]);
-  };
+  const deleteItem = (selectedProduct: string) =>
+    setParsedItems((prev) =>
+      prev
+        .filter(({ productName }) => productName !== selectedProduct)
+        .map((item, index) => ({ ...item, number: index + 1 }))
+    );
+  const addNewItem = () =>
+    setParsedItems((prev) => [
+      {
+        number: 1,
+        productName,
+        company: companyName,
+        license: licenseName,
+        trash: <Icon onClick={() => deleteItem(productName)} size="2rem" icon="trashcan" />,
+      },
+      ...prev.map(({ number, ...others }) => ({ number: (number as number) + 1, ...others })),
+    ]);
 
   const addRow: RowType = {
     number: <Icon onClick={addNewItem} size="2rem" icon="plus" />,

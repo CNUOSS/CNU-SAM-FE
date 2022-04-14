@@ -22,6 +22,8 @@ export const NavItem = {
   SWManagement: 'SWManagement',
 
   UserGuide: 'UserGuide',
+
+  EnrollSW: 'EnrollSW',
 } as const;
 
 export type NavItem = typeof NavItem[keyof typeof NavItem];

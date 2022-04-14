@@ -6,10 +6,6 @@ declare module '@emotion/react' {
       primary: string;
       secondary: string;
       tertiary: string;
-      quaternary: string;
-
-      gray: string;
-      lightGray: string;
     };
   }
 }

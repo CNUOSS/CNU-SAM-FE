@@ -15,7 +15,6 @@ export const Container = styled.div`
     background-color: ${(props) => props.theme.colors.quaternary};
   }
 
-  .ReactVirtualized__Grid__innerScrollContainer,
   .ReactVirtualized__Table__rowColumn,
   .ReactVirtualized__Table__row {
     overflow: visible !important;

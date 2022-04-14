@@ -7,11 +7,7 @@ export default {
   component: TotalLectureSWListTab,
 };
 
-const items: ItemType[] = [
-  generateTotalLectureSWItem({}),
-  generateTotalLectureSWItem({}),
-  generateTotalLectureSWItem({}),
-];
+const items: ItemType[] = [generateTotalLectureSWItem(), generateTotalLectureSWItem(), generateTotalLectureSWItem()];
 
 export const adminTab = () => <TotalLectureSWListTab isAdmin items={items} />;
 export const userTab = () => <TotalLectureSWListTab isAdmin={false} items={items} />;

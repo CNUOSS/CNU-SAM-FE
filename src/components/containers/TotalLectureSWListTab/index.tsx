@@ -13,7 +13,7 @@ const DIVISION = ['전공(핵심)', '교양(필수)'];
 const YEARS = [year - 1, year, year + 1].map((year) => String(year));
 
 export type ItemType = {
-  [key in TotalLectureSWListAttr]: string | boolean;
+  [key in TotalLectureSWListAttr]: string;
 };
 
 // TODO: remove this
@@ -23,27 +23,6 @@ interface TotalLectureSWListProps {
 }
 
 function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
-  const clickItem = (item: ItemType) => () => {
-    // TODO: open modal logic
-    // eslint-disable-next-line no-console
-    console.log(item);
-  };
-
-  const getNewManaged = (managed: boolean | string, onClick: () => void) => {
-    if (!managed) return 'No';
-    if (!isAdmin) return 'Yes';
-    return (
-      <Style.AddButton data-testid="add-btn" onClick={onClick}>
-        추가
-      </Style.AddButton>
-    );
-  };
-
-  const parsedItem = items.map(({ managed, ...others }) => {
-    const newManaged = getNewManaged(managed, clickItem({ managed, ...others }));
-    return { ...others, managed: newManaged };
-  });
-
   return (
     <Style.Container>
       <Style.Description>Description</Style.Description>
@@ -61,7 +40,7 @@ function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
       </Style.Form>
       <Style.TableTitle>등록된 수업용 SW</Style.TableTitle>
       <Style.TableWrapper>
-        <Table items={parsedItem} attributes={totalLectureSWListAttr} />
+        <Table items={items} attributes={totalLectureSWListAttr} />
       </Style.TableWrapper>
     </Style.Container>
   );

@@ -7,23 +7,17 @@ export const generateString = (num: number = 9) =>
 
 export const generateStringArray = (num: number) => new Array(num).fill('').map(() => generateString());
 
-export const generateTotalLectureSWItem = ({
-  managed,
-  lectureName,
-}: {
-  managed?: boolean;
-  lectureName?: string;
-}): ItemType => ({
+export const generateTotalLectureSWItem = (): ItemType => ({
   year: generateString(4),
   semester: generateString(3),
   organization: generateString(5),
   lectureNum: generateString(6),
   class: generateString(1),
-  lectureName: lectureName || generateString(8),
+  lectureName: generateString(8),
   division: generateString(5),
   writer: generateString(3),
   productName: generateString(10),
   productCompany: generateString(5),
   license: generateString(8),
-  managed: managed || Math.random() < 0.5,
+  managed: generateString(3),
 });

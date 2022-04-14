@@ -9,20 +9,13 @@ interface InputProps {
   onChange: (event: React.FormEvent<HTMLInputElement>) => void;
 }
 
-interface CoverProps {
-  children: React.ReactElement[];
-  label?: string;
-}
-
-const Cover = ({ children, label }: CoverProps) =>
-  label ? <Style.InputWrapper>{children}</Style.InputWrapper> : <>{children}</>;
-
 function Input({ value, label, width, type = 'text', onChange }: InputProps) {
+  if (!label) return <Style.Input id={label} width={width} type={type} value={value} onChange={onChange} />;
   return (
-    <Cover label={label}>
-      {label ? <Style.Label htmlFor={label}>{label}</Style.Label> : <></>}
+    <Style.InputWrapper>
+      {label && <Style.Label htmlFor={label}>{label}</Style.Label>}
       <Style.Input id={label} width={width} type={type} value={value} onChange={onChange} />
-    </Cover>
+    </Style.InputWrapper>
   );
 }
 

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Input from '../../widgets/Input';
 import Dropdown from '../../widgets/Dropdown';
-import TabForm from '../../widgets/TabForm';
 import Table from '../../widgets/Table';
 import AddManagedSWModal from '../../modals/AddManagedSWModal';
 import { TotalLectureSWListAttr } from '../../../@types/types';
@@ -49,7 +48,6 @@ function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
 
   const closeModal = () => setSelectedItem(undefined);
   const addNewManagedSW = () => {};
-  const searchList = () => {};
 
   return (
     <>
@@ -64,15 +62,18 @@ function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
       )}
       <Style.Container>
         <Style.Description>Description</Style.Description>
-        <TabForm onSubmit={searchList} buttonText="조회하기">
-          <Dropdown items={ORGANIZATION} label="조직분류" width="16rem" onClickItem={() => {}} />
-          <Dropdown items={YEARS} label="년도" width="10rem" onClickItem={() => {}} />
-          <Dropdown items={SEMESTER} label="학기" width="8rem" onClickItem={() => {}} />
-          <Dropdown items={DIVISION} label="이수구분" width="13rem" onClickItem={() => {}} />
-          <Input value="" label="과목이름" width="20rem" onChange={() => {}} />
-          <Input value="" label="과목번호" width="14rem" onChange={() => {}} />
-          <Input value="" label="등록자" width="14rem" onChange={() => {}} />
-        </TabForm>
+        <Style.Form>
+          <Style.InputList>
+            <Dropdown items={ORGANIZATION} label="조직분류" width="16rem" onClickItem={() => {}} />
+            <Dropdown items={YEARS} label="년도" width="10rem" onClickItem={() => {}} />
+            <Dropdown items={SEMESTER} label="학기" width="8rem" onClickItem={() => {}} />
+            <Dropdown items={DIVISION} label="이수구분" width="13rem" onClickItem={() => {}} />
+            <Input value="" label="과목이름" width="20rem" onChange={() => {}} />
+            <Input value="" label="과목번호" width="14rem" onChange={() => {}} />
+            <Input value="" label="등록자" width="14rem" onChange={() => {}} />
+          </Style.InputList>
+          <Style.InquireButton>조회하기</Style.InquireButton>
+        </Style.Form>
         <Style.TableTitle>등록된 수업용 SW</Style.TableTitle>
         <Style.TableWrapper>
           <Table items={parsedItem} attributes={totalLectureSWListAttr} />

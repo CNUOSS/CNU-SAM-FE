@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Dropdown from '../../widgets/Dropdown';
-import TabForm from '../../widgets/TabForm';
 import Input from '../../widgets/Input';
 import * as Style from './styled';
 import Table, { ItemType } from './Table';
@@ -30,15 +29,17 @@ function AddLectureSWTab({ receivedItems = [], companyList, productList }: AddLe
         <Style.FormTitle>수업 정보 작성</Style.FormTitle>
         <Style.SubmitButton>등록하기</Style.SubmitButton>
       </Style.FormTitleWrapper>
-      <TabForm>
-        <Dropdown items={ORGANIZATION} label="조직분류" width="16rem" onClickItem={() => {}} />
-        <Dropdown items={YEARS} label="년도" width="10rem" onClickItem={() => {}} />
-        <Dropdown items={SEMESTER} label="학기" width="8rem" onClickItem={() => {}} />
-        <Dropdown items={DIVISION} label="이수구분" width="13rem" onClickItem={() => {}} />
-        <Input value="" label="과목이름" width="20rem" onChange={() => {}} />
-        <Input value="" label="과목번호" width="14rem" onChange={() => {}} />
-        <Input value="" label="등록자" width="14rem" onChange={() => {}} />
-      </TabForm>
+      <Style.Form>
+        <Style.InputList>
+          <Dropdown items={ORGANIZATION} label="조직분류" width="16rem" onClickItem={() => {}} />
+          <Dropdown items={YEARS} label="년도" width="10rem" onClickItem={() => {}} />
+          <Dropdown items={SEMESTER} label="학기" width="8rem" onClickItem={() => {}} />
+          <Dropdown items={DIVISION} label="이수구분" width="13rem" onClickItem={() => {}} />
+          <Input value="" label="과목이름" width="20rem" onChange={() => {}} />
+          <Input value="" label="과목번호" width="14rem" onChange={() => {}} />
+          <Input value="" label="등록자" width="14rem" onChange={() => {}} />
+        </Style.InputList>
+      </Style.Form>
       <Style.TableTitle>등록된 수업용 SW</Style.TableTitle>
       <Style.TableWrapper>
         <Table

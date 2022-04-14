@@ -16,7 +16,6 @@ export const FormTitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 1rem;
 `;
 
 export const FormTitle = styled.h2`

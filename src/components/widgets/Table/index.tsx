@@ -11,7 +11,7 @@ import {
 import Icon, { IconType } from '../Icon';
 import * as Style from './styled';
 import { theme } from '../../../style/theme';
-import 'react-virtualized/styles.css';
+// import 'react-virtualized/styles.css';
 
 export interface AttributeType {
   label: string;

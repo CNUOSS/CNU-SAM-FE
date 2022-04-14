@@ -38,7 +38,7 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
   const getComponents = (navItem: NavItem) => {
     // TODO: apply translation
     switch (navItem) {
-      case 'TotalLectureSWList':
+      case 'TotalSWList':
         return { name: '전체 수업 용 SW', component: <></> };
       case 'SubscribingSWList':
         return { name: '학내 구독 중 SW', component: <></> };

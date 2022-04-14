@@ -14,7 +14,7 @@ export const LANGUAGES = [
 export const swCategory = (disable: boolean = false): CategoryType => ({
   disable,
   title: 'usingSW',
-  items: [NavItem.TotalLectureSWList, NavItem.SubscribingSWList, NavItem.SWDashboard],
+  items: [NavItem.TotalSWList, NavItem.SubscribingSWList, NavItem.SWDashboard],
 });
 
 export const pjCategory = (disable: boolean = false): CategoryType => ({

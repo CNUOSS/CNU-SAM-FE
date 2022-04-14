@@ -14,7 +14,7 @@
   "project": "프로젝트",
   "management": "CNU-SAM 관리",
 
-  "TotalLectureSWList": "전체 수업 용 SW목록",
+  "TotalSWList": "전체 수업 용 SW목록",
   "SubscribingSWList": "학내 구독 중인 SW목록",
   "SWDashboard": "SW 통계 및 대시보드",
   "PJList": "프로젝트 목록",

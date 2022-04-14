@@ -57,7 +57,7 @@ describe('Container/Sidebar', () => {
   });
 
   describe('add tab test', () => {
-    it('click TotalLectureSWList list', () => {
+    it('click TotalSWList list', () => {
       renderApp(true, 'Admin');
       const licenseList = screen.getByText('전체 수업 용 SW목록');
       fireEvent.click(licenseList);

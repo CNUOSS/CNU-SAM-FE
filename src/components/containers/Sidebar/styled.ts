@@ -49,22 +49,17 @@ export const MenuList = styled.ul`
   flex-direction: column;
 `;
 
-export const GuideMenu = styled.li`
-  width: 100%;
-  height: 6rem;
+export const MenuItem = styled.li`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 2.5rem;
-
+  padding-left: 2.5rem;
+  height: 6rem;
   font-size: 2rem;
   font-weight: bold;
-  border: 1px solid ${(props) => props.theme.colors.primary};
+  border-bottom: 2px solid ${(props) => props.theme.colors.primary};
   cursor: pointer;
-`;
 
-export const IconWrapper = styled.div`
-  width: 1.5rem;
-  height: 1.5rem;
-  transform: rotate(90deg);
+  &:first-of-type {
+    border-top: 2px solid ${(props) => props.theme.colors.primary};
+  }
 `;

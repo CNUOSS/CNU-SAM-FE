@@ -6,10 +6,6 @@ export default {
   component: Sidebar,
 };
 
-export const sidebarUser = () => <Sidebar userAuth="User" isLogin />;
-
-export const sidebarManager = () => <Sidebar userAuth="Manager" isLogin />;
-
-export const sidebarAdmin = () => <Sidebar userAuth="Admin" isLogin />;
+export const sidebarLogin = () => <Sidebar isLogin />;
 
 export const sidebarLogout = () => <Sidebar isLogin={false} />;

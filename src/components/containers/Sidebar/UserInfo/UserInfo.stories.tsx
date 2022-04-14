@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import UserInfo from '.';
 
 export default {
@@ -7,10 +6,8 @@ export default {
   component: UserInfo,
 };
 
-const addNewTabAction = action('add new tab');
-
 export const userInfo = () => (
   <div style={{ width: '25rem' }}>
-    <UserInfo addNewTab={addNewTabAction} />
+    <UserInfo />
   </div>
 );

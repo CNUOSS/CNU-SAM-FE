@@ -17,7 +17,6 @@ interface AddLectureSWTabProps {
   productList: string[];
 }
 
-// FIXME: remove companyList, productList
 function AddLectureSWTab({ receivedItems = [], companyList, productList }: AddLectureSWTabProps) {
   const [items, setItems] = useState<ItemType[]>(receivedItems);
 

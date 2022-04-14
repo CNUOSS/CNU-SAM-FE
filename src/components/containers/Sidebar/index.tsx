@@ -5,7 +5,6 @@ import { useSetRecoilState } from 'recoil';
 import * as Style from './styled';
 
 import TotalLectureSWListTab from '../TotalLectureSWListTab';
-import AddLectureSWTab from '../AddLectureSWTab';
 
 import UserInfo from './UserInfo';
 import SigninForm from './SigninForm';
@@ -40,7 +39,6 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
 
   const getComponents = (navItem: NavItem) => {
     // TODO: apply translation
-    // FIXME: these Components maybe will removed all props
     switch (navItem) {
       case 'TotalLectureSWList':
         return {
@@ -61,8 +59,6 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
         return { name: '수업 용 SW 관리', component: <></> };
       case 'UserGuide':
         return { name: '사용자 가이드', component: <></> };
-      case 'EnrollSW':
-        return { name: '수업용 SW 등록', component: <AddLectureSWTab companyList={[]} productList={[]} /> };
       default:
         return { name: 'error', component: <></> };
     }
@@ -88,7 +84,7 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
         <Style.Version>v1.0.0</Style.Version>
         <Dropdown items={languageNames} onClickItem={changeLanguage} />
       </Style.Top>
-      <Style.AuthBox>{isLogin ? <UserInfo addNewTab={addNewTab} /> : <SigninForm />}</Style.AuthBox>
+      <Style.AuthBox>{isLogin ? <UserInfo /> : <SigninForm />}</Style.AuthBox>
       {isLogin && userAuth && (
         <Style.MenuList>
           {menuPerUser[userAuth].map((category) => (

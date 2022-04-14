@@ -18,7 +18,6 @@ export const Container = styled.div`
   .ReactVirtualized__Grid__innerScrollContainer,
   .ReactVirtualized__Table__rowColumn,
   .ReactVirtualized__Table__row {
-    width: 100% !important;
     overflow: visible !important;
 
     &:first-of-type {

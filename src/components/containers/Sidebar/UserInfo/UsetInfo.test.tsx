@@ -1,12 +1,10 @@
 import React from 'react';
 import { init } from '../../../../libs/i18n';
 import UserInfo from '.';
-import { render, screen, act, fireEvent } from '../../../../libs/rtl-utils';
-
-const addNewTabMock = jest.fn();
+import { render, screen, act } from '../../../../libs/rtl-utils';
 
 const renderApp = () => {
-  render(<UserInfo addNewTab={addNewTabMock} />);
+  render(<UserInfo />);
 };
 
 describe('Container/Sidebar/UserInfo', () => {
@@ -30,13 +28,5 @@ describe('Container/Sidebar/UserInfo', () => {
       screen.getByText('소프트웨어 등록하기');
       screen.getByText('프로젝트 등록하기');
     });
-  });
-
-  it('click button', () => {
-    renderApp();
-
-    const enrollSWButton = screen.getByText('소프트웨어 등록하기');
-    fireEvent.click(enrollSWButton);
-    expect(addNewTabMock).toBeCalledTimes(1);
   });
 });

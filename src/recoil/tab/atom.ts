@@ -5,7 +5,7 @@ export interface TabType {
   component: React.ReactElement;
 }
 
-export interface TabState {
+interface TabState {
   currentIdx: number;
   tabs: TabType[];
 }

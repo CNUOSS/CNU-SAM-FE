@@ -4,13 +4,12 @@ import * as SVG from './svg';
 type IconType = keyof typeof SVG;
 interface IconProps {
   icon: IconType;
-  color?: string;
 }
 
-function Icon({ icon, color = '#000' }: IconProps) {
+function Icon({ icon }: IconProps) {
   const SvgIcon = SVG[icon];
 
-  return <SvgIcon color={color} />;
+  return <SvgIcon />;
 }
 
 export default Icon;

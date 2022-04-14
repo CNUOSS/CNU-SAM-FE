@@ -44,8 +44,8 @@ function AddLectureSWTab({ receivedItems = [], companyList, productList }: AddLe
       <Style.TableWrapper>
         <Table
           items={items}
-          companyList={companyList}
-          productList={productList}
+          companys={companyList}
+          products={productList}
           onAddNewItem={addNewItem}
           onDeleteItem={deleteItem}
         />

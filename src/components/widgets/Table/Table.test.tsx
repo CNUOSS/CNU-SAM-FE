@@ -20,21 +20,9 @@ const items = [
 ];
 
 const renderApp = (click: boolean = false) =>
-  render(<Table attributes={attributes} items={items} onRowClick={click ? onClickMock : undefined} />);
+  render(<Table attributes={attributes} items={items} onRowClick={click ? onClickMock : undefined} cellWidth={800} />);
 
 describe('Widget/Table', () => {
-  const originalOffsetHeight = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetHeight');
-  const originalOffsetWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetWidth');
-
-  beforeAll(() => {
-    Object.defineProperty(HTMLElement.prototype, 'offsetHeight', { configurable: true, value: 800 });
-    Object.defineProperty(HTMLElement.prototype, 'offsetWidth', { configurable: true, value: 800 });
-  });
-
-  afterAll(() => {
-    Object.defineProperty(HTMLElement.prototype, 'offsetHeight', originalOffsetHeight as PropertyDescriptor);
-    Object.defineProperty(HTMLElement.prototype, 'offsetWidth', originalOffsetWidth as PropertyDescriptor);
-  });
   describe('rendering test', () => {
     it('basic table', () => {
       renderApp();

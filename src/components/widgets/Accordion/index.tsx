@@ -28,7 +28,7 @@ function Accordion({ title, items, disable = false, onClickItem }: AccordionProp
       </Style.Category>
       <Style.List isOpen={isOpen} numOfItems={items.length}>
         {items.map((item) => (
-          <Style.Item data-testid="accordion-item" key={item} onClick={() => handleClickItem(item)} disable={disable}>
+          <Style.Item key={item} onClick={() => handleClickItem(item)} disable={disable}>
             {t(`page:${item}`)}
           </Style.Item>
         ))}

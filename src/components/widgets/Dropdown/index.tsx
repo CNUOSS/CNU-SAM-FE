@@ -4,12 +4,11 @@ import * as Style from './styled';
 
 interface DropdownProps {
   items: string[];
-  width?: string;
   currentIdx?: number;
   onClickItem: (selectedIdx: number) => void;
 }
 
-function Dropdown({ items, width = '10rem', currentIdx = 0, onClickItem }: DropdownProps) {
+function Dropdown({ items, currentIdx = 0, onClickItem }: DropdownProps) {
   const [selectedIdx, setSelectedIdx] = useState(currentIdx);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -21,7 +20,7 @@ function Dropdown({ items, width = '10rem', currentIdx = 0, onClickItem }: Dropd
   };
 
   return (
-    <Style.Container width={width}>
+    <Style.Container>
       <Style.CurrentItem data-testid="dropdown-selected" onClick={toggleList}>
         {items[selectedIdx]}
         <Style.IconWrapper isOpen={isOpen}>

@@ -10,4 +10,8 @@ export default {
 
 const clickAction = action('click item');
 const languageNames = LANGUAGES.map((l) => l.name);
-export const dropdown = () => <Dropdown items={languageNames} onClickItem={clickAction} />;
+export const dropdown = () => (
+  <div style={{ width: '10rem' }}>
+    <Dropdown items={languageNames} onClickItem={clickAction} />
+  </div>
+);

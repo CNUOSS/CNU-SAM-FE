@@ -8,12 +8,8 @@ interface ItemProps {
   selected: boolean;
 }
 
-interface ContainerProps {
-  width: string;
-}
-
-export const Container = styled.div<ContainerProps>`
-  width: ${(props) => props.width};
+export const Container = styled.div`
+  width: 10rem;
   position: relative;
 `;
 

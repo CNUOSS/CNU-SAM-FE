@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SelfDropdown from '../../../components/widgets/SelfDropdown';
+import Dropdown from '../../../components/widgets/Dropdown';
 import Input from '../../../components/widgets/Input';
 import Template from '../Template';
 import * as Style from './styled';
@@ -21,12 +21,16 @@ function AddManagedSWModal({
   onSubmit,
   closeModal,
 }: AddManagedSWModalProps) {
+  const companyList = [...defaultCompanyList, '직접 입력'];
   const [swName, setSWName] = useState(defaultSWName);
-  const [company, setCompany] = useState('');
+  const [companyName, setCompanyName] = useState('');
+  const [selfCompanyName, setSelfCompanyName] = useState('');
+  const isSelfInput = companyName === '직접 입력';
 
   const changeSWName = (event: React.ChangeEvent<HTMLInputElement>) => setSWName(event.target.value);
-  const changeCompany = (company: string) => setCompany(company);
-  const handleSubmit = () => onSubmit(company, swName);
+  const changeSelfCompanyName = (event: React.ChangeEvent<HTMLInputElement>) => setSelfCompanyName(event.target.value);
+  const changeCompany = (selectedIndex: number) => setCompanyName(companyList[selectedIndex]);
+  const handleSubmit = () => onSubmit(isSelfInput ? companyName : selfCompanyName, swName);
 
   return (
     <Template closeModal={closeModal}>
@@ -34,15 +38,16 @@ function AddManagedSWModal({
         <Style.Header>수업 용 SW 관리 항목에 추가하기</Style.Header>
         <Style.Description>당신의 행동으로 db의 운명이 달렸습니다. 알아서 책임지길 바라요.</Style.Description>
         <Style.InputWrapper>
-          <SelfDropdown
-            items={defaultCompanyList}
-            label="SW 제조사"
-            currentIdx={defaultCompanyIndex}
-            width={35}
-            inputValue={company}
-            inputWidth={20}
-            onChange={changeCompany}
-          />
+          <Style.CompanyWrapper>
+            <Dropdown
+              items={companyList}
+              label="SW 제조사"
+              currentIdx={defaultCompanyIndex}
+              width={isSelfInput ? '14rem' : '35rem'}
+              onClickItem={changeCompany}
+            />
+            {isSelfInput && <Input value={selfCompanyName} width="20rem" onChange={changeSelfCompanyName} />}
+          </Style.CompanyWrapper>
           <Input value={swName} label="SW 제품명" width="35rem" onChange={changeSWName} />
         </Style.InputWrapper>
         <Style.SubmitButton onClick={handleSubmit}>등록하기</Style.SubmitButton>

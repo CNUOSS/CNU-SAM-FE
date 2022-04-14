@@ -2,10 +2,9 @@ import React, { useState, useMemo } from 'react';
 import TableWidget from '../../../widgets/Table';
 import { AddLectureSWListAttr, Trash, Number } from '../../../../@types/types';
 import { addLectureSWListAttr } from '../../../../common/constants';
-import Dropdown from '../../../widgets/Dropdown';
+import SelfDropdown from '../../../widgets/SelfDropdown';
 import Input from '../../../widgets/Input';
 import Icon from '../../../widgets/Icon';
-import * as Style from './styled';
 
 export type ItemType = {
   [key in AddLectureSWListAttr]: string | React.ReactElement;
@@ -18,36 +17,26 @@ export interface RowType extends ItemType {
 
 interface TableProps {
   items: ItemType[];
-  companyList: string[];
-  productList: string[];
+  companys: string[];
+  products: string[];
   onAddNewItem: (item: ItemType) => void;
   onDeleteItem: (index: number) => void;
 }
 
-// TODO: too many variables,,,
-function Table({ items, companyList, productList, onAddNewItem, onDeleteItem }: TableProps) {
-  const SELF_INPUT = '직접 입력';
-  const [company, setCompany] = useState(companyList[0]);
-  const [companySelf, setCompanySelf] = useState('');
-  const [productName, setProductName] = useState(productList[0]);
-  const [productNameSelf, setProductNameSelf] = useState('');
+function Table({ items, companys, products, onAddNewItem, onDeleteItem }: TableProps) {
+  const [company, setCompany] = useState('');
+  const [productName, setProductName] = useState('');
   const [license, setLicense] = useState('');
 
-  const changeCompanyName = (selectedIndex: number) => setCompany(companyList[selectedIndex] || SELF_INPUT);
-  const changeProductName = (selectedIndex: number) => setProductName(productList[selectedIndex] || SELF_INPUT);
   const changeLicenseName = (event: React.ChangeEvent<HTMLInputElement>) => setLicense(event.target.value);
-  const changeCompanySelf = (event: React.ChangeEvent<HTMLInputElement>) => setCompanySelf(event.target.value);
-  const changeProductNameSelf = (event: React.ChangeEvent<HTMLInputElement>) => setProductNameSelf(event.target.value);
+  const changeCompany = (company: string) => setCompany(company);
+  const changeProduct = (product: string) => setProductName(product);
   const deleteItem = (selectedIndex: number) => onDeleteItem(selectedIndex);
   const addNewItem = () => {
-    setCompanySelf('');
-    setProductNameSelf('');
+    setCompany('');
+    setProductName('');
     setLicense('');
-    onAddNewItem({
-      productName: productName === SELF_INPUT ? productNameSelf : productName,
-      company: company === SELF_INPUT ? companySelf : company,
-      license,
-    });
+    onAddNewItem({ productName, company, license });
   };
 
   const parsedItems: RowType[] = useMemo(
@@ -62,25 +51,9 @@ function Table({ items, companyList, productList, onAddNewItem, onDeleteItem }: 
 
   const addRow: RowType = {
     number: <Icon onClick={addNewItem} size="2rem" icon="plus" />,
-    company: (
-      <Style.DropdownWrapper>
-        <Dropdown
-          items={[...companyList, SELF_INPUT]}
-          width={company === SELF_INPUT ? '9rem' : '18rem'}
-          onClickItem={changeCompanyName}
-        />
-        {company === SELF_INPUT && <Input value={companySelf} onChange={changeCompanySelf} width="8rem" />}
-      </Style.DropdownWrapper>
-    ),
+    company: <SelfDropdown items={companys} width={18} inputValue={company} inputWidth={8} onChange={changeCompany} />,
     productName: (
-      <Style.DropdownWrapper>
-        <Dropdown
-          items={[...productList, SELF_INPUT]}
-          width={productName === SELF_INPUT ? '9rem' : '25rem'}
-          onClickItem={changeProductName}
-        />
-        {productName === SELF_INPUT && <Input value={productNameSelf} width="15rem" onChange={changeProductNameSelf} />}
-      </Style.DropdownWrapper>
+      <SelfDropdown items={products} width={25} inputValue={productName} inputWidth={15} onChange={changeProduct} />
     ),
     license: <Input value={license} width="25rem" onChange={changeLicenseName} />,
     trash: <></>,

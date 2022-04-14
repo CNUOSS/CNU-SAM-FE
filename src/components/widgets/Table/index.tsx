@@ -73,7 +73,7 @@ function Table<T extends ObjType>({ attributes, items, onRowClick }: TableProps<
   };
 
   const headerRenderer = (info: TableHeaderProps, dataKey: string) => (
-    <Style.HeaderItem data-testid="table-attr" sortable={!info.disableSort}>
+    <Style.HeaderItem data-testid="table-attr">
       {info.label}
       {!info.disableSort && (
         <Style.IconWrapper>

@@ -26,12 +26,7 @@ export const NavItem = {
 
 export type NavItem = typeof NavItem[keyof typeof NavItem];
 
-// List Attributes
-export const Trash = 'trash';
-export const Number = 'number';
-export type Trash = typeof Trash;
-export type Number = typeof Number;
-
+// TotalLectureSWList
 export const TotalLectureSWListAttr = {
   Year: 'year',
   Semester: 'semester',
@@ -46,11 +41,5 @@ export const TotalLectureSWListAttr = {
   License: 'license',
   Managed: 'managed',
 } as const;
-export type TotalLectureSWListAttr = typeof TotalLectureSWListAttr[keyof typeof TotalLectureSWListAttr];
 
-export const AddLectureSWListAttr = {
-  Company: 'company',
-  ProductName: 'productName',
-  License: 'license',
-} as const;
-export type AddLectureSWListAttr = typeof AddLectureSWListAttr[keyof typeof AddLectureSWListAttr];
+export type TotalLectureSWListAttr = typeof TotalLectureSWListAttr[keyof typeof TotalLectureSWListAttr];

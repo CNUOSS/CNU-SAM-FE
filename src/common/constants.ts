@@ -1,5 +1,5 @@
 import { AttributeType } from 'src/components/widgets/Table';
-import { AddLectureSWListAttr, NavItem, TotalLectureSWListAttr, Trash, Number } from '../@types/types';
+import { NavItem, TotalLectureSWListAttr } from '../@types/types';
 
 export interface CategoryType {
   disable: boolean;
@@ -46,12 +46,4 @@ export const totalLectureSWListAttr: AttributeType<TotalLectureSWListAttr>[] = [
   { label: '제조사', dataKey: 'productCompany', widthPercent: 6, disableSort: true },
   { label: '라이선스', dataKey: 'license', widthPercent: 9, disableSort: true },
   { label: 'SW관리대상', dataKey: 'managed', widthPercent: 14, disableSort: false },
-];
-
-export const addLectureSWListAttr: AttributeType<AddLectureSWListAttr | Trash | Number>[] = [
-  { label: 'No', dataKey: 'number', widthPercent: 10, disableSort: true },
-  { label: '소프트웨어 제조사', dataKey: 'company', widthPercent: 20, disableSort: true },
-  { label: '소프트웨어 제품명', dataKey: 'productName', widthPercent: 30, disableSort: true },
-  { label: '라이선스', dataKey: 'license', widthPercent: 35, disableSort: true },
-  { label: '', dataKey: 'trash', widthPercent: 5, disableSort: true },
 ];

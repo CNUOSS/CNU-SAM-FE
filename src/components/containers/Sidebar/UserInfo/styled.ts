@@ -11,10 +11,6 @@ export const InfoWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const IconWrapper = styled.div`
-  width: 3rem;
-`;
-
 export const Name = styled.span`
   font-weight: bold;
 `;

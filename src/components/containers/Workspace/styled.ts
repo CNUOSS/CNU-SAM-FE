@@ -21,10 +21,10 @@ export const TabList = styled.ul`
 `;
 
 export const TabItem = styled.li<TabItemProps>`
-  width: 14.4rem;
   height: ${(props) => (props.selected ? 3.3 : 3.2)}rem;
   display: flex;
   align-items: center;
+  gap: 1rem;
   justify-content: space-between;
   padding: 0 1.5rem;
 
@@ -36,11 +36,6 @@ export const TabItem = styled.li<TabItemProps>`
   background-color: ${(props) => (props.selected ? 'white' : '#c0c0c0')};
   transform: translateY(${(props) => (props.selected ? 0.1 : 0)}rem);
   cursor: pointer;
-`;
-
-export const IconWrapper = styled.div`
-  height: 1.6rem;
-  width: 1.6rem;
 `;
 
 export const Workspace = styled.main<WorkspaceProps>`

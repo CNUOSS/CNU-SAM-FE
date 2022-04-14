@@ -64,5 +64,7 @@ export const GuideMenu = styled.li`
 `;
 
 export const IconWrapper = styled.div`
+  width: 1.5rem;
+  height: 1.5rem;
   transform: rotate(90deg);
 `;

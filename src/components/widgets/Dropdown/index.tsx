@@ -36,7 +36,7 @@ function Dropdown({ items, label, width = '10rem', currentIdx = 0, onClickItem }
         <Style.CurrentItem data-testid="dropdown-selected" onClick={toggleList}>
           {items[selectedIdx]}
           <Style.IconWrapper isOpen={isOpen}>
-            <Icon size="0.8rem" icon="triangle" />
+            <Icon icon="triangle" />
           </Style.IconWrapper>
         </Style.CurrentItem>
         {isOpen && (

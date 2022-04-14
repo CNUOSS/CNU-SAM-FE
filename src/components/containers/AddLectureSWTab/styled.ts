@@ -65,3 +65,9 @@ export const TableWrapper = styled.div`
   margin-top: 1rem;
   height: 50rem;
 `;
+
+export const IconWrapper = styled.div`
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+`;

@@ -47,3 +47,8 @@ export const CellItem = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+export const IconWrapper = styled.div`
+  width: 1.5rem;
+  height: 1.5rem;
+`;

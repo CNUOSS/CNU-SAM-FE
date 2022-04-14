@@ -38,6 +38,11 @@ export const TabItem = styled.li<TabItemProps>`
   cursor: pointer;
 `;
 
+export const IconWrapper = styled.div`
+  height: 1.6rem;
+  width: 1.6rem;
+`;
+
 export const Workspace = styled.main<WorkspaceProps>`
   border-top: 1px solid black;
   width: 100%;

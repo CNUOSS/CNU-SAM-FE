@@ -9,7 +9,9 @@ function UserInfo() {
   return (
     <Style.Container>
       <Style.InfoWrapper>
-        <Icon size="3rem" icon="gear" />
+        <Style.IconWrapper>
+          <Icon icon="gear" />
+        </Style.IconWrapper>
         <Style.Name>user-name</Style.Name>
         <Style.Logout>{t('page:logout')}</Style.Logout>
       </Style.InfoWrapper>

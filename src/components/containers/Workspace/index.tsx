@@ -19,7 +19,9 @@ function TabItem({ children, refs, ...props }: any) {
   return (
     <Style.TabItem {...props} ref={refs}>
       {children}
-      <Icon size="1.6rem" icon="close" />
+      <Style.IconWrapper>
+        <Icon icon="close" />
+      </Style.IconWrapper>
     </Style.TabItem>
   );
 }

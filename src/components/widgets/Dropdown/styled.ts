@@ -38,6 +38,7 @@ export const CurrentItem = styled.div`
 `;
 
 export const IconWrapper = styled.div<IconWrapperProps>`
+  width: 0.8rem;
   transition: all 0.3s linear;
   transform: rotate(${(props) => (props.isOpen ? 180 : 0)}deg);
   transform-origin: 50% 55%;

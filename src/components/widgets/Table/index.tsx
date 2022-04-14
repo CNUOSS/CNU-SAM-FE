@@ -6,12 +6,11 @@ import {
   SortDirection,
   SortDirectionType,
   TableHeaderProps,
-  TableCellProps,
 } from 'react-virtualized';
 import Icon, { IconType } from '../Icon';
 import * as Style from './styled';
 import { theme } from '../../../style/theme';
-// import 'react-virtualized/styles.css';
+import 'react-virtualized/styles.css';
 
 export interface AttributeType {
   label: string;
@@ -73,7 +72,7 @@ function Table<T extends ObjType>({ attributes, items, onRowClick }: TableProps<
   };
 
   const headerRenderer = (info: TableHeaderProps, dataKey: string) => (
-    <Style.HeaderItem data-testid="table-attr">
+    <Style.HeaderItem>
       {info.label}
       {!info.disableSort && (
         <Style.IconWrapper>
@@ -83,17 +82,13 @@ function Table<T extends ObjType>({ attributes, items, onRowClick }: TableProps<
     </Style.HeaderItem>
   );
 
-  const cellRenderer = (info: TableCellProps, dataKey: string) => (
-    <div data-testid={`table-cell-${dataKey}`}>{info.cellData}</div>
-  );
-
   return (
     <Style.Container>
       <AutoSizer>
         {({ height, width }) => (
           <VirtualizedTable
-            width={width || 800}
-            height={height || 800}
+            width={width}
+            height={height}
             headerHeight={50}
             rowHeight={50}
             rowCount={dataList.length}
@@ -109,7 +104,6 @@ function Table<T extends ObjType>({ attributes, items, onRowClick }: TableProps<
                 {...attr}
                 key={attr.label}
                 headerRenderer={(info) => headerRenderer(info, attr.dataKey)}
-                cellRenderer={(info) => cellRenderer(info, attr.dataKey)}
                 width={(width * widthPercent) / 100}
               />
             ))}

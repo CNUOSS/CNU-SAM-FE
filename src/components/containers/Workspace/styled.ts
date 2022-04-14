@@ -21,10 +21,10 @@ export const TabList = styled.ul`
 `;
 
 export const TabItem = styled.li<TabItemProps>`
+  width: 14.4rem;
   height: ${(props) => (props.selected ? 3.3 : 3.2)}rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
   justify-content: space-between;
   padding: 0 1.5rem;
 

@@ -82,7 +82,7 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
       {isLogin && userAuth && (
         <Style.MenuList>
           {menuPerUser[userAuth].map((category) => (
-            <Accordion key={category.title} {...category} onClickItem={(item) => addNewTab(item as NavItem)} />
+            <Accordion {...category} onClickItem={(item) => addNewTab(item as NavItem)} />
           ))}
           <Style.GuideMenu onClick={() => addNewTab('UserGuide')}>
             {t('page:UserGuide')}

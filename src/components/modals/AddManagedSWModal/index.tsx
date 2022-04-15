@@ -9,15 +9,19 @@ interface AddManagedSWModalProps {
   defaultCompanyList: string[];
   defaultCompanyIndex?: number;
   defaultSWName?: string;
-  closeModal: () => void;
+  isEditable?: boolean;
   onSubmit: (company: string, product: string) => void;
+  onDelete?: () => void;
+  closeModal: () => void;
 }
 
 function AddManagedSWModal({
   defaultCompanyList,
   defaultCompanyIndex = 0,
   defaultSWName = '',
+  isEditable = false,
   onSubmit,
+  onDelete,
   closeModal,
 }: AddManagedSWModalProps) {
   const [swName, setSWName] = useState(defaultSWName);
@@ -44,7 +48,10 @@ function AddManagedSWModal({
           />
           <Input value={swName} label="SW 제품명" width="35rem" onChange={changeSWName} />
         </Style.InputWrapper>
-        <Style.SubmitButton onClick={handleSubmit}>등록하기</Style.SubmitButton>
+        <Style.ButtonWrapper>
+          {isEditable && <Style.DeleteButton onClick={onDelete}>삭제하기</Style.DeleteButton>}
+          <Style.SubmitButton onClick={handleSubmit}>{isEditable ? '수정하기' : '등록하기'}</Style.SubmitButton>
+        </Style.ButtonWrapper>
       </Style.Container>
     </Template>
   );

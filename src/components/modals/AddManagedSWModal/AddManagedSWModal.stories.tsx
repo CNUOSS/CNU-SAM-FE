@@ -25,3 +25,12 @@ export const selectedSW = () => (
 export const noSWName = () => (
   <AddManagedSWModal defaultCompanyList={defaultCompanyList} onSubmit={onSubmitAction} closeModal={closeModalAction} />
 );
+
+export const editable = () => (
+  <AddManagedSWModal
+    isEditable
+    defaultCompanyList={defaultCompanyList}
+    onSubmit={onSubmitAction}
+    closeModal={closeModalAction}
+  />
+);

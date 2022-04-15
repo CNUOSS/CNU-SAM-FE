@@ -38,6 +38,23 @@ export const CompanyWrapper = styled.div`
   gap: 1rem;
 `;
 
+export const ButtonWrapper = styled.div`
+  display: flex;
+  float: right;
+  gap: 1rem;
+`;
+
+export const DeleteButton = styled.button`
+  width: 18rem;
+  height: 5rem;
+  float: right;
+  margin: 0 3rem 2rem 0;
+  font-size: 1.8rem;
+  color: white;
+  border-radius: 1rem;
+  background-color: ${(props) => props.theme.colors.warning};
+`;
+
 export const SubmitButton = styled.button`
   width: 18rem;
   height: 5rem;

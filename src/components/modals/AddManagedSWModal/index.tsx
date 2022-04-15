@@ -6,7 +6,6 @@ import * as Style from './styled';
 
 interface AddManagedSWModalProps {
   // TODO: can add type to company list? not string?
-  // FIXME: remove company list, get from server
   defaultCompanyList: string[];
   defaultCompanyIndex?: number;
   defaultSWName?: string;

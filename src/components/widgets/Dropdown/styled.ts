@@ -16,11 +16,13 @@ export const DropdownWrapper = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
+  z-index: 1;
 `;
 
 export const Container = styled.div<ContainerProps>`
   width: ${(props) => props.width};
   position: relative;
+  z-index: 1;
 `;
 
 export const CurrentItem = styled.div`

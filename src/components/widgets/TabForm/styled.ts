@@ -33,6 +33,7 @@ export const SubmitButton = styled.button`
   height: 4.2rem;
 
   color: white;
+  font-size: 1.8rem;
   font-weight: bold;
   border-radius: 1rem;
   background-color: ${(props) => props.theme.colors.secondary};

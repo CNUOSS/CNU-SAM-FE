@@ -10,6 +10,8 @@ declare module '@emotion/react' {
 
       gray: string;
       lightGray: string;
+
+      warning: string;
     };
   }
 }

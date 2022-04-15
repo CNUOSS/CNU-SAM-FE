@@ -7,5 +7,7 @@ export const theme = {
 
     gray: '#c4c4c4',
     lightGray: '#f0f0f0',
+
+    warning: '#FF8282',
   },
 };

@@ -27,7 +27,7 @@ interface ObjType {
 interface TableProps<T, C> {
   attributes: AttributeType<C>[];
   items: T[];
-  onRowClick?: () => void;
+  onRowClick?: (item: T) => void;
 }
 
 // TODO: infinite scrolling
@@ -98,7 +98,7 @@ function Table<T extends ObjType, C extends string>({ attributes, items, onRowCl
             rowCount={dataList.length}
             rowStyle={getRowStyle}
             rowGetter={({ index }) => dataList[index]}
-            onRowClick={onRowClick}
+            onRowClick={({ rowData }) => onRowClick && onRowClick(rowData)}
             sort={({ sortBy, sortDirection }) => sort(sortBy, sortDirection)}
             sortBy={sortBy}
             sortDirection={sortDirection}

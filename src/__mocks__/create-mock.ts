@@ -1,5 +1,6 @@
 import { ItemType as TotalLectureSWItemType } from '../components/containers/TotalLectureSWListTab';
 import { ItemType as AddLectureSWItemType } from '../components/containers/AddLectureSWTab/Table';
+import { ItemType as LectureSWManagementType } from '../components/containers/LectureSWManagementTab';
 
 export const generateString = (num: number = 9) =>
   Math.random()
@@ -33,4 +34,12 @@ export const generateAddLectureSWItem = (): AddLectureSWItemType => ({
   company: generateString(5),
   productName: generateString(10),
   license: generateString(8),
+});
+
+export const generateLectureSWItem = (): LectureSWManagementType => ({
+  company: generateString(5),
+  enrollDate: generateString(8),
+  product: generateString(10),
+  usedCount: generateString(1),
+  writer: generateString(3),
 });

@@ -28,22 +28,28 @@ function LectureSWManagementTab({ items, companys }: LecutreSWManagementTabProps
   const parsedItems: RowType[] = items.map((item, index) => ({ ...item, number: index + 1 }));
 
   const onSubmit = () => {};
-
-  const toggleModal = () => setIsOpen((prev) => !prev);
-
   const addNewSW = () => {};
-
-  const clickItem = (item: ItemType) => setSelectedItem(item);
+  const onDelete = () => {};
+  const toggleModal = () => {
+    setIsOpen((prev) => !prev);
+    setSelectedItem(undefined);
+  };
+  const clickItem = (item: ItemType) => {
+    toggleModal();
+    setSelectedItem(item);
+  };
 
   return (
     <>
-      {(isOpen || selectedItem) && (
+      {isOpen && (
         <AddManagedSWModal
           defaultCompanyList={companys}
           defaultCompanyIndex={companys.findIndex((company) => company === selectedItem?.company)}
           defaultSWName={selectedItem?.product}
+          isEditable={!!selectedItem}
           closeModal={toggleModal}
           onSubmit={addNewSW}
+          onDelete={onDelete}
         />
       )}
       <Style.Container>

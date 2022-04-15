@@ -112,7 +112,7 @@ describe('Container/Sidebar', () => {
 
     it('click SWManagement list', () => {
       renderApp(true, 'Admin');
-      const licenseList = screen.getByText('등록 대상 SW 관리');
+      const licenseList = screen.getByText('수업 용 SW 관리');
       fireEvent.click(licenseList);
       expect(onChange).toBeCalledTimes(2);
       expect(onChange).toBeCalledWith({ currentIdx: 0, tabs: [{ name: '수업 용 SW 관리', component: <></> }] });

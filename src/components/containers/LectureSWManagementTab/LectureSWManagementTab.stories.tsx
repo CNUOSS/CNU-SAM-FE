@@ -1,6 +1,6 @@
 import React from 'react';
 import LectureSWManagementTab from '.';
-import { generateLectureSWItem, generateStringArray } from '../../../__mocks__/create-mock';
+import { generateSWForLecture, generateStringArray } from '../../../__mocks__/create-mock';
 
 export default {
   title: 'Container/LectureSWManagementTab',
@@ -8,5 +8,5 @@ export default {
 };
 
 const companys = generateStringArray(3);
-const items = [generateLectureSWItem(), generateLectureSWItem(), generateLectureSWItem()];
+const items = [generateSWForLecture(), generateSWForLecture(), generateSWForLecture()];
 export const lectureSWManagementTab = () => <LectureSWManagementTab items={items} companys={companys} />;

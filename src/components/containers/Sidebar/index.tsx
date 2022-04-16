@@ -64,7 +64,7 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
       case 'EnrollSW':
         return {
           name: '수업용 SW 등록',
-          component: <AddOrUpdateLectureSWTab companyList={[]} productList={[]} onCreateItem={() => {}} />,
+          component: <AddOrUpdateLectureSWTab companyList={[]} productList={[]} tabState="create" />,
         };
       default:
         return { name: 'error', component: <></> };

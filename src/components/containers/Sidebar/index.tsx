@@ -5,7 +5,7 @@ import { useSetRecoilState } from 'recoil';
 import * as Style from './styled';
 
 import TotalLectureSWListTab from '../TotalLectureSWListTab';
-import AddLectureSWTab from '../AddLectureSWTab';
+import AddOrUpdateLectureSWTab from '../AddOrUpdateLectureSWTab';
 
 import UserInfo from './UserInfo';
 import SigninForm from './SigninForm';
@@ -64,7 +64,7 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
       case 'EnrollSW':
         return {
           name: '수업용 SW 등록',
-          component: <AddLectureSWTab companyList={[]} productList={[]} onCreateItem={() => {}} />,
+          component: <AddOrUpdateLectureSWTab companyList={[]} productList={[]} onCreateItem={() => {}} />,
         };
       default:
         return { name: 'error', component: <></> };

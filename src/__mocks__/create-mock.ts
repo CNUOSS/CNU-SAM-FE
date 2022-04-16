@@ -1,10 +1,10 @@
 // Attribute Type
 import { ItemType as TotalLectureSWItemAttrType } from '../components/containers/TotalLectureSWListTab';
-import { ItemType as AddLectureSWItemAttrType } from '../components/containers/AddLectureSWTab/Table';
+import { ItemType as AddLectureSWItemAttrType } from '../components/containers/AddOrUpdateLectureSWTab/Table';
 import { ItemType as LectureSWManagementAttrType } from '../components/containers/LectureSWManagementTab';
 
 // Obj Type
-import { LectureSWType } from '../components/containers/AddLectureSWTab';
+import { LectureSWType } from '../components/containers/AddOrUpdateLectureSWTab';
 
 export const generateString = (num: number = 9) =>
   Math.random()

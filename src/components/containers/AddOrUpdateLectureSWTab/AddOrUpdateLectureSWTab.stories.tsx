@@ -1,10 +1,10 @@
 import React from 'react';
-import AddLectureSWTab, { LectureSWType } from '.';
+import AddOrUpdateLectureSWTab, { LectureSWType } from '.';
 import { generateLectureSW, generateStringArray } from '../../../__mocks__/create-mock';
 
 export default {
-  title: 'Container/AddLectureSWTab',
-  component: AddLectureSWTab,
+  title: 'Container/AddOrUpdateLectureSWTab',
+  component: AddOrUpdateLectureSWTab,
 };
 
 const lectureSW: LectureSWType = generateLectureSW();
@@ -12,11 +12,11 @@ const companyList = generateStringArray(3);
 const productList = generateStringArray(3);
 
 export const createTab = () => (
-  <AddLectureSWTab companyList={companyList} productList={productList} onCreateItem={() => {}} />
+  <AddOrUpdateLectureSWTab companyList={companyList} productList={productList} onCreateItem={() => {}} />
 );
 
 export const modifyTab = () => (
-  <AddLectureSWTab
+  <AddOrUpdateLectureSWTab
     lectureSW={lectureSW}
     companyList={companyList}
     productList={productList}

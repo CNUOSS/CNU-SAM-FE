@@ -22,7 +22,7 @@ export interface LectureSWType {
   receivedItems: ItemType[];
 }
 
-interface AddLectureSWTabProps {
+interface AddOrUpdateLectureSWTabProps {
   lectureSW?: LectureSWType;
   companyList: string[];
   productList: string[];
@@ -32,14 +32,14 @@ interface AddLectureSWTabProps {
 }
 
 // FIXME: remove companyList, productList
-function AddLectureSWTab({
+function AddOrUpdateLectureSWTab({
   lectureSW,
   companyList,
   productList,
   onCreateItem,
   onDeleteItem,
   onModifyItem,
-}: AddLectureSWTabProps) {
+}: AddOrUpdateLectureSWTabProps) {
   const [items, setItems] = useState<ItemType[]>(lectureSW?.receivedItems || []);
 
   const addNewItem = (newItem: ItemType) => setItems((prev) => [newItem, ...prev]);
@@ -79,4 +79,4 @@ function AddLectureSWTab({
   );
 }
 
-export default AddLectureSWTab;
+export default AddOrUpdateLectureSWTab;

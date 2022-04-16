@@ -1,17 +1,26 @@
 import React from 'react';
-import AddLectureSWTab from '.';
-import { ItemType } from './Table';
-import { generateAddLectureSWItem, generateStringArray } from '../../../__mocks__/create-mock';
+import AddLectureSWTab, { LectureSWType } from '.';
+import { generateLectureSW, generateStringArray } from '../../../__mocks__/create-mock';
 
 export default {
   title: 'Container/AddLectureSWTab',
   component: AddLectureSWTab,
 };
 
-const items: ItemType[] = [generateAddLectureSWItem(), generateAddLectureSWItem()];
+const lectureSW: LectureSWType = generateLectureSW();
 const companyList = generateStringArray(3);
 const productList = generateStringArray(3);
 
-export const addLectureSWTab = () => (
-  <AddLectureSWTab receivedItems={items} companyList={companyList} productList={productList} />
+export const createTab = () => (
+  <AddLectureSWTab companyList={companyList} productList={productList} onCreateItem={() => {}} />
+);
+
+export const modifyTab = () => (
+  <AddLectureSWTab
+    lectureSW={lectureSW}
+    companyList={companyList}
+    productList={productList}
+    onDeleteItem={() => {}}
+    onModifyItem={() => {}}
+  />
 );

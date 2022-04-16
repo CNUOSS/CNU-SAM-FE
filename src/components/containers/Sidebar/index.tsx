@@ -62,7 +62,10 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
       case 'UserGuide':
         return { name: '사용자 가이드', component: <></> };
       case 'EnrollSW':
-        return { name: '수업용 SW 등록', component: <AddLectureSWTab companyList={[]} productList={[]} /> };
+        return {
+          name: '수업용 SW 등록',
+          component: <AddLectureSWTab companyList={[]} productList={[]} onCreateItem={() => {}} />,
+        };
       default:
         return { name: 'error', component: <></> };
     }

@@ -25,6 +25,12 @@ export const FormTitle = styled.h2`
   color: ${(props) => props.theme.colors.secondary};
 `;
 
+export const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
+// FIXME: integrate similar buttons
 export const SubmitButton = styled.button`
   width: 15rem;
   height: 4.2rem;
@@ -32,6 +38,16 @@ export const SubmitButton = styled.button`
   font-weight: bold;
   color: white;
   background-color: ${(props) => props.theme.colors.secondary};
+  border-radius: 1rem;
+`;
+
+export const DeleteButton = styled.button`
+  width: 15rem;
+  height: 4.2rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  background-color: ${(props) => props.theme.colors.warning};
   border-radius: 1rem;
 `;
 

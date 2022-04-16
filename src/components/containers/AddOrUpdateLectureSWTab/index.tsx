@@ -23,23 +23,15 @@ export interface LectureSWType {
 }
 
 interface AddOrUpdateLectureSWTabProps {
+  // FIXME: fetch infos about lecture
   lectureSW?: LectureSWType;
   companyList: string[];
   productList: string[];
-  onCreateItem?: () => void;
-  onDeleteItem?: () => void;
-  onModifyItem?: () => void;
+  tabState: 'create' | 'update';
 }
 
 // FIXME: remove companyList, productList
-function AddOrUpdateLectureSWTab({
-  lectureSW,
-  companyList,
-  productList,
-  onCreateItem,
-  onDeleteItem,
-  onModifyItem,
-}: AddOrUpdateLectureSWTabProps) {
+function AddOrUpdateLectureSWTab({ lectureSW, companyList, productList, tabState }: AddOrUpdateLectureSWTabProps) {
   const [items, setItems] = useState<ItemType[]>(lectureSW?.receivedItems || []);
 
   const addNewItem = (newItem: ItemType) => setItems((prev) => [newItem, ...prev]);
@@ -51,9 +43,9 @@ function AddOrUpdateLectureSWTab({
       <Style.FormTitleWrapper>
         <Style.FormTitle>수업 정보 작성</Style.FormTitle>
         <Style.ButtonWrapper>
-          {onCreateItem && <Style.SubmitButton onClick={onCreateItem}>등록하기</Style.SubmitButton>}
-          {onDeleteItem && <Style.DeleteButton onClick={onCreateItem}>삭제하기</Style.DeleteButton>}
-          {onModifyItem && <Style.SubmitButton onClick={onCreateItem}>수정하기</Style.SubmitButton>}
+          {tabState === 'create' && <Style.SubmitButton onClick={() => {}}>등록하기</Style.SubmitButton>}
+          {tabState === 'update' && <Style.DeleteButton onClick={() => {}}>삭제하기</Style.DeleteButton>}
+          {tabState === 'update' && <Style.SubmitButton onClick={() => {}}>수정하기</Style.SubmitButton>}
         </Style.ButtonWrapper>
       </Style.FormTitleWrapper>
       <TabForm>

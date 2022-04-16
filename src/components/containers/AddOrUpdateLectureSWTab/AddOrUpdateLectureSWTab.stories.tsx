@@ -12,7 +12,7 @@ const companyList = generateStringArray(3);
 const productList = generateStringArray(3);
 
 export const createTab = () => (
-  <AddOrUpdateLectureSWTab companyList={companyList} productList={productList} onCreateItem={() => {}} />
+  <AddOrUpdateLectureSWTab companyList={companyList} productList={productList} tabState="create" />
 );
 
 export const modifyTab = () => (
@@ -20,7 +20,6 @@ export const modifyTab = () => (
     lectureSW={lectureSW}
     companyList={companyList}
     productList={productList}
-    onDeleteItem={() => {}}
-    onModifyItem={() => {}}
+    tabState="update"
   />
 );

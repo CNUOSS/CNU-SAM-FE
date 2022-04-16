@@ -40,8 +40,7 @@ export const generateAddLectureSWItem = (): AddLectureSWItemAttrType => ({
   license: generateString(8),
 });
 
-// FIXME: rename SWForLecture
-export const generateLectureSWItem = (): LectureSWManagementAttrType => ({
+export const generateSWForLecture = (): LectureSWManagementAttrType => ({
   company: generateString(5),
   enrollDate: generateString(8),
   product: generateString(10),

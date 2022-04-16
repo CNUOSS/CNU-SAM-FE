@@ -17,6 +17,7 @@ import { tabState } from '../../../recoil/tab';
 import { UserAuth, NavItem } from '../../../@types/types';
 import { theme } from '../../../style/theme';
 import Icon from '../../../components/widgets/Icon';
+import compareTabs from '../../../utils/compare-tabs';
 
 interface SidebarProps {
   isLogin: boolean;
@@ -73,14 +74,7 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
 
   const addNewTab = (navItem: NavItem) => {
     const { name, component } = getComponents(navItem);
-    setTabState((oldState) => {
-      const index = oldState.tabs.findIndex((tab) => tab.name === name);
-      if (index === oldState.currentIdx) return oldState;
-      return {
-        currentIdx: index < 0 ? oldState.tabs.length : index,
-        tabs: index < 0 ? [...oldState.tabs, { name, component }] : oldState.tabs,
-      };
-    });
+    setTabState((oldState) => compareTabs(oldState, name, component));
   };
 
   return (

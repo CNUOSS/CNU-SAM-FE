@@ -65,3 +65,15 @@ export const LectureSWManagementListAttr = {
   EnrollDate: 'enrollDate',
 } as const;
 export type LectureSWManagementListAttr = typeof LectureSWManagementListAttr[keyof typeof LectureSWManagementListAttr];
+
+export const SubscribedSWListAttr = {
+  ProductFamily: 'productFamily',
+  Company: 'company',
+  Product: 'product',
+  Range: 'range',
+  License: 'license',
+  ExpireDate: 'expireDate',
+  UpdatedDate: 'updatedDate',
+  Writer: 'writer',
+} as const;
+export type SubscribedSWListAttr = typeof SubscribedSWListAttr[keyof typeof SubscribedSWListAttr];

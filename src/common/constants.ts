@@ -1,11 +1,12 @@
 import { AttributeType } from 'src/components/widgets/Table';
 import {
-  AddLectureSWListAttr,
-  NavItem,
-  TotalLectureSWListAttr,
-  LectureSWManagementListAttr,
   Trash,
   Number,
+  NavItem,
+  AddLectureSWListAttr,
+  SubscribedSWListAttr,
+  TotalLectureSWListAttr,
+  LectureSWManagementListAttr,
 } from '../@types/types';
 
 export interface CategoryType {
@@ -70,4 +71,15 @@ export const lectureSWManagementListAttr: AttributeType<LectureSWManagementListA
   { label: '사용 개수', dataKey: 'usedCount', widthPercent: 18, disableSort: false },
   { label: '등록자', dataKey: 'writer', widthPercent: 18, disableSort: true },
   { label: '등록 날짜', dataKey: 'enrollDate', widthPercent: 18, disableSort: false },
+];
+
+export const subscibedSWListAttr: AttributeType<SubscribedSWListAttr | Number>[] = [
+  { label: 'No', dataKey: 'number', widthPercent: 8, disableSort: true },
+  { label: '제품군', dataKey: 'productFamily', widthPercent: 12, disableSort: false },
+  { label: '제조사', dataKey: 'company', widthPercent: 12, disableSort: false },
+  { label: '이용범위', dataKey: 'range', widthPercent: 12, disableSort: false },
+  { label: '라이선스', dataKey: 'license', widthPercent: 12, disableSort: false },
+  { label: '만료일', dataKey: 'expireDate', widthPercent: 12, disableSort: false },
+  { label: '최근 업데이트 날짜', dataKey: 'updatedDate', widthPercent: 16, disableSort: false },
+  { label: '작성자', dataKey: 'writer', widthPercent: 12, disableSort: false },
 ];

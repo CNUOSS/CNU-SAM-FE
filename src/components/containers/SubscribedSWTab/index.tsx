@@ -36,11 +36,18 @@ function SubscribedSWTab({ items, companys, productFamilys }: SubscribedSWTabPro
   const handleSearchSW = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
+  const clickItem = (item: ItemType) => {
+    toggleModal();
+    setSelectedItem(item);
+  };
 
   return (
     <>
       {isOpen && (
         <AddOrUpdateSubscribedSWModal
+          defaultLicense={selectedItem?.license}
+          defaultProduct={selectedItem?.product}
+          defaultExpireDate={selectedItem?.expireDate}
           modalState={selectedItem ? 'update' : 'create'}
           onSubmit={handleModalSubmit}
           onDelete={onDelete}
@@ -59,7 +66,7 @@ function SubscribedSWTab({ items, companys, productFamilys }: SubscribedSWTabPro
         </TabForm>
         <Style.TableTitle>학내 구독 중인 SW</Style.TableTitle>
         <Style.TableWrapper>
-          <Table attributes={subscibedSWListAttr} items={parsedItems} />
+          <Table attributes={subscibedSWListAttr} items={parsedItems} onRowClick={clickItem} />
         </Style.TableWrapper>
       </Style.Container>
     </>

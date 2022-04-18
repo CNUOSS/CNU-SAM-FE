@@ -38,7 +38,7 @@ describe('Container/SubscribedSW', () => {
     screen.getByText(productFamilys[1]);
   });
 
-  it('click enroll item', () => {
+  it('click enroll button', () => {
     renderApp();
 
     const enrollButton = screen.getByText('등록하기');

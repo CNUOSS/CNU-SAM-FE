@@ -16,20 +16,21 @@ interface AddOrUpdateSubscribedSWModalProps {
 
 // TODO: make default prosp to state
 function AddOrUpdateSubscribedSWModal({
-  defaultLicense,
-  defaultProduct,
-  defaultExpireDate,
+  defaultLicense = '',
+  defaultProduct = '',
+  defaultExpireDate = '',
   modalState,
   closeModal,
   onDelete,
   onSubmit,
 }: AddOrUpdateSubscribedSWModalProps) {
   const handleSubmit = () => onSubmit();
+  const headerText = `학내 구독중인 SW ${modalState === 'create' ? `등록` : `수정`}하기`;
 
   return (
     <Template closeModal={closeModal}>
       <Style.Container>
-        <Style.Header>학내 구독중인 SW 등록하기</Style.Header>
+        <Style.Header>{headerText}</Style.Header>
         <Style.Description>화이팅</Style.Description>
         <Style.InputWrapper>
           <SelfDropdown
@@ -56,9 +57,9 @@ function AddOrUpdateSubscribedSWModal({
             inputValue=""
             onChange={() => {}}
           />
-          <Input label="라이선스" width="23rem" value={defaultLicense || ''} onChange={() => {}} />
-          <Input label="제품명" width="23rem" value={defaultProduct || ''} onChange={() => {}} />
-          <Input label="만료일" width="23rem" value={defaultExpireDate || ''} onChange={() => {}} />
+          <Input label="라이선스" width="23rem" value={defaultLicense} onChange={() => {}} />
+          <Input label="제품명" width="23rem" value={defaultProduct} onChange={() => {}} />
+          <Input label="만료일" width="23rem" value={defaultExpireDate} onChange={() => {}} />
         </Style.InputWrapper>
         <Style.ButtonWrapper>
           {modalState === 'update' && <Style.DeleteButton onClick={onDelete}>삭제하기</Style.DeleteButton>}

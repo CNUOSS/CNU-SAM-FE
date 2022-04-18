@@ -37,4 +37,12 @@ describe('Container/SubscribedSW', () => {
     screen.getByText(companys[1]);
     screen.getByText(productFamilys[1]);
   });
+
+  it('click enroll item', () => {
+    renderApp();
+
+    const enrollButton = screen.getByText('등록하기');
+    fireEvent.click(enrollButton);
+    screen.getByText('학내 구독중인 SW 등록하기');
+  });
 });

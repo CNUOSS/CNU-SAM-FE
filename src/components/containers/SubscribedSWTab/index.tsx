@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import TabTemplate from '../../templates/TabTemplate';
 import Table from '../../widgets/Table';
 import Input from '../../widgets/Input';
 import TabForm from '../../widgets/TabForm';
@@ -54,11 +55,7 @@ function SubscribedSWTab({ items, companys, productFamilys }: SubscribedSWTabPro
           closeModal={toggleModal}
         />
       )}
-      <Style.Container>
-        <Style.DescriptionWrapper>
-          <Style.Description>Description</Style.Description>
-          <Style.EnrollButton onClick={toggleModal}>등록하기</Style.EnrollButton>
-        </Style.DescriptionWrapper>
+      <TabTemplate description="Description" onCreate={toggleModal}>
         <TabForm onSubmit={handleSearchSW} buttonText="조회하기">
           <Dropdown label="제품군" items={productFamilys} width="21rem" onClickItem={() => {}} />
           <Dropdown label="제조사" items={companys} width="21rem" onClickItem={() => {}} />
@@ -68,7 +65,7 @@ function SubscribedSWTab({ items, companys, productFamilys }: SubscribedSWTabPro
         <Style.TableWrapper>
           <Table attributes={subscibedSWListAttr} items={parsedItems} onRowClick={clickItem} />
         </Style.TableWrapper>
-      </Style.Container>
+      </TabTemplate>
     </>
   );
 }

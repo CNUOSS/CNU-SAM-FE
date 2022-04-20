@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import TabTemplate from '../../templates/TabTemplate';
 import Table from '../../widgets/Table';
 import Input from '../../widgets/Input';
 import TabForm from '../../widgets/TabForm';
@@ -52,11 +53,7 @@ function LectureSWManagementTab({ items, companys }: LecutreSWManagementTabProps
           onDelete={onDelete}
         />
       )}
-      <Style.Container>
-        <Style.DescriptionWrapper>
-          <Style.Description>Description</Style.Description>
-          <Style.EnrollButton onClick={toggleModal}>등록하기</Style.EnrollButton>
-        </Style.DescriptionWrapper>
+      <TabTemplate description="Description" onCreate={toggleModal}>
         <TabForm onSubmit={onSubmit} buttonText="조회하기">
           <Style.InputWrapper>
             <Dropdown label="제조사" items={companys} width="21rem" onClickItem={() => {}} />
@@ -67,7 +64,7 @@ function LectureSWManagementTab({ items, companys }: LecutreSWManagementTabProps
         <Style.TableWrapper>
           <Table attributes={lectureSWManagementListAttr} items={parsedItems} onRowClick={clickItem} />
         </Style.TableWrapper>
-      </Style.Container>
+      </TabTemplate>
     </>
   );
 }

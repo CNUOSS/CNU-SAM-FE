@@ -31,6 +31,14 @@ export const Container = styled.div`
   }
 `;
 
+export const TableTitle = styled.h2`
+  margin-bottom: 1rem;
+
+  font-size: 2rem;
+  font-weight: bold;
+  color: ${(props) => props.theme.colors.secondary};
+`;
+
 export const HeaderItem = styled.div<HeaderItemProps>`
   display: flex;
   gap: 1rem;

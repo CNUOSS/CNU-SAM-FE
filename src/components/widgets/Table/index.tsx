@@ -25,13 +25,14 @@ interface ObjType {
 }
 
 interface TableProps<T, C> {
+  title?: string;
   attributes: AttributeType<C>[];
   items: T[];
   onRowClick?: (item: T) => void;
 }
 
 // TODO: infinite scrolling
-function Table<T extends ObjType, C extends string>({ attributes, items, onRowClick }: TableProps<T, C>) {
+function Table<T extends ObjType, C extends string>({ title, attributes, items, onRowClick }: TableProps<T, C>) {
   const [dataList, setDataList] = useState<T[]>(items);
   const [sortBy, setSortBy] = useState<string>('');
   const [sortDirection, setSortDirection] = useState<SortDirectionType>(SortDirection.ASC);
@@ -88,6 +89,7 @@ function Table<T extends ObjType, C extends string>({ attributes, items, onRowCl
 
   return (
     <Style.Container>
+      {title && <Style.TableTitle>{title}</Style.TableTitle>}
       <AutoSizer defaultWidth={800} defaultHeight={800}>
         {({ height, width }) => (
           <VirtualizedTable

@@ -29,8 +29,8 @@ export const generateTotalLectureSWItem = ({
   lectureName: lectureName || generateString(8),
   division: generateString(5),
   writer: generateString(3),
-  productName: generateString(10),
-  productCompany: generateString(5),
+  product: generateString(10),
+  company: generateString(5),
   license: generateString(8),
   managed: managed || Math.random() < 0.5,
 });

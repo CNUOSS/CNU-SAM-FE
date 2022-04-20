@@ -50,8 +50,8 @@ export const totalLectureSWListAttr: AttributeType<TotalLectureSWListAttr>[] = [
   { label: '과목명', dataKey: 'lectureName', widthPercent: 10, disableSort: false },
   { label: '이수구분', dataKey: 'division', widthPercent: 8, disableSort: true },
   { label: '등록자', dataKey: 'writer', widthPercent: 6, disableSort: true },
-  { label: '제품명', dataKey: 'productName', widthPercent: 9, disableSort: false },
-  { label: '제조사', dataKey: 'productCompany', widthPercent: 6, disableSort: true },
+  { label: '제품명', dataKey: 'product', widthPercent: 9, disableSort: false },
+  { label: '제조사', dataKey: 'company', widthPercent: 6, disableSort: true },
   { label: '라이선스', dataKey: 'license', widthPercent: 9, disableSort: true },
   { label: 'SW관리대상', dataKey: 'managed', widthPercent: 14, disableSort: false },
 ];

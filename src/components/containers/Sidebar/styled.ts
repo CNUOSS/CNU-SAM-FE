@@ -59,7 +59,9 @@ export const GuideMenu = styled.li`
 
   font-size: 2rem;
   font-weight: bold;
-  border: 1px solid ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.primary};
+  border-top: 1px solid ${(props) => props.theme.colors.primary};
+  border-bottom: 1px solid ${(props) => props.theme.colors.primary};
   cursor: pointer;
 `;
 

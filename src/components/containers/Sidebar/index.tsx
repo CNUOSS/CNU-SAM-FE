@@ -17,8 +17,6 @@ import logoImage from '../../../assets/images/logo.jpg';
 import { CategoryType, LANGUAGES, mgCategory, pjCategory, swCategory } from '../../../common/constants';
 import { tabState } from '../../../recoil/tab';
 import { UserAuth, NavItem } from '../../../@types/types';
-import { theme } from '../../../style/theme';
-import Icon from '../../../components/widgets/Icon';
 import compareTabs from '../../../utils/compare-tabs';
 
 interface SidebarProps {
@@ -93,12 +91,7 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
           {menuPerUser[userAuth].map((category) => (
             <Accordion key={category.title} {...category} onClickItem={(item) => addNewTab(item as NavItem)} />
           ))}
-          <Style.GuideMenu onClick={() => addNewTab('UserGuide')}>
-            {t('page:UserGuide')}
-            <Style.IconWrapper>
-              <Icon size="1.5rem" icon="triangle" color={theme.colors.primary} />
-            </Style.IconWrapper>
-          </Style.GuideMenu>
+          <Style.GuideMenu onClick={() => addNewTab('UserGuide')}>{t('page:UserGuide')}</Style.GuideMenu>
         </Style.MenuList>
       )}
     </Style.Container>

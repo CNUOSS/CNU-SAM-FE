@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TabTemplate from '../../templates/TabTemplate';
 import Dropdown from '../../widgets/Dropdown';
 import TabForm from '../../widgets/TabForm';
+import Button from '../../widgets/Button';
 import Input from '../../widgets/Input';
 import * as Style from './styled';
 import Table, { ItemType } from './Table';
@@ -43,9 +44,13 @@ function AddOrUpdateLectureSWTab({ lectureSW, companyList, productList, tabState
       <Style.FormTitleWrapper>
         <Style.FormTitle>수업 정보 작성</Style.FormTitle>
         <Style.ButtonWrapper>
-          {tabState === 'create' && <Style.SubmitButton onClick={() => {}}>등록하기</Style.SubmitButton>}
-          {tabState === 'update' && <Style.DeleteButton onClick={() => {}}>삭제하기</Style.DeleteButton>}
-          {tabState === 'update' && <Style.SubmitButton onClick={() => {}}>수정하기</Style.SubmitButton>}
+          {tabState === 'create' && <Button onClick={() => {}}>등록하기</Button>}
+          {tabState === 'update' && (
+            <Button theme="warning" onClick={() => {}}>
+              삭제하기
+            </Button>
+          )}
+          {tabState === 'update' && <Button onClick={() => {}}>수정하기</Button>}
         </Style.ButtonWrapper>
       </Style.FormTitleWrapper>
       <TabForm>

@@ -1,6 +1,7 @@
 import React from 'react';
-import SelfDropdown from '../../../components/widgets/SelfDropdown';
-import Input from '../../../components/widgets/Input';
+import SelfDropdown from '../../widgets/SelfDropdown';
+import Button from '../../widgets/Button';
+import Input from '../../widgets/Input';
 import Template from '../../templates/ModalTemplate';
 import * as Style from './styled';
 
@@ -62,10 +63,12 @@ function AddOrUpdateSubscribedSWModal({
           <Input label="만료일" width="23rem" value={defaultExpireDate} onChange={() => {}} />
         </Style.InputWrapper>
         <Style.ButtonWrapper>
-          {modalState === 'update' && <Style.DeleteButton onClick={onDelete}>삭제하기</Style.DeleteButton>}
-          <Style.SubmitButton onClick={handleSubmit}>
-            {modalState === 'update' ? '수정하기' : '등록하기'}
-          </Style.SubmitButton>
+          {modalState === 'update' && onDelete && (
+            <Button theme="warning" onClick={onDelete}>
+              삭제하기
+            </Button>
+          )}
+          <Button onClick={handleSubmit}>{modalState === 'update' ? '수정하기' : '등록하기'}</Button>
         </Style.ButtonWrapper>
       </Style.Container>
     </Template>

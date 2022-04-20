@@ -5,11 +5,11 @@ export type ButtonType = 'secondary' | 'warning';
 
 interface ButtonProps {
   children: any;
-  theme: ButtonType;
-  onClick: () => void;
+  theme?: ButtonType;
+  onClick?: () => void;
 }
 
-function Button({ children, theme, onClick }: ButtonProps) {
+function Button({ children, theme = 'secondary', onClick }: ButtonProps) {
   return (
     <Style.Button data-testid="button-test" btnTheme={theme} onClick={onClick}>
       {children}

@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../../widgets/Button';
 import * as Style from './styled';
 
 interface TabTemplateProps {
@@ -15,9 +16,13 @@ function TabTemplate({ children, description, onCreate, onDelete, onUpdate }: Ta
       <Style.DescriptionWrapper>
         <Style.Description>{description}</Style.Description>
         <Style.ButtonWrapper>
-          {onCreate && <Style.EnrollButton onClick={onCreate}>등록하기</Style.EnrollButton>}
-          {onDelete && <Style.WarningButton onClick={onDelete}>삭제하기</Style.WarningButton>}
-          {onUpdate && <Style.EnrollButton onClick={onUpdate}>수정하기</Style.EnrollButton>}
+          {onCreate && <Button onClick={onCreate}>등록하기</Button>}
+          {onDelete && (
+            <Button theme="warning" onClick={onDelete}>
+              삭제하기
+            </Button>
+          )}
+          {onUpdate && <Button onClick={onUpdate}>수정하기</Button>}
         </Style.ButtonWrapper>
       </Style.DescriptionWrapper>
       {children}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SelfDropdown from '../../../components/widgets/SelfDropdown';
-import Input from '../../../components/widgets/Input';
+import Button from '../../widgets/Button';
+import Input from '../../widgets/Input';
 import Template from '../../templates/ModalTemplate';
 import * as Style from './styled';
 
@@ -49,8 +50,12 @@ function AddManagedSWModal({
           <Input value={swName} label="SW 제품명" width="35rem" onChange={changeSWName} />
         </Style.InputWrapper>
         <Style.ButtonWrapper>
-          {isEditable && <Style.DeleteButton onClick={onDelete}>삭제하기</Style.DeleteButton>}
-          <Style.SubmitButton onClick={handleSubmit}>{isEditable ? '수정하기' : '등록하기'}</Style.SubmitButton>
+          {isEditable && onDelete && (
+            <Button theme="warning" onClick={onDelete}>
+              삭제하기
+            </Button>
+          )}
+          <Button onClick={handleSubmit}>{isEditable ? '수정하기' : '등록하기'}</Button>
         </Style.ButtonWrapper>
       </Style.Container>
     </Template>

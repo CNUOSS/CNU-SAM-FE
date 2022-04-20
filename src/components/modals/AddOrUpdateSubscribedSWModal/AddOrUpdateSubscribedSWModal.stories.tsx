@@ -5,6 +5,7 @@ import { generateString } from '../../../__mocks__/create-mock';
 
 const closeModalAction = action('close modal');
 const onSubmitAction = action('on submit');
+const onDeleteAction = action('on delete');
 
 export default {
   title: 'Modal/AddOrUpdateSubscribedSWModal',
@@ -16,16 +17,17 @@ const defaultProduct = generateString(8);
 const defaultExpireDate = generateString(8);
 
 export const createModal = () => (
-  <AddOrUpdateSubscribedSWModal
-    defaultLicense={defaultLicense}
-    defaultProduct={defaultProduct}
-    defaultExpireDate={defaultExpireDate}
-    modalState="create"
-    closeModal={closeModalAction}
-    onSubmit={onSubmitAction}
-  />
+  <AddOrUpdateSubscribedSWModal modalState="create" closeModal={closeModalAction} onSubmit={onSubmitAction} />
 );
 
 export const updateModal = () => (
-  <AddOrUpdateSubscribedSWModal modalState="update" closeModal={closeModalAction} onSubmit={onSubmitAction} />
+  <AddOrUpdateSubscribedSWModal
+    modalState="update"
+    defaultLicense={defaultLicense}
+    defaultProduct={defaultProduct}
+    defaultExpireDate={defaultExpireDate}
+    closeModal={closeModalAction}
+    onSubmit={onSubmitAction}
+    onDelete={onDeleteAction}
+  />
 );

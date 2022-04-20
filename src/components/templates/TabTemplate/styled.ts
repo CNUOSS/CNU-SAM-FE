@@ -21,25 +21,3 @@ export const ButtonWrapper = styled.div`
   display: flex;
   gap: 1rem;
 `;
-
-export const EnrollButton = styled.button`
-  width: 15rem;
-  height: 4.2rem;
-
-  color: white;
-  font-size: 1.8rem;
-  font-weight: bold;
-  border-radius: 1rem;
-  background-color: ${(props) => props.theme.colors.secondary};
-`;
-
-export const WarningButton = styled.button`
-  width: 15rem;
-  height: 4.2rem;
-
-  color: white;
-  font-size: 1.8rem;
-  font-weight: bold;
-  border-radius: 1rem;
-  background-color: ${(props) => props.theme.colors.warning};
-`;

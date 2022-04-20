@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
+import TabTemplate from '../../templates/TabTemplate';
 import Input from '../../widgets/Input';
 import Dropdown from '../../widgets/Dropdown';
 import TabForm from '../../widgets/TabForm';
@@ -81,8 +82,7 @@ function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
           closeModal={closeModal}
         />
       )}
-      <Style.Container>
-        <Style.Description>Description</Style.Description>
+      <TabTemplate description="Description">
         <TabForm onSubmit={searchList} buttonText="조회하기">
           <Dropdown items={ORGANIZATION} label="조직분류" width="16rem" onClickItem={() => {}} />
           <Dropdown items={YEARS} label="년도" width="10rem" onClickItem={() => {}} />
@@ -96,7 +96,7 @@ function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
         <Style.TableWrapper>
           <Table items={parsedItem} attributes={totalLectureSWListAttr} onRowClick={clickItem} />
         </Style.TableWrapper>
-      </Style.Container>
+      </TabTemplate>
     </>
   );
 }

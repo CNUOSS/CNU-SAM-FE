@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import TabTemplate from '../../templates/TabTemplate';
 import Dropdown from '../../widgets/Dropdown';
 import TabForm from '../../widgets/TabForm';
 import Input from '../../widgets/Input';
@@ -38,8 +39,7 @@ function AddOrUpdateLectureSWTab({ lectureSW, companyList, productList, tabState
   const deleteItem = (selectedIndex: number) => setItems((prev) => prev.filter((_, i: number) => i !== selectedIndex));
 
   return (
-    <Style.Container>
-      <Style.Description>Description</Style.Description>
+    <TabTemplate description="Description">
       <Style.FormTitleWrapper>
         <Style.FormTitle>수업 정보 작성</Style.FormTitle>
         <Style.ButtonWrapper>
@@ -67,7 +67,7 @@ function AddOrUpdateLectureSWTab({ lectureSW, companyList, productList, tabState
           onDeleteItem={deleteItem}
         />
       </Style.TableWrapper>
-    </Style.Container>
+    </TabTemplate>
   );
 }
 

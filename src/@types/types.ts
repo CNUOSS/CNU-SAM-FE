@@ -43,8 +43,8 @@ export const TotalLectureSWListAttr = {
   LectureName: 'lectureName',
   Division: 'division',
   Writer: 'writer',
-  ProductName: 'productName',
-  ProductCompany: 'productCompany',
+  Product: 'product',
+  Company: 'company',
   License: 'license',
   Managed: 'managed',
 } as const;

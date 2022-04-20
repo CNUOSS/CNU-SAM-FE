@@ -34,7 +34,7 @@ function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
   const [selectedItem, setSelectedItem] = useState<ItemType>();
   const setTabState = useSetRecoilState(tabState);
   // FIXME: not this list, list fetched from server. here is not exist all company's information
-  const companyList = items.map((item) => item.productCompany as string);
+  const companyList = items.map((item) => item.company as string);
 
   const clickItemAddButton = (item: ItemType) => () => setSelectedItem(item);
   const clickItem = (item: any) => {
@@ -76,8 +76,8 @@ function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
       {selectedItem && (
         <AddManagedSWModal
           defaultCompanyList={companyList}
-          defaultCompanyIndex={companyList.findIndex((company) => company === selectedItem.productCompany)}
-          defaultSWName={selectedItem.productName as string}
+          defaultCompanyIndex={companyList.findIndex((company) => company === selectedItem.company)}
+          defaultSWName={selectedItem.product as string}
           onSubmit={addNewManagedSW}
           closeModal={closeModal}
         />

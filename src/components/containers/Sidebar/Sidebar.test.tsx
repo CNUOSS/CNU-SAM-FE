@@ -7,6 +7,7 @@ import { tabState } from '../../../recoil/tab';
 import { UserAuth } from '../../../@types/types';
 
 import TotalLectureSWListTab from '../TotalLectureSWListTab';
+import SubscribedSWTab from '../SubscribedSWTab';
 
 const onChange = jest.fn();
 
@@ -75,7 +76,12 @@ describe('Container/Sidebar', () => {
       const licenseList = screen.getByText('학내 구독 중인 SW목록');
       fireEvent.click(licenseList);
       expect(onChange).toBeCalledTimes(2);
-      expect(onChange).toBeCalledWith({ currentIdx: 0, tabs: [{ name: '학내 구독 중 SW', component: <></> }] });
+      expect(onChange).toBeCalledWith({
+        currentIdx: 0,
+        tabs: [
+          { name: '학내 구독 중 SW', component: <SubscribedSWTab items={[]} companys={[]} productFamilys={[]} /> },
+        ],
+      });
     });
 
     it('click SWDashboard list', () => {

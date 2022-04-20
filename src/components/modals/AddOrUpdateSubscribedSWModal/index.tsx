@@ -1,7 +1,7 @@
 import React from 'react';
 import SelfDropdown from '../../../components/widgets/SelfDropdown';
 import Input from '../../../components/widgets/Input';
-import Template from '../Template';
+import Template from '../../templates/ModalTemplate';
 import * as Style from './styled';
 
 interface AddOrUpdateSubscribedSWModalProps {

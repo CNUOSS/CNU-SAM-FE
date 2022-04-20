@@ -7,7 +7,7 @@ interface ButtonProps {
 }
 
 export const Button = styled.button<ButtonProps>`
-  width: 15rem;
+  min-width: 15rem;
   height: 4.2rem;
 
   color: white;

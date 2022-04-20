@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../Button';
 import * as Style from './styled';
 
 interface TabFormProps {
@@ -19,7 +20,7 @@ function TabForm({ children, buttonText, onSubmit }: TabFormProps) {
   return (
     <Cover onSubmit={onSubmit}>
       <Style.InputList>{children}</Style.InputList>
-      {buttonText ? <Style.SubmitButton>{buttonText}</Style.SubmitButton> : <></>}
+      {buttonText ? <Button>{buttonText}</Button> : <></>}
     </Cover>
   );
 }

@@ -18,27 +18,6 @@ export const ButtonWrapper = styled.div`
   gap: 1rem;
 `;
 
-// FIXME: integrate similar buttons
-export const SubmitButton = styled.button`
-  width: 15rem;
-  height: 4.2rem;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: white;
-  background-color: ${(props) => props.theme.colors.secondary};
-  border-radius: 1rem;
-`;
-
-export const DeleteButton = styled.button`
-  width: 15rem;
-  height: 4.2rem;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: white;
-  background-color: ${(props) => props.theme.colors.warning};
-  border-radius: 1rem;
-`;
-
 export const Form = styled.form`
   display: flex;
   align-items: center;

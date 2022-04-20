@@ -1,3 +1,34 @@
 # CNU-SAM-FE
 
-> 기존 fosslight를 응용해서 만드는 자산관리도구 프론트엔드 레포지토리
+> Chungnam National University asset management tool front-end repository created by applying open source management tool fosslight
+
+### Docs
+
+[Feature List](https://docs.google.com/spreadsheets/d/12NnmbxndSYxDZ6xElfm4fW2BXqYQkg69U35Bd6mt3rg/edit?usp=sharing)
+
+[UI Design](https://www.figma.com/file/eqApqHEmv1BH3dX3jT8Opa/CNU_SAM?node-id=0%3A1)
+
+### Used Tech Stack
+
+- TypeScript
+- React
+- I18n
+- Recoil
+- EmotionJS
+- Jest
+- react-testing-library
+- Storybook
+
+## Ground Rule
+
+### Commit
+
+main < develop < feature
+
+- feature 양식
+  - feature/[Issue_num]-Feature-content
+  - ex. feature/#10-Check-api
+
+### PR & Issue
+
+- Using PR & Issue Template

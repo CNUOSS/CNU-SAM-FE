@@ -57,7 +57,6 @@ function AddOrUpdateLectureSWTab({ lectureSW, companyList, productList, tabState
         <Input value={lectureSW?.lectureNum || ''} label="과목번호" width="14rem" onChange={() => {}} />
         <Input value={lectureSW?.writer || ''} label="등록자" width="14rem" onChange={() => {}} />
       </TabForm>
-      <Style.TableTitle>등록된 수업용 SW</Style.TableTitle>
       <Style.TableWrapper>
         <Table
           items={items}

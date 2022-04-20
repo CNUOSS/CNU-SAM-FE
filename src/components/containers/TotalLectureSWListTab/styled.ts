@@ -1,15 +1,7 @@
 import styled from '@emotion/styled';
 
-export const TableTitle = styled.h2`
-  margin-top: 3rem;
-
-  font-size: 2rem;
-  font-weight: bold;
-  color: ${(props) => props.theme.colors.secondary};
-`;
-
 export const TableWrapper = styled.div`
-  margin-top: 1rem;
+  margin-top: 3rem;
   height: 50rem;
 `;
 

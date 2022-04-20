@@ -6,6 +6,7 @@ import * as Style from './styled';
 
 import TotalLectureSWListTab from '../TotalLectureSWListTab';
 import AddOrUpdateLectureSWTab from '../AddOrUpdateLectureSWTab';
+import SubscribedSWTab from '../SubscribedSWTab';
 
 import UserInfo from './UserInfo';
 import SigninForm from './SigninForm';
@@ -49,7 +50,7 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
           component: <TotalLectureSWListTab isAdmin items={[]} />,
         };
       case 'SubscribingSWList':
-        return { name: '학내 구독 중 SW', component: <></> };
+        return { name: '학내 구독 중 SW', component: <SubscribedSWTab items={[]} companys={[]} productFamilys={[]} /> };
       case 'SWDashboard':
         return { name: '대시보드', component: <></> };
       case 'PJList':

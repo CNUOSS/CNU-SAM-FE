@@ -67,6 +67,6 @@ export const TableTitle = styled.h2`
 `;
 
 export const TableWrapper = styled.div`
-  margin-top: 1rem;
+  margin-top: 3rem;
   height: 50rem;
 `;

@@ -61,9 +61,13 @@ function SubscribedSWTab({ items, companys, productFamilys }: SubscribedSWTabPro
           <Dropdown label="제조사" items={companys} width="21rem" onClickItem={() => {}} />
           <Input label="제품명" value="" width="21rem" onChange={() => {}} />
         </TabForm>
-        <Style.TableTitle>학내 구독 중인 SW</Style.TableTitle>
         <Style.TableWrapper>
-          <Table attributes={subscibedSWListAttr} items={parsedItems} onRowClick={clickItem} />
+          <Table
+            title="학내 구독 중인 SW"
+            attributes={subscibedSWListAttr}
+            items={parsedItems}
+            onRowClick={clickItem}
+          />
         </Style.TableWrapper>
       </TabTemplate>
     </>

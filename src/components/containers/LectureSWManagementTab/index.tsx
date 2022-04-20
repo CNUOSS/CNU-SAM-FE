@@ -60,9 +60,13 @@ function LectureSWManagementTab({ items, companys }: LecutreSWManagementTabProps
             <Input label="제품명" value="" width="21rem" onChange={() => {}} />
           </Style.InputWrapper>
         </TabForm>
-        <Style.TableTitle>수업용 SW관리</Style.TableTitle>
         <Style.TableWrapper>
-          <Table attributes={lectureSWManagementListAttr} items={parsedItems} onRowClick={clickItem} />
+          <Table
+            title="수업용 SW관리"
+            attributes={lectureSWManagementListAttr}
+            items={parsedItems}
+            onRowClick={clickItem}
+          />
         </Style.TableWrapper>
       </TabTemplate>
     </>

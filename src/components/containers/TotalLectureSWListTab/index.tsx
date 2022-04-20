@@ -92,9 +92,13 @@ function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
           <Input value="" label="과목번호" width="14rem" onChange={() => {}} />
           <Input value="" label="등록자" width="14rem" onChange={() => {}} />
         </TabForm>
-        <Style.TableTitle>등록된 수업용 SW</Style.TableTitle>
         <Style.TableWrapper>
-          <Table items={parsedItem} attributes={totalLectureSWListAttr} onRowClick={clickItem} />
+          <Table
+            title="등록된 수업용 SW"
+            items={parsedItem}
+            attributes={totalLectureSWListAttr}
+            onRowClick={clickItem}
+          />
         </Style.TableWrapper>
       </TabTemplate>
     </>

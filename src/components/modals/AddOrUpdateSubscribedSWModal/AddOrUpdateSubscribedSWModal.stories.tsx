@@ -15,6 +15,7 @@ export default {
 const defaultLicense = generateString(8);
 const defaultProduct = generateString(8);
 const defaultExpireDate = generateString(8);
+const defaultLatestUpdatedDate = generateString(8);
 
 export const createModal = () => (
   <AddOrUpdateSubscribedSWModal modalState="create" closeModal={closeModalAction} onSubmit={onSubmitAction} />
@@ -26,6 +27,7 @@ export const updateModal = () => (
     defaultLicense={defaultLicense}
     defaultProduct={defaultProduct}
     defaultExpireDate={defaultExpireDate}
+    defaultLastestUpdatedDate={defaultLatestUpdatedDate}
     closeModal={closeModalAction}
     onSubmit={onSubmitAction}
     onDelete={onDeleteAction}

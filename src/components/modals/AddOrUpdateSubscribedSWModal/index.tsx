@@ -7,7 +7,7 @@ import * as Style from './styled';
 
 interface AddOrUpdateSubscribedSWModalProps {
   defaultLicense?: string;
-  defaultProduct?: string;
+  defaultSWName?: string;
   defaultExpireDate?: string;
   defaultLastestUpdatedDate?: string;
   modalState: 'create' | 'update';
@@ -19,7 +19,7 @@ interface AddOrUpdateSubscribedSWModalProps {
 // TODO: make default prosp to state
 function AddOrUpdateSubscribedSWModal({
   defaultLicense = '',
-  defaultProduct = '',
+  defaultSWName = '',
   defaultExpireDate = '',
   defaultLastestUpdatedDate = '',
   modalState,
@@ -61,7 +61,7 @@ function AddOrUpdateSubscribedSWModal({
             onChange={() => {}}
           />
           <Input label="라이선스" width="23rem" value={defaultLicense} onChange={() => {}} />
-          <Input label="제품명" width="23rem" value={defaultProduct} onChange={() => {}} />
+          <Input label="제품명" width="23rem" value={defaultSWName} onChange={() => {}} />
           <Input label="만료일" width="23rem" value={defaultExpireDate} onChange={() => {}} />
           <Style.BlankSpace />
           <Input

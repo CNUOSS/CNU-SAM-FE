@@ -80,7 +80,10 @@ describe('Container/Sidebar', () => {
       expect(onChange).toBeCalledWith({
         currentIdx: 0,
         tabs: [
-          { name: '학내 구독 중 SW', component: <SubscribedSWTab items={[]} companys={[]} productFamilys={[]} /> },
+          {
+            name: '학내 구독 중 SW',
+            component: <SubscribedSWTab items={[]} manufacturings={[]} types={[]} />,
+          },
         ],
       });
     });
@@ -124,7 +127,7 @@ describe('Container/Sidebar', () => {
       expect(onChange).toBeCalledTimes(2);
       expect(onChange).toBeCalledWith({
         currentIdx: 0,
-        tabs: [{ name: '수업 용 SW 관리', component: <LectureSWManagementTab items={[]} companys={[]} /> }],
+        tabs: [{ name: '수업 용 SW 관리', component: <LectureSWManagementTab items={[]} manufacturings={[]} /> }],
       });
     });
 

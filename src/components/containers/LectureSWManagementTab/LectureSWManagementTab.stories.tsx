@@ -7,6 +7,6 @@ export default {
   component: LectureSWManagementTab,
 };
 
-const companys = generateStringArray(3);
+const manufacturings = generateStringArray(3);
 const items = [generateSWForLecture(), generateSWForLecture(), generateSWForLecture()];
-export const lectureSWManagementTab = () => <LectureSWManagementTab items={items} companys={companys} />;
+export const lectureSWManagementTab = () => <LectureSWManagementTab items={items} manufacturings={manufacturings} />;

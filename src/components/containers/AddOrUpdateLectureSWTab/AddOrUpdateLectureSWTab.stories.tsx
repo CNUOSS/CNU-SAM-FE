@@ -8,18 +8,18 @@ export default {
 };
 
 const lectureSW: LectureSWType = generateLectureSW();
-const companyList = generateStringArray(3);
-const productList = generateStringArray(3);
+const manufacturingList = generateStringArray(3);
+const swNames = generateStringArray(3);
 
 export const createTab = () => (
-  <AddOrUpdateLectureSWTab companyList={companyList} productList={productList} tabState="create" />
+  <AddOrUpdateLectureSWTab manufacturingList={manufacturingList} swNames={swNames} tabState="create" />
 );
 
 export const modifyTab = () => (
   <AddOrUpdateLectureSWTab
     lectureSW={lectureSW}
-    companyList={companyList}
-    productList={productList}
+    manufacturingList={manufacturingList}
+    swNames={swNames}
     tabState="update"
   />
 );

@@ -9,6 +9,7 @@ interface AddOrUpdateSubscribedSWModalProps {
   defaultLicense?: string;
   defaultProduct?: string;
   defaultExpireDate?: string;
+  defaultLastestUpdatedDate?: string;
   modalState: 'create' | 'update';
   onSubmit: () => void;
   onDelete?: () => void;
@@ -20,6 +21,7 @@ function AddOrUpdateSubscribedSWModal({
   defaultLicense = '',
   defaultProduct = '',
   defaultExpireDate = '',
+  defaultLastestUpdatedDate = '',
   modalState,
   closeModal,
   onDelete,
@@ -61,6 +63,13 @@ function AddOrUpdateSubscribedSWModal({
           <Input label="라이선스" width="23rem" value={defaultLicense} onChange={() => {}} />
           <Input label="제품명" width="23rem" value={defaultProduct} onChange={() => {}} />
           <Input label="만료일" width="23rem" value={defaultExpireDate} onChange={() => {}} />
+          <Style.BlankSpace />
+          <Input
+            label={defaultLastestUpdatedDate ? '최신 업데이트 날짜' : '최초 구독 날짜'}
+            width="23rem"
+            value={defaultLastestUpdatedDate}
+            onChange={() => {}}
+          />
         </Style.InputWrapper>
         <Style.ButtonWrapper>
           {modalState === 'update' && onDelete && (

@@ -34,6 +34,10 @@ export const InputWrapper = styled.div`
   gap: 1.5rem;
 `;
 
+export const BlankSpace = styled.div`
+  width: 23rem;
+`;
+
 export const ButtonWrapper = styled.div`
   display: flex;
   float: right;

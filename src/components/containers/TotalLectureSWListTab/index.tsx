@@ -33,8 +33,8 @@ interface TotalLectureSWListProps {
 function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
   const [selectedItem, setSelectedItem] = useState<ItemType>();
   const setTabState = useSetRecoilState(tabState);
-  // FIXME: not this list, list fetched from server. here is not exist all company's information
-  const companyList = items.map((item) => item.company as string);
+  // FIXME: not this list, list fetched from server. here is not exist all manufacturing's information
+  const manufacturingList = items.map((item) => item.manufacturing as string);
 
   const clickItemAddButton = (item: ItemType) => () => setSelectedItem(item);
   const clickItem = (item: any) => {
@@ -43,7 +43,7 @@ function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
       compareTabs(
         oldState,
         '강의 수정',
-        <AddOrUpdateLectureSWTab tabState="update" companyList={[]} productList={[]} />
+        <AddOrUpdateLectureSWTab tabState="update" manufacturingList={[]} swNames={[]} />
       )
     );
   };
@@ -75,9 +75,11 @@ function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
     <>
       {selectedItem && (
         <AddManagedSWModal
-          defaultCompanyList={companyList}
-          defaultCompanyIndex={companyList.findIndex((company) => company === selectedItem.company)}
-          defaultSWName={selectedItem.product as string}
+          defaultCompanyList={manufacturingList}
+          defaultCompanyIndex={manufacturingList.findIndex(
+            (manufacturing) => manufacturing === selectedItem.manufacturing
+          )}
+          defaultSWName={selectedItem.swName as string}
           onSubmit={addNewManagedSW}
           closeModal={closeModal}
         />

@@ -20,10 +20,10 @@ export interface RowType extends ItemType {
 interface LecutreSWManagementTabProps {
   // FIXME: remove all
   items: ItemType[];
-  companys: string[];
+  manufacturings: string[];
 }
 
-function LectureSWManagementTab({ items, companys }: LecutreSWManagementTabProps) {
+function LectureSWManagementTab({ items, manufacturings }: LecutreSWManagementTabProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<ItemType>();
   const parsedItems: RowType[] = items.map((item, index) => ({ ...item, number: index + 1 }));
@@ -44,9 +44,11 @@ function LectureSWManagementTab({ items, companys }: LecutreSWManagementTabProps
     <>
       {isOpen && (
         <AddManagedSWModal
-          defaultCompanyList={companys}
-          defaultCompanyIndex={companys.findIndex((company) => company === selectedItem?.company)}
-          defaultSWName={selectedItem?.product}
+          defaultCompanyList={manufacturings}
+          defaultCompanyIndex={manufacturings.findIndex(
+            (manufacturing) => manufacturing === selectedItem?.manufacturing
+          )}
+          defaultSWName={selectedItem?.swName}
           isEditable={!!selectedItem}
           closeModal={toggleModal}
           onSubmit={addNewSW}
@@ -56,7 +58,7 @@ function LectureSWManagementTab({ items, companys }: LecutreSWManagementTabProps
       <TabTemplate description="Description" onCreate={toggleModal}>
         <TabForm onSubmit={onSubmit} buttonText="조회하기">
           <Style.InputWrapper>
-            <Dropdown label="제조사" items={companys} width="21rem" onClickItem={() => {}} />
+            <Dropdown label="제조사" items={manufacturings} width="21rem" onClickItem={() => {}} />
             <Input label="제품명" value="" width="21rem" onChange={() => {}} />
           </Style.InputWrapper>
         </TabForm>

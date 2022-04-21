@@ -17,26 +17,26 @@ export interface RowType extends ItemType {
 
 interface TableProps {
   items: ItemType[];
-  companys: string[];
-  products: string[];
+  manufacturings: string[];
+  swNames: string[];
   onAddNewItem: (item: ItemType) => void;
   onDeleteItem: (index: number) => void;
 }
 
-function Table({ items, companys, products, onAddNewItem, onDeleteItem }: TableProps) {
-  const [company, setCompany] = useState('');
-  const [productName, setProductName] = useState('');
+function Table({ items, manufacturings, swNames, onAddNewItem, onDeleteItem }: TableProps) {
+  const [manufacturing, setCompany] = useState('');
+  const [swName, setSWName] = useState('');
   const [license, setLicense] = useState('');
 
   const changeLicenseName = (event: React.ChangeEvent<HTMLInputElement>) => setLicense(event.target.value);
-  const changeCompany = (company: string) => setCompany(company);
-  const changeProduct = (product: string) => setProductName(product);
+  const changeCompany = (manufacturing: string) => setCompany(manufacturing);
+  const changeSWName = (swName: string) => setSWName(swName);
   const deleteItem = (selectedIndex: number) => onDeleteItem(selectedIndex);
   const addNewItem = () => {
     setCompany('');
-    setProductName('');
+    setSWName('');
     setLicense('');
-    onAddNewItem({ productName, company, license });
+    onAddNewItem({ swName, manufacturing, license });
   };
 
   const parsedItems: RowType[] = useMemo(
@@ -51,10 +51,16 @@ function Table({ items, companys, products, onAddNewItem, onDeleteItem }: TableP
 
   const addRow: RowType = {
     number: <Icon onClick={addNewItem} size="2rem" icon="plus" />,
-    company: <SelfDropdown items={companys} width={18} inputValue={company} inputWidth={8} onChange={changeCompany} />,
-    productName: (
-      <SelfDropdown items={products} width={25} inputValue={productName} inputWidth={15} onChange={changeProduct} />
+    manufacturing: (
+      <SelfDropdown
+        items={manufacturings}
+        width={18}
+        inputValue={manufacturing}
+        inputWidth={8}
+        onChange={changeCompany}
+      />
     ),
+    swName: <SelfDropdown items={swNames} width={25} inputValue={swName} inputWidth={15} onChange={changeSWName} />,
     license: <Input value={license} width="25rem" onChange={changeLicenseName} />,
     trash: <></>,
   };

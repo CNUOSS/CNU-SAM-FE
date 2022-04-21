@@ -49,7 +49,10 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
           component: <TotalLectureSWListTab isAdmin items={[]} />,
         };
       case 'SubscribingSWList':
-        return { name: '학내 구독 중 SW', component: <SubscribedSWTab items={[]} companys={[]} productFamilys={[]} /> };
+        return {
+          name: '학내 구독 중 SW',
+          component: <SubscribedSWTab items={[]} manufacturings={[]} types={[]} />,
+        };
       case 'SWDashboard':
         return { name: '대시보드', component: <></> };
       case 'PJList':
@@ -59,13 +62,13 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
       case 'UserManagement':
         return { name: '유저 관리', component: <></> };
       case 'SWManagement':
-        return { name: '수업 용 SW 관리', component: <LectureSWManagementTab items={[]} companys={[]} /> };
+        return { name: '수업 용 SW 관리', component: <LectureSWManagementTab items={[]} manufacturings={[]} /> };
       case 'UserGuide':
         return { name: '사용자 가이드', component: <></> };
       case 'EnrollSW':
         return {
           name: '수업용 SW 등록',
-          component: <AddOrUpdateLectureSWTab companyList={[]} productList={[]} tabState="create" />,
+          component: <AddOrUpdateLectureSWTab manufacturingList={[]} swNames={[]} tabState="create" />,
         };
       default:
         return { name: 'error', component: <></> };

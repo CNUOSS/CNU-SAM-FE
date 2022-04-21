@@ -19,11 +19,11 @@ export interface RowType extends ItemType {
 
 interface SubscribedSWTabProps {
   items: ItemType[];
-  companys: string[];
-  productFamilys: string[];
+  manufacturings: string[];
+  types: string[];
 }
 
-function SubscribedSWTab({ items, companys, productFamilys }: SubscribedSWTabProps) {
+function SubscribedSWTab({ items, manufacturings, types }: SubscribedSWTabProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<ItemType>();
   const parsedItems: RowType[] = items.map((item, index) => ({ ...item, number: index + 1 }));
@@ -47,8 +47,8 @@ function SubscribedSWTab({ items, companys, productFamilys }: SubscribedSWTabPro
       {isOpen && (
         <AddOrUpdateSubscribedSWModal
           defaultLicense={selectedItem?.license}
-          defaultProduct={selectedItem?.product}
-          defaultExpireDate={selectedItem?.expireDate}
+          defaultSWName={selectedItem?.swName}
+          defaultExpireDate={selectedItem?.expireDt}
           modalState={selectedItem ? 'update' : 'create'}
           onSubmit={handleModalSubmit}
           onDelete={onDelete}
@@ -57,8 +57,8 @@ function SubscribedSWTab({ items, companys, productFamilys }: SubscribedSWTabPro
       )}
       <TabTemplate description="Description" onCreate={toggleModal}>
         <TabForm onSubmit={handleSearchSW} buttonText="조회하기">
-          <Dropdown label="제품군" items={productFamilys} width="21rem" onClickItem={() => {}} />
-          <Dropdown label="제조사" items={companys} width="21rem" onClickItem={() => {}} />
+          <Dropdown label="제품군" items={types} width="21rem" onClickItem={() => {}} />
+          <Dropdown label="제조사" items={manufacturings} width="21rem" onClickItem={() => {}} />
           <Input label="제품명" value="" width="21rem" onChange={() => {}} />
         </TabForm>
         <Style.TableWrapper>

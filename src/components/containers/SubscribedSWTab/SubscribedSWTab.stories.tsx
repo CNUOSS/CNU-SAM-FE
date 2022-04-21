@@ -7,7 +7,7 @@ export default {
   component: SubscribedSWTab,
 };
 
-const companys = generateStringArray(3);
-const productFamilys = generateStringArray(3);
+const manufacturings = generateStringArray(3);
+const types = generateStringArray(3);
 const items = [generateSubscribedSW(), generateSubscribedSW(), generateSubscribedSW()];
-export const tab = () => <SubscribedSWTab items={items} companys={companys} productFamilys={productFamilys} />;
+export const tab = () => <SubscribedSWTab items={items} manufacturings={manufacturings} types={types} />;

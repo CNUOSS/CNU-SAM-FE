@@ -23,41 +23,41 @@ export const generateTotalLectureSWItem = ({
 }): TotalLectureSWItemAttrType => ({
   year: generateString(4),
   semester: generateString(3),
-  organization: generateString(5),
+  department: generateString(5),
   lectureNum: generateString(6),
-  class: generateString(1),
+  classNum: generateString(1),
   lectureName: lectureName || generateString(8),
-  division: generateString(5),
+  lectureType: generateString(5),
   writer: generateString(3),
-  product: generateString(10),
-  company: generateString(5),
+  swName: generateString(10),
+  manufacturing: generateString(5),
   license: generateString(8),
   managed: managed || Math.random() < 0.5,
 });
 
 export const generateAddLectureSWItem = (): AddLectureSWItemAttrType => ({
-  company: generateString(5),
-  productName: generateString(10),
+  manufacturing: generateString(5),
+  swName: generateString(10),
   license: generateString(8),
 });
 
 export const generateSWForLecture = (): LectureSWManagementAttrType => ({
-  company: generateString(5),
+  manufacturing: generateString(5),
   enrollDate: generateString(8),
-  product: generateString(10),
+  swName: generateString(10),
   usedCount: generateString(1),
   writer: generateString(3),
 });
 
 export const generateSubscribedSW = (): SubscribedSWAttrType => ({
-  productFamily: generateString(8),
-  company: generateString(5),
-  product: generateString(10),
-  range: generateString(5),
+  type: generateString(8),
+  manufacturing: generateString(5),
+  swName: generateString(10),
+  usageRange: generateString(5),
   license: generateString(8),
-  expireDate: generateString(7),
-  FirstSubscribeDate: generateString(7),
-  LatestUpdatedDate: generateString(7),
+  expireDt: generateString(7),
+  FirstSubscribeDt: generateString(7),
+  LatestUpdatedDt: generateString(7),
   writer: generateString(3),
 });
 

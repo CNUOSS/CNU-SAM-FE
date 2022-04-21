@@ -4,10 +4,10 @@ import { render, screen, fireEvent } from '../../../libs/rtl-utils';
 import { generateSubscribedSW, generateStringArray } from '../../../__mocks__/create-mock';
 import { subscibedSWListAttr } from '../../../common/constants';
 
-const companys = generateStringArray(3);
-const productFamilys = generateStringArray(3);
+const manufacturings = generateStringArray(3);
+const types = generateStringArray(3);
 const items = [generateSubscribedSW(), generateSubscribedSW(), generateSubscribedSW()];
-const renderApp = () => render(<SubscribedSWTab items={items} companys={companys} productFamilys={productFamilys} />);
+const renderApp = () => render(<SubscribedSWTab items={items} manufacturings={manufacturings} types={types} />);
 
 describe('Container/SubscribedSW', () => {
   it('rendering test', () => {
@@ -30,12 +30,12 @@ describe('Container/SubscribedSW', () => {
     fireEvent.click(dropdowns[0]);
     fireEvent.click(dropdowns[1]);
 
-    const company = screen.getByText(companys[1]);
-    const productFamily = screen.getByText(productFamilys[1]);
-    fireEvent.click(company);
-    fireEvent.click(productFamily);
-    screen.getByText(companys[1]);
-    screen.getByText(productFamilys[1]);
+    const manufacturing = screen.getByText(manufacturings[1]);
+    const type = screen.getByText(types[1]);
+    fireEvent.click(manufacturing);
+    fireEvent.click(type);
+    screen.getByText(manufacturings[1]);
+    screen.getByText(types[1]);
   });
 
   it('click enroll button', () => {

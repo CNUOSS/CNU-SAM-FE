@@ -37,29 +37,29 @@ export type Number = typeof Number;
 export const TotalLectureSWListAttr = {
   Year: 'year',
   Semester: 'semester',
-  Organization: 'organization',
+  Department: 'department',
   LectureNum: 'lectureNum',
-  Class: 'class',
+  ClassNum: 'classNum',
   LectureName: 'lectureName',
-  Division: 'division',
+  LectureType: 'lectureType',
   Writer: 'writer',
-  Product: 'product',
-  Company: 'company',
+  SWName: 'swName',
+  Manufacturing: 'manufacturing',
   License: 'license',
   Managed: 'managed',
 } as const;
 export type TotalLectureSWListAttr = typeof TotalLectureSWListAttr[keyof typeof TotalLectureSWListAttr];
 
 export const AddLectureSWListAttr = {
-  Company: 'company',
-  ProductName: 'productName',
+  Manufacturing: 'manufacturing',
+  SWName: 'swName',
   License: 'license',
 } as const;
 export type AddLectureSWListAttr = typeof AddLectureSWListAttr[keyof typeof AddLectureSWListAttr];
 
 export const LectureSWManagementListAttr = {
-  Company: 'company',
-  Product: 'product',
+  Manufacturing: 'manufacturing',
+  SWName: 'swName',
   UsedCount: 'usedCount',
   Writer: 'writer',
   EnrollDate: 'enrollDate',
@@ -67,14 +67,14 @@ export const LectureSWManagementListAttr = {
 export type LectureSWManagementListAttr = typeof LectureSWManagementListAttr[keyof typeof LectureSWManagementListAttr];
 
 export const SubscribedSWListAttr = {
-  ProductFamily: 'productFamily',
-  Company: 'company',
-  Product: 'product',
-  Range: 'range',
+  Type: 'type',
+  Manufacturing: 'manufacturing',
+  SWName: 'swName',
+  UsageRange: 'usageRange',
   License: 'license',
-  ExpireDate: 'expireDate',
-  FirstSubscribeDate: 'FirstSubscribeDate',
-  LatestUpdatedDate: 'LatestUpdatedDate',
+  ExpireDt: 'expireDt',
+  FirstSubscribeDt: 'FirstSubscribeDt',
+  LatestUpdatedDt: 'LatestUpdatedDt',
   Writer: 'writer',
 } as const;
 export type SubscribedSWListAttr = typeof SubscribedSWListAttr[keyof typeof SubscribedSWListAttr];

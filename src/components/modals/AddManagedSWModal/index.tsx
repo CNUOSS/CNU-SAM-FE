@@ -6,12 +6,12 @@ import Template from '../../templates/ModalTemplate';
 import * as Style from './styled';
 
 interface AddManagedSWModalProps {
-  // TODO: can add type to company list? not string?
+  // TODO: can add type to manufacturing list? not string?
   defaultCompanyList: string[];
   defaultCompanyIndex?: number;
   defaultSWName?: string;
   isEditable?: boolean;
-  onSubmit: (company: string, product: string) => void;
+  onSubmit: (manufacturing: string, name: string) => void;
   onDelete?: () => void;
   closeModal: () => void;
 }
@@ -26,11 +26,11 @@ function AddManagedSWModal({
   closeModal,
 }: AddManagedSWModalProps) {
   const [swName, setSWName] = useState(defaultSWName);
-  const [company, setCompany] = useState('');
+  const [manufacturing, setCompany] = useState('');
 
   const changeSWName = (event: React.ChangeEvent<HTMLInputElement>) => setSWName(event.target.value);
-  const changeCompany = (company: string) => setCompany(company);
-  const handleSubmit = () => onSubmit(company, swName);
+  const changeCompany = (manufacturing: string) => setCompany(manufacturing);
+  const handleSubmit = () => onSubmit(manufacturing, swName);
 
   return (
     <Template closeModal={closeModal}>
@@ -43,7 +43,7 @@ function AddManagedSWModal({
             label="SW 제조사"
             currentIdx={defaultCompanyIndex}
             width={35}
-            inputValue={company}
+            inputValue={manufacturing}
             inputWidth={20}
             onChange={changeCompany}
           />

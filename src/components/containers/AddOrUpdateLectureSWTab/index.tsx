@@ -27,13 +27,13 @@ export interface LectureSWType {
 interface AddOrUpdateLectureSWTabProps {
   // FIXME: fetch infos about lecture
   lectureSW?: LectureSWType;
-  companyList: string[];
-  productList: string[];
+  manufacturingList: string[];
+  swNames: string[];
   tabState: 'create' | 'update';
 }
 
-// FIXME: remove companyList, productList
-function AddOrUpdateLectureSWTab({ lectureSW, companyList, productList, tabState }: AddOrUpdateLectureSWTabProps) {
+// FIXME: remove manufacturingList, swNames
+function AddOrUpdateLectureSWTab({ lectureSW, manufacturingList, swNames, tabState }: AddOrUpdateLectureSWTabProps) {
   const [items, setItems] = useState<ItemType[]>(lectureSW?.receivedItems || []);
 
   const addNewItem = (newItem: ItemType) => setItems((prev) => [newItem, ...prev]);
@@ -65,8 +65,8 @@ function AddOrUpdateLectureSWTab({ lectureSW, companyList, productList, tabState
       <Style.TableWrapper>
         <Table
           items={items}
-          companys={companyList}
-          products={productList}
+          manufacturings={manufacturingList}
+          swNames={swNames}
           onAddNewItem={addNewItem}
           onDeleteItem={deleteItem}
         />

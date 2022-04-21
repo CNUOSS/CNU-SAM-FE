@@ -56,7 +56,8 @@ export const generateSubscribedSW = (): SubscribedSWAttrType => ({
   range: generateString(5),
   license: generateString(8),
   expireDate: generateString(7),
-  updatedDate: generateString(7),
+  FirstSubscribeDate: generateString(7),
+  LatestUpdatedDate: generateString(7),
   writer: generateString(3),
 });
 

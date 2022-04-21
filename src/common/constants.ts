@@ -74,12 +74,13 @@ export const lectureSWManagementListAttr: AttributeType<LectureSWManagementListA
 ];
 
 export const subscibedSWListAttr: AttributeType<SubscribedSWListAttr | Number>[] = [
-  { label: 'No', dataKey: 'number', widthPercent: 8, disableSort: true },
-  { label: '제품군', dataKey: 'productFamily', widthPercent: 12, disableSort: false },
-  { label: '제조사', dataKey: 'company', widthPercent: 12, disableSort: false },
-  { label: '이용범위', dataKey: 'range', widthPercent: 12, disableSort: false },
-  { label: '라이선스', dataKey: 'license', widthPercent: 12, disableSort: false },
+  { label: 'No', dataKey: 'number', widthPercent: 2, disableSort: true },
+  { label: '제품군', dataKey: 'productFamily', widthPercent: 10, disableSort: false },
+  { label: '제조사', dataKey: 'company', widthPercent: 10, disableSort: false },
+  { label: '이용범위', dataKey: 'range', widthPercent: 10, disableSort: false },
+  { label: '라이선스', dataKey: 'license', widthPercent: 10, disableSort: false },
   { label: '만료일', dataKey: 'expireDate', widthPercent: 12, disableSort: false },
-  { label: '최근 업데이트 날짜', dataKey: 'updatedDate', widthPercent: 16, disableSort: false },
-  { label: '작성자', dataKey: 'writer', widthPercent: 12, disableSort: false },
+  { label: '최초 구독 날짜', dataKey: 'FirstSubscribeDate', widthPercent: 16, disableSort: false },
+  { label: '최근 업데이트 날짜', dataKey: 'LatestUpdatedDate', widthPercent: 16, disableSort: false },
+  { label: '작성자', dataKey: 'writer', widthPercent: 10, disableSort: false },
 ];

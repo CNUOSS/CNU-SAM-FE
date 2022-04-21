@@ -7,6 +7,8 @@ import { tabState } from '../../../recoil/tab';
 import { UserAuth } from '../../../@types/types';
 
 import TotalLectureSWListTab from '../TotalLectureSWListTab';
+import SubscribedSWTab from '../SubscribedSWTab';
+import LectureSWManagementTab from '../LectureSWManagementTab';
 
 const onChange = jest.fn();
 
@@ -75,7 +77,12 @@ describe('Container/Sidebar', () => {
       const licenseList = screen.getByText('학내 구독 중인 SW목록');
       fireEvent.click(licenseList);
       expect(onChange).toBeCalledTimes(2);
-      expect(onChange).toBeCalledWith({ currentIdx: 0, tabs: [{ name: '학내 구독 중 SW', component: <></> }] });
+      expect(onChange).toBeCalledWith({
+        currentIdx: 0,
+        tabs: [
+          { name: '학내 구독 중 SW', component: <SubscribedSWTab items={[]} companys={[]} productFamilys={[]} /> },
+        ],
+      });
     });
 
     it('click SWDashboard list', () => {
@@ -112,10 +119,13 @@ describe('Container/Sidebar', () => {
 
     it('click SWManagement list', () => {
       renderApp(true, 'Admin');
-      const licenseList = screen.getByText('등록 대상 SW 관리');
+      const licenseList = screen.getByText('수업 용 SW 관리');
       fireEvent.click(licenseList);
       expect(onChange).toBeCalledTimes(2);
-      expect(onChange).toBeCalledWith({ currentIdx: 0, tabs: [{ name: '수업 용 SW 관리', component: <></> }] });
+      expect(onChange).toBeCalledWith({
+        currentIdx: 0,
+        tabs: [{ name: '수업 용 SW 관리', component: <LectureSWManagementTab items={[]} companys={[]} /> }],
+      });
     });
 
     it('click UserGuide list', () => {

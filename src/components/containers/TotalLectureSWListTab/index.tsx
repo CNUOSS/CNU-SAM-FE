@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
+import TabTemplate from '../../templates/TabTemplate';
 import Input from '../../widgets/Input';
 import Dropdown from '../../widgets/Dropdown';
 import TabForm from '../../widgets/TabForm';
 import Table from '../../widgets/Table';
 import AddManagedSWModal from '../../modals/AddManagedSWModal';
+import AddOrUpdateLectureSWTab from '../AddOrUpdateLectureSWTab';
 import { TotalLectureSWListAttr } from '../../../@types/types';
 import { totalLectureSWListAttr } from '../../../common/constants';
+import { tabState } from '../../../recoil/tab';
+import compareTabs from '../../../utils/compare-tabs';
 import * as Style from './styled';
 
 // FIXME: remove
@@ -27,23 +32,38 @@ interface TotalLectureSWListProps {
 
 function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
   const [selectedItem, setSelectedItem] = useState<ItemType>();
+  const setTabState = useSetRecoilState(tabState);
   // FIXME: not this list, list fetched from server. here is not exist all company's information
-  const companyList = items.map((item) => item.productCompany as string);
+  const companyList = items.map((item) => item.company as string);
 
-  const clickItem = (item: ItemType) => () => setSelectedItem(item);
+  const clickItemAddButton = (item: ItemType) => () => setSelectedItem(item);
+  const clickItem = (item: any) => {
+    // TODO: if user, add authority compare logic
+    setTabState((oldState) =>
+      compareTabs(
+        oldState,
+        '강의 수정',
+        <AddOrUpdateLectureSWTab tabState="update" companyList={[]} productList={[]} />
+      )
+    );
+  };
 
   const getNewManaged = (managed: boolean | string, onClick: () => void) => {
     if (!managed) return 'No';
     if (!isAdmin) return 'Yes';
+    const clickItem = (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.stopPropagation();
+      onClick();
+    };
     return (
-      <Style.AddButton data-testid="add-btn" onClick={onClick}>
+      <Style.AddButton data-testid="add-btn" onClick={clickItem}>
         추가
       </Style.AddButton>
     );
   };
 
   const parsedItem = items.map(({ managed, ...others }) => {
-    const newManaged = getNewManaged(managed, clickItem({ managed, ...others }));
+    const newManaged = getNewManaged(managed, clickItemAddButton({ managed, ...others }));
     return { ...others, managed: newManaged };
   });
 
@@ -56,14 +76,13 @@ function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
       {selectedItem && (
         <AddManagedSWModal
           defaultCompanyList={companyList}
-          defaultCompanyIndex={companyList.findIndex((company) => company === selectedItem.productCompany)}
-          defaultSWName={selectedItem.productName as string}
+          defaultCompanyIndex={companyList.findIndex((company) => company === selectedItem.company)}
+          defaultSWName={selectedItem.product as string}
           onSubmit={addNewManagedSW}
           closeModal={closeModal}
         />
       )}
-      <Style.Container>
-        <Style.Description>Description</Style.Description>
+      <TabTemplate description="Description">
         <TabForm onSubmit={searchList} buttonText="조회하기">
           <Dropdown items={ORGANIZATION} label="조직분류" width="16rem" onClickItem={() => {}} />
           <Dropdown items={YEARS} label="년도" width="10rem" onClickItem={() => {}} />
@@ -73,11 +92,15 @@ function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
           <Input value="" label="과목번호" width="14rem" onChange={() => {}} />
           <Input value="" label="등록자" width="14rem" onChange={() => {}} />
         </TabForm>
-        <Style.TableTitle>등록된 수업용 SW</Style.TableTitle>
         <Style.TableWrapper>
-          <Table items={parsedItem} attributes={totalLectureSWListAttr} />
+          <Table
+            title="등록된 수업용 SW"
+            items={parsedItem}
+            attributes={totalLectureSWListAttr}
+            onRowClick={clickItem}
+          />
         </Style.TableWrapper>
-      </Style.Container>
+      </TabTemplate>
     </>
   );
 }

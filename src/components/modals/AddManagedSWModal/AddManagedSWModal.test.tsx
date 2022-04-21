@@ -5,18 +5,22 @@ import { generateStringArray } from '../../../__mocks__/create-mock';
 
 const closeModalMock = jest.fn();
 const onSubmitMock = jest.fn();
+const onDelteItemMock = jest.fn();
 
 beforeEach(() => {
   document.body.innerHTML = '<div id="modal"></div>';
   onSubmitMock.mockClear();
+  onDelteItemMock.mockClear();
 });
 
-const renderApp = () =>
+const renderApp = (isEditable?: boolean) =>
   render(
     <AddManagedSWModal
       defaultCompanyList={generateStringArray(3)}
+      isEditable={isEditable}
       onSubmit={onSubmitMock}
       closeModal={closeModalMock}
+      onDelete={isEditable ? onDelteItemMock : undefined}
     />
   );
 
@@ -29,6 +33,23 @@ describe('Modal/AddManagedSWModal', () => {
       screen.getByText('SW 제조사');
       screen.getByText('SW 제품명');
       screen.getByText('등록하기');
+    });
+  });
+
+  describe('editable', () => {
+    it('rendering test', () => {
+      renderApp(true);
+
+      screen.getByText('삭제하기');
+      screen.getByText('수정하기');
+    });
+
+    it('click delteButton', () => {
+      renderApp(true);
+
+      const deleteBtn = screen.getByText('삭제하기');
+      fireEvent.click(deleteBtn);
+      expect(onDelteItemMock).toBeCalledTimes(1);
     });
   });
 

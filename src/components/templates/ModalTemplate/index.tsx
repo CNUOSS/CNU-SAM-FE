@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as Style from './styled';
 
-interface TemplateProps {
+interface ModalTemplateProps {
   children: React.ReactElement;
   closeModal: () => void;
 }
 
-function Template({ children, closeModal }: TemplateProps) {
+function ModalTemplate({ children, closeModal }: ModalTemplateProps) {
   const modalTag = document.getElementById('modal');
 
   return (
@@ -22,4 +22,4 @@ function Template({ children, closeModal }: TemplateProps) {
   );
 }
 
-export default Template;
+export default ModalTemplate;

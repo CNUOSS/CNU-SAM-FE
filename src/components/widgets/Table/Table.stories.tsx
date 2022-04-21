@@ -26,3 +26,9 @@ export const componentTable = () => (
     <Table attributes={attributes} items={items} />
   </div>
 );
+
+export const tableWithTitle = () => (
+  <div style={{ height: '100%' }}>
+    <Table title="title" attributes={attributes} items={items} />
+  </div>
+);

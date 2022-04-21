@@ -26,16 +26,12 @@ export const Description = styled.p`
 
 export const InputWrapper = styled.div`
   width: 100%;
-  margin: 3rem 0 5rem 0;
+  padding: 1rem 4rem 5rem 4rem;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: 1.5rem;
-`;
-
-export const CompanyWrapper = styled.div`
-  display: flex;
-  gap: 1rem;
 `;
 
 export const ButtonWrapper = styled.div`

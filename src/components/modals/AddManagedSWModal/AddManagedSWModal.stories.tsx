@@ -11,6 +11,7 @@ const defaultCompanyList = ['LG', 'SAMSUNG'];
 const defaultSWName = 'fosslight';
 const closeModalAction = action('close modal');
 const onSubmitAction = action('on submit');
+const onDeleteAction = action('ond delete');
 
 export const selectedSW = () => (
   <AddManagedSWModal
@@ -24,4 +25,14 @@ export const selectedSW = () => (
 
 export const noSWName = () => (
   <AddManagedSWModal defaultCompanyList={defaultCompanyList} onSubmit={onSubmitAction} closeModal={closeModalAction} />
+);
+
+export const editable = () => (
+  <AddManagedSWModal
+    isEditable
+    defaultCompanyList={defaultCompanyList}
+    onSubmit={onSubmitAction}
+    onDelete={onDeleteAction}
+    closeModal={closeModalAction}
+  />
 );

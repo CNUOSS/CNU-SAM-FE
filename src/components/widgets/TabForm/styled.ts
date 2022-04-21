@@ -27,13 +27,3 @@ export const InputList = styled.div`
   justify-content: space-between;
   gap: 1rem;
 `;
-
-export const SubmitButton = styled.button`
-  min-width: 15rem;
-  height: 4.2rem;
-
-  color: white;
-  font-weight: bold;
-  border-radius: 1rem;
-  background-color: ${(props) => props.theme.colors.secondary};
-`;

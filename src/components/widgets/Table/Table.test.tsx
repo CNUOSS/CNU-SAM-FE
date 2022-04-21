@@ -19,8 +19,8 @@ const items = [
   { name: 'D', description: 'E' },
 ];
 
-const renderApp = (click: boolean = false) =>
-  render(<Table attributes={attributes} items={items} onRowClick={click ? onClickMock : undefined} />);
+const renderApp = (click: boolean = false, title?: string) =>
+  render(<Table title={title} attributes={attributes} items={items} onRowClick={click ? onClickMock : undefined} />);
 
 describe('Widget/Table', () => {
   const originalOffsetHeight = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetHeight');
@@ -45,6 +45,13 @@ describe('Widget/Table', () => {
       expect(attrNames).toEqual(attributes.map((attr) => attr.label));
       expect(labels).toEqual(items.map((item) => item.name));
       expect(descriptions).toEqual(items.map((item) => item.description));
+    });
+
+    it('with name', () => {
+      const tableTitle = 'table title';
+      renderApp(false, tableTitle);
+
+      screen.getByText(tableTitle);
     });
   });
 

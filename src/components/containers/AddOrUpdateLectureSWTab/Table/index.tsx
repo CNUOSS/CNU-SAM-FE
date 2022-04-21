@@ -59,7 +59,7 @@ function Table({ items, companys, products, onAddNewItem, onDeleteItem }: TableP
     trash: <></>,
   };
 
-  return <TableWidget items={[addRow, ...parsedItems]} attributes={addLectureSWListAttr} />;
+  return <TableWidget title="등록된 수업용 SW" items={[addRow, ...parsedItems]} attributes={addLectureSWListAttr} />;
 }
 
 export default Table;

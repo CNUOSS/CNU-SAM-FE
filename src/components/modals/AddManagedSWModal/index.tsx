@@ -1,24 +1,28 @@
 import React, { useState } from 'react';
 import SelfDropdown from '../../../components/widgets/SelfDropdown';
-import Input from '../../../components/widgets/Input';
-import Template from '../Template';
+import Button from '../../widgets/Button';
+import Input from '../../widgets/Input';
+import Template from '../../templates/ModalTemplate';
 import * as Style from './styled';
 
 interface AddManagedSWModalProps {
   // TODO: can add type to company list? not string?
-  // FIXME: remove company list, get from server
   defaultCompanyList: string[];
   defaultCompanyIndex?: number;
   defaultSWName?: string;
-  closeModal: () => void;
+  isEditable?: boolean;
   onSubmit: (company: string, product: string) => void;
+  onDelete?: () => void;
+  closeModal: () => void;
 }
 
 function AddManagedSWModal({
   defaultCompanyList,
   defaultCompanyIndex = 0,
   defaultSWName = '',
+  isEditable = false,
   onSubmit,
+  onDelete,
   closeModal,
 }: AddManagedSWModalProps) {
   const [swName, setSWName] = useState(defaultSWName);
@@ -45,7 +49,14 @@ function AddManagedSWModal({
           />
           <Input value={swName} label="SW 제품명" width="35rem" onChange={changeSWName} />
         </Style.InputWrapper>
-        <Style.SubmitButton onClick={handleSubmit}>등록하기</Style.SubmitButton>
+        <Style.ButtonWrapper>
+          {isEditable && onDelete && (
+            <Button theme="warning" onClick={onDelete}>
+              삭제하기
+            </Button>
+          )}
+          <Button onClick={handleSubmit}>{isEditable ? '수정하기' : '등록하기'}</Button>
+        </Style.ButtonWrapper>
       </Style.Container>
     </Template>
   );

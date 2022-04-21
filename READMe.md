@@ -25,7 +25,7 @@
 
 main < develop < feature
 
-- feature 양식
+- feature format
   - feature/[Issue_num]-Feature-content
   - ex. feature/#10-Check-api
 

@@ -7,7 +7,7 @@ interface HeaderItemProps {
 export const Container = styled.div`
   width: 100%;
   height: 100%;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 
   .ReactVirtualized__Table__headerRow {
     display: flex;

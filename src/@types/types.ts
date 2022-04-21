@@ -73,7 +73,8 @@ export const SubscribedSWListAttr = {
   Range: 'range',
   License: 'license',
   ExpireDate: 'expireDate',
-  UpdatedDate: 'updatedDate',
+  FirstSubscribeDate: 'FirstSubscribeDate',
+  LatestUpdatedDate: 'LatestUpdatedDate',
   Writer: 'writer',
 } as const;
 export type SubscribedSWListAttr = typeof SubscribedSWListAttr[keyof typeof SubscribedSWListAttr];

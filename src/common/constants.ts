@@ -3,6 +3,7 @@ import {
   Trash,
   Number,
   NavItem,
+  ProjectListAttr,
   AddLectureSWListAttr,
   SubscribedSWListAttr,
   TotalLectureSWListAttr,
@@ -83,4 +84,15 @@ export const subscibedSWListAttr: AttributeType<SubscribedSWListAttr | Number>[]
   { label: '최초 구독 날짜', dataKey: 'FirstSubscribeDt', widthPercent: 16, disableSort: false },
   { label: '최근 업데이트 날짜', dataKey: 'LatestUpdatedDt', widthPercent: 16, disableSort: false },
   { label: '작성자', dataKey: 'writer', widthPercent: 10, disableSort: false },
+];
+
+export const projectListAttr: AttributeType<ProjectListAttr | Number>[] = [
+  { label: 'No', dataKey: 'number', widthPercent: 9, disableSort: true },
+  { label: '프로젝트명', dataKey: 'prjName', widthPercent: 13, disableSort: true },
+  { label: '소유자', dataKey: 'owner', widthPercent: 13, disableSort: true },
+  { label: '라이선스', dataKey: 'license', widthPercent: 13, disableSort: false },
+  { label: '카테고리', dataKey: 'category', widthPercent: 13, disableSort: true },
+  { label: '생성일', dataKey: 'releasedDt', widthPercent: 13, disableSort: false },
+  { label: '최신 배포일', dataKey: 'createdDt', widthPercent: 13, disableSort: false },
+  { label: '상태', dataKey: 'prjStatus', widthPercent: 13, disableSort: false },
 ];

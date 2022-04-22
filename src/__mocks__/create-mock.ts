@@ -3,6 +3,7 @@ import { ItemType as TotalLectureSWItemAttrType } from '../components/containers
 import { ItemType as AddLectureSWItemAttrType } from '../components/containers/AddOrUpdateLectureSWTab/Table';
 import { ItemType as LectureSWManagementAttrType } from '../components/containers/LectureSWManagementTab';
 import { ItemType as SubscribedSWAttrType } from '../components/containers/SubscribedSWTab';
+import { ItemType as ProjectAttrType } from '../components/containers/ProjectListTab';
 
 // Obj Type
 import { LectureSWType } from '../components/containers/AddOrUpdateLectureSWTab';
@@ -70,4 +71,14 @@ export const generateLectureSW = (): LectureSWType => ({
   year: generateString(4),
   writer: generateString(3),
   receivedItems: [generateAddLectureSWItem(), generateAddLectureSWItem(), generateAddLectureSWItem()],
+});
+
+export const generateProjectListItem = (): ProjectAttrType => ({
+  prjName: generateString(6),
+  createdDt: generateString(6),
+  releasedDt: generateString(6),
+  prjStatus: generateString(6),
+  license: generateString(6),
+  category: generateString(6),
+  owner: generateString(3),
 });

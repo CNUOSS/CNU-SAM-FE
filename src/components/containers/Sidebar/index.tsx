@@ -9,6 +9,7 @@ import AddOrUpdateLectureSWTab from '../AddOrUpdateLectureSWTab';
 import SubscribedSWTab from '../SubscribedSWTab';
 import LectureSWManagementTab from '../LectureSWManagementTab';
 import ProjectListTab from '../ProjectListTab';
+import AddOrUpdateProjectTab from '../AddOrUpdateProjectTab';
 
 import UserInfo from './UserInfo';
 import SigninForm from './SigninForm';
@@ -70,6 +71,11 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
         return {
           name: '수업용 SW 등록',
           component: <AddOrUpdateLectureSWTab manufacturingList={[]} swNames={[]} tabState="create" />,
+        };
+      case 'EnrollPRJ':
+        return {
+          name: '프로젝트 등록',
+          component: <AddOrUpdateProjectTab tabState="create" />,
         };
       default:
         return { name: 'error', component: <></> };

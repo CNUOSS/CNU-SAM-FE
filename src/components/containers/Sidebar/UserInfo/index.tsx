@@ -20,7 +20,7 @@ function UserInfo({ addNewTab }: UserInfoProps) {
       </Style.InfoWrapper>
       <Style.ButtonWrapper>
         <Style.EnrollButton onClick={() => addNewTab('EnrollSW')}>{t('page:enrollSW')}</Style.EnrollButton>
-        <Style.EnrollButton>{t('page:enrollPJ')}</Style.EnrollButton>
+        <Style.EnrollButton onClick={() => addNewTab('EnrollPRJ')}>{t('page:enrollPJ')}</Style.EnrollButton>
       </Style.ButtonWrapper>
     </Style.Container>
   );

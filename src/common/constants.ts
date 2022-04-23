@@ -1,9 +1,11 @@
 import { AttributeType } from 'src/components/widgets/Table';
 import {
+  Temp,
   Trash,
   Number,
   NavItem,
   ProjectListAttr,
+  VersionListAttr,
   AddLectureSWListAttr,
   SubscribedSWListAttr,
   TotalLectureSWListAttr,
@@ -95,4 +97,11 @@ export const projectListAttr: AttributeType<ProjectListAttr | Number>[] = [
   { label: '생성일', dataKey: 'releasedDt', widthPercent: 13, disableSort: false },
   { label: '최신 배포일', dataKey: 'createdDt', widthPercent: 13, disableSort: false },
   { label: '상태', dataKey: 'prjStatus', widthPercent: 13, disableSort: false },
+];
+
+export const versionListAttr: AttributeType<VersionListAttr | Number | Temp>[] = [
+  { label: 'No', dataKey: 'number', widthPercent: 15, disableSort: true },
+  { label: '버전명', dataKey: 'versionName', widthPercent: 35, disableSort: false },
+  { label: '생성 날짜', dataKey: 'createdDt', widthPercent: 25, disableSort: false },
+  { label: '라이선스 지킴이', dataKey: 'temp', widthPercent: 25, disableSort: true },
 ];

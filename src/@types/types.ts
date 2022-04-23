@@ -32,8 +32,10 @@ export type NavItem = typeof NavItem[keyof typeof NavItem];
 // List Attributes
 export const Trash = 'trash';
 export const Number = 'number';
+export const Temp = 'temp';
 export type Trash = typeof Trash;
 export type Number = typeof Number;
+export type Temp = typeof Temp;
 
 export const TotalLectureSWListAttr = {
   Year: 'year',
@@ -90,3 +92,9 @@ export const ProjectListAttr = {
   Owner: 'owner',
 } as const;
 export type ProjectListAttr = typeof ProjectListAttr[keyof typeof ProjectListAttr];
+
+export const VersionListAttr = {
+  VersionName: 'versionName',
+  CreatedDt: 'createdDt',
+} as const;
+export type VersionListAttr = typeof VersionListAttr[keyof typeof VersionListAttr];

@@ -16,24 +16,9 @@ export const InputWrapper = styled.div`
   width: 100rem;
 `;
 
-export const WriterWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
 export const Label = styled.span`
   margin-right: 1rem;
   font-size: 1.8rem;
-`;
-
-export const WriterName = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 12.5rem;
-  height: 3rem;
-  font-size: 2rem;
-  background-color: ${(props) => props.theme.colors.tertiary};
 `;
 
 export const DescriptionWrapper = styled.div`

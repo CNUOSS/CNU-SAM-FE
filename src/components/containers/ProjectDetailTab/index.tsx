@@ -1,10 +1,14 @@
 import React from 'react';
+import { useSetRecoilState } from 'recoil';
 import TabTemplate from '../../templates/TabTemplate';
 import DefaultText from '../../widgets/DefaultText';
 import Button from '../../widgets/Button';
 import Table from '../../widgets/Table';
+import EnrollVersionTab from '../EnrollVersionTab';
 import { VersionListAttr } from '../../../@types/types';
 import { versionListAttr } from '../../../common/constants';
+import { tabState } from '../../../recoil/tab';
+import compareTabs from '../../../utils/compare-tabs';
 import * as Style from './styled';
 
 export type SummarizedVersionType = {
@@ -16,11 +20,20 @@ interface ProjectDetailTabProps {
 }
 
 function ProjectDetailTab({ versions }: ProjectDetailTabProps) {
+  const setTabState = useSetRecoilState(tabState);
+
   const parsedVersions = versions.map((version, index) => ({
     ...version,
     number: index + 1,
     temp: <Button>라이선스 지킴이</Button>,
   }));
+
+  const clickEnrollVersionButton = () => {
+    // TODO: if user, add authority compare logic
+    setTabState((oldState) =>
+      compareTabs(oldState, `프로젝트명: 버전등록`, <EnrollVersionTab projectName="프로젝트명" />)
+    );
+  };
 
   return (
     <TabTemplate description="Description" onUpdate={() => {}}>
@@ -38,7 +51,7 @@ function ProjectDetailTab({ versions }: ProjectDetailTabProps) {
       </Style.BackGroundBox>
       <Style.TableWrapper>
         <Style.EnrollButtonWrapper>
-          <Button>버전 등록하기</Button>
+          <Button onClick={clickEnrollVersionButton}>버전 등록하기</Button>
         </Style.EnrollButtonWrapper>
         <Table title="프로젝트 버전" attributes={versionListAttr} items={parsedVersions} />
       </Style.TableWrapper>

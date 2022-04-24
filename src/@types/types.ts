@@ -98,3 +98,12 @@ export const VersionListAttr = {
   CreatedDt: 'createdDt',
 } as const;
 export type VersionListAttr = typeof VersionListAttr[keyof typeof VersionListAttr];
+
+export const OSSListAttr = {
+  OSSLocation: 'ossLocation',
+  OSSName: 'ossName',
+  OSSVersion: 'ossVersion',
+  License: 'license',
+  OSSUrl: 'ossUrl',
+} as const;
+export type OSSListAttr = typeof OSSListAttr[keyof typeof OSSListAttr];

@@ -23,4 +23,11 @@ describe('Container/VersionListTab', () => {
     const updateBtn = screen.getByText('수정하기');
     fireEvent.click(updateBtn);
   });
+
+  it('click new version button', () => {
+    renderApp();
+
+    const enrollBtn = screen.getByText('버전 등록하기');
+    fireEvent.click(enrollBtn);
+  });
 });

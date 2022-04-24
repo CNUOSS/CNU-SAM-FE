@@ -6,7 +6,11 @@ import DefaultText from '../../widgets/DefaultText';
 import Table, { ItemType } from './Table';
 import * as Style from './styled';
 
-function EnrollVersionTab() {
+interface EnrollVersionTabProps {
+  projectName: string;
+}
+
+function EnrollVersionTab({ projectName }: EnrollVersionTabProps) {
   const [items, setItems] = useState<ItemType[]>([]);
 
   const addNewItem = (newItem: ItemType) => setItems((prev) => [newItem, ...prev]);
@@ -16,7 +20,7 @@ function EnrollVersionTab() {
     <TabTemplate description="Description" onCreate={() => {}}>
       <Style.BackGroundBox direction="column">
         <Style.InputWrapper>
-          <DefaultText label="프로젝트명">프로젝트명</DefaultText>
+          <DefaultText label="프로젝트명">{projectName}</DefaultText>
           <Input label="버전명" width="30rem" value="" onChange={() => {}} />
         </Style.InputWrapper>
         <Style.DescriptionWrapper>

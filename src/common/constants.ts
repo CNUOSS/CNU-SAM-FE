@@ -4,6 +4,7 @@ import {
   Trash,
   Number,
   NavItem,
+  OSSListAttr,
   ProjectListAttr,
   VersionListAttr,
   AddLectureSWListAttr,
@@ -104,4 +105,14 @@ export const versionListAttr: AttributeType<VersionListAttr | Number | Temp>[] =
   { label: '버전명', dataKey: 'versionName', widthPercent: 35, disableSort: false },
   { label: '생성 날짜', dataKey: 'createdDt', widthPercent: 25, disableSort: false },
   { label: '라이선스 지킴이', dataKey: 'temp', widthPercent: 25, disableSort: true },
+];
+
+export const ossListAttr: AttributeType<OSSListAttr | Number | Trash>[] = [
+  { label: 'No', dataKey: 'number', widthPercent: 5, disableSort: true },
+  { label: '소승 이름 또는 경로', dataKey: 'ossLocation', widthPercent: 25, disableSort: true },
+  { label: 'OSS명', dataKey: 'ossName', widthPercent: 20, disableSort: true },
+  { label: 'OSS 버전', dataKey: 'ossVersion', widthPercent: 5, disableSort: true },
+  { label: '라이선스', dataKey: 'license', widthPercent: 20, disableSort: true },
+  { label: 'OSS 관련 주소', dataKey: 'ossUrl', widthPercent: 20, disableSort: true },
+  { label: '', dataKey: 'trash', widthPercent: 5, disableSort: true },
 ];

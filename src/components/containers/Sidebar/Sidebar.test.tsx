@@ -10,6 +10,7 @@ import TotalLectureSWListTab from '../TotalLectureSWListTab';
 import SubscribedSWTab from '../SubscribedSWTab';
 import LectureSWManagementTab from '../LectureSWManagementTab';
 import ProjectListTab from '../ProjectListTab';
+import LicenseListTab from '../LicenseListTab';
 
 const onChange = jest.fn();
 
@@ -113,7 +114,10 @@ describe('Container/Sidebar', () => {
       const licenseList = screen.getByText('라이선스 목록');
       fireEvent.click(licenseList);
       expect(onChange).toBeCalledTimes(2);
-      expect(onChange).toBeCalledWith({ currentIdx: 0, tabs: [{ name: '라이선스 목록', component: <></> }] });
+      expect(onChange).toBeCalledWith({
+        currentIdx: 0,
+        tabs: [{ name: '라이선스 목록', component: <LicenseListTab items={[]} /> }],
+      });
     });
 
     it('click UserManagement list', () => {

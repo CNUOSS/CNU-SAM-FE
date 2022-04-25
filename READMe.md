@@ -18,6 +18,8 @@
 - Jest
 - react-testing-library
 - Storybook
+- Github-Action
+- AWS
 
 ## Ground Rule
 

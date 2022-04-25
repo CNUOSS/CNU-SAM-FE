@@ -1,19 +1,38 @@
-name: deploy
-
+name: Deploy
 on:
-  pull_request:
-    branches: [main]
-
+  push:
+    branches:
+      - main
 jobs:
-  SSH:
-    runs-on: [ubuntu-latest]
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
+      - name: Checkout source code.
+        uses: actions/checkout@v2
+      - name: Check Node v
+        run: node -v
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: zip create
+        run: zip -qq -r ./**build-fe.zip .**
+        shell: bash
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          script: |
-            bash deploy.sh
+          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - name: Upload to S3
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
+        run: |
+          aws s3 cp --region ap-northeast-2 ./build-fe.zip s3://fe-deploy/fe-store/build-fe.zip
+      - name: Deploy
+        run: aws deploy create-deployment
+          --application-name Fe-Deploy
+          --deployment-config-name CodeDeployDefault.AllAtOnce
+          --deployment-group-name FE-Deploy-Group
+          --s3-location bucket=fe-deploy,key=fe-store/build-fe.zip,bundleType=zip

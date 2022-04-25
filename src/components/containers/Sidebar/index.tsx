@@ -10,6 +10,7 @@ import SubscribedSWTab from '../SubscribedSWTab';
 import LectureSWManagementTab from '../LectureSWManagementTab';
 import ProjectListTab from '../ProjectListTab';
 import AddOrUpdateProjectTab from '../AddOrUpdateProjectTab';
+import LicenseListTab from '../LicenseListTab';
 
 import UserInfo from './UserInfo';
 import SigninForm from './SigninForm';
@@ -60,7 +61,7 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
       case 'PJList':
         return { name: '프로젝트 목록', component: <ProjectListTab items={[]} /> };
       case 'LicenseList':
-        return { name: '라이선스 목록', component: <></> };
+        return { name: '라이선스 목록', component: <LicenseListTab items={[]} /> };
       case 'UserManagement':
         return { name: '유저 관리', component: <></> };
       case 'SWManagement':

@@ -7,11 +7,10 @@ files:
     overwrite: yes
 permissions:
   - object: /home/ubuntu
-    owner: root
-    group: root
+    owner: ubuntu
     mode: 755
 hooks:
   AfterInstall:
     - location: deploy.sh
       timeout: 60
-      runas: root
+      runas: ubuntu

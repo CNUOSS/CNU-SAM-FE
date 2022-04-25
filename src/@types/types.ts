@@ -107,3 +107,11 @@ export const OSSListAttr = {
   OSSUrl: 'ossUrl',
 } as const;
 export type OSSListAttr = typeof OSSListAttr[keyof typeof OSSListAttr];
+
+export const LicenseListAttr = {
+  LicenseName: 'licenseName',
+  LicenseType: 'licenseType',
+  LicenseUrl: 'licenseUrl',
+  Restriction: 'restriction',
+} as const;
+export type LicenseListAttr = typeof LicenseListAttr[keyof typeof LicenseListAttr];

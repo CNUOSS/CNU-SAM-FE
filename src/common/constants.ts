@@ -5,6 +5,7 @@ import {
   Number,
   NavItem,
   OSSListAttr,
+  LicenseListAttr,
   ProjectListAttr,
   VersionListAttr,
   AddLectureSWListAttr,
@@ -114,5 +115,14 @@ export const ossListAttr: AttributeType<OSSListAttr | Number | Trash>[] = [
   { label: 'OSS 버전', dataKey: 'ossVersion', widthPercent: 5, disableSort: true },
   { label: '라이선스', dataKey: 'license', widthPercent: 20, disableSort: true },
   { label: 'OSS 관련 주소', dataKey: 'ossUrl', widthPercent: 20, disableSort: true },
+  { label: '', dataKey: 'trash', widthPercent: 5, disableSort: true },
+];
+
+export const licenseListAttr: AttributeType<LicenseListAttr | Number | Trash>[] = [
+  { label: 'No', dataKey: 'number', widthPercent: 5, disableSort: true },
+  { label: '라이선스명', dataKey: 'licenseName', widthPercent: 15, disableSort: true },
+  { label: '라이선스 타입', dataKey: 'licenseType', widthPercent: 15, disableSort: true },
+  { label: '규제', dataKey: 'restriction', widthPercent: 30, disableSort: true },
+  { label: '라이선스 url', dataKey: 'licenseUrl', widthPercent: 30, disableSort: true },
   { label: '', dataKey: 'trash', widthPercent: 5, disableSort: true },
 ];

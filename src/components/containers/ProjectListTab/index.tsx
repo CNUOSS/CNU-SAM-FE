@@ -1,11 +1,15 @@
 import React from 'react';
+import { useSetRecoilState } from 'recoil';
 import TabTemplate from '../../templates/TabTemplate';
 import Table from '../../widgets/Table';
 import Input from '../../widgets/Input';
 import TabForm from '../../widgets/TabForm';
 import Dropdown from '../../widgets/Dropdown';
+import ProjectDetailTab from '../ProjectDetailTab';
 import { projectListAttr } from '../../../common/constants';
 import { ProjectListAttr, Number } from '../../../@types/types';
+import { tabState } from '../../../recoil/tab';
+import compareTabs from '../../../utils/compare-tabs';
 import * as Style from './styled';
 
 export type ItemType = {
@@ -22,7 +26,12 @@ interface ProjectListTabProps {
 }
 
 function ProjectListTab({ items }: ProjectListTabProps) {
+  const setTabState = useSetRecoilState(tabState);
   const parsedItems: RowType[] = items.map((item, index) => ({ ...item, number: index + 1 }));
+
+  const clickItem = (item: any) => {
+    setTabState((oldState) => compareTabs(oldState, `${item.prjName} 프로젝트`, <ProjectDetailTab versions={[]} />));
+  };
 
   return (
     <TabTemplate description="Description">
@@ -35,7 +44,7 @@ function ProjectListTab({ items }: ProjectListTabProps) {
         </Style.InputWrapper>
       </TabForm>
       <Style.TableWrapper>
-        <Table title="프로젝트 목록" attributes={projectListAttr} items={parsedItems} onRowClick={() => {}} />
+        <Table title="프로젝트 목록" attributes={projectListAttr} items={parsedItems} onRowClick={clickItem} />
       </Style.TableWrapper>
     </TabTemplate>
   );

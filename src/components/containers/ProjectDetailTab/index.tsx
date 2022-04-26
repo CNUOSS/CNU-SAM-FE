@@ -16,6 +16,7 @@ export type SummarizedVersionType = {
 };
 
 interface ProjectDetailTabProps {
+  // FIXME: get project id instead of versions
   versions: SummarizedVersionType[];
 }
 

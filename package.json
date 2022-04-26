@@ -11,7 +11,8 @@
     "jest-coverage": "jest --coverage",
     "cypress:open": "cypress open",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "chromatic": "npx chromatic --project-token=ea19b3f6b2f7"
   },
   "repository": {
     "type": "git",
@@ -62,6 +63,7 @@
     "@typescript-eslint/parser": "^5.16.0",
     "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.2",
+    "chromatic": "^6.5.4",
     "css-loader": "^6.7.1",
     "cypress": "^9.5.3",
     "eslint": "^7.11.0",

@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { ForwardRefExoticComponent, LegacyRef, RefAttributes } from 'react';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 
 interface DnDProps {
   /* list component for rendering */
-  ListComponent: (props: any) => JSX.Element;
+  ListComponent: ForwardRefExoticComponent<
+    Pick<any, string | number | symbol> & RefAttributes<LegacyRef<HTMLUListElement>>
+  >;
   /* item component for rendering */
-  ItemComponent: (props: any) => JSX.Element;
+  ItemComponent: ForwardRefExoticComponent<
+    Pick<any, string | number | symbol> & RefAttributes<LegacyRef<HTMLLIElement>>
+  >;
   /* list sort direction */
   direction?: 'horizontal' | 'vertical';
   /* items for rendering */
@@ -33,14 +37,18 @@ function DnD({
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="dnd" direction={direction}>
         {(provided) => (
-          <ListComponent className="tabs" {...provided.droppableProps} refs={provided.innerRef}>
+          <ListComponent
+            className="tabs"
+            {...provided.droppableProps}
+            ref={provided.innerRef as React.Ref<React.LegacyRef<HTMLUListElement>>}
+          >
             {items.map((item, idx) => (
               <Draggable key={item} draggableId={item} index={idx}>
                 {(provided) => (
                   <ItemComponent
                     data-testid="dnd-item"
                     onClick={() => clickItem(idx)}
-                    refs={provided.innerRef}
+                    ref={provided.innerRef as React.Ref<React.LegacyRef<HTMLLIElement>>}
                     {...provided.dragHandleProps}
                     {...provided.draggableProps}
                     selected={selectedIndex === idx}

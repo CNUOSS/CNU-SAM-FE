@@ -65,7 +65,7 @@ function AddOrUpdateSubscribedSWModal({
           <Input label="만료일" width="23rem" value={defaultExpireDate} onChange={() => {}} />
           <Style.BlankSpace />
           <Input
-            label={defaultLastestUpdatedDate ? '최신 업데이트 날짜' : '최초 구독 날짜'}
+            label={defaultLastestUpdatedDate ? '갱신일' : '구독시작일'}
             width="23rem"
             value={defaultLastestUpdatedDate}
             onChange={() => {}}

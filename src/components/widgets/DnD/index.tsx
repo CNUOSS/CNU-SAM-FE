@@ -18,6 +18,8 @@ interface DnDProps {
   clickItem: (idx: number) => void;
 }
 
+export const TAB_NAME_ATTR = 'data-rbd-draggable-id';
+
 function DnD({
   ListComponent,
   ItemComponent,

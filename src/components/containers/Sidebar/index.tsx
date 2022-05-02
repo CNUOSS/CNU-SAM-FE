@@ -8,6 +8,9 @@ import TotalLectureSWListTab from '../TotalLectureSWListTab';
 import AddOrUpdateLectureSWTab from '../AddOrUpdateLectureSWTab';
 import SubscribedSWTab from '../SubscribedSWTab';
 import LectureSWManagementTab from '../LectureSWManagementTab';
+import ProjectListTab from '../ProjectListTab';
+import AddOrUpdateProjectTab from '../AddOrUpdateProjectTab';
+import LicenseListTab from '../LicenseListTab';
 
 import UserInfo from './UserInfo';
 import SigninForm from './SigninForm';
@@ -56,9 +59,9 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
       case 'SWDashboard':
         return { name: '대시보드', component: <></> };
       case 'PJList':
-        return { name: '프로젝트 목록', component: <></> };
+        return { name: '프로젝트 목록', component: <ProjectListTab items={[]} /> };
       case 'LicenseList':
-        return { name: '라이선스 목록', component: <></> };
+        return { name: '라이선스 목록', component: <LicenseListTab items={[]} /> };
       case 'UserManagement':
         return { name: '유저 관리', component: <></> };
       case 'SWManagement':
@@ -69,6 +72,11 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
         return {
           name: '수업용 SW 등록',
           component: <AddOrUpdateLectureSWTab manufacturingList={[]} swNames={[]} tabState="create" />,
+        };
+      case 'EnrollPRJ':
+        return {
+          name: '프로젝트 등록',
+          component: <AddOrUpdateProjectTab tabState="create" />,
         };
       default:
         return { name: 'error', component: <></> };

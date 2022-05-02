@@ -1,28 +1,39 @@
-import React from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import React, { forwardRef, LegacyRef } from 'react';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { DropResult } from 'react-beautiful-dnd';
 
 import * as Style from './styled';
 import Icon from '../../widgets/Icon';
-import DnD from '../../../components/widgets/DnD';
+import DnD, { TAB_NAME_ATTR } from '../../../components/widgets/DnD';
 import { tabState, tabSelector } from '../../../recoil/tab';
 
-function TabList({ children, refs, ...props }: any) {
-  return (
-    <Style.TabList ref={refs} {...props}>
-      {children}
-    </Style.TabList>
-  );
-}
+export const TabList = forwardRef<LegacyRef<HTMLUListElement>, any>(({ children, ...props }, ref) => (
+  <Style.TabList ref={ref} {...props}>
+    {children}
+  </Style.TabList>
+));
 
-function TabItem({ children, refs, ...props }: any) {
+export const TabItem = forwardRef<LegacyRef<HTMLLIElement>, any>(({ children, ...props }, ref) => {
+  const setTabState = useSetRecoilState(tabState);
+
+  const name = props[TAB_NAME_ATTR];
+  const closeTab = () => {
+    setTabState(({ tabs, currentIdx }) => {
+      const tabIndex = tabs.findIndex((tab) => tab.name === name);
+      return {
+        tabs: tabs.filter((tab) => tab.name !== name),
+        currentIdx: tabIndex > currentIdx ? currentIdx : Math.max(currentIdx - 1, 0),
+      };
+    });
+  };
+
   return (
-    <Style.TabItem {...props} ref={refs}>
+    <Style.TabItem {...props} ref={ref}>
       {children}
-      <Icon size="1.6rem" icon="close" />
+      <Icon size="1.6rem" icon="close" onClick={closeTab} />
     </Style.TabItem>
   );
-}
+});
 
 function Workspace() {
   const { tabNames } = useRecoilValue(tabSelector);

@@ -3,6 +3,9 @@ import { ItemType as TotalLectureSWItemAttrType } from '../components/containers
 import { ItemType as AddLectureSWItemAttrType } from '../components/containers/AddOrUpdateLectureSWTab/Table';
 import { ItemType as LectureSWManagementAttrType } from '../components/containers/LectureSWManagementTab';
 import { ItemType as SubscribedSWAttrType } from '../components/containers/SubscribedSWTab';
+import { ItemType as LicenseAttrType } from '../components/containers/LicenseListTab';
+import { ItemType as ProjectAttrType } from '../components/containers/ProjectListTab';
+import { SummarizedVersionType } from '../components/containers/ProjectDetailTab';
 
 // Obj Type
 import { LectureSWType } from '../components/containers/AddOrUpdateLectureSWTab';
@@ -70,4 +73,26 @@ export const generateLectureSW = (): LectureSWType => ({
   year: generateString(4),
   writer: generateString(3),
   receivedItems: [generateAddLectureSWItem(), generateAddLectureSWItem(), generateAddLectureSWItem()],
+});
+
+export const generateProjectListItem = (): ProjectAttrType => ({
+  prjName: generateString(6),
+  createdDt: generateString(6),
+  releasedDt: generateString(6),
+  prjStatus: generateString(6),
+  license: generateString(6),
+  category: generateString(6),
+  owner: generateString(3),
+});
+
+export const generateVersionListItem = (): SummarizedVersionType => ({
+  versionName: generateString(8),
+  createdDt: generateString(8),
+});
+
+export const generateLicenseListItem = (): LicenseAttrType => ({
+  licenseName: generateString(8),
+  licenseType: generateString(8),
+  licenseUrl: generateString(20),
+  restriction: generateString(30),
 });

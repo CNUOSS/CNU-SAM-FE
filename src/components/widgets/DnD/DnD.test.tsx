@@ -1,6 +1,7 @@
 import React from 'react';
 import { mockGetComputedStyle, mockDndSpacing, makeDnd, DND_DIRECTION_UP } from 'react-beautiful-dnd-test-utils';
 import DnD from '.';
+import { TabList, TabItem } from '../../containers/Workspace';
 import { render, screen, fireEvent } from '../../../libs/rtl-utils';
 import { generateStringArray } from '../../../__mocks__/create-mock';
 
@@ -11,16 +12,8 @@ const stringArray = generateStringArray(3);
 const renderApp = (): void => {
   const { container } = render(
     <DnD
-      ListComponent={({ children, refs, ...props }) => (
-        <ul ref={refs} {...props}>
-          {children}
-        </ul>
-      )}
-      ItemComponent={({ children, refs, ...props }) => (
-        <li ref={refs} {...props}>
-          {children}
-        </li>
-      )}
+      ListComponent={TabList}
+      ItemComponent={TabItem}
       items={stringArray}
       onDragEnd={onDragEndMock}
       clickItem={clickItemMock}

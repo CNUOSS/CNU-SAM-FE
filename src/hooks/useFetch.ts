@@ -7,8 +7,21 @@ const fetcher = async <T>({ queryKey }: QueryFunctionContext<readonly (string | 
   return data;
 };
 
-const useFetch = <T>(url: string, params?: object) => {
-  const context = useQuery<T>([url!, params], ({ queryKey, meta }) => fetcher({ queryKey, meta }), { suspense: true });
+// TODO: fix any
+const useFetch = <T, S = unknown, C = any>(
+  url: string,
+  params?: object,
+  config?: object,
+  converter?: (parameter: C) => S
+) => {
+  const context = useQuery<T>(
+    [url!, converter && params ? converter(params as unknown as C) : params],
+    ({ queryKey, meta }) => fetcher({ queryKey, meta }),
+    {
+      suspense: true,
+      ...config,
+    }
+  );
   return context;
 };
 

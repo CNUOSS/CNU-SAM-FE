@@ -1,10 +1,11 @@
 import React from 'react';
+import Icon from '../../../widgets/Icon';
 import WidgetTable from '../../../widgets/Table';
 import useFetch from '../../../../hooks/useFetch';
 import { LicenseListAttr, Number, Trash } from '../../../../@types/types';
 import { licenseListAttr } from '../../../../common/constants';
 import { getLicenseListAPI } from '../../../../apis/license';
-import Icon from '../../../../components/widgets/Icon';
+import { licenseSearch2ServerRequest } from '../../../../converter/license';
 
 export interface RowType extends ItemType {
   [Number]: number;
@@ -16,12 +17,13 @@ export type ItemType = {
 };
 
 interface TableProps {
+  searchInfo: any;
   openDeleteModal: () => void;
 }
 
-function Table({ openDeleteModal }: TableProps) {
-  // TODO: Add params
-  const { data: licenses } = useFetch<ItemType[]>(getLicenseListAPI);
+function Table({ searchInfo, openDeleteModal }: TableProps) {
+  // TODO: add limit and offset
+  const { data: licenses } = useFetch<ItemType[]>(getLicenseListAPI, searchInfo, {}, licenseSearch2ServerRequest);
 
   const parsedItem: RowType[] =
     licenses?.map((item, index) => ({

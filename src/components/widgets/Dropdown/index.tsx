@@ -7,6 +7,8 @@ interface DropdownProps {
   label?: string;
   width?: string;
   currentIdx?: number;
+  existNoneSelect?: boolean;
+  onClickSelected?: () => void;
   onClickItem: (selectedIdx: number) => void;
 }
 
@@ -18,30 +20,42 @@ interface CoverProps {
 const Cover = ({ children, label }: CoverProps) =>
   label ? <Style.DropdownWrapper>{children}</Style.DropdownWrapper> : <>{children}</>;
 
-function Dropdown({ items, label, width = '10rem', currentIdx = 0, onClickItem }: DropdownProps) {
+function Dropdown({
+  items,
+  label,
+  width = '10rem',
+  currentIdx = 0,
+  existNoneSelect,
+  onClickSelected,
+  onClickItem,
+}: DropdownProps) {
   const [selectedIdx, setSelectedIdx] = useState(currentIdx);
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleList = () => setIsOpen((prev) => !prev);
+  const toggleList = () => {
+    if (!isOpen && onClickSelected) onClickSelected();
+    setIsOpen((prev) => !prev);
+  };
   const selectItem = (idx: number) => {
     toggleList();
     setSelectedIdx(idx);
-    onClickItem(idx);
+    onClickItem(existNoneSelect ? idx - 1 : idx);
   };
 
+  const newItems = [existNoneSelect ? '선택안함' : '', ...items].filter((item) => !!item);
   return (
     <Cover label={label}>
       {label ? <Style.Label>{label}</Style.Label> : <></>}
       <Style.Container width={width}>
         <Style.CurrentItem data-testid="dropdown-selected" onClick={toggleList}>
-          {items[selectedIdx]}
+          {newItems[selectedIdx]}
           <Style.IconWrapper isOpen={isOpen}>
             <Icon size="0.8rem" icon="triangle" />
           </Style.IconWrapper>
         </Style.CurrentItem>
         {isOpen && (
           <Style.List>
-            {items.map((item, idx) => (
+            {newItems.map((item, idx) => (
               <Style.Item key={item} selected={selectedIdx === idx} onClick={() => selectItem(idx)}>
                 {item}
               </Style.Item>

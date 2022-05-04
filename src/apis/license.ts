@@ -1,11 +1,8 @@
 import axios from 'axios';
 
-export const getLicenseList = async () => {
-  const { data } = await axios.get(`/licenses/search?`);
-  return data;
-};
+export const getLicenseListAPI = `/licenses/search?`;
 
-export const createLicenseList = async () => {
+export const createLicenseListAPI = async () => {
   const { data } = await axios.post(`/licenses`);
   return data;
 };

@@ -61,7 +61,7 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
       case 'PJList':
         return { name: '프로젝트 목록', component: <ProjectListTab items={[]} /> };
       case 'LicenseList':
-        return { name: '라이선스 목록', component: <LicenseListTab items={[]} /> };
+        return { name: '라이선스 목록', component: <LicenseListTab /> };
       case 'UserManagement':
         return { name: '유저 관리', component: <></> };
       case 'SWManagement':

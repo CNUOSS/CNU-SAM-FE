@@ -3,7 +3,7 @@ import { ItemType as TotalLectureSWItemAttrType } from '../components/containers
 import { ItemType as AddLectureSWItemAttrType } from '../components/containers/AddOrUpdateLectureSWTab/Table';
 import { ItemType as LectureSWManagementAttrType } from '../components/containers/LectureSWManagementTab';
 import { ItemType as SubscribedSWAttrType } from '../components/containers/SubscribedSWTab';
-import { ItemType as LicenseAttrType } from '../components/containers/LicenseListTab';
+import { ItemType as LicenseAttrType } from '../components/containers/LicenseListTab/Table';
 import { ItemType as ProjectAttrType } from '../components/containers/ProjectListTab';
 import { SummarizedVersionType } from '../components/containers/ProjectDetailTab';
 

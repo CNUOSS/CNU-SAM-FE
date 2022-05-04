@@ -11,6 +11,7 @@ jest.mock('axios');
 
 const mockedAxios = jest.mocked(axios, true);
 
+// TODO: add open dropdown test case, Maybe use axios-mock-adapter
 describe('Container/LicenseListTab', () => {
   describe('rendering test', () => {
     it('if admin', async () => {

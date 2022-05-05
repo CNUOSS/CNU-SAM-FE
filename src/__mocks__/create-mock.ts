@@ -90,6 +90,7 @@ export const generateVersionListItem = (): SummarizedVersionType => ({
   createdDt: generateString(8),
 });
 
+// FIXME: Replace with license object in api-mock file
 export const generateLicenseListItem = (): LicenseAttrType => ({
   licenseName: generateString(8),
   licenseType: generateString(8),

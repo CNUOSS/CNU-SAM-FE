@@ -20,6 +20,8 @@ export interface CategoryType {
   items: NavItem[];
 }
 
+export const LIMIT = 9;
+
 export const LANGUAGES = [
   { name: '한국어', lang: 'ko' },
   { name: 'English', lang: 'en' },

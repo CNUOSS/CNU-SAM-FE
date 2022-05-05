@@ -6,7 +6,7 @@ import * as Style from './styled';
 import { getRestrictionsAPI, getLicenseTypesAPI } from '../../../apis/data';
 
 // Widgets
-import Table from './Table';
+import Table, { SearchInfoType } from './Table';
 import Input from '../../widgets/Input';
 import TabForm from '../../widgets/TabForm';
 
@@ -20,7 +20,11 @@ type ModalType = 'add' | 'delete' | 'none';
 
 function LicenseListTab() {
   const [modalState, setModalState] = useState<ModalType>('none');
-  const [infoStore, setInfoStore] = useState({});
+  const [infoStore, setInfoStore] = useState<SearchInfoType>({
+    licenseName: '',
+    licenseType: '',
+    restriction: '',
+  });
   const [searchInfo, setSearchInfo] = useState({
     licenseName: '',
     licenseType: '',

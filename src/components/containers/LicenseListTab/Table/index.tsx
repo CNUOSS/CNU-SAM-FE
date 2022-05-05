@@ -1,38 +1,65 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Icon from '../../../widgets/Icon';
 import WidgetTable from '../../../widgets/Table';
 import useFetch from '../../../../hooks/useFetch';
 import { LicenseListAttr, Number, Trash } from '../../../../@types/types';
-import { licenseListAttr } from '../../../../common/constants';
-import { getLicenseListAPI } from '../../../../apis/license';
-import { licenseSearch2ServerRequest } from '../../../../converter/license';
+import { licenseListAttr, LIMIT } from '../../../../common/constants';
+import {
+  getLicenseListAPI,
+  GetLicenseListRequestParamsClientType,
+  GetLicenseListResponseClientType,
+} from '../../../../apis/license';
+import { licenseSearchRequestClient2Server } from '../../../../converter/license';
+
+export type SearchInfoType = Omit<GetLicenseListRequestParamsClientType, 'limit' | 'offset'>;
+export type ItemType = { [key in LicenseListAttr]: string };
 
 export interface RowType extends ItemType {
   [Number]: number;
   [Trash]: React.ReactElement;
 }
 
-export type ItemType = {
-  [key in LicenseListAttr]: string;
-};
-
 interface TableProps {
-  searchInfo: any;
+  searchInfo: SearchInfoType;
   openDeleteModal: () => void;
 }
 
 function Table({ searchInfo, openDeleteModal }: TableProps) {
-  // TODO: add limit and offset
-  const { data: licenses } = useFetch<ItemType[]>(getLicenseListAPI, searchInfo, {}, licenseSearch2ServerRequest);
-
+  const [apiInfo, setApiInfo] = useState<GetLicenseListRequestParamsClientType>({
+    limit: LIMIT,
+    offset: 1,
+    ...searchInfo,
+  });
+  const { data } = useFetch<GetLicenseListResponseClientType>(
+    getLicenseListAPI,
+    apiInfo,
+    {},
+    licenseSearchRequestClient2Server
+  );
   const parsedItem: RowType[] =
-    licenses?.map((item, index) => ({
+    data?.licenses.map((item, index) => ({
       ...item,
+      restriction: item.restrictions.join(' '),
       number: index + 1,
       trash: <Icon onClick={openDeleteModal} icon="trashcan" size="2rem" />,
     })) || [];
 
-  return <WidgetTable items={parsedItem} attributes={licenseListAttr} />;
+  useEffect(() => {
+    setApiInfo((prev) => ({ ...prev, ...searchInfo }));
+  }, [searchInfo]);
+
+  const onClickPageButton = (pageNumber: number) => {
+    setApiInfo((prev) => ({ ...prev, offset: pageNumber }));
+  };
+
+  return (
+    <WidgetTable
+      items={parsedItem}
+      attributes={licenseListAttr}
+      pageCount={Math.ceil(data?.meta.totalCount || 0 / LIMIT)}
+      onClickPageButton={onClickPageButton}
+    />
+  );
 }
 
 export default Table;

@@ -6,6 +6,14 @@ import axios from 'axios';
  * naming
  * apiname+(request|response)+(params|body)?+(client|server)?+type
  */
+interface LicenseType {
+  licenseName: string;
+  licenseUrl: string;
+  licenseType: string;
+  restrictions: string[];
+}
+
+// Get Licenses
 export interface GetLicenseListRequestParamsClientType {
   limit: number;
   offset: number;
@@ -19,21 +27,17 @@ export interface GetLicenseListResponseClientType {
     totalCount: number;
     isEnd: boolean;
   };
-  licenses: {
-    licenseName: string;
-    licenseUrl: string;
-    licenseType: string;
-    restrictions: string[];
-  }[];
+  licenses: LicenseType[];
 }
 
 export const getLicenseListAPI = `/licenses/search?`;
 
-export const createLicenseListAPI = async () => {
-  const { data } = await axios.post(`/licenses`);
-  return data;
-};
+// Create License
+export interface CreateLicenseRequestBodyClientType extends LicenseType {}
 
+export const createLicenseAPI = { method: 'CREATE', url: '/licenses' };
+
+// Delete License
 export const deleteLicenseList = async () => {
   const { data } = await axios.delete(`/license/id`);
   return data;

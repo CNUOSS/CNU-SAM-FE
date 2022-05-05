@@ -4,12 +4,12 @@ import WidgetTable from '../../../widgets/Table';
 import useFetch from '../../../../hooks/useFetch';
 import { LicenseListAttr, Number, Trash } from '../../../../@types/types';
 import { licenseListAttr, LIMIT } from '../../../../common/constants';
+import { licenseSearchRequestClient2Server } from '../../../../converter/license';
 import {
   getLicenseListAPI,
   GetLicenseListRequestParamsClientType,
   GetLicenseListResponseClientType,
 } from '../../../../apis/license';
-import { licenseSearchRequestClient2Server } from '../../../../converter/license';
 
 export type SearchInfoType = Omit<GetLicenseListRequestParamsClientType, 'limit' | 'offset'>;
 export type ItemType = { [key in LicenseListAttr]: string };

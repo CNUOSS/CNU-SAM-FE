@@ -11,6 +11,7 @@ import {
 import Icon, { IconType } from '../Icon';
 import * as Style from './styled';
 import { theme } from '../../../style/theme';
+import Pagination from '../Pagination';
 import 'react-virtualized/styles.css';
 
 export interface AttributeType<T> {
@@ -28,11 +29,21 @@ interface TableProps<T, C> {
   title?: string;
   attributes: AttributeType<C>[];
   items: T[];
+  pageCount?: number;
   onRowClick?: (item: T) => void;
+  onClickPageButton?: (pageNumber: number) => void;
 }
 
 // TODO: infinite scrolling
-function Table<T extends ObjType, C extends string>({ title, attributes, items, onRowClick }: TableProps<T, C>) {
+function Table<T extends ObjType, C extends string>({
+  title,
+  attributes,
+  pageCount,
+  items,
+  onRowClick,
+  onClickPageButton,
+}: TableProps<T, C>) {
+  const [currentPage, setCurrentPage] = useState(1);
   const [dataList, setDataList] = useState<T[]>(items);
   const [sortBy, setSortBy] = useState<string>('');
   const [sortDirection, setSortDirection] = useState<SortDirectionType>(SortDirection.ASC);
@@ -87,37 +98,49 @@ function Table<T extends ObjType, C extends string>({ title, attributes, items, 
     <Style.CellItem data-testid={`table-cell-${dataKey}`}>{info.cellData}</Style.CellItem>
   );
 
+  const handleClickPageButton = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+    if (onClickPageButton) onClickPageButton(pageNumber);
+  };
+
   return (
-    <Style.Container>
-      {title && <Style.TableTitle>{title}</Style.TableTitle>}
-      <AutoSizer defaultWidth={800} defaultHeight={800}>
-        {({ height, width }) => (
-          <VirtualizedTable
-            width={width}
-            height={height || 800}
-            headerHeight={50}
-            rowHeight={50}
-            rowCount={dataList.length}
-            rowStyle={getRowStyle}
-            rowGetter={({ index }) => dataList[index]}
-            onRowClick={({ rowData }) => onRowClick && onRowClick(rowData)}
-            sort={({ sortBy, sortDirection }) => sort(sortBy, sortDirection)}
-            sortBy={sortBy}
-            sortDirection={sortDirection}
-          >
-            {attributes.map(({ widthPercent, ...attr }) => (
-              <Column
-                {...attr}
-                key={attr.label}
-                headerRenderer={(info) => headerRenderer(info, attr.dataKey)}
-                cellRenderer={(info) => cellRenderer(info, attr.dataKey)}
-                width={(width * widthPercent) / 100}
-              />
-            ))}
-          </VirtualizedTable>
-        )}
-      </AutoSizer>
-    </Style.Container>
+    <>
+      <Style.Container>
+        {title && <Style.TableTitle>{title}</Style.TableTitle>}
+        <AutoSizer defaultWidth={800} defaultHeight={800}>
+          {({ height, width }) => (
+            <VirtualizedTable
+              width={width}
+              height={height || 800}
+              headerHeight={50}
+              rowHeight={50}
+              rowCount={dataList.length}
+              rowStyle={getRowStyle}
+              rowGetter={({ index }) => dataList[index]}
+              onRowClick={({ rowData }) => onRowClick && onRowClick(rowData)}
+              sort={({ sortBy, sortDirection }) => sort(sortBy, sortDirection)}
+              sortBy={sortBy}
+              sortDirection={sortDirection}
+            >
+              {attributes.map(({ widthPercent, ...attr }) => (
+                <Column
+                  {...attr}
+                  key={attr.label}
+                  headerRenderer={(info) => headerRenderer(info, attr.dataKey)}
+                  cellRenderer={(info) => cellRenderer(info, attr.dataKey)}
+                  width={(width * widthPercent) / 100}
+                />
+              ))}
+            </VirtualizedTable>
+          )}
+        </AutoSizer>
+      </Style.Container>
+      {pageCount && (
+        <Style.PaginationWrapper>
+          <Pagination totalCount={pageCount} currentPage={currentPage} onClickPageButton={handleClickPageButton} />
+        </Style.PaginationWrapper>
+      )}
+    </>
   );
 }
 

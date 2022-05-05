@@ -1,5 +1,19 @@
-import { GetLicenseListRequestParamsClientType, GetLicenseListResponseClientType } from '../apis/license';
+import {
+  GetLicenseListRequestParamsClientType,
+  GetLicenseListResponseClientType,
+  CreateLicenseRequestBodyClientType,
+} from '../apis/license';
 
+interface LicenseServerType {
+  license_name: string;
+  license_url: string;
+  license_type_name: string;
+  restriction: {
+    restriction_name: string;
+  }[];
+}
+
+// GetLicenses
 interface GetLicenseListRequestParamsServerType {
   limit: number;
   offset: number;
@@ -13,14 +27,7 @@ interface GetLicenseListResponseServerType {
     total_count: number;
     is_end: boolean;
   };
-  license: {
-    license_name: string;
-    license_url: string;
-    license_type_name: string;
-    restriction: {
-      restriction_name: string;
-    }[];
-  }[];
+  license: LicenseServerType[];
 }
 
 export const licenseSearchRequestClient2Server = ({
@@ -56,3 +63,18 @@ export const licenseSearchResponseServer2Client = ({
     })),
   };
 };
+
+// CreateLicense
+interface CreateLicenseRequestBodyServerType extends LicenseServerType {}
+
+export const createLicenseRequestClient2Server = ({
+  licenseName,
+  licenseType,
+  licenseUrl,
+  restrictions,
+}: CreateLicenseRequestBodyClientType): CreateLicenseRequestBodyServerType => ({
+  license_name: licenseName,
+  license_type_name: licenseType,
+  license_url: licenseUrl,
+  restriction: restrictions.map((res) => ({ restriction_name: res })),
+});

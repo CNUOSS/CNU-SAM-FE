@@ -3,7 +3,8 @@ import withMock from 'storybook-addon-mock';
 import LicenseListTab from '.';
 import { getLicenseListAPI } from '../../../apis/license';
 import { getLicenseTypesAPI, getRestrictionsAPI } from '../../../apis/data';
-import { generateLicenseListItem, generateString } from '../../../__mocks__/create-mock';
+import { generateGetLicensesResponseMock } from '../../../__mocks__/api-mock';
+import { generateString } from '../../../__mocks__/create-mock';
 
 export default {
   title: 'Container/LicenseListTab',
@@ -17,10 +18,10 @@ export const Default = Tab.bind({});
 (Default as any).parameters = {
   mockData: [
     {
-      url: getLicenseListAPI,
+      url: `${getLicenseListAPI}&offset=1&limit=9`,
       method: 'GET',
       status: 200,
-      response: [generateLicenseListItem(), generateLicenseListItem(), generateLicenseListItem()],
+      response: generateGetLicensesResponseMock(),
     },
     {
       url: getLicenseTypesAPI,

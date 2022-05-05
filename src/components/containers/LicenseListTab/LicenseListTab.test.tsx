@@ -3,7 +3,7 @@ import axios from 'axios';
 import LicenseListTab from '.';
 import { render, screen, waitFor } from '../../../libs/rtl-utils';
 import { licenseListAttr } from '../../../common/constants';
-import { generateLicenseListItem } from '../../../__mocks__/create-mock';
+import { generateGetLicensesResponseMock } from '../../../__mocks__/api-mock';
 
 const renderApp = () => render(<LicenseListTab />);
 
@@ -15,11 +15,7 @@ const mockedAxios = jest.mocked(axios, true);
 describe('Container/LicenseListTab', () => {
   describe('rendering test', () => {
     it('if admin', async () => {
-      mockedAxios.get.mockResolvedValueOnce([
-        generateLicenseListItem(),
-        generateLicenseListItem(),
-        generateLicenseListItem(),
-      ]);
+      mockedAxios.get.mockResolvedValueOnce(generateGetLicensesResponseMock());
       renderApp();
 
       await waitFor(() => {

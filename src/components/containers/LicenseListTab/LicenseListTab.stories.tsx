@@ -1,9 +1,9 @@
 import React from 'react';
 import withMock from 'storybook-addon-mock';
 import LicenseListTab from '.';
-import { getLicenseListAPI } from '../../../apis/license';
+import { createLicenseAPI, getLicenseListAPI } from '../../../apis/license';
 import { getLicenseTypesAPI, getRestrictionsAPI } from '../../../apis/data';
-import { generateGetLicensesResponseMock } from '../../../__mocks__/api-mock';
+import { generateCreateLicenseResponseMock, generateGetLicensesResponseMock } from '../../../__mocks__/api-mock';
 import { generateString } from '../../../__mocks__/create-mock';
 
 export default {
@@ -34,6 +34,12 @@ export const Default = Tab.bind({});
       method: 'GET',
       status: 200,
       response: [generateString(), generateString(), generateString()],
+    },
+    {
+      url: createLicenseAPI.url,
+      method: 'POST',
+      status: 200,
+      response: generateCreateLicenseResponseMock(),
     },
   ],
 };

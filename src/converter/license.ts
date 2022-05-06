@@ -5,6 +5,7 @@ import {
 } from '../apis/license';
 
 interface LicenseServerType {
+  id: string;
   license_name: string;
   license_url: string;
   license_type_name: string;
@@ -56,6 +57,7 @@ export const licenseSearchResponseServer2Client = ({
       isEnd: meta.is_end,
     },
     licenses: license.map((li) => ({
+      id: li.id,
       licenseName: li.license_name,
       licenseType: li.license_type_name,
       licenseUrl: li.license_url,
@@ -65,7 +67,7 @@ export const licenseSearchResponseServer2Client = ({
 };
 
 // CreateLicense
-interface CreateLicenseRequestBodyServerType extends LicenseServerType {}
+interface CreateLicenseRequestBodyServerType extends Omit<LicenseServerType, 'id'> {}
 
 export const createLicenseRequestClient2Server = ({
   licenseName,

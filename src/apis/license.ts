@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { MethodType } from '../hooks/useMutation';
 
 // TODO: converter에 있는 서버타입이랑 합쳐야할까?
 
@@ -6,7 +7,8 @@ import axios from 'axios';
  * naming
  * apiname+(request|response)+(params|body)?+(client|server)?+type
  */
-interface LicenseType {
+export interface LicenseType {
+  id: string;
   licenseName: string;
   licenseUrl: string;
   licenseType: string;
@@ -35,7 +37,7 @@ export const getLicenseListAPI = `/licenses/search?`;
 // Create License
 export interface CreateLicenseRequestBodyClientType extends LicenseType {}
 
-export const createLicenseAPI = { method: 'CREATE', url: '/licenses' };
+export const createLicenseAPI: { method: MethodType; url: string } = { method: 'POST', url: '/licenses' };
 
 // Delete License
 export const deleteLicenseList = async () => {

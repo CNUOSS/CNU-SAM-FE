@@ -1,6 +1,8 @@
 // Dependencies
-import React, { useState } from 'react';
+import React from 'react';
 import { useQueryClient } from 'react-query';
+import useForm from '../../../hooks/useForm';
+import useFieldArray from '../../../hooks/useFieldArray';
 import useMutation from '../../../hooks/useMutation';
 import * as Style from './styled';
 
@@ -19,41 +21,30 @@ import AsyncBoundary from '../../../libs/AsyncBoundary';
 import { getLicenseTypesAPI } from '../../../apis/data';
 import { createLicenseAPI, getLicenseListAPI, LicenseType } from '../../../apis/license';
 
-// Utils
-import { inOrOut } from '../../../utils/module';
-
 interface AddLicenseModalInterface {
   onCreate: () => void;
   closeModal: () => void;
 }
 
+type InputsType = Omit<LicenseType, 'id'>;
+
 // TODO: add check empty request - use useForm
 function AddLicenseModal({ onCreate, closeModal }: AddLicenseModalInterface) {
   const queryClient = useQueryClient();
-  const [license, setLicense] = useState<Omit<LicenseType, 'id'>>({
-    licenseName: '',
-    licenseType: '',
-    licenseUrl: '',
-    restrictions: [],
-  });
   const createMutationSuccess = async () => {
     await queryClient.invalidateQueries(getLicenseListAPI);
     closeModal();
   };
   const { mutate } = useMutation<LicenseType>(createLicenseAPI.url, createLicenseAPI.method, createMutationSuccess);
+  // TODO: error handling
+  const { change, handleSubmit, getValue, control } = useForm<InputsType>({
+    licenseName: [{ error: 'required' }],
+  });
+  const { toggle } = useFieldArray<InputsType>({ control, name: 'restrictions' });
+  const onSubmit = (data: InputsType) => mutate(data);
 
-  const changeLicenseName = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setLicense((info) => ({ ...info, licenseName: event.target.value }));
-  const changeLicenseUrl = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setLicense((info) => ({ ...info, licenseUrl: event.target.value }));
-  const selectLicenseRestriction = (restriction: string) =>
-    setLicense((info) => ({ ...info, restrictions: inOrOut(info.restrictions, restriction) }));
-  const selectLicenseType = (licenseType: string) => setLicense((info) => ({ ...info, licenseType }));
-
-  const handleCreateLicense = () => {
-    mutate(license);
-    onCreate();
-  };
+  const selectRestriction = (restriction: string) => toggle(restriction);
+  const selectLicenseType = (type: string) => change('licenseType')({ target: { value: type } });
 
   return (
     <Template closeModal={closeModal}>
@@ -61,7 +52,7 @@ function AddLicenseModal({ onCreate, closeModal }: AddLicenseModalInterface) {
         <Style.Header>라이선스 생성하기</Style.Header>
         <Style.Description>화이팅</Style.Description>
         <Style.InputWrapper>
-          <Input label="라이선스명" width="20rem" value={license.licenseName} onChange={changeLicenseName} />
+          <Input label="라이선스명" width="20rem" value={getValue('licenseName')} onChange={change('licenseName')} />
           {/* FIXME: Insert asyncboundary inside */}
           <AsyncBoundary pendingFallback={<>loading</>} rejectedFallback={Error}>
             <DropdownContainer
@@ -71,15 +62,15 @@ function AddLicenseModal({ onCreate, closeModal }: AddLicenseModalInterface) {
               onClickItem={selectLicenseType}
             />
           </AsyncBoundary>
-          <Input label="라이선스 url" width="50.3rem" value={license.licenseUrl} onChange={changeLicenseUrl} />
+          <Input label="라이선스 url" width="50.3rem" value={getValue('licenseUrl')} onChange={change('licenseUrl')} />
         </Style.InputWrapper>
         <Style.RestrictionTitle>규제</Style.RestrictionTitle>
         {/* FIXME: Insert asyncboundary inside */}
         <AsyncBoundary pendingFallback={<>loading</>} rejectedFallback={Error}>
-          <Restrictions selectItem={selectLicenseRestriction} />
+          <Restrictions selectItem={selectRestriction} />
         </AsyncBoundary>
         <Style.ButtonWrapper>
-          <Button onClick={handleCreateLicense}>등록하기</Button>
+          <Button onClick={handleSubmit(onSubmit)}>등록하기</Button>
         </Style.ButtonWrapper>
       </Style.Container>
     </Template>

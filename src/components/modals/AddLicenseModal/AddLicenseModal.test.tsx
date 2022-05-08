@@ -25,6 +25,6 @@ describe('Modal/AddLicenseModal', () => {
 
     const enrollButton = screen.getByText('등록하기');
     fireEvent.click(enrollButton);
-    expect(onCreateMock).toBeCalledTimes(1);
+    expect(onCreateMock).toBeCalledTimes(0);
   });
 });

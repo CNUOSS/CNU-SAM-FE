@@ -38,6 +38,7 @@
     "react-helmet-async": "^1.2.3",
     "react-i18next": "^11.16.2",
     "react-query": "^3.38.0",
+    "react-query-auth": "^1.1.0",
     "react-virtualized": "^9.22.3",
     "recoil": "^0.7.0",
     "storybook-addon-mock": "^2.3.2"

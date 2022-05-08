@@ -21,27 +21,25 @@ interface Error<T> {
   type: ErrorType;
 }
 
-interface useFormProps<T> {
-  validators: {
-    [key in keyof T]?: ValidatorItemType[];
-  };
-}
+type Validator<T> = {
+  [key in keyof T]?: ValidatorItemType[];
+};
 
 interface useFormType<T> {
   error: Error<T> | undefined;
-  onChange: (key: keyof T) => (event: React.ChangeEvent<HTMLInputElement> | { target: { value: string } }) => void;
-  getValues: (key: keyof T) => string;
+  change: (key: keyof T) => (event: React.ChangeEvent<HTMLInputElement> | { target: { value: string } }) => void;
+  getValue: (key: keyof T) => string;
   getArrayValues: (key: keyof T) => string[];
-  arrayControl: (name: keyof T, value: string) => void;
+  control: (name: keyof T, value: string) => void;
   handleSubmit: (fn: (data: T) => void) => (event?: any) => void;
 }
 
-function useForm<T>({ validators }: useFormProps<T>): useFormType<T> {
+function useForm<T>(validators: Validator<T>): useFormType<T> {
   const [state, setState] = useState<StateType<T>>({} as StateType<T>);
   const [arrayState, setArrayState] = useState<ArrayStateType<T>>({} as ArrayStateType<T>);
   const [error, setError] = useState<Error<T>>();
 
-  const onChange = (key: keyof T) => (event: React.ChangeEvent<HTMLInputElement> | { target: { value: string } }) =>
+  const change = (key: keyof T) => (event: React.ChangeEvent<HTMLInputElement> | { target: { value: string } }) =>
     setState((prev) => ({ ...prev, [key]: event.target.value }));
 
   const checkNotValidator = ([key, val]: any, result: any): boolean => {
@@ -68,11 +66,11 @@ function useForm<T>({ validators }: useFormProps<T>): useFormType<T> {
     if (!notValidate) fn({ ...state, ...arrayState } as unknown as T);
   };
 
-  const getValues = (key: keyof T): string => state[key] || '';
+  const getValue = (key: keyof T): string => state[key] || '';
 
   const getArrayValues = (key: keyof T): string[] => arrayState[key];
 
-  const arrayControl = (name: keyof T, value: string) => {
+  const control = (name: keyof T, value: string) => {
     setArrayState((prev) => ({
       ...prev,
       [name]: value ? inOrOut(prev[name], value) : [],
@@ -81,10 +79,10 @@ function useForm<T>({ validators }: useFormProps<T>): useFormType<T> {
 
   return {
     error,
-    onChange,
-    getValues,
+    change,
+    getValue,
     getArrayValues,
-    arrayControl,
+    control,
     handleSubmit,
   };
 }

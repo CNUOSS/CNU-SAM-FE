@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { ThemeProvider } from '@emotion/react';
 import GlobalStyle from './style/GlobalStyle';
 import App from './App';
@@ -19,6 +20,7 @@ ReactDOM.render(
           <Helmet />
           <App />
           <GlobalStyle />
+          <ReactQueryDevtools initialIsOpen={false} />
         </ThemeProvider>
       </RecoilRoot>
     </QueryClientProvider>

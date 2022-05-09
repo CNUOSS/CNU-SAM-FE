@@ -116,7 +116,7 @@ describe('Container/Sidebar', () => {
       expect(onChange).toBeCalledTimes(2);
       expect(onChange).toBeCalledWith({
         currentIdx: 0,
-        tabs: [{ name: '라이선스 목록', component: <LicenseListTab items={[]} /> }],
+        tabs: [{ name: '라이선스 목록', component: <LicenseListTab /> }],
       });
     });
 

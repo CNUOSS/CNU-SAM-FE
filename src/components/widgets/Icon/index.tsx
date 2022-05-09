@@ -7,14 +7,15 @@ interface IconProps {
   icon: IconType;
   size: string;
   color?: string;
+  propagation?: boolean;
   onClick?: () => void;
 }
 
-function Icon({ icon, size, color = '#000', onClick }: IconProps) {
+function Icon({ icon, size, color = '#000', propagation = true, onClick }: IconProps) {
   const SvgIcon = SVG[icon];
 
   const handleClickEvent = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.stopPropagation();
+    if (propagation) event.stopPropagation();
     if (onClick) onClick();
   };
 

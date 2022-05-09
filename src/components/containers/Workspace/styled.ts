@@ -39,6 +39,7 @@ export const TabItem = styled.li<TabItemProps>`
 `;
 
 export const Workspace = styled.main<WorkspaceProps>`
+  position: relative;
   border-top: 1px solid black;
   width: 100%;
   height: calc(100% - 6rem);

@@ -1,19 +1,27 @@
 import React from 'react';
+import axios from 'axios';
 import LicenseListTab from '.';
-import { render, screen } from '../../../libs/rtl-utils';
-import { generateLicenseListItem } from '../../../__mocks__/create-mock';
+import { render, screen, waitFor } from '../../../libs/rtl-utils';
 import { licenseListAttr } from '../../../common/constants';
+import { generateGetLicensesResponseMock } from '../../../__mocks__/api-mock';
 
-const items = [generateLicenseListItem(), generateLicenseListItem(), generateLicenseListItem()];
-const renderApp = () => render(<LicenseListTab items={items} />);
+const renderApp = () => render(<LicenseListTab />);
 
+jest.mock('axios');
+
+const mockedAxios = jest.mocked(axios, true);
+
+// TODO: add open dropdown test case, Maybe use axios-mock-adapter
 describe('Container/LicenseListTab', () => {
   describe('rendering test', () => {
-    it('if admin', () => {
+    it('if admin', async () => {
+      mockedAxios.get.mockResolvedValueOnce(generateGetLicensesResponseMock());
       renderApp();
 
-      const attrs = screen.getAllByTestId('table-attr').map((attr) => attr.textContent);
-      expect(attrs).toEqual(licenseListAttr.map((attr) => attr.label));
+      await waitFor(() => {
+        const attrs = screen.getAllByTestId('table-attr').map((attr) => attr.textContent);
+        expect(attrs).toEqual(licenseListAttr.map((attr) => attr.label));
+      });
     });
 
     // it('if not admin', () => {

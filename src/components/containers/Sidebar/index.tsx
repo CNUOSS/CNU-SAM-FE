@@ -2,6 +2,7 @@ import React from 'react';
 import i18n from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { useSetRecoilState } from 'recoil';
+import { useAuth } from '../../../libs/auth';
 import * as Style from './styled';
 
 import TotalLectureSWListTab from '../TotalLectureSWListTab';
@@ -19,23 +20,20 @@ import Accordion from '../../widgets/Accordion';
 import logoImage from '../../../assets/images/logo.jpg';
 import { CategoryType, LANGUAGES, mgCategory, pjCategory, swCategory } from '../../../common/constants';
 import { tabState } from '../../../recoil/tab';
-import { UserAuth, NavItem } from '../../../@types/types';
+import { RoleType, NavItem, NOTLOGIN } from '../../../@types/types';
 import compareTabs from '../../../utils/compare-tabs';
 
-interface SidebarProps {
-  isLogin: boolean;
-  userAuth?: UserAuth;
-}
-
-function Sidebar({ isLogin, userAuth }: SidebarProps) {
+function Sidebar() {
   const { t } = useTranslation();
+  const { user } = useAuth();
   const setTabState = useSetRecoilState(tabState);
   const languageNames = LANGUAGES.map((l) => l.name);
 
-  const menuPerUser: { [user in UserAuth]: CategoryType[] } = {
-    Admin: [swCategory(), pjCategory(), mgCategory()],
-    Manager: [swCategory(), pjCategory()],
-    User: [swCategory(true), pjCategory()],
+  const menuPerUser: { [user in RoleType | NOTLOGIN]: CategoryType[] } = {
+    [RoleType.ADMIN]: [swCategory(), pjCategory(), mgCategory()],
+    [RoleType.MANAGER]: [swCategory(), pjCategory()],
+    [RoleType.USER]: [swCategory(true), pjCategory()],
+    [NOTLOGIN]: [swCategory(true), pjCategory()],
   };
 
   const changeLanguage = (selectedIdx: number) => {
@@ -90,21 +88,19 @@ function Sidebar({ isLogin, userAuth }: SidebarProps) {
 
   return (
     <Style.Container>
-      <Style.Top isLogin={isLogin}>
+      <Style.Top isLogin={!!user?.id}>
         <Style.Logo src={logoImage} alt="logo" />
         <Style.Title>{t('page:title')}</Style.Title>
         <Style.Version>v1.0.0</Style.Version>
         <Dropdown items={languageNames} onClickItem={changeLanguage} />
       </Style.Top>
-      <Style.AuthBox>{isLogin ? <UserInfo addNewTab={addNewTab} /> : <SigninForm />}</Style.AuthBox>
-      {isLogin && userAuth && (
-        <Style.MenuList>
-          {menuPerUser[userAuth].map((category) => (
-            <Accordion key={category.title} {...category} onClickItem={(item) => addNewTab(item as NavItem)} />
-          ))}
-          <Style.GuideMenu onClick={() => addNewTab('UserGuide')}>{t('page:UserGuide')}</Style.GuideMenu>
-        </Style.MenuList>
-      )}
+      <Style.AuthBox>{user?.id ? <UserInfo addNewTab={addNewTab} /> : <SigninForm />}</Style.AuthBox>
+      <Style.MenuList>
+        {menuPerUser[user?.role || NOTLOGIN].map((category) => (
+          <Accordion key={category.title} {...category} onClickItem={(item) => addNewTab(item as NavItem)} />
+        ))}
+        <Style.GuideMenu onClick={() => addNewTab('UserGuide')}>{t('page:UserGuide')}</Style.GuideMenu>
+      </Style.MenuList>
     </Style.Container>
   );
 }

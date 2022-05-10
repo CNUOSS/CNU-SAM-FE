@@ -6,7 +6,7 @@ import Workspace from '../../components/containers/Workspace';
 function HomePage() {
   return (
     <Style.Container>
-      <Sidebar isLogin userAuth="Admin" />
+      <Sidebar />
       <Workspace />
     </Style.Container>
   );

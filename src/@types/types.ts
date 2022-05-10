@@ -9,6 +9,9 @@ export const RoleType = {
 } as const;
 export type RoleType = typeof RoleType[keyof typeof RoleType];
 
+export const NOTLOGIN = 'NOTLOGIN' as const;
+export type NOTLOGIN = typeof NOTLOGIN;
+
 // NavItem
 export const NavItem = {
   TotalLectureSWList: 'TotalLectureSWList',

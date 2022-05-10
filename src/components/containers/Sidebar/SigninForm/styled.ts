@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div``;
 
-export const SiginWrapper = styled.div`
+export const SiginWrapper = styled.form`
   display: flex;
   justify-content: space-between;
 `;
@@ -13,14 +13,6 @@ export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`;
-
-export const Input = styled.input`
-  height: 3rem;
-  padding-left: 1rem;
-  background-color: ${(props) => props.theme.colors.tertiary};
-  border: none;
-  border-radius: 0.5rem;
 `;
 
 export const SigninButton = styled.button`
@@ -39,4 +31,12 @@ export const SignupButton = styled.button`
   background-color: white;
   border: 2px solid ${(props) => props.theme.colors.secondary};
   border-radius: 0.5rem;
+`;
+
+export const Error = styled.span`
+  display: block;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 2rem;
+  color: ${(props) => props.theme.colors.warning};
 `;

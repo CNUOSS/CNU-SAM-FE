@@ -1,6 +1,12 @@
 // https://codesandbox.io/s/react-query-auth-demo-fvvvt?file=/src/api.ts:775-792
 import { initReactQueryAuth } from 'react-query-auth';
-import { signinAPIFn, SigninRequestBodyClientType, UserType, SigninResponseClientType } from '../apis/user';
+import {
+  signinAPIFn,
+  // reloadAPIFn,
+  SigninRequestBodyClientType,
+  UserType,
+  SigninResponseClientType,
+} from '../apis/user';
 import * as storage from '../utils/storage';
 
 const handleUserResponse = async (data: SigninResponseClientType): Promise<UserType> => {
@@ -11,7 +17,12 @@ const handleUserResponse = async (data: SigninResponseClientType): Promise<UserT
 };
 
 // TODO: implement not yet
+// FIXME:
 const loadUser = async (): Promise<UserType> => {
+  // if (storage.getToken('at')) {
+  //   const data = await reloadAPIFn();
+  //   return data;
+  // }
   return {} as UserType;
 };
 
@@ -33,4 +44,6 @@ const logoutFn = async () => {
 
 const config = { loadUser, loginFn, logoutFn, registerFn };
 
-export default initReactQueryAuth<UserType>(config);
+const { AuthProvider, useAuth } = initReactQueryAuth<UserType>(config);
+
+export { AuthProvider, useAuth };

@@ -30,10 +30,10 @@ export const signinAPIFn = async (data: SigninRequestBodyClientType): Promise<Si
 // Logout
 export const logoutAPI = `/users/logout`;
 
-// refresh
-export const refreshAPI = `/users/self`;
-export const refreshAPIFn = async () => {
-  const response = await axios.get(refreshAPI, { headers: { Authorization: `Bearer ${getToken('at')}` } });
+// reload
+export const reloadAPI = `/reload`;
+export const reloadAPIFn = async () => {
+  const response = await axios.get(reloadAPI, { headers: { Authorization: `Bearer ${getToken('at')}` } });
   if (response.data) return response.data;
   return Promise.reject(response.data);
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import AddOrUpdateProjectTab, { AddOrUpdateProjectTabType } from '.';
-import { render, screen } from '../../../libs/rtl-utils';
+import { render, screen } from '@libs/rtl-utils';
 
 const renderApp = (tabState: AddOrUpdateProjectTabType) => render(<AddOrUpdateProjectTab tabState={tabState} />);
 

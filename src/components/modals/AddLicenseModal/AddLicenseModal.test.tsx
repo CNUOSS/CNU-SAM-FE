@@ -1,6 +1,6 @@
 import React from 'react';
 import AddLicenseModal from '.';
-import { render, screen, fireEvent } from '../../../libs/rtl-utils';
+import { render, screen, fireEvent } from '@libs/rtl-utils';
 
 const onCreateMock = jest.fn();
 const closeModalMock = jest.fn();

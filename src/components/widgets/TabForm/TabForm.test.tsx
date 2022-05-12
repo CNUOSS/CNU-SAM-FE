@@ -1,6 +1,6 @@
 import React from 'react';
 import TabForm from '.';
-import { render, screen, fireEvent } from '../../../libs/rtl-utils';
+import { render, screen, fireEvent } from '@libs/rtl-utils';
 
 const onSubmitMock = jest.fn((e) => e.preventDefault());
 const renderApp = (isSubmit: boolean = false, buttonText?: string) =>

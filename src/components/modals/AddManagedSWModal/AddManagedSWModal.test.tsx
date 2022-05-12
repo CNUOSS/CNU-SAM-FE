@@ -1,6 +1,6 @@
 import React from 'react';
 import AddManagedSWModal from '.';
-import { render, screen, fireEvent } from '../../../libs/rtl-utils';
+import { render, screen, fireEvent } from '@libs/rtl-utils';
 import { generateStringArray } from '../../../__mocks__/create-mock';
 
 const closeModalMock = jest.fn();

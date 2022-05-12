@@ -1,6 +1,6 @@
 import React from 'react';
 import Table, { AttributeType } from '.';
-import { render, screen, fireEvent } from '../../../libs/rtl-utils';
+import { render, screen, fireEvent } from '@libs/rtl-utils';
 
 export default {
   title: 'Widget/Table',

@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import LicenseListTab from '.';
-import { render, screen, waitFor } from '../../../libs/rtl-utils';
-import { licenseListAttr } from '../../../common/constants';
+import { render, screen, waitFor } from '@libs/rtl-utils';
+import { licenseListAttr } from '@common/constants';
 import { generateGetLicensesResponseMock } from '../../../__mocks__/api-mock';
 
 const renderApp = () => render(<LicenseListTab />);

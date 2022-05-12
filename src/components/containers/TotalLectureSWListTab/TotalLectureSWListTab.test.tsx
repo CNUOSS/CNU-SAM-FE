@@ -1,8 +1,8 @@
 import React from 'react';
 import TotalLectureSWListTab, { ItemType } from '.';
-import { render, screen, fireEvent, waitFor } from '../../../libs/rtl-utils';
+import { render, screen, fireEvent, waitFor } from '@libs/rtl-utils';
+import { totalLectureSWListAttr } from '@common/constants';
 import { generateTotalLectureSWItem } from '../../../__mocks__/create-mock';
-import { totalLectureSWListAttr } from '../../../common/constants';
 
 const items: ItemType[] = [
   generateTotalLectureSWItem({ lectureName: 'lec01', managed: true }),

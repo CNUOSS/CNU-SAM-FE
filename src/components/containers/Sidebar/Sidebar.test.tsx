@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import Sidebar from '.';
-import { init } from '../../../libs/i18n';
-import { render, screen, act, fireEvent, waitFor } from '../../../libs/rtl-utils';
-import { tabState } from '../../../recoil/tab';
+import { init } from '@libs/i18n';
+import { render, screen, act, fireEvent, waitFor } from '@libs/rtl-utils';
+import { tabState } from '@recoil/tab';
 
 // import TotalLectureSWListTab from '../TotalLectureSWListTab';
 // import SubscribedSWTab from '../SubscribedSWTab';

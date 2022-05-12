@@ -1,8 +1,8 @@
 import React from 'react';
 import Button, { ButtonType } from '.';
-import { render, screen, fireEvent } from '../../../libs/rtl-utils';
+import { render, screen, fireEvent } from '@libs/rtl-utils';
+import { theme } from '@style/theme';
 import { generateString } from '../../../__mocks__/create-mock';
-import { theme } from '../../../style/theme';
 
 const onClickMock = jest.fn();
 

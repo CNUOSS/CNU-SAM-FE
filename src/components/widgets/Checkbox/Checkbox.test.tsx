@@ -1,6 +1,6 @@
 import React from 'react';
 import Checkbox from '.';
-import { render, screen, fireEvent } from '../../../libs/rtl-utils';
+import { render, screen, fireEvent } from '@libs/rtl-utils';
 import { generateString } from '../../../__mocks__/create-mock';
 
 const label = generateString(5);

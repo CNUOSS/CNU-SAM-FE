@@ -1,7 +1,7 @@
 import React from 'react';
-import { init } from '../../../../libs/i18n';
+import { init } from '@libs/i18n';
+import { render, screen, act, fireEvent, waitFor } from '@libs/rtl-utils';
 import UserInfo from '.';
-import { render, screen, act, fireEvent, waitFor } from '../../../../libs/rtl-utils';
 
 const addNewTabMock = jest.fn();
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import TabTemplate from '.';
-import { render, screen, fireEvent } from '../../../libs/rtl-utils';
+import { render, screen, fireEvent } from '@libs/rtl-utils';
 import { generateString } from '../../../__mocks__/create-mock';
 
 const description = generateString(30);

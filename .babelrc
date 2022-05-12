@@ -1,3 +1,26 @@
 {
-  "presets": [["@babel/preset-env", { "targets": { "node": "current" } }], "@babel/react", "@babel/preset-typescript"]
+  "presets": [["@babel/preset-env", { "targets": { "node": "current" } }], "@babel/react", "@babel/preset-typescript"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "@@types": "./src/@types",
+          "@apis": "./src/apis",
+          "@assets": "./src/assets",
+          "@common": "./src/common",
+          "@components": "./src/components",
+          "@converter": "./src/converter",
+          "@hooks": "./src/hooks",
+          "@languages": "./src/languages",
+          "@libs": "./src/libs",
+          "@pages": "./src/pages",
+          "@recoil": "./src/recoil",
+          "@style": "./src/style",
+          "@utils": "./src/utils"
+        }
+      }
+    ]
+  ]
 }

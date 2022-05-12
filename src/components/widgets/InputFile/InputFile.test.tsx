@@ -1,6 +1,6 @@
 import React from 'react';
 import InputFile from '.';
-import { render, screen, fireEvent, waitFor } from '../../../libs/rtl-utils';
+import { render, screen, fireEvent, waitFor } from '@libs/rtl-utils';
 import { generateString } from '../../../__mocks__/create-mock';
 
 const label = generateString(4);

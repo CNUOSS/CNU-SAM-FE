@@ -1,6 +1,6 @@
 import React from 'react';
 import SelfDropdown from '.';
-import { render, screen, fireEvent } from '../../../libs/rtl-utils';
+import { render, screen, fireEvent } from '@libs/rtl-utils';
 import { generateStringArray, generateString } from '../../../__mocks__/create-mock';
 
 const onChangeMock = jest.fn();

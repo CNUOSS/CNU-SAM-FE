@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, act } from '../../../libs/rtl-utils';
+import { render, screen, fireEvent, act } from '@libs/rtl-utils';
 import Input from '.';
 
 const onChangeMock = jest.fn();

@@ -1,8 +1,8 @@
 import React from 'react';
 import ProjectDetailTab from '.';
-import { render, screen, fireEvent } from '../../../libs/rtl-utils';
+import { render, screen, fireEvent } from '@libs/rtl-utils';
+import { versionListAttr } from '@common/constants';
 import { generateVersionListItem } from '../../../__mocks__/create-mock';
-import { versionListAttr } from '../../../common/constants';
 
 const versions = [generateVersionListItem(), generateVersionListItem(), generateVersionListItem()];
 const renderApp = () => render(<ProjectDetailTab versions={versions} />);

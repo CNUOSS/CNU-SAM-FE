@@ -1,6 +1,6 @@
 import React from 'react';
 import DefaultText from '.';
-import { render, screen } from '../../../libs/rtl-utils';
+import { render, screen } from '@libs/rtl-utils';
 import { generateString } from '../../../__mocks__/create-mock';
 
 const label = generateString(4);

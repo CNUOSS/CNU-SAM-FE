@@ -1,7 +1,7 @@
 import React from 'react';
-import { init } from '../../../../libs/i18n';
+import { init } from '@libs/i18n';
+import { render, screen, act, waitFor } from '@libs/rtl-utils';
 import SigninForm from '.';
-import { render, screen, act, waitFor } from '../../../../libs/rtl-utils';
 
 const renderApp = () => {
   render(<SigninForm />, { needAuth: true });

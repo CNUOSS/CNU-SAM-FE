@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import TabTemplate from '../../templates/TabTemplate';
-import InputFile from '../../widgets/InputFile';
-import Input from '../../widgets/Input';
-import DefaultText from '../../widgets/DefaultText';
+import TabTemplate from '@components/templates/TabTemplate';
+import InputFile from '@components/widgets/InputFile';
+import Input from '@components/widgets/Input';
+import DefaultText from '@components/widgets/DefaultText';
 import Table, { ItemType } from './Table';
 import * as Style from './styled';
 

@@ -10,8 +10,8 @@ import {
 } from 'react-virtualized';
 import Icon, { IconType } from '../Icon';
 import * as Style from './styled';
-import { theme } from '../../../style/theme';
 import Pagination from '../Pagination';
+import { theme } from '@style/theme';
 import 'react-virtualized/styles.css';
 
 export interface AttributeType<T> {

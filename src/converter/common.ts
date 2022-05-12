@@ -1,4 +1,4 @@
-import { RoleType } from '../@types/types';
+import { RoleType } from '@@types/types';
 
 export type RoleServerType = 'ROLE_USER' | 'ROLE_MANAGER' | 'ROLE_ADMIN';
 

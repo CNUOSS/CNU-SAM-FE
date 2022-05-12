@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MethodType } from '../hooks/useMutation';
+import { MethodType } from '@hooks/useMutation';
 
 // TODO: converter에 있는 서버타입이랑 합쳐야할까?
 

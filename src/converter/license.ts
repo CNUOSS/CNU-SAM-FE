@@ -2,7 +2,7 @@ import {
   GetLicenseListRequestParamsClientType,
   GetLicenseListResponseClientType,
   CreateLicenseRequestBodyClientType,
-} from '../apis/license';
+} from '@apis/license';
 
 interface LicenseServerType {
   id: string;

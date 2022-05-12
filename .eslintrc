@@ -23,6 +23,7 @@
     "camelcase": 0,
     "no-param-reassign": 0,
     "no-unused-vars": 0,
+    "import/order": 0,
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "@typescript-eslint/no-unused-vars": [2, { "args": "none" }],
     "jsx-a11y/no-noninteractive-element-interactions": 0

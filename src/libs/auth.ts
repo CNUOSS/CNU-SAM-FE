@@ -6,8 +6,8 @@ import {
   SigninRequestBodyClientType,
   UserType,
   SigninResponseClientType,
-} from '../apis/user';
-import * as storage from '../utils/storage';
+} from '@apis/user';
+import * as storage from '@utils/storage';
 
 const handleUserResponse = async (data: SigninResponseClientType): Promise<UserType> => {
   const { user, accessToken, uuid } = data;

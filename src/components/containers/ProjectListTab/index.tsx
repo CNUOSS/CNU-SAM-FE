@@ -1,15 +1,15 @@
 import React from 'react';
 import { useSetRecoilState } from 'recoil';
-import TabTemplate from '../../templates/TabTemplate';
-import Table from '../../widgets/Table';
-import Input from '../../widgets/Input';
-import TabForm from '../../widgets/TabForm';
-import Dropdown from '../../widgets/Dropdown';
-import ProjectDetailTab from '../ProjectDetailTab';
-import { projectListAttr } from '../../../common/constants';
-import { ProjectListAttr, Number } from '../../../@types/types';
-import { tabState } from '../../../recoil/tab';
-import compareTabs from '../../../utils/compare-tabs';
+import TabTemplate from '@components/templates/TabTemplate';
+import Table from '@components/widgets/Table';
+import Input from '@components/widgets/Input';
+import TabForm from '@components/widgets/TabForm';
+import Dropdown from '@components/widgets/Dropdown';
+import ProjectDetailTab from '@components/containers/ProjectDetailTab';
+import { projectListAttr } from '@common/constants';
+import { ProjectListAttr, Number } from '@@types/types';
+import { tabState } from '@recoil/tab';
+import compareTabs from '@utils/compare-tabs';
 import * as Style from './styled';
 
 export type ItemType = {

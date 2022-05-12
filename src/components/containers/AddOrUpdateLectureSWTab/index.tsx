@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import TabTemplate from '../../templates/TabTemplate';
-import Dropdown from '../../widgets/Dropdown';
-import TabForm from '../../widgets/TabForm';
-import Button from '../../widgets/Button';
-import Input from '../../widgets/Input';
-import * as Style from './styled';
+import TabTemplate from '@components/templates/TabTemplate';
+import Dropdown from '@components/widgets/Dropdown';
+import TabForm from '@components/widgets/TabForm';
+import Button from '@components/widgets/Button';
+import Input from '@components/widgets/Input';
 import Table, { ItemType } from './Table';
+import * as Style from './styled';
 
 const year = new Date().getFullYear();
 const ORGANIZATION = ['학부', '공과대학원'];

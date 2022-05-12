@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useAuth } from '../../../../libs/auth';
-import useForm from '../../../../hooks/useForm';
-import Input from '../../../widgets/Input';
-import { SigninRequestBodyClientType } from '../../../../apis/user';
+import Input from '@components/widgets/Input';
+import { useAuth } from '@libs/auth';
+import useForm from '@hooks/useForm';
+import { SigninRequestBodyClientType } from '@apis/user';
 import * as Style from './styled';
 
 function SigninForm() {

@@ -2,26 +2,26 @@ import React from 'react';
 import i18n from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { useSetRecoilState } from 'recoil';
-import { useAuth } from '../../../libs/auth';
-import * as Style from './styled';
+import { useAuth } from '@libs/auth';
 
-import TotalLectureSWListTab from '../TotalLectureSWListTab';
-import AddOrUpdateLectureSWTab from '../AddOrUpdateLectureSWTab';
-import SubscribedSWTab from '../SubscribedSWTab';
-import LectureSWManagementTab from '../LectureSWManagementTab';
-import ProjectListTab from '../ProjectListTab';
-import AddOrUpdateProjectTab from '../AddOrUpdateProjectTab';
-import LicenseListTab from '../LicenseListTab';
+import TotalLectureSWListTab from '@components/containers/TotalLectureSWListTab';
+import AddOrUpdateLectureSWTab from '@components/containers/AddOrUpdateLectureSWTab';
+import SubscribedSWTab from '@components/containers/SubscribedSWTab';
+import LectureSWManagementTab from '@components/containers/LectureSWManagementTab';
+import ProjectListTab from '@components/containers/ProjectListTab';
+import AddOrUpdateProjectTab from '@components/containers/AddOrUpdateProjectTab';
+import LicenseListTab from '@components/containers/LicenseListTab';
 
+import Dropdown from '@components/widgets/Dropdown';
+import Accordion from '@components/widgets/Accordion';
+import logoImage from '@assets/images/logo.jpg';
+import { RoleType, NavItem, NOTLOGIN } from '@@types/types';
+import { CategoryType, LANGUAGES, mgCategory, pjCategory, swCategory } from '@common/constants';
+import compareTabs from '@utils/compare-tabs';
+import { tabState } from '@recoil/tab';
 import UserInfo from './UserInfo';
 import SigninForm from './SigninForm';
-import Dropdown from '../../widgets/Dropdown';
-import Accordion from '../../widgets/Accordion';
-import logoImage from '../../../assets/images/logo.jpg';
-import { CategoryType, LANGUAGES, mgCategory, pjCategory, swCategory } from '../../../common/constants';
-import { tabState } from '../../../recoil/tab';
-import { RoleType, NavItem, NOTLOGIN } from '../../../@types/types';
-import compareTabs from '../../../utils/compare-tabs';
+import * as Style from './styled';
 
 function Sidebar() {
   const { t } = useTranslation();

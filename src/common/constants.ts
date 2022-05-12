@@ -1,4 +1,4 @@
-import { AttributeType } from 'src/components/widgets/Table';
+import { AttributeType } from '@components/widgets/Table';
 import {
   Temp,
   Trash,
@@ -12,7 +12,7 @@ import {
   SubscribedSWListAttr,
   TotalLectureSWListAttr,
   LectureSWManagementListAttr,
-} from '../@types/types';
+} from '@@types/types';
 
 export interface CategoryType {
   disable: boolean;

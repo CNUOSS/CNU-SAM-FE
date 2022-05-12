@@ -7,8 +7,8 @@ import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from '@emotion/react';
 import { AuthProvider } from './auth';
-import { theme } from '../style/theme';
-import '../libs/i18n';
+import { theme } from '@style/theme';
+import '@libs/i18n';
 
 interface CustomRendererProps {
   needAuth?: boolean;

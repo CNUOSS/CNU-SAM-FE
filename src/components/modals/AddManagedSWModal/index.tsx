@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import SelfDropdown from '../../../components/widgets/SelfDropdown';
-import Button from '../../widgets/Button';
-import Input from '../../widgets/Input';
-import Template from '../../templates/ModalTemplate';
+import SelfDropdown from '@components/widgets/SelfDropdown';
+import Button from '@components/widgets/Button';
+import Input from '@components/widgets/Input';
+import Template from '@components/templates/ModalTemplate';
 import * as Style from './styled';
 
 interface AddManagedSWModalProps {

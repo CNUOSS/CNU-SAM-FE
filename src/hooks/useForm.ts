@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { inOrOut } from '../utils/module';
+import { inOrOut } from '@utils/module';
 
 type ErrorType = 'required' | 'maxLength' | 'minLength';
 

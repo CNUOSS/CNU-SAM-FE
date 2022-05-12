@@ -1,14 +1,14 @@
 import React from 'react';
 import { useSetRecoilState } from 'recoil';
-import TabTemplate from '../../templates/TabTemplate';
-import DefaultText from '../../widgets/DefaultText';
-import Button from '../../widgets/Button';
-import Table from '../../widgets/Table';
-import EnrollVersionTab from '../EnrollVersionTab';
-import { VersionListAttr } from '../../../@types/types';
-import { versionListAttr } from '../../../common/constants';
-import { tabState } from '../../../recoil/tab';
-import compareTabs from '../../../utils/compare-tabs';
+import TabTemplate from '@components/templates/TabTemplate';
+import DefaultText from '@components/widgets/DefaultText';
+import Button from '@components/widgets/Button';
+import Table from '@components/widgets/Table';
+import EnrollVersionTab from '@components/containers/EnrollVersionTab';
+import { VersionListAttr } from '@@types/types';
+import { versionListAttr } from '@common/constants';
+import { tabState } from '@recoil/tab';
+import compareTabs from '@utils/compare-tabs';
 import * as Style from './styled';
 
 export type SummarizedVersionType = {

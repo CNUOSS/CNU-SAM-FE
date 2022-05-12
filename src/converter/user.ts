@@ -1,4 +1,4 @@
-import { SigninRequestBodyClientType, SigninResponseClientType } from '../apis/user';
+import { SigninRequestBodyClientType, SigninResponseClientType } from '@apis/user';
 import { RoleServerType, serverRole2ClientRole } from './common';
 
 // signin

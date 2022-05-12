@@ -1,6 +1,6 @@
 import React from 'react';
-import Dropdown from '../../widgets/Dropdown';
-import useFetch from '../../../hooks/useFetch';
+import Dropdown from '@components/widgets/Dropdown';
+import useFetch from '@hooks/useFetch';
 
 interface DropdownContainerProps {
   label?: string;

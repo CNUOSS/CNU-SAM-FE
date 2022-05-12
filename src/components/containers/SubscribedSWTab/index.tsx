@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import TabTemplate from '../../templates/TabTemplate';
-import Table from '../../widgets/Table';
-import Input from '../../widgets/Input';
-import TabForm from '../../widgets/TabForm';
-import Dropdown from '../../widgets/Dropdown';
-import { subscibedSWListAttr } from '../../../common/constants';
-import { SubscribedSWListAttr, Number } from '../../../@types/types';
-import AddOrUpdateSubscribedSWModal from '../../modals/AddOrUpdateSubscribedSWModal';
+import TabTemplate from '@components/templates/TabTemplate';
+import Table from '@components/widgets/Table';
+import Input from '@components/widgets/Input';
+import TabForm from '@components/widgets/TabForm';
+import Dropdown from '@components/widgets/Dropdown';
+import AddOrUpdateSubscribedSWModal from '@components/modals/AddOrUpdateSubscribedSWModal';
+import { subscibedSWListAttr } from '@common/constants';
+import { SubscribedSWListAttr, Number } from '@@types/types';
 import * as Style from './styled';
 
 export type ItemType = {

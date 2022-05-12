@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../widgets/Button';
+import Button from '@components/widgets/Button';
 import * as Style from './styled';
 
 interface TabTemplateProps {

@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { SigninResponseServerType, signinResponseServer2Client, signinRequestClient2Server } from '../converter/user';
-import { RoleType } from '../@types/types';
-import { getToken } from '../utils/storage';
+import { SigninResponseServerType, signinResponseServer2Client, signinRequestClient2Server } from '@converter/user';
+import { RoleType } from '@@types/types';
+import { getToken } from '@utils/storage';
 
 export interface UserType {
   id: string;

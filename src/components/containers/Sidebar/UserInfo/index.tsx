@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useAuth } from '../../../../libs/auth';
-import { NavItem } from '../../../../@types/types';
-import Icon from '../../../../components/widgets/Icon';
+import Icon from '@components/widgets/Icon';
+import { useAuth } from '@libs/auth';
+import { NavItem } from '@@types/types';
 import * as Style from './styled';
 
 interface UserInfoProps {

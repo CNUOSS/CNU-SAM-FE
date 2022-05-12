@@ -1,25 +1,27 @@
 // Dependencies
 import React from 'react';
 import { useQueryClient } from 'react-query';
-import useForm from '../../../hooks/useForm';
-import useFieldArray from '../../../hooks/useFieldArray';
-import useMutation from '../../../hooks/useMutation';
-import * as Style from './styled';
+import useForm from '@hooks/useForm';
+import useFieldArray from '@hooks/useFieldArray';
+import useMutation from '@hooks/useMutation';
 
 // Components
-import Template from '../../templates/ModalTemplate';
-import DropdownContainer from '../../containers/DropdownContainer';
-import Error from '../../widgets/Error';
-import Input from '../../widgets/Input';
-import Button from '../../widgets/Button';
+import Template from '@components/templates/ModalTemplate';
+import DropdownContainer from '@components/containers/DropdownContainer';
+import Error from '@components/widgets/Error';
+import Input from '@components/widgets/Input';
+import Button from '@components/widgets/Button';
 import Restrictions from './Restrictions';
 
 // Libs
-import AsyncBoundary from '../../../libs/AsyncBoundary';
+import AsyncBoundary from '@libs/AsyncBoundary';
 
 // Apis
-import { getLicenseTypesAPI } from '../../../apis/data';
-import { createLicenseAPI, getLicenseListAPI, LicenseType } from '../../../apis/license';
+import { getLicenseTypesAPI } from '@apis/data';
+import { createLicenseAPI, getLicenseListAPI, LicenseType } from '@apis/license';
+
+// Styles
+import * as Style from './styled';
 
 interface AddLicenseModalInterface {
   onCreate: () => void;

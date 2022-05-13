@@ -4,9 +4,11 @@ import * as Style from './styled';
 
 interface DropdownProps {
   items: string[];
+  error?: string;
   label?: string;
   width?: string;
   currentIdx?: number;
+  isLoading?: boolean;
   existNoneSelect?: boolean;
   onClickSelected?: () => void;
   onClickItem: (selectedIdx: number) => void;
@@ -22,9 +24,11 @@ const Cover = ({ children, label }: CoverProps) =>
 
 function Dropdown({
   items,
+  error,
   label,
   width = '10rem',
   currentIdx = 0,
+  isLoading,
   existNoneSelect,
   onClickSelected,
   onClickItem,
@@ -55,11 +59,15 @@ function Dropdown({
         </Style.CurrentItem>
         {isOpen && (
           <Style.List>
-            {newItems.map((item, idx) => (
-              <Style.Item key={item} selected={selectedIdx === idx} onClick={() => selectItem(idx)}>
-                {item}
-              </Style.Item>
-            ))}
+            {isLoading ? (
+              <>loading</>
+            ) : (
+              newItems.map((item, idx) => (
+                <Style.Item key={item} selected={selectedIdx === idx} onClick={() => selectItem(idx)}>
+                  {item}
+                </Style.Item>
+              ))
+            )}
           </Style.List>
         )}
       </Style.Container>

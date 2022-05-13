@@ -50,21 +50,8 @@ function LicenseListTab() {
         <TabForm buttonText="조회하기" onSubmit={handleSearch}>
           <Style.InputWrapper>
             <Input label="라이선스명" value={searchInfo.licenseName} onChange={changeLicenseName} />
-            {/* FIXME: Insert asyncboundary inside */}
-            <AsyncBoundary pendingFallback={<>loading</>} rejectedFallback={Error}>
-              <DropdownContainer
-                label="타입"
-                width="15rem"
-                getUrl={getRestrictionsAPI}
-                onClickItem={selectLicenseType}
-              />
-              <DropdownContainer
-                label="규제"
-                width="25rem"
-                getUrl={getLicenseTypesAPI}
-                onClickItem={selectRestriction}
-              />
-            </AsyncBoundary>
+            <DropdownContainer label="타입" width="15rem" getUrl={getRestrictionsAPI} onClickItem={selectLicenseType} />
+            <DropdownContainer label="규제" width="25rem" getUrl={getLicenseTypesAPI} onClickItem={selectRestriction} />
           </Style.InputWrapper>
         </TabForm>
         <AsyncBoundary pendingFallback={<>loading</>} rejectedFallback={Error}>

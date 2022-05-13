@@ -55,15 +55,12 @@ function AddLicenseModal({ onCreate, closeModal }: AddLicenseModalInterface) {
         <Style.Description>화이팅</Style.Description>
         <Style.InputWrapper>
           <Input label="라이선스명" width="20rem" value={getValue('licenseName')} onChange={change('licenseName')} />
-          {/* FIXME: Insert asyncboundary inside */}
-          <AsyncBoundary pendingFallback={<>loading</>} rejectedFallback={Error}>
-            <DropdownContainer
-              label="라이선스 타입"
-              width="18rem"
-              getUrl={getLicenseTypesAPI}
-              onClickItem={selectLicenseType}
-            />
-          </AsyncBoundary>
+          <DropdownContainer
+            label="라이선스 타입"
+            width="18rem"
+            getUrl={getLicenseTypesAPI}
+            onClickItem={selectLicenseType}
+          />
           <Input label="라이선스 url" width="50.3rem" value={getValue('licenseUrl')} onChange={change('licenseUrl')} />
         </Style.InputWrapper>
         <Style.RestrictionTitle>규제</Style.RestrictionTitle>

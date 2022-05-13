@@ -10,7 +10,7 @@ interface DropdownContainerProps {
 }
 
 function DropdownContainer({ label, width, getUrl, onClickItem }: DropdownContainerProps) {
-  const { data, refetch } = useFetch<string[]>(getUrl, {}, { enabled: false });
+  const { data, refetch, isLoading } = useFetch<string[]>(getUrl, {}, { enabled: false, suspense: false });
 
   const clickHandler = (clickIndex: number) => {
     if (data) onClickItem(data[clickIndex]);
@@ -21,6 +21,7 @@ function DropdownContainer({ label, width, getUrl, onClickItem }: DropdownContai
       existNoneSelect
       label={label}
       width={width}
+      isLoading={isLoading}
       items={data || []}
       onClickSelected={refetch}
       onClickItem={clickHandler}

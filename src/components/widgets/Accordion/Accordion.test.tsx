@@ -1,6 +1,6 @@
 import React from 'react';
 import Accordion from '.';
-import { render, screen, fireEvent } from '../../../libs/rtl-utils';
+import { render, screen, fireEvent } from '@libs/rtl-utils';
 
 const testTItle = 'test-title';
 const testItems = ['item1', 'item2'];

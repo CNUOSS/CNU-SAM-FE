@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { theme } from '../../../style/theme';
+import { theme } from '@style/theme';
 import Icon from '../Icon';
 import * as Style from './styled';
 

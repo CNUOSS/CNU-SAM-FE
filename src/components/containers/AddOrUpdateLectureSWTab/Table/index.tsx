@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from 'react';
-import TableWidget from '../../../widgets/Table';
-import { AddLectureSWListAttr, Trash, Number } from '../../../../@types/types';
-import { addLectureSWListAttr } from '../../../../common/constants';
-import SelfDropdown from '../../../widgets/SelfDropdown';
-import Input from '../../../widgets/Input';
-import Icon from '../../../widgets/Icon';
+import TableWidget from '@components/widgets/Table';
+import SelfDropdown from '@components/widgets/SelfDropdown';
+import Input from '@components/widgets/Input';
+import Icon from '@components/widgets/Icon';
+import { AddLectureSWListAttr, Trash, Number } from '@@types/types';
+import { addLectureSWListAttr } from '@common/constants';
 
 export type ItemType = {
   [key in AddLectureSWListAttr]: string | React.ReactElement;

@@ -1,20 +1,20 @@
 // Dependencies
 import React, { useState } from 'react';
-import TabTemplate from '../../templates/TabTemplate';
-import AsyncBoundary from '../../../libs/AsyncBoundary';
-import * as Style from './styled';
-import { getRestrictionsAPI, getLicenseTypesAPI } from '../../../apis/data';
+import AsyncBoundary from '@libs/AsyncBoundary';
+import { getRestrictionsAPI, getLicenseTypesAPI } from '@apis/data';
 
-// Widgets
+// Components
+import TabTemplate from '@components/templates/TabTemplate';
+import Input from '@components/widgets/Input';
+import TabForm from '@components/widgets/TabForm';
+import Error from '@components/widgets/Error';
+import AddLicenseModal from '@components/modals/AddLicenseModal';
+import DeleteModal from '@components/modals/DeleteModal';
+import DropdownContainer from '@components/containers/DropdownContainer';
 import Table, { SearchInfoType } from './Table';
-import Input from '../../widgets/Input';
-import TabForm from '../../widgets/TabForm';
 
-// Modals
-import AddLicenseModal from '../../modals/AddLicenseModal';
-import DeleteModal from '../../modals/DeleteModal';
-import Error from '../../widgets/Error';
-import DropdownContainer from '../DropdownContainer';
+// Others
+import * as Style from './styled';
 
 type ModalType = 'add' | 'delete' | 'none';
 
@@ -50,21 +50,8 @@ function LicenseListTab() {
         <TabForm buttonText="조회하기" onSubmit={handleSearch}>
           <Style.InputWrapper>
             <Input label="라이선스명" value={searchInfo.licenseName} onChange={changeLicenseName} />
-            {/* FIXME: Insert asyncboundary inside */}
-            <AsyncBoundary pendingFallback={<>loading</>} rejectedFallback={Error}>
-              <DropdownContainer
-                label="타입"
-                width="15rem"
-                getUrl={getRestrictionsAPI}
-                onClickItem={selectLicenseType}
-              />
-              <DropdownContainer
-                label="규제"
-                width="25rem"
-                getUrl={getLicenseTypesAPI}
-                onClickItem={selectRestriction}
-              />
-            </AsyncBoundary>
+            <DropdownContainer label="타입" width="15rem" getUrl={getRestrictionsAPI} onClickItem={selectLicenseType} />
+            <DropdownContainer label="규제" width="25rem" getUrl={getLicenseTypesAPI} onClickItem={selectRestriction} />
           </Style.InputWrapper>
         </TabForm>
         <AsyncBoundary pendingFallback={<>loading</>} rejectedFallback={Error}>

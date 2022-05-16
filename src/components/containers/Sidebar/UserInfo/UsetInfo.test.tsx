@@ -1,42 +1,48 @@
 import React from 'react';
-import { init } from '../../../../libs/i18n';
+import { init } from '@libs/i18n';
+import { render, screen, act, fireEvent, waitFor } from '@libs/rtl-utils';
 import UserInfo from '.';
-import { render, screen, act, fireEvent } from '../../../../libs/rtl-utils';
 
 const addNewTabMock = jest.fn();
 
 const renderApp = () => {
-  render(<UserInfo addNewTab={addNewTabMock} />);
+  render(<UserInfo addNewTab={addNewTabMock} />, { needAuth: true });
 };
 
 describe('Container/Sidebar/UserInfo', () => {
   describe('rendering test', () => {
-    it('english', () => {
+    it('english', async () => {
       const languageGetter = jest.spyOn(window.navigator, 'language', 'get');
       languageGetter.mockReturnValue('en');
       act(() => {
         init();
       });
       renderApp();
-      screen.getByText('logout');
-      screen.getByText('Enroll Software');
-      screen.getByText('Enroll Project');
+      await waitFor(() => {
+        screen.getByText('logout');
+        screen.getByText('Enroll Software');
+        screen.getByText('Enroll Project');
+      });
     });
 
-    it('korean', () => {
+    it('korean', async () => {
       renderApp();
 
-      screen.getByText('로그아웃');
-      screen.getByText('소프트웨어 등록하기');
-      screen.getByText('프로젝트 등록하기');
+      await waitFor(() => {
+        screen.getByText('로그아웃');
+        screen.getByText('소프트웨어 등록하기');
+        screen.getByText('프로젝트 등록하기');
+      });
     });
   });
 
-  it('click button', () => {
+  it('click button', async () => {
     renderApp();
 
-    const enrollSWButton = screen.getByText('소프트웨어 등록하기');
-    fireEvent.click(enrollSWButton);
-    expect(addNewTabMock).toBeCalledTimes(1);
+    await waitFor(() => {
+      const enrollSWButton = screen.getByText('소프트웨어 등록하기');
+      fireEvent.click(enrollSWButton);
+      expect(addNewTabMock).toBeCalledTimes(1);
+    });
   });
 });

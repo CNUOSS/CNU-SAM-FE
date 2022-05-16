@@ -2,10 +2,10 @@ import React, { forwardRef, LegacyRef } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { DropResult } from 'react-beautiful-dnd';
 
+import Icon from '@components/widgets/Icon';
+import DnD, { TAB_NAME_ATTR } from '@components/widgets/DnD';
+import { tabState, tabSelector } from '@recoil/tab';
 import * as Style from './styled';
-import Icon from '../../widgets/Icon';
-import DnD, { TAB_NAME_ATTR } from '../../../components/widgets/DnD';
-import { tabState, tabSelector } from '../../../recoil/tab';
 
 export const TabList = forwardRef<LegacyRef<HTMLUListElement>, any>(({ children, ...props }, ref) => (
   <Style.TabList ref={ref} {...props}>

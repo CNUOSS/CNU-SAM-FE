@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import TabTemplate from '../../templates/TabTemplate';
-import Table from '../../widgets/Table';
-import Input from '../../widgets/Input';
-import TabForm from '../../widgets/TabForm';
-import Dropdown from '../../widgets/Dropdown';
-import { lectureSWManagementListAttr } from '../../../common/constants';
-import { LectureSWManagementListAttr, Number } from '../../../@types/types';
+import TabTemplate from '@components/templates/TabTemplate';
+import Table from '@components/widgets/Table';
+import Input from '@components/widgets/Input';
+import TabForm from '@components/widgets/TabForm';
+import Dropdown from '@components/widgets/Dropdown';
+import AddManagedSWModal from '@components/modals/AddManagedSWModal';
+import { lectureSWManagementListAttr } from '@common/constants';
+import { LectureSWManagementListAttr, Number } from '@@types/types';
 import * as Style from './styled';
-import AddManagedSWModal from '../../modals/AddManagedSWModal';
 
 export type ItemType = {
   [key in LectureSWManagementListAttr]: string;

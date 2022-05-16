@@ -1,25 +1,27 @@
 // Dependencies
 import React from 'react';
 import { useQueryClient } from 'react-query';
-import useForm from '../../../hooks/useForm';
-import useFieldArray from '../../../hooks/useFieldArray';
-import useMutation from '../../../hooks/useMutation';
-import * as Style from './styled';
+import useForm from '@hooks/useForm';
+import useFieldArray from '@hooks/useFieldArray';
+import useMutation from '@hooks/useMutation';
 
 // Components
-import Template from '../../templates/ModalTemplate';
-import DropdownContainer from '../../containers/DropdownContainer';
-import Error from '../../widgets/Error';
-import Input from '../../widgets/Input';
-import Button from '../../widgets/Button';
+import Template from '@components/templates/ModalTemplate';
+import DropdownContainer from '@components/containers/DropdownContainer';
+import Error from '@components/widgets/Error';
+import Input from '@components/widgets/Input';
+import Button from '@components/widgets/Button';
 import Restrictions from './Restrictions';
 
 // Libs
-import AsyncBoundary from '../../../libs/AsyncBoundary';
+import AsyncBoundary from '@libs/AsyncBoundary';
 
 // Apis
-import { getLicenseTypesAPI } from '../../../apis/data';
-import { createLicenseAPI, getLicenseListAPI, LicenseType } from '../../../apis/license';
+import { getLicenseTypesAPI } from '@apis/data';
+import { createLicenseAPI, getLicenseListAPI, LicenseType } from '@apis/license';
+
+// Styles
+import * as Style from './styled';
 
 interface AddLicenseModalInterface {
   onCreate: () => void;
@@ -53,15 +55,12 @@ function AddLicenseModal({ onCreate, closeModal }: AddLicenseModalInterface) {
         <Style.Description>화이팅</Style.Description>
         <Style.InputWrapper>
           <Input label="라이선스명" width="20rem" value={getValue('licenseName')} onChange={change('licenseName')} />
-          {/* FIXME: Insert asyncboundary inside */}
-          <AsyncBoundary pendingFallback={<>loading</>} rejectedFallback={Error}>
-            <DropdownContainer
-              label="라이선스 타입"
-              width="18rem"
-              getUrl={getLicenseTypesAPI}
-              onClickItem={selectLicenseType}
-            />
-          </AsyncBoundary>
+          <DropdownContainer
+            label="라이선스 타입"
+            width="18rem"
+            getUrl={getLicenseTypesAPI}
+            onClickItem={selectLicenseType}
+          />
           <Input label="라이선스 url" width="50.3rem" value={getValue('licenseUrl')} onChange={change('licenseUrl')} />
         </Style.InputWrapper>
         <Style.RestrictionTitle>규제</Style.RestrictionTitle>

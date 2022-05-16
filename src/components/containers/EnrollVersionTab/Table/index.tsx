@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from 'react';
-import Icon from '../../../widgets/Icon';
-import Input from '../../../widgets/Input';
-import TableWidget from '../../../widgets/Table';
-import Dropdown from '../../../widgets/Dropdown';
-import { OSSListAttr, Trash, Number } from '../../../../@types/types';
-import { ossListAttr } from '../../../../common/constants';
+import Icon from '@components/widgets/Icon';
+import Input from '@components/widgets/Input';
+import TableWidget from '@components/widgets/Table';
+import Dropdown from '@components/widgets/Dropdown';
+import { OSSListAttr, Trash, Number } from '@@types/types';
+import { ossListAttr } from '@common/constants';
 
 export type ItemType = {
   [key in OSSListAttr]: string;

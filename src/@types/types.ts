@@ -2,12 +2,15 @@
  * temporary folder for type storing
  */
 // UserAuth
-export const UserAuth = {
-  Admin: 'Admin',
-  Manager: 'Manager',
-  User: 'User',
+export const RoleType = {
+  ADMIN: 'ADMIN',
+  MANAGER: 'MANAGER',
+  USER: 'USER',
 } as const;
-export type UserAuth = typeof UserAuth[keyof typeof UserAuth];
+export type RoleType = typeof RoleType[keyof typeof RoleType];
+
+export const NOTLOGIN = 'NOTLOGIN' as const;
+export type NOTLOGIN = typeof NOTLOGIN;
 
 // NavItem
 export const NavItem = {

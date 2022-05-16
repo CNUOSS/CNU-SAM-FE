@@ -1,6 +1,6 @@
 import React from 'react';
 import ErrorModal from '.';
-import { render } from '../../../libs/rtl-utils';
+import { render } from '@libs/rtl-utils';
 
 const error = new Error('ERROR');
 const resetErrorBoundaryMock = jest.fn();

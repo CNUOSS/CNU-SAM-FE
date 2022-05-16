@@ -1,8 +1,8 @@
 import React from 'react';
 import SubscribedSWTab from '.';
-import { render, screen, fireEvent } from '../../../libs/rtl-utils';
+import { render, screen, fireEvent } from '@libs/rtl-utils';
+import { subscibedSWListAttr } from '@common/constants';
 import { generateSubscribedSW, generateStringArray } from '../../../__mocks__/create-mock';
-import { subscibedSWListAttr } from '../../../common/constants';
 
 const manufacturings = generateStringArray(3);
 const types = generateStringArray(3);

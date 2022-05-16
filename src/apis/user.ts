@@ -1,9 +1,11 @@
 import axios from 'axios';
-import { getToken } from '../utils/storage';
+import { SigninResponseServerType, signinResponseServer2Client, signinRequestClient2Server } from '@converter/user';
+import { RoleType } from '@@types/types';
+import { getToken } from '@utils/storage';
 
 export interface UserType {
   id: string;
-  role: string; // FIXME:
+  role: RoleType;
 }
 
 // Signin
@@ -12,25 +14,26 @@ export interface SigninRequestBodyClientType {
   password: string;
 }
 
-interface SigninResponseClientType {
-  jwt: string;
+export interface SigninResponseClientType {
   user: UserType;
+  accessToken: string;
+  uuid: string;
 }
 
-export const signinAPI = `/users/signin`;
+export const signinAPI = `/login`;
 export const signinAPIFn = async (data: SigninRequestBodyClientType): Promise<SigninResponseClientType> => {
-  const result = await axios.post(signinAPI, { data });
-  if (result.data) return result.data;
-  return Promise.reject(result.data);
+  const response = await axios.post<SigninResponseServerType>(signinAPI, { ...signinRequestClient2Server(data) });
+  if (response.data) return signinResponseServer2Client(response.data);
+  return Promise.reject(response.data);
 };
 
 // Logout
 export const logoutAPI = `/users/logout`;
 
-// refresh
-export const refreshAPI = `/users/self`;
-export const refreshAPIFn = async () => {
-  const result = await axios.get(refreshAPI, { headers: { Authorization: getToken() } });
-  if (result.data) return result.data;
-  return Promise.reject(result.data);
+// reload
+export const reloadAPI = `/reload`;
+export const reloadAPIFn = async () => {
+  const response = await axios.get(reloadAPI, { headers: { Authorization: `Bearer ${getToken('at')}` } });
+  if (response.data) return response.data;
+  return Promise.reject(response.data);
 };

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { inOrOut } from '../utils/module';
+import { inOrOut } from '@utils/module';
 
 type ErrorType = 'required' | 'maxLength' | 'minLength';
 
@@ -34,7 +34,7 @@ interface useFormType<T> {
   handleSubmit: (fn: (data: T) => void) => (event?: any) => void;
 }
 
-function useForm<T>(validators: Validator<T>): useFormType<T> {
+function useForm<T>(validators?: Validator<T>): useFormType<T> {
   const [state, setState] = useState<StateType<T>>({} as StateType<T>);
   const [arrayState, setArrayState] = useState<ArrayStateType<T>>({} as ArrayStateType<T>);
   const [error, setError] = useState<Error<T>>();
@@ -62,7 +62,7 @@ function useForm<T>(validators: Validator<T>): useFormType<T> {
 
   const handleSubmit = (fn: (data: T) => void) => () => {
     const result = { ...state, ...arrayState };
-    const notValidate = Object.entries(validators).some((validator) => checkNotValidator(validator, result));
+    const notValidate = Object.entries(validators || {}).some((validator) => checkNotValidator(validator, result));
     if (!notValidate) fn({ ...state, ...arrayState } as unknown as T);
   };
 

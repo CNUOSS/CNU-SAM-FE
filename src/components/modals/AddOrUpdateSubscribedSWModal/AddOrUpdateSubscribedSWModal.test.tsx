@@ -1,6 +1,6 @@
 import React from 'react';
 import AddOrUpdateSubscribedSWModal from '.';
-import { render, screen, fireEvent } from '../../../libs/rtl-utils';
+import { render, screen, fireEvent } from '@libs/rtl-utils';
 
 const closeModalMock = jest.fn();
 const onSubmitMock = jest.fn();

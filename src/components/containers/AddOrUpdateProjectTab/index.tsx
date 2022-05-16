@@ -1,9 +1,9 @@
 import React from 'react';
-import TabTemplate from '../../templates/TabTemplate';
-import DefaultText from '../../widgets/DefaultText';
-import Dropdown from '../../widgets/Dropdown';
-import Button from '../../widgets/Button';
-import Input from '../../widgets/Input';
+import TabTemplate from '@components/templates/TabTemplate';
+import DefaultText from '@components/widgets/DefaultText';
+import Dropdown from '@components/widgets/Dropdown';
+import Button from '@components/widgets/Button';
+import Input from '@components/widgets/Input';
 import * as Style from './styled';
 
 export type AddOrUpdateProjectTabType = 'create' | 'update';

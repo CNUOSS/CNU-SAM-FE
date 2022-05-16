@@ -1,6 +1,6 @@
 import React from 'react';
 import DeleteModal from '.';
-import { render, screen, fireEvent } from '../../../libs/rtl-utils';
+import { render, screen, fireEvent } from '@libs/rtl-utils';
 
 const closeModalMock = jest.fn();
 const onDeleteMock = jest.fn();

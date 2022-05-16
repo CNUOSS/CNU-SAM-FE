@@ -16,12 +16,15 @@
 - React
 - I18n
 - Recoil
+- react-query
 - EmotionJS
 - Jest
 - react-testing-library
 - Storybook
 - Github-Action
-- AWS
+  - jest testing
+  - storybook testing
+  - auto deployment
 
 ## Ground Rule
 
@@ -36,3 +39,7 @@ main < develop < feature
 ### PR & Issue
 
 - Using PR & Issue Template
+
+### Else
+
+- Using milestone and project

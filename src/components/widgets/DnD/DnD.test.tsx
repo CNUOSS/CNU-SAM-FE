@@ -1,8 +1,8 @@
 import React from 'react';
 import { mockGetComputedStyle, mockDndSpacing, makeDnd, DND_DIRECTION_UP } from 'react-beautiful-dnd-test-utils';
 import DnD from '.';
-import { TabList, TabItem } from '../../containers/Workspace';
-import { render, screen, fireEvent } from '../../../libs/rtl-utils';
+import { TabList, TabItem } from '@components/containers/Workspace';
+import { render, screen, fireEvent } from '@libs/rtl-utils';
 import { generateStringArray } from '../../../__mocks__/create-mock';
 
 const onDragEndMock = jest.fn();

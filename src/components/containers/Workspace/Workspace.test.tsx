@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import Workspace from '.';
-import { render, screen, fireEvent } from '../../../libs/rtl-utils';
-import { tabState } from '../../../recoil/tab';
-import { TabState } from '../../../recoil/tab/atom';
+import { render, screen, fireEvent } from '@libs/rtl-utils';
+import { tabState } from '@recoil/tab';
+import { TabState } from '@recoil/tab/atom';
 
 const onChange = jest.fn();
 const tabs = ['tab1', 'tab2'];

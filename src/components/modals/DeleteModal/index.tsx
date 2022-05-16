@@ -1,6 +1,6 @@
 import React from 'react';
-import Template from '../../templates/ModalTemplate';
-import Button from '../../widgets/Button';
+import Template from '@components/templates/ModalTemplate';
+import Button from '@components/widgets/Button';
 import * as Style from './styled';
 
 interface DeleteModalProps {

@@ -1,7 +1,7 @@
 import React from 'react';
-import useFetch from '../../../../hooks/useFetch';
-import CheckBox from '../../../widgets/Checkbox';
-import { getRestrictionsAPI } from '../../../../apis/data';
+import useFetch from '@hooks/useFetch';
+import CheckBox from '@components/widgets/Checkbox';
+import { getRestrictionsAPI } from '@apis/data';
 import * as Style from '../styled';
 
 interface RestrictionsProps {

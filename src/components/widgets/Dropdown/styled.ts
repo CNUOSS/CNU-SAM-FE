@@ -51,6 +51,7 @@ export const List = styled.ul`
   top: 3.5rem;
   padding: 1rem;
 
+  font-size: 1.5rem;
   border: 1px solid black;
   border-radius: 0.5rem;
   background-color: white;

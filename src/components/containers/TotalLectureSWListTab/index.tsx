@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
-import TabTemplate from '../../templates/TabTemplate';
-import Input from '../../widgets/Input';
-import Dropdown from '../../widgets/Dropdown';
-import TabForm from '../../widgets/TabForm';
-import Table from '../../widgets/Table';
-import AddManagedSWModal from '../../modals/AddManagedSWModal';
-import AddOrUpdateLectureSWTab from '../AddOrUpdateLectureSWTab';
-import { TotalLectureSWListAttr } from '../../../@types/types';
-import { totalLectureSWListAttr } from '../../../common/constants';
-import { tabState } from '../../../recoil/tab';
-import compareTabs from '../../../utils/compare-tabs';
+import TabTemplate from '@components/templates/TabTemplate';
+import Input from '@components/widgets/Input';
+import Dropdown from '@components/widgets/Dropdown';
+import TabForm from '@components/widgets/TabForm';
+import Table from '@components/widgets/Table';
+import AddManagedSWModal from '@components/modals/AddManagedSWModal';
+import AddOrUpdateLectureSWTab from '@components/containers//AddOrUpdateLectureSWTab';
+import { TotalLectureSWListAttr } from '@@types/types';
+import { totalLectureSWListAttr } from '@common/constants';
+import { tabState } from '@recoil/tab';
+import compareTabs from '@utils/compare-tabs';
 import * as Style from './styled';
 
 // FIXME: remove

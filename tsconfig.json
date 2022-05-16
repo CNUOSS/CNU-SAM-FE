@@ -16,7 +16,22 @@
     "isolatedModules": true,
     "noEmit": false,
     "jsx": "react-jsx",
-    "typeRoots": ["./node_modules/@types", "@types"]
+    "typeRoots": ["./node_modules/@types", "@types"],
+    "paths": {
+      "@@types/*": ["src/@types/*"],
+      "@apis/*": ["src/apis/*"],
+      "@assets/*": ["src/assets/*"],
+      "@common/*": ["src/common/*"],
+      "@components/*": ["src/components/*"],
+      "@converter/*": ["src/converter/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@languages/*": ["src/languages/*"],
+      "@libs/*": ["src/libs/*"],
+      "@pages/*": ["src/pages/*"],
+      "@recoil/*": ["src/recoil/*"],
+      "@style/*": ["src/style/*"],
+      "@utils/*": ["src/utils/*"]
+    }
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules", "./src/**.js"]

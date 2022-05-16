@@ -1,6 +1,6 @@
 import { SigninRequestBodyClientType, SigninResponseClientType } from '@apis/user';
 import { RoleServerType, serverRole2ClientRole } from './common';
-import { ReloadResponseClientType } from '../apis/user';
+import { ReloadResponseClientType, LogoutRequestBodyClientType } from '../apis/user';
 
 // signin
 interface SigninRequestBodyServerType {
@@ -13,11 +13,6 @@ export interface SigninResponseServerType {
   user_id: string;
   access_token: string;
   uuid: string;
-  role: RoleServerType;
-}
-
-export interface ReloadResponseServerType {
-  user_id: string;
   role: RoleServerType;
 }
 
@@ -48,9 +43,34 @@ export const signinResponseServer2Client = ({
   };
 };
 
+// reload
+export interface ReloadResponseServerType {
+  user_id: string;
+  role: RoleServerType;
+}
+
 export const reloadResponseServer2Client = ({ user_id, role }: ReloadResponseServerType): ReloadResponseClientType => {
   return {
     id: user_id,
     role: serverRole2ClientRole(role),
+  };
+};
+
+// logout
+export interface LogoutRequestBodyServerType {
+  user_id: string;
+  access_token: string;
+  uuid: string;
+}
+
+export const logoutRequestClient2Server = ({
+  id,
+  accessToken,
+  uuid,
+}: LogoutRequestBodyClientType): LogoutRequestBodyServerType => {
+  return {
+    uuid,
+    user_id: id,
+    access_token: accessToken,
   };
 };

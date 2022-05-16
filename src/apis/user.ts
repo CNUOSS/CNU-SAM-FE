@@ -4,9 +4,11 @@ import {
   signinResponseServer2Client,
   signinRequestClient2Server,
   reloadResponseServer2Client,
+  logoutRequestClient2Server,
 } from '@converter/user';
 import { RoleType } from '@@types/types';
 import { getToken } from '@utils/storage';
+import { LogoutRequestBodyServerType } from '../converter/user';
 
 export interface UserType {
   id: string;
@@ -33,7 +35,16 @@ export const signinAPIFn = async (data: SigninRequestBodyClientType): Promise<Si
 };
 
 // Logout
+export interface LogoutRequestBodyClientType {
+  id: string;
+  accessToken: string;
+  uuid: string;
+}
+
 export const logoutAPI = `/users/logout`;
+export const logoutAPIFn = async (data: LogoutRequestBodyClientType) => {
+  await axios.post<LogoutRequestBodyServerType>(logoutAPI, { ...logoutRequestClient2Server(data) });
+};
 
 // reload
 export interface ReloadResponseClientType {

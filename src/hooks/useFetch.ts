@@ -13,12 +13,12 @@ const useFetch = <ResponseClientType = any, ResponseServerType = any, RequestCli
   params?: object,
   config?: object,
   converter?: {
-    request: (parameter: RequestClientType) => RequestServerType;
+    request?: (parameter: RequestClientType) => RequestServerType;
     response: (paramter: ResponseServerType) => ResponseClientType;
   }
 ) => {
   const context = useQuery<ResponseClientType>(
-    [url!, converter && params ? converter.request(params as unknown as RequestClientType) : params],
+    [url!, converter?.request && params ? converter.request(params as unknown as RequestClientType) : params],
     ({ queryKey, meta }) => fetcher({ queryKey, meta }),
     {
       suspense: true,
@@ -27,7 +27,7 @@ const useFetch = <ResponseClientType = any, ResponseServerType = any, RequestCli
   );
   return {
     ...context,
-    data: converter?.response(context.data as unknown as ResponseServerType),
+    data: context.data ? converter?.response(context.data as unknown as ResponseServerType) : context.data,
   } as UseQueryResult<ResponseClientType>;
 };
 

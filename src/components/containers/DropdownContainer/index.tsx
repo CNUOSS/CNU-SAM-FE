@@ -6,11 +6,17 @@ interface DropdownContainerProps {
   label?: string;
   width?: string;
   getUrl: string;
+  responseConverter: (response: any) => string[];
   onClickItem: (item: string) => void;
 }
 
-function DropdownContainer({ label, width, getUrl, onClickItem }: DropdownContainerProps) {
-  const { data, refetch, isLoading } = useFetch<string[]>(getUrl, {}, { enabled: false, suspense: false });
+function DropdownContainer({ label, width, getUrl, responseConverter, onClickItem }: DropdownContainerProps) {
+  const { data, refetch, isLoading } = useFetch<string[]>(
+    getUrl,
+    {},
+    { enabled: false, suspense: false },
+    { response: responseConverter }
+  );
 
   const clickHandler = (clickIndex: number) => {
     if (data) onClickItem(data[clickIndex]);

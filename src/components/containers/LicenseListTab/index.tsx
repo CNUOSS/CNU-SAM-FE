@@ -14,6 +14,9 @@ import DeleteModal from '@components/modals/DeleteModal';
 import DropdownContainer from '@components/containers/DropdownContainer';
 import Table, { SearchInfoType } from './Table';
 
+// Hooks
+import useForm from '@hooks/useForm';
+
 // Others
 import * as Style from './styled';
 
@@ -26,22 +29,16 @@ function LicenseListTab() {
     licenseType: '',
     restriction: '',
   });
-  const [searchInfo, setSearchInfo] = useState({
-    licenseName: '',
-    licenseType: '',
-    restriction: '',
-  });
+  const { change, getValue, getAllValue } = useForm<SearchInfoType>();
 
   const closeModal = () => setModalState('none');
   const openAddLicenseModal = () => setModalState('add');
   const openDeleteModal = () => setModalState('delete');
 
-  const selectRestriction = (restriction: string) => setSearchInfo((info) => ({ ...info, restriction }));
-  const selectLicenseType = (licenseType: string) => setSearchInfo((info) => ({ ...info, licenseType }));
-  const changeLicenseName = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setSearchInfo((info) => ({ ...info, licenseName: event.target.value }));
+  const selectRestriction = (restriction: string) => change('restriction')(restriction);
+  const selectLicenseType = (licenseType: string) => change('licenseType')(licenseType);
 
-  const handleSearch = () => setInfoStore(searchInfo);
+  const handleSearch = () => setInfoStore((store) => ({ ...store, ...getAllValue() }));
 
   return (
     <>
@@ -50,7 +47,7 @@ function LicenseListTab() {
       <TabTemplate description="Description" onCreate={openAddLicenseModal}>
         <TabForm buttonText="조회하기" onSubmit={handleSearch}>
           <Style.InputWrapper>
-            <Input label="라이선스명" value={searchInfo.licenseName} onChange={changeLicenseName} />
+            <Input label="라이선스명" value={getValue('licenseName')} onChange={change('licenseName')} />
             <DropdownContainer label="타입" width="15rem" getUrl={getRestrictionsAPI} onClickItem={selectLicenseType} />
             <DropdownContainer label="규제" width="25rem" getUrl={getLicenseTypesAPI} onClickItem={selectRestriction} />
           </Style.InputWrapper>

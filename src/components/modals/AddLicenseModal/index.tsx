@@ -46,7 +46,7 @@ function AddLicenseModal({ onCreate, closeModal }: AddLicenseModalInterface) {
   const onSubmit = (data: InputsType) => mutate(data);
 
   const selectRestriction = (restriction: string) => toggle(restriction);
-  const selectLicenseType = (type: string) => change('licenseType')({ target: { value: type } });
+  const selectLicenseType = (type: string) => change('licenseType')(type);
 
   return (
     <Template closeModal={closeModal}>

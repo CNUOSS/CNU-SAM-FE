@@ -4,7 +4,7 @@ import WidgetTable from '@components/widgets/Table';
 import useFetch from '@hooks/useFetch';
 import { LicenseListAttr, Number, Trash } from '@@types/types';
 import { licenseListAttr, LIMIT } from '@common/constants';
-import { licenseSearchRequestClient2Server } from '@converter/license';
+import { licenseSearchRequestClient2Server, licenseSearchResponseServer2Client } from '@converter/license';
 import {
   getLicenseListAPI,
   GetLicenseListRequestParamsClientType,
@@ -34,15 +34,8 @@ function Table({ searchInfo, openDeleteModal }: TableProps) {
     getLicenseListAPI,
     apiInfo,
     {},
-    licenseSearchRequestClient2Server
+    { request: licenseSearchRequestClient2Server, response: licenseSearchResponseServer2Client }
   );
-  const parsedItem: RowType[] =
-    data?.licenses.map((item, index) => ({
-      ...item,
-      restriction: item.restrictions.join(' '),
-      number: index + 1,
-      trash: <Icon onClick={openDeleteModal} icon="trashcan" size="2rem" />,
-    })) || [];
 
   useEffect(() => {
     setApiInfo((prev) => ({ ...prev, ...searchInfo }));
@@ -52,11 +45,19 @@ function Table({ searchInfo, openDeleteModal }: TableProps) {
     setApiInfo((prev) => ({ ...prev, offset: pageNumber }));
   };
 
+  const parsedItem: RowType[] =
+    data?.licenses.map((item, index) => ({
+      ...item,
+      restriction: item.restrictions.join(' '),
+      number: apiInfo.limit * (apiInfo.offset - 1) + (index + 1),
+      trash: <Icon onClick={openDeleteModal} icon="trashcan" size="2rem" />,
+    })) || [];
+
   return (
     <WidgetTable
       items={parsedItem}
       attributes={licenseListAttr}
-      pageCount={Math.ceil(data?.meta.totalCount || 0 / LIMIT)}
+      pageCount={Math.ceil((data?.meta.totalCount || 0) / LIMIT)}
       onClickPageButton={onClickPageButton}
     />
   );

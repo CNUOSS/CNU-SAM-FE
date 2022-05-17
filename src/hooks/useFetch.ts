@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useQuery, QueryFunctionContext } from 'react-query';
+import { useQuery, QueryFunctionContext, UseQueryResult } from 'react-query';
 
 const fetcher = async <T>({ queryKey }: QueryFunctionContext<readonly (string | unknown)[]>): Promise<T> => {
   const [url, params] = queryKey;
@@ -8,21 +8,27 @@ const fetcher = async <T>({ queryKey }: QueryFunctionContext<readonly (string | 
 };
 
 // TODO: fix any
-const useFetch = <T, S = unknown, C = any>(
+const useFetch = <ResponseClientType = any, ResponseServerType = any, RequestClientType = any, RequestServerType = any>(
   url: string,
   params?: object,
   config?: object,
-  converter?: (parameter: C) => S
+  converter?: {
+    request: (parameter: RequestClientType) => RequestServerType;
+    response: (paramter: ResponseServerType) => ResponseClientType;
+  }
 ) => {
-  const context = useQuery<T>(
-    [url!, converter && params ? converter(params as unknown as C) : params],
+  const context = useQuery<ResponseClientType>(
+    [url!, converter && params ? converter.request(params as unknown as RequestClientType) : params],
     ({ queryKey, meta }) => fetcher({ queryKey, meta }),
     {
       suspense: true,
       ...config,
     }
   );
-  return context;
+  return {
+    ...context,
+    data: converter?.response(context.data as unknown as ResponseServerType),
+  } as UseQueryResult<ResponseClientType>;
 };
 
 export default useFetch;

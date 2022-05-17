@@ -21,6 +21,7 @@ import { getLicenseTypesAPI } from '@apis/data';
 import { createLicenseAPI, getLicenseListAPI, LicenseType } from '@apis/license';
 
 // Styles
+import { getLicenseTypesResponseServer2Client } from '@converter/data';
 import * as Style from './styled';
 
 interface AddLicenseModalInterface {
@@ -59,6 +60,7 @@ function AddLicenseModal({ onCreate, closeModal }: AddLicenseModalInterface) {
             label="라이선스 타입"
             width="18rem"
             getUrl={getLicenseTypesAPI}
+            responseConverter={getLicenseTypesResponseServer2Client}
             onClickItem={selectLicenseType}
           />
           <Input label="라이선스 url" width="50.3rem" value={getValue('licenseUrl')} onChange={change('licenseUrl')} />

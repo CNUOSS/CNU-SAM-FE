@@ -8,6 +8,7 @@ import TabTemplate from '@components/templates/TabTemplate';
 import Input from '@components/widgets/Input';
 import TabForm from '@components/widgets/TabForm';
 import Error from '@components/widgets/Error';
+import LoadingModal from '@components/modals/LoadingModal';
 import AddLicenseModal from '@components/modals/AddLicenseModal';
 import DeleteModal from '@components/modals/DeleteModal';
 import DropdownContainer from '@components/containers/DropdownContainer';
@@ -54,7 +55,7 @@ function LicenseListTab() {
             <DropdownContainer label="규제" width="25rem" getUrl={getLicenseTypesAPI} onClickItem={selectRestriction} />
           </Style.InputWrapper>
         </TabForm>
-        <AsyncBoundary pendingFallback={<>loading</>} rejectedFallback={Error}>
+        <AsyncBoundary pendingFallback={<LoadingModal />} rejectedFallback={Error}>
           <Style.TableWrapper>
             <Table searchInfo={infoStore} openDeleteModal={openDeleteModal} />
           </Style.TableWrapper>

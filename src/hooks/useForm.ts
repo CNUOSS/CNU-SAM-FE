@@ -37,7 +37,7 @@ function useForm<T extends object>(validators?: Validator<T>): useFormType<T> {
   const [error, setError] = useState<Error<T>>();
 
   const change = (key: keyof T) => (event: React.ChangeEvent<HTMLInputElement> | string) => {
-    if (typeof event === 'string') setState((prev) => ({ ...prev, [key]: event }));
+    if (typeof event === 'string' || !event) setState((prev) => ({ ...prev, [key]: event }));
     else setState((prev) => ({ ...prev, [key]: event.target.value }));
   };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import useFetch from '@hooks/useFetch';
 import CheckBox from '@components/widgets/Checkbox';
 import { getRestrictionsAPI } from '@apis/data';
+import { getRestrictionResponseServer2Client } from '@converter/data';
 import * as Style from '../styled';
 
 interface RestrictionsProps {
@@ -9,7 +10,12 @@ interface RestrictionsProps {
 }
 
 function Restrictions({ selectItem }: RestrictionsProps) {
-  const { data: restrictions } = useFetch<string[]>(getRestrictionsAPI);
+  const { data: restrictions } = useFetch<string[]>(
+    getRestrictionsAPI,
+    {},
+    {},
+    { response: getRestrictionResponseServer2Client }
+  );
 
   return restrictions ? (
     <Style.RestrictionsWrapper>

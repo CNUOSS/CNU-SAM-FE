@@ -43,7 +43,7 @@ function LicenseListTab() {
 
   return (
     <>
-      {modalState === 'add' && <AddLicenseModal closeModal={closeModal} onCreate={() => {}} />}
+      {modalState === 'add' && <AddLicenseModal closeModal={closeModal} />}
       {modalState === 'delete' && <DeleteModal closeModal={closeModal} onDelete={() => {}} />}
       <TabTemplate description="Description" onCreate={openAddLicenseModal}>
         <TabForm buttonText="조회하기" onSubmit={handleSearch}>

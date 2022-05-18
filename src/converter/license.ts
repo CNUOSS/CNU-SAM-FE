@@ -76,7 +76,7 @@ export const createLicenseRequestClient2Server = ({
   licenseType,
   licenseUrl,
   restrictions,
-}: CreateLicenseRequestBodyClientType): CreateLicenseRequestBodyServerType => ({
+}: Omit<CreateLicenseRequestBodyClientType, 'id'>): CreateLicenseRequestBodyServerType => ({
   license_name: licenseName,
   oss_license_type: { license_type_name: licenseType },
   license_url: licenseUrl,

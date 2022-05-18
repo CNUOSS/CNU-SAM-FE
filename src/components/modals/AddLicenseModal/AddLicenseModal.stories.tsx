@@ -13,10 +13,9 @@ export default {
   decorators: [withMock],
 };
 
-const onCreateAction = action('on create');
 const closeModalAction = action('close modal');
 
-const Modal = () => <AddLicenseModal onCreate={onCreateAction} closeModal={closeModalAction} />;
+const Modal = () => <AddLicenseModal closeModal={closeModalAction} />;
 
 export const Default = Modal.bind({});
 (Default as any).parameters = {

@@ -17,7 +17,7 @@ interface UseMutationType {
 export type MethodType = 'POST' | 'UPDATE' | 'DELETE' | 'PUT';
 const fetcher = (url: string, method: MethodType, converter?: ConverterType) => async (data: any) => {
   const convertedData = converter?.request ? converter?.request(data) : data;
-  const { data: result } = await axios({ url, method, data: convertedData });
+  const { data: result } = await axios({ url: data.dynamicUrl || url, method, data: convertedData });
   return converter?.response ? converter?.response(result) : result;
 };
 

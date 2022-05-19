@@ -26,6 +26,7 @@ import { getLicenseTypesResponseServer2Client } from '@converter/data';
 import { createLicenseRequestClient2Server } from '@converter/license';
 import { LicenseType } from '@@types/client';
 import * as Style from './styled';
+import { LicenseListTableLabelType } from '@common/constants';
 
 interface AddLicenseModalInterface {
   closeModal: () => void;
@@ -59,9 +60,9 @@ function AddLicenseModal({ closeModal }: AddLicenseModalInterface) {
   const selectLicenseType = (type: string) => change('licenseType')(type);
 
   // FIXME: refactor type and location
-  const errorMapping: { [key in keyof InputsType]?: string } = {
-    licenseName: '라이선스 이름',
-    licenseUrl: '라이선스주소',
+  const errorMapping: { [key in keyof InputsType]?: LicenseListTableLabelType } = {
+    licenseName: '라이선스명',
+    licenseUrl: '라이선스 주소',
     licenseType: '라이선스 타입',
   };
 

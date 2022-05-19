@@ -1,31 +1,13 @@
 import axios from 'axios';
 import {
-  SigninResponseServerType,
   signinResponseServer2Client,
   signinRequestClient2Server,
   reloadResponseServer2Client,
   logoutRequestClient2Server,
 } from '@converter/user';
-import { RoleType } from '@@types/types';
 import { getToken } from '@utils/storage';
-import { LogoutRequestBodyServerType } from '../converter/user';
-
-export interface UserType {
-  id: string;
-  role: RoleType;
-}
-
-// Signin
-export interface SigninRequestBodyClientType {
-  id: string;
-  password: string;
-}
-
-export interface SigninResponseClientType {
-  user: UserType;
-  accessToken: string;
-  uuid: string;
-}
+import { LogoutRequestBodyServerType, SigninResponseServerType } from '@@types/server';
+import { LogoutRequestBodyClientType, SigninRequestBodyClientType, SigninResponseClientType } from '@@types/client';
 
 export const signinAPI = `/login`;
 export const signinAPIFn = async (data: SigninRequestBodyClientType): Promise<SigninResponseClientType> => {
@@ -34,23 +16,10 @@ export const signinAPIFn = async (data: SigninRequestBodyClientType): Promise<Si
   return Promise.reject(response.data);
 };
 
-// Logout
-export interface LogoutRequestBodyClientType {
-  id: string;
-  accessToken: string;
-  uuid: string;
-}
-
 export const logoutAPI = `/users/logout`;
 export const logoutAPIFn = async (data: LogoutRequestBodyClientType) => {
   await axios.post<LogoutRequestBodyServerType>(logoutAPI, { ...logoutRequestClient2Server(data) });
 };
-
-// reload
-export interface ReloadResponseClientType {
-  id: string;
-  role: RoleType;
-}
 
 export const reloadAPI = `/reload`;
 export const reloadAPIFn = async () => {

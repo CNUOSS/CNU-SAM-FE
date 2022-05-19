@@ -1,7 +1,8 @@
 // https://codesandbox.io/s/react-query-auth-demo-fvvvt?file=/src/api.ts:775-792
 import { initReactQueryAuth } from 'react-query-auth';
-import { signinAPIFn, reloadAPIFn, SigninRequestBodyClientType, UserType, SigninResponseClientType } from '@apis/user';
+import { signinAPIFn, reloadAPIFn } from '@apis/user';
 import * as storage from '@utils/storage';
+import { SigninRequestBodyClientType, SigninResponseClientType, UserType } from '@@types/client';
 
 const ACCESS_TOKEN = 'at';
 const REFRESH_TOKEN = 'rt';

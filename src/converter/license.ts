@@ -1,37 +1,13 @@
 import {
+  CreateLicenseRequestBodyClientType,
   GetLicenseListRequestParamsClientType,
   GetLicenseListResponseClientType,
-  CreateLicenseRequestBodyClientType,
-} from '@apis/license';
-
-interface LicenseServerType {
-  id: number;
-  license_name: string;
-  license_url: string;
-  oss_license_type: {
-    license_type_name: string;
-  };
-  restriction: {
-    restriction_name: string;
-  }[];
-}
-
-// GetLicenses
-interface GetLicenseListRequestParamsServerType {
-  size: number;
-  page: number;
-  ['lc-name']: string | null;
-  ['lc-type']: string | null;
-  restriction: string | null;
-}
-
-interface GetLicenseListResponseServerType {
-  meta: {
-    total_count: number;
-    is_end: boolean;
-  };
-  oss_license: LicenseServerType[];
-}
+} from '@@types/client';
+import {
+  CreateLicenseRequestBodyServerType,
+  GetLicenseListRequestParamsServerType,
+  GetLicenseListResponseServerType,
+} from '@@types/server';
 
 export const licenseSearchRequestClient2Server = ({
   limit,
@@ -69,8 +45,6 @@ export const licenseSearchResponseServer2Client = ({
 };
 
 // CreateLicense
-interface CreateLicenseRequestBodyServerType extends Omit<LicenseServerType, 'id'> {}
-
 export const createLicenseRequestClient2Server = ({
   licenseName,
   licenseType,

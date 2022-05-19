@@ -19,11 +19,12 @@ import AsyncBoundary from '@libs/AsyncBoundary';
 
 // Apis
 import { getLicenseTypesAPI } from '@apis/data';
-import { createLicenseAPI, getLicenseListAPI, LicenseType } from '@apis/license';
+import { createLicenseAPI, getLicenseListAPI } from '@apis/license';
 
 // Styles
 import { getLicenseTypesResponseServer2Client } from '@converter/data';
 import { createLicenseRequestClient2Server } from '@converter/license';
+import { LicenseType } from '@@types/client';
 import * as Style from './styled';
 
 interface AddLicenseModalInterface {

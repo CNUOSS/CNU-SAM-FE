@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import Input from '@components/widgets/Input';
 import { useAuth } from '@libs/auth';
 import useForm from '@hooks/useForm';
-import { SigninRequestBodyClientType } from '@apis/user';
 import * as Style from './styled';
+import { SigninRequestBodyClientType } from '@@types/client';
 
 function SigninForm() {
   const { login } = useAuth();

@@ -5,7 +5,7 @@ import {
 } from '@apis/license';
 
 interface LicenseServerType {
-  id: string;
+  id: number;
   license_name: string;
   license_url: string;
   oss_license_type: {

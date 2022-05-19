@@ -6,7 +6,7 @@ export default {
   component: Table,
 };
 
-const attributes: AttributeType<string>[] = [
+const attributes: AttributeType<string, string>[] = [
   { label: '이름', dataKey: 'name', widthPercent: 20, disableSort: true },
   { label: '설명', dataKey: 'description', widthPercent: 50, disableSort: false },
 ];

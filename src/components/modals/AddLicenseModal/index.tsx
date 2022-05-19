@@ -54,17 +54,16 @@ function AddLicenseModal({ closeModal }: AddLicenseModalInterface) {
     licenseType: [{ error: 'required' }],
   });
   const { toggle } = useFieldArray<InputsType>({ control, name: 'restrictions' });
-  const onSubmit = (data: InputsType) => mutate(data);
 
-  const selectRestriction = (restriction: string) => toggle(restriction);
-  const selectLicenseType = (type: string) => change('licenseType')(type);
-
-  // FIXME: refactor type and location
-  const errorMapping: { [key in keyof InputsType]?: LicenseListTableLabelType } = {
+  const nameMapper: { [key in keyof InputsType]?: LicenseListTableLabelType } = {
     licenseName: '라이선스명',
     licenseUrl: '라이선스 주소',
     licenseType: '라이선스 타입',
   };
+
+  const onSubmit = (data: InputsType) => mutate(data);
+  const selectRestriction = (restriction: string) => toggle(restriction);
+  const selectLicenseType = (type: string) => change('licenseType')(type);
 
   return (
     <Template closeModal={closeModal}>
@@ -86,7 +85,7 @@ function AddLicenseModal({ closeModal }: AddLicenseModalInterface) {
         <AsyncBoundary pendingFallback={<LoadingModal />} rejectedFallback={Error}>
           <Restrictions selectItem={selectRestriction} />
         </AsyncBoundary>
-        {error && <Style.Error>{`${errorMapping[error.key]}을(를) 채워주세요`}</Style.Error>}
+        {error && <Style.Error>{`${nameMapper[error.key]}을(를) 채워주세요`}</Style.Error>}
         <Style.ButtonWrapper>
           <Button onClick={handleSubmit(onSubmit)}>등록하기</Button>
         </Style.ButtonWrapper>

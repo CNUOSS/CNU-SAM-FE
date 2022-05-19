@@ -1,5 +1,6 @@
 // Dependencies
 import React, { useState } from 'react';
+import { useQueryClient } from 'react-query';
 import AsyncBoundary from '@libs/AsyncBoundary';
 import { getRestrictionsAPI, getLicenseTypesAPI } from '@apis/data';
 
@@ -16,14 +17,19 @@ import Table, { SearchInfoType } from './Table';
 
 // Hooks
 import useForm from '@hooks/useForm';
+import useMutation from '@hooks/useMutation';
+
+// Apis
+import { deleteLicenseAPI, getLicenseListAPI } from '@apis/license';
 
 // Others
 import { getLicenseTypesResponseServer2Client, getRestrictionResponseServer2Client } from '@converter/data';
 import * as Style from './styled';
 
-type ModalType = 'add' | 'delete' | 'none';
+type ModalType = 'add' | 'none' | number;
 
 function LicenseListTab() {
+  const queryClient = useQueryClient();
   const { change, getValue, getAllValue } = useForm<SearchInfoType>();
   const [modalState, setModalState] = useState<ModalType>('none');
   const [infoStore, setInfoStore] = useState<SearchInfoType>({
@@ -31,20 +37,33 @@ function LicenseListTab() {
     licenseType: '',
     restriction: '',
   });
+  const deleteMutationSuccess = async () => {
+    await queryClient.invalidateQueries(getLicenseListAPI);
+    closeModal();
+  };
+  const { mutate } = useMutation({
+    url: deleteLicenseAPI.url(0),
+    method: deleteLicenseAPI.method,
+    onSuccess: deleteMutationSuccess,
+  });
 
   const closeModal = () => setModalState('none');
   const openAddLicenseModal = () => setModalState('add');
-  const openDeleteModal = () => setModalState('delete');
+  const openDeleteModal = (licenseId: number) => setModalState(licenseId);
 
   const selectRestriction = (restriction: string) => change('restriction')(restriction);
   const selectLicenseType = (licenseType: string) => change('licenseType')(licenseType);
 
   const handleSearch = () => setInfoStore((store) => ({ ...store, ...getAllValue() }));
+  const deleteLicense = () => {
+    mutate({ dynamicUrl: deleteLicenseAPI.url(modalState as number) });
+    setModalState('none');
+  };
 
   return (
     <>
       {modalState === 'add' && <AddLicenseModal closeModal={closeModal} />}
-      {modalState === 'delete' && <DeleteModal closeModal={closeModal} onDelete={() => {}} />}
+      {typeof modalState === 'number' && <DeleteModal closeModal={closeModal} onDelete={deleteLicense} />}
       <TabTemplate description="Description" onCreate={openAddLicenseModal}>
         <TabForm buttonText="조회하기" onSubmit={handleSearch}>
           <Style.InputWrapper>

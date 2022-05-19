@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack serve",
     "build": "webpack --mode production",
-    "lint": "eslint --ext .tsx --ignore-path .gitignore .",
+    "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "jest": "jest",
     "jest-coverage": "jest --coverage",
     "cypress:open": "cypress open",

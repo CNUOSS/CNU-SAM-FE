@@ -1,5 +1,5 @@
+import { GetLicenseListResponseClientType, LicenseType } from '@@types/client';
 import { generateString } from './create-mock';
-import { LicenseType, GetLicenseListResponseClientType } from '../apis/license';
 
 /**
  * data mock

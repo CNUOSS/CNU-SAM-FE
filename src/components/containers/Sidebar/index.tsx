@@ -11,16 +11,17 @@ import LectureSWManagementTab from '@components/containers/LectureSWManagementTa
 import ProjectListTab from '@components/containers/ProjectListTab';
 import AddOrUpdateProjectTab from '@components/containers/AddOrUpdateProjectTab';
 import LicenseListTab from '@components/containers/LicenseListTab';
-
 import Dropdown from '@components/widgets/Dropdown';
 import Accordion from '@components/widgets/Accordion';
+import UserInfo from './UserInfo';
+import SigninForm from './SigninForm';
+
 import logoImage from '@assets/images/logo.jpg';
-import { RoleType, NavItem, NOTLOGIN } from '@@types/types';
 import { CategoryType, LANGUAGES, mgCategory, pjCategory, swCategory } from '@common/constants';
 import compareTabs from '@utils/compare-tabs';
 import { tabState } from '@recoil/tab';
-import UserInfo from './UserInfo';
-import SigninForm from './SigninForm';
+import { NavItem } from '@@types/types';
+import { NOTLOGIN, RoleType } from '@@types/client';
 import * as Style from './styled';
 
 function Sidebar() {

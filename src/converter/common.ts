@@ -1,6 +1,5 @@
-import { RoleType } from '@@types/types';
-
-export type RoleServerType = 'ROLE_USER' | 'ROLE_MANAGER' | 'ROLE_ADMIN';
+import { RoleType } from '@@types/client';
+import { RoleServerType } from '@@types/server';
 
 export const clientRole2ServerRole = (role: RoleType): RoleServerType => {
   switch (role) {

@@ -21,7 +21,7 @@ export interface RowType extends ItemType {
 
 interface TableProps {
   searchInfo: SearchInfoType;
-  openDeleteModal: () => void;
+  openDeleteModal: (id: number) => void;
 }
 
 function Table({ searchInfo, openDeleteModal }: TableProps) {
@@ -50,7 +50,7 @@ function Table({ searchInfo, openDeleteModal }: TableProps) {
       ...item,
       restriction: item.restrictions.join(' '),
       number: apiInfo.limit * (apiInfo.offset - 1) + (index + 1),
-      trash: <Icon onClick={openDeleteModal} icon="trashcan" size="2rem" />,
+      trash: <Icon onClick={() => openDeleteModal(item.id)} icon="trashcan" size="2rem" />,
     })) || [];
 
   return (

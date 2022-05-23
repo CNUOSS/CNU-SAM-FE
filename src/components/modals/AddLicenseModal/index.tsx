@@ -11,6 +11,7 @@ import DropdownContainer from '@components/containers/DropdownContainer';
 import Error from '@components/widgets/Error';
 import Input from '@components/widgets/Input';
 import Button from '@components/widgets/Button';
+import LoadingModal from '../LoadingModal';
 import Restrictions from './Restrictions';
 
 // Libs
@@ -18,35 +19,51 @@ import AsyncBoundary from '@libs/AsyncBoundary';
 
 // Apis
 import { getLicenseTypesAPI } from '@apis/data';
-import { createLicenseAPI, getLicenseListAPI, LicenseType } from '@apis/license';
+import { createLicenseAPI, getLicenseListAPI } from '@apis/license';
 
 // Styles
+import { getLicenseTypesResponseServer2Client } from '@converter/data';
+import { createLicenseRequestClient2Server } from '@converter/license';
+import { LicenseType } from '@@types/client';
 import * as Style from './styled';
+import { LicenseListTableLabelType } from '@common/constants';
 
 interface AddLicenseModalInterface {
-  onCreate: () => void;
   closeModal: () => void;
 }
 
 type InputsType = Omit<LicenseType, 'id'>;
 
-// TODO: add check empty request - use useForm
-function AddLicenseModal({ onCreate, closeModal }: AddLicenseModalInterface) {
+function AddLicenseModal({ closeModal }: AddLicenseModalInterface) {
   const queryClient = useQueryClient();
   const createMutationSuccess = async () => {
     await queryClient.invalidateQueries(getLicenseListAPI);
     closeModal();
   };
-  const { mutate } = useMutation<LicenseType>(createLicenseAPI.url, createLicenseAPI.method, createMutationSuccess);
-  // TODO: error handling
-  const { change, handleSubmit, getValue, control } = useForm<InputsType>({
+  const { mutate } = useMutation<LicenseType>({
+    url: createLicenseAPI.url,
+    method: createLicenseAPI.method,
+    onSuccess: createMutationSuccess,
+    converter: {
+      request: createLicenseRequestClient2Server,
+    },
+  });
+  const { change, handleSubmit, getValue, control, error } = useForm<InputsType>({
     licenseName: [{ error: 'required' }],
+    licenseUrl: [{ error: 'required' }],
+    licenseType: [{ error: 'required' }],
   });
   const { toggle } = useFieldArray<InputsType>({ control, name: 'restrictions' });
-  const onSubmit = (data: InputsType) => mutate(data);
 
+  const nameMapper: { [key in keyof InputsType]?: LicenseListTableLabelType } = {
+    licenseName: '라이선스명',
+    licenseUrl: '라이선스 주소',
+    licenseType: '라이선스 타입',
+  };
+
+  const onSubmit = (data: InputsType) => mutate(data);
   const selectRestriction = (restriction: string) => toggle(restriction);
-  const selectLicenseType = (type: string) => change('licenseType')({ target: { value: type } });
+  const selectLicenseType = (type: string) => change('licenseType')(type);
 
   return (
     <Template closeModal={closeModal}>
@@ -59,15 +76,16 @@ function AddLicenseModal({ onCreate, closeModal }: AddLicenseModalInterface) {
             label="라이선스 타입"
             width="18rem"
             getUrl={getLicenseTypesAPI}
+            responseConverter={getLicenseTypesResponseServer2Client}
             onClickItem={selectLicenseType}
           />
           <Input label="라이선스 url" width="50.3rem" value={getValue('licenseUrl')} onChange={change('licenseUrl')} />
         </Style.InputWrapper>
         <Style.RestrictionTitle>규제</Style.RestrictionTitle>
-        {/* FIXME: Insert asyncboundary inside */}
-        <AsyncBoundary pendingFallback={<>loading</>} rejectedFallback={Error}>
+        <AsyncBoundary pendingFallback={<LoadingModal />} rejectedFallback={Error}>
           <Restrictions selectItem={selectRestriction} />
         </AsyncBoundary>
+        {error && <Style.Error>{`${nameMapper[error.key]}을(를) 채워주세요`}</Style.Error>}
         <Style.ButtonWrapper>
           <Button onClick={handleSubmit(onSubmit)}>등록하기</Button>
         </Style.ButtonWrapper>

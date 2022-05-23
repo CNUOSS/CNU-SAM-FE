@@ -1,35 +1,13 @@
 import {
+  CreateLicenseRequestBodyClientType,
   GetLicenseListRequestParamsClientType,
   GetLicenseListResponseClientType,
-  CreateLicenseRequestBodyClientType,
-} from '@apis/license';
-
-interface LicenseServerType {
-  id: string;
-  license_name: string;
-  license_url: string;
-  license_type_name: string;
-  restriction: {
-    restriction_name: string;
-  }[];
-}
-
-// GetLicenses
-interface GetLicenseListRequestParamsServerType {
-  limit: number;
-  offset: number;
-  lcName: string | null;
-  lcType: string | null;
-  restriction: string | null;
-}
-
-interface GetLicenseListResponseServerType {
-  meta: {
-    total_count: number;
-    is_end: boolean;
-  };
-  license: LicenseServerType[];
-}
+} from '@@types/client';
+import {
+  CreateLicenseRequestBodyServerType,
+  GetLicenseListRequestParamsServerType,
+  GetLicenseListResponseServerType,
+} from '@@types/server';
 
 export const licenseSearchRequestClient2Server = ({
   limit,
@@ -39,27 +17,27 @@ export const licenseSearchRequestClient2Server = ({
   restriction,
 }: GetLicenseListRequestParamsClientType): GetLicenseListRequestParamsServerType => {
   return {
-    offset,
-    limit,
+    size: limit,
+    page: offset - 1,
     restriction: restriction || null,
-    lcName: licenseName || null,
-    lcType: licenseType || null,
+    'lc-name': licenseName || null,
+    'lc-type': licenseType || null,
   };
 };
 
 export const licenseSearchResponseServer2Client = ({
   meta,
-  license,
+  oss_license,
 }: GetLicenseListResponseServerType): GetLicenseListResponseClientType => {
   return {
     meta: {
       totalCount: meta.total_count,
       isEnd: meta.is_end,
     },
-    licenses: license.map((li) => ({
+    licenses: oss_license.map((li) => ({
       id: li.id,
       licenseName: li.license_name,
-      licenseType: li.license_type_name,
+      licenseType: li.oss_license_type.license_type_name,
       licenseUrl: li.license_url,
       restrictions: li.restriction.map((res) => res.restriction_name),
     })),
@@ -67,16 +45,14 @@ export const licenseSearchResponseServer2Client = ({
 };
 
 // CreateLicense
-interface CreateLicenseRequestBodyServerType extends Omit<LicenseServerType, 'id'> {}
-
 export const createLicenseRequestClient2Server = ({
   licenseName,
   licenseType,
   licenseUrl,
   restrictions,
-}: CreateLicenseRequestBodyClientType): CreateLicenseRequestBodyServerType => ({
+}: Omit<CreateLicenseRequestBodyClientType, 'id'>): CreateLicenseRequestBodyServerType => ({
   license_name: licenseName,
-  license_type_name: licenseType,
+  oss_license_type: { license_type_name: licenseType },
   license_url: licenseUrl,
   restriction: restrictions.map((res) => ({ restriction_name: res })),
 });

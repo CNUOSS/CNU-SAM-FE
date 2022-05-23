@@ -14,9 +14,9 @@ import Pagination from '../Pagination';
 import { theme } from '@style/theme';
 import 'react-virtualized/styles.css';
 
-export interface AttributeType<T> {
-  label: string;
-  dataKey: T;
+export interface AttributeType<DataKey, Label> {
+  label: Label;
+  dataKey: DataKey;
   widthPercent: number;
   disableSort: boolean;
 }
@@ -25,9 +25,9 @@ interface ObjType {
   [key: string]: any;
 }
 
-interface TableProps<T, C> {
+interface TableProps<T, C, Label> {
   title?: string;
-  attributes: AttributeType<C>[];
+  attributes: AttributeType<C, Label>[];
   items: T[];
   pageCount?: number;
   onRowClick?: (item: T) => void;
@@ -35,14 +35,14 @@ interface TableProps<T, C> {
 }
 
 // TODO: infinite scrolling
-function Table<T extends ObjType, C extends string>({
+function Table<T extends ObjType, C extends string, Label extends string>({
   title,
   attributes,
   pageCount,
   items,
   onRowClick,
   onClickPageButton,
-}: TableProps<T, C>) {
+}: TableProps<T, C, Label>) {
   const [currentPage, setCurrentPage] = useState(1);
   const [dataList, setDataList] = useState<T[]>(items);
   const [sortBy, setSortBy] = useState<string>('');

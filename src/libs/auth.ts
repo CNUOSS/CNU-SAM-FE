@@ -1,28 +1,26 @@
 // https://codesandbox.io/s/react-query-auth-demo-fvvvt?file=/src/api.ts:775-792
 import { initReactQueryAuth } from 'react-query-auth';
-import {
-  signinAPIFn,
-  // reloadAPIFn,
-  SigninRequestBodyClientType,
-  UserType,
-  SigninResponseClientType,
-} from '@apis/user';
+import { signinAPIFn, reloadAPIFn } from '@apis/user';
 import * as storage from '@utils/storage';
+import { SigninRequestBodyClientType, SigninResponseClientType, UserType } from '@@types/client';
+
+const ACCESS_TOKEN = 'at';
+const REFRESH_TOKEN = 'rt';
 
 const handleUserResponse = async (data: SigninResponseClientType): Promise<UserType> => {
   const { user, accessToken, uuid } = data;
-  storage.setToken('at', accessToken);
-  storage.setToken('rt', uuid);
+  storage.setToken(ACCESS_TOKEN, accessToken);
+  storage.setToken(REFRESH_TOKEN, uuid);
   return user;
 };
 
 // TODO: implement not yet
 // FIXME:
 const loadUser = async (): Promise<UserType> => {
-  // if (storage.getToken('at')) {
-  //   const data = await reloadAPIFn();
-  //   return data;
-  // }
+  if (storage.getToken(ACCESS_TOKEN)) {
+    const data = await reloadAPIFn();
+    return data;
+  }
   return {} as UserType;
 };
 
@@ -38,8 +36,8 @@ const loginFn = async (data: SigninRequestBodyClientType): Promise<UserType> => 
 };
 
 const logoutFn = async () => {
-  storage.clearToken('at');
-  storage.clearToken('rt');
+  storage.clearToken(ACCESS_TOKEN);
+  storage.clearToken(REFRESH_TOKEN);
 };
 
 const config = { loadUser, loginFn, logoutFn, registerFn };

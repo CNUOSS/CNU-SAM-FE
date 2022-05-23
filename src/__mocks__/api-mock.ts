@@ -1,11 +1,11 @@
+import { GetLicenseListResponseClientType, LicenseType } from '@@types/client';
 import { generateString } from './create-mock';
-import { LicenseType, GetLicenseListResponseClientType } from '../apis/license';
 
 /**
  * data mock
  */
 export const generateLicenseMock = (): LicenseType => ({
-  id: generateString(5),
+  id: Math.ceil(Math.random() * 100),
   licenseName: generateString(5),
   licenseType: generateString(7),
   licenseUrl: generateString(15),

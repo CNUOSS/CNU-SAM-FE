@@ -4,7 +4,7 @@ import * as Style from './styled';
 
 interface ModalTemplateProps {
   children: React.ReactElement;
-  closeModal: () => void;
+  closeModal?: () => void;
 }
 
 function ModalTemplate({ children, closeModal }: ModalTemplateProps) {

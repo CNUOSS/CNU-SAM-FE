@@ -70,3 +70,15 @@ export interface LogoutRequestBodyServerType {
   access_token: string;
   uuid: string;
 }
+
+/* Subscribed SW */
+export interface CreateSubscribedRequestBodyServerType {
+  latest_updater_id: string;
+  sw_type: string;
+  sw_manufacturer: string;
+  sw_name: string;
+  usage_range: string;
+  license: string;
+  expire_date: string;
+  first_subscribe_date: string;
+}

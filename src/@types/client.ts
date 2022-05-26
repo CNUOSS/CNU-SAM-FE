@@ -74,3 +74,19 @@ export interface ReloadResponseClientType {
   id: string;
   role: RoleType;
 }
+
+/* Subscribed SW */
+export interface SubscribedSWType {
+  id: number;
+  updatorId: string;
+  swType: string;
+  swManufacturer: string;
+  swName: string;
+  usageRange: string;
+  license: string;
+  latestUpdateDate: string;
+  expireDate: string;
+  firstSubscribeDate: string;
+}
+
+export type CreateSubscribedRequestBodyClientType = Omit<SubscribedSWType, 'id' | 'latestUpdateDate'>;

@@ -4,6 +4,10 @@ interface HeaderItemProps {
   sortable: boolean;
 }
 
+interface PaginationWrapperProps {
+  titleExist: boolean;
+}
+
 export const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -58,6 +62,6 @@ export const CellItem = styled.div`
   justify-content: center;
 `;
 
-export const PaginationWrapper = styled.div`
-  margin-top: 2rem;
+export const PaginationWrapper = styled.div<PaginationWrapperProps>`
+  margin-top: ${(props) => (props.titleExist ? '5rem' : '2rem')};
 `;

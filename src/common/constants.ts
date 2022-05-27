@@ -150,13 +150,13 @@ export const subscibedSWListAttr: AttributeType<SubscribedSWListAttr | Number, S
 
 export const projectListAttr: AttributeType<ProjectListAttr | Number, ProjectListTableLabelType>[] = [
   { label: 'No', dataKey: 'number', widthPercent: 9, disableSort: true },
-  { label: '프로젝트명', dataKey: 'prjName', widthPercent: 13, disableSort: true },
-  { label: '소유자', dataKey: 'owner', widthPercent: 13, disableSort: true },
-  { label: '라이선스', dataKey: 'license', widthPercent: 13, disableSort: false },
-  { label: '카테고리', dataKey: 'category', widthPercent: 13, disableSort: true },
-  { label: '생성일', dataKey: 'releasedDt', widthPercent: 13, disableSort: false },
-  { label: '최신 배포일', dataKey: 'createdDt', widthPercent: 13, disableSort: false },
-  { label: '상태', dataKey: 'prjStatus', widthPercent: 13, disableSort: false },
+  { label: '프로젝트명', dataKey: 'projectName', widthPercent: 13, disableSort: true },
+  { label: '소유자', dataKey: 'userId', widthPercent: 13, disableSort: true },
+  { label: '라이선스', dataKey: 'ossLicenseName', widthPercent: 13, disableSort: true },
+  { label: '카테고리', dataKey: 'projectCategoryName', widthPercent: 13, disableSort: true },
+  { label: '생성일', dataKey: 'createDate', widthPercent: 13, disableSort: false },
+  { label: '최신 배포일', dataKey: 'updateDate', widthPercent: 13, disableSort: false },
+  { label: '상태', dataKey: 'projectStatus', widthPercent: 13, disableSort: false },
 ];
 
 export const versionListAttr: AttributeType<VersionListAttr | Number | Temp, VersionListTableLabelType>[] = [

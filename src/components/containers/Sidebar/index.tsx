@@ -58,7 +58,7 @@ function Sidebar() {
       case 'SWDashboard':
         return { name: '대시보드', component: <></> };
       case 'PJList':
-        return { name: '프로젝트 목록', component: <ProjectListTab items={[]} /> };
+        return { name: '프로젝트 목록', component: <ProjectListTab /> };
       case 'LicenseList':
         return { name: '라이선스 목록', component: <LicenseListTab /> };
       case 'UserManagement':

@@ -1,36 +1,36 @@
-import React from 'react';
+// Dependencies
+import React, { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import TabTemplate from '@components/templates/TabTemplate';
-import Table from '@components/widgets/Table';
+
+// Components
 import Input from '@components/widgets/Input';
+import Error from '@components/widgets/Error';
 import TabForm from '@components/widgets/TabForm';
 import Dropdown from '@components/widgets/Dropdown';
 import ProjectDetailTab from '@components/containers/ProjectDetailTab';
-import { projectListAttr } from '@common/constants';
-import { ProjectListAttr, Number } from '@@types/types';
+import Table, { SearchInfoType } from './Table';
+
 import { tabState } from '@recoil/tab';
 import compareTabs from '@utils/compare-tabs';
+import AsyncBoundary from '@libs/AsyncBoundary';
+import LoadingModal from '@components/modals/LoadingModal';
 import * as Style from './styled';
+import { ProjectType } from '@@types/client';
 
-export type ItemType = {
-  [key in ProjectListAttr]: string;
-};
-
-export interface RowType extends ItemType {
-  [Number]: number;
-}
-
-// FIXME: removed
-interface ProjectListTabProps {
-  items: ItemType[];
-}
-
-function ProjectListTab({ items }: ProjectListTabProps) {
+function ProjectListTab() {
   const setTabState = useSetRecoilState(tabState);
-  const parsedItems: RowType[] = items.map((item, index) => ({ ...item, number: index + 1 }));
+  const [infoStore] = useState<SearchInfoType>({
+    user: '',
+    lcId: '',
+    pjName: '',
+    category: '',
+  });
 
-  const clickItem = (item: any) => {
-    setTabState((oldState) => compareTabs(oldState, `${item.prjName} 프로젝트`, <ProjectDetailTab versions={[]} />));
+  const clickItem = (item: ProjectType) => {
+    setTabState((oldState) =>
+      compareTabs(oldState, `${item.projectName} 프로젝트`, <ProjectDetailTab versions={[]} />)
+    );
   };
 
   return (
@@ -43,9 +43,11 @@ function ProjectListTab({ items }: ProjectListTabProps) {
           <Dropdown label="라이선스" items={[]} onClickItem={() => {}} />
         </Style.InputWrapper>
       </TabForm>
-      <Style.TableWrapper>
-        <Table title="프로젝트 목록" attributes={projectListAttr} items={parsedItems} onRowClick={clickItem} />
-      </Style.TableWrapper>
+      <AsyncBoundary pendingFallback={<LoadingModal />} rejectedFallback={Error}>
+        <Style.TableWrapper>
+          <Table searchInfo={infoStore} onRowClick={clickItem} />
+        </Style.TableWrapper>
+      </AsyncBoundary>
     </TabTemplate>
   );
 }

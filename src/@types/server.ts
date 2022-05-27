@@ -89,10 +89,10 @@ export interface SubscribedSWServerType {
 export interface GetSubscribeSWRequestParamsServerType {
   size: number;
   page: number;
-  sort: string;
-  ['sw-type']: string;
-  ['sw-mfr']: string;
-  ['sw-name']: string;
+  sort: string | null;
+  ['sw-type']: string | null;
+  ['sw-mfr']: string | null;
+  ['sw-name']: string | null;
 }
 
 export interface GetSubscribeSWResponseServerType {

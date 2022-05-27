@@ -1,14 +1,21 @@
+// Dependencies
 import React from 'react';
+import { useQueryClient } from 'react-query';
+import { useAuth } from '@libs/auth';
+
+// Hooks
+import useMutation from '@hooks/useMutation';
+import useForm from '@hooks/useForm';
+
+// Components
 import Button from '@components/widgets/Button';
 import Input from '@components/widgets/Input';
 import Template from '@components/templates/ModalTemplate';
-import * as Style from './styled';
-import useForm from '@hooks/useForm';
-import { SubscribedSWType, CreateSubscribedRequestBodyClientType } from '@@types/client';
-import useMutation from '@hooks/useMutation';
-import { createSubscribedSWAPI } from '@apis/subscribedsw';
-import { useAuth } from '@libs/auth';
+
+import { getSubscribedSWAPI, createSubscribedSWAPI } from '@apis/subscribedsw';
 import { createSubscribedRequestClient2Server } from '@converter/subscribedsw';
+import { SubscribedSWType, CreateSubscribedRequestBodyClientType } from '@@types/client';
+import * as Style from './styled';
 
 interface AddOrUpdateSubscribedSWModalProps {
   subscribedSW?: SubscribedSWType;
@@ -27,9 +34,15 @@ function AddOrUpdateSubscribedSWModal({
 }: AddOrUpdateSubscribedSWModalProps) {
   const headerText = `학내 구독중인 SW ${modalState === 'create' ? `등록` : `수정`}하기`;
   const { user } = useAuth();
+  const queryClient = useQueryClient();
+  const createMutationSuccess = async () => {
+    await queryClient.invalidateQueries(getSubscribedSWAPI);
+    closeModal();
+  };
   const { mutate } = useMutation<SubscribedSWType>({
     url: createSubscribedSWAPI.url,
     method: createSubscribedSWAPI.method,
+    onSuccess: createMutationSuccess,
     converter: {
       request: createSubscribedRequestClient2Server,
     },

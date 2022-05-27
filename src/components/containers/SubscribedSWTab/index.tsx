@@ -28,7 +28,6 @@ function SubscribedSWTab({ items, manufacturings, types }: SubscribedSWTabProps)
   const [selectedItem, setSelectedItem] = useState<ItemType>();
   const parsedItems: RowType[] = items.map((item, index) => ({ ...item, number: index + 1 }));
 
-  const handleModalSubmit = () => {};
   const onDelete = () => {};
   const toggleModal = () => {
     setIsOpen((prev) => !prev);
@@ -46,11 +45,7 @@ function SubscribedSWTab({ items, manufacturings, types }: SubscribedSWTabProps)
     <>
       {isOpen && (
         <AddOrUpdateSubscribedSWModal
-          defaultLicense={selectedItem?.license}
-          defaultSWName={selectedItem?.swName}
-          defaultExpireDate={selectedItem?.expireDt}
           modalState={selectedItem ? 'update' : 'create'}
-          onSubmit={handleModalSubmit}
           onDelete={onDelete}
           closeModal={toggleModal}
         />

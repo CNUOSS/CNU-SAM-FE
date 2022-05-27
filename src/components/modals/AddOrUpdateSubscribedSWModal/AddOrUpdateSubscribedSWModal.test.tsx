@@ -3,12 +3,10 @@ import AddOrUpdateSubscribedSWModal from '.';
 import { render, screen, fireEvent } from '@libs/rtl-utils';
 
 const closeModalMock = jest.fn();
-const onSubmitMock = jest.fn();
 const onDelteItemMock = jest.fn();
 
 beforeEach(() => {
   document.body.innerHTML = '<div id="modal"></div>';
-  onSubmitMock.mockClear();
   onDelteItemMock.mockClear();
 });
 
@@ -17,7 +15,6 @@ const renderApp = (isCreate: boolean) =>
     <AddOrUpdateSubscribedSWModal
       modalState={isCreate ? 'create' : 'update'}
       closeModal={closeModalMock}
-      onSubmit={onSubmitMock}
       onDelete={onDelteItemMock}
     />
   );
@@ -35,7 +32,6 @@ describe('Modal/AddOrUpdateSubscribedSWModal', () => {
 
       const addButton = screen.getByText('등록하기');
       fireEvent.click(addButton);
-      expect(onSubmitMock).toBeCalledTimes(1);
     });
   });
 
@@ -52,7 +48,6 @@ describe('Modal/AddOrUpdateSubscribedSWModal', () => {
 
       const updateButton = screen.getByText('수정하기');
       fireEvent.click(updateButton);
-      expect(onSubmitMock).toBeCalledTimes(1);
     });
 
     it('click delete Button', () => {

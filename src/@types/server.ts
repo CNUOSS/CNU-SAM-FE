@@ -10,6 +10,19 @@ export interface LicenseTypeServerType {
   license_type_name: string;
 }
 
+export interface CategoryNamesServerType {
+  project_category_name: string;
+}
+
+export interface LicenseNamesServerType {
+  id: number;
+  license_name: string;
+  license_url: string;
+  oss_license_type: {
+    license_type_name: string;
+  };
+}
+
 /* License */
 interface LicenseServerType {
   id: number;

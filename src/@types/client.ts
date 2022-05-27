@@ -89,4 +89,25 @@ export interface SubscribedSWType {
   firstSubscribeDate: string;
 }
 
+// get
+export interface GetSubscribeSWRequestParamsClientType {
+  size: number;
+  page: number;
+  sort: string;
+  swType: string;
+  swMfr: string;
+  swName: string;
+}
+
+export interface GetSubscribeSWResponseClientType {
+  meta: {
+    totalElements: number;
+    last: boolean;
+    totalPages: number;
+    size: number;
+  };
+  subscriptionSWList: SubscribedSWType[];
+}
+
+// create
 export type CreateSubscribedRequestBodyClientType = Omit<SubscribedSWType, 'id' | 'latestUpdateDate'>;

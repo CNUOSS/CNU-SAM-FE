@@ -18,7 +18,7 @@ export const createSubscribedRequestClient2Server = ({
     sw_manufacturer: swManufacturer,
     sw_name: swName,
     usage_range: usageRange,
-    expire_date: '2022-02-22 00:00:00',
-    first_subscribe_date: '2022-02-22 00:00:00',
+    expire_date: expireDate,
+    first_subscribe_date: firstSubscribeDate,
   };
 };

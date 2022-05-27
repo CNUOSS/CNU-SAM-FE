@@ -53,7 +53,7 @@ function Sidebar() {
       case 'SubscribingSWList':
         return {
           name: '학내 구독 중 SW',
-          component: <SubscribedSWTab items={[]} manufacturings={[]} types={[]} />,
+          component: <SubscribedSWTab />,
         };
       case 'SWDashboard':
         return { name: '대시보드', component: <></> };

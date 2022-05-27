@@ -15,6 +15,12 @@ export type RoleType = typeof RoleType[keyof typeof RoleType];
 export const NOTLOGIN = 'NOTLOGIN' as const;
 export type NOTLOGIN = typeof NOTLOGIN;
 
+/* Data */
+export interface LicenseNamesType {
+  id: number;
+  licenseName: string;
+}
+
 /* License */
 export interface LicenseType {
   id: number;

@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import WidgetTable from '@components/widgets/Table';
 import useFetch from '@hooks/useFetch';
-import { GetSubscribeSWResponseClientType, GetSubscribeSWRequestParamsClientType } from '@@types/client';
+import {
+  GetSubscribeSWResponseClientType,
+  GetSubscribeSWRequestParamsClientType,
+  SubscribedSWType,
+} from '@@types/client';
 import { SubscribedSWListAttr, Number } from '@@types/types';
 import { getSubscribedSWAPI } from '../../../../apis/subscribedsw';
 import { LIMIT, subscibedSWListAttr } from '@common/constants';
@@ -18,12 +22,13 @@ export type ItemType = {
 };
 
 export interface RowType extends ItemType {
+  id: number;
   [Number]: number;
 }
 
 interface TableProps {
   searchInfo: SearchInfoType;
-  onRowClick: (item: ItemType) => void;
+  onRowClick: (item: SubscribedSWType) => void;
 }
 
 function Table({ searchInfo, onRowClick }: TableProps) {

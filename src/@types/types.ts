@@ -76,13 +76,13 @@ export const SubscribedSWListAttr = {
 export type SubscribedSWListAttr = typeof SubscribedSWListAttr[keyof typeof SubscribedSWListAttr];
 
 export const ProjectListAttr = {
-  PrjName: 'prjName',
-  CreatedDt: 'createdDt',
-  ReleasedDt: 'releasedDt',
-  PrjStatus: 'prjStatus',
-  License: 'license',
-  Category: 'category',
-  Owner: 'owner',
+  ProjectName: 'projectName',
+  CreateDate: 'createDate',
+  UpdateDate: 'updateDate',
+  ProjectStatus: 'projectStatus',
+  OSSLicenseName: 'ossLicenseName',
+  ProjectCategoryName: 'projectCategoryName',
+  UserId: 'userId',
 } as const;
 export type ProjectListAttr = typeof ProjectListAttr[keyof typeof ProjectListAttr];
 

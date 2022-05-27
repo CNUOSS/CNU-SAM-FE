@@ -4,7 +4,7 @@ import { ItemType as AddLectureSWItemAttrType } from '../components/containers/A
 import { ItemType as LectureSWManagementAttrType } from '../components/containers/LectureSWManagementTab';
 import { ItemType as SubscribedSWAttrType } from '../components/containers/SubscribedSWTab/Table';
 import { ItemType as LicenseAttrType } from '../components/containers/LicenseListTab/Table';
-import { ItemType as ProjectAttrType } from '../components/containers/ProjectListTab';
+import { ItemType as ProjectAttrType } from '../components/containers/ProjectListTab/Table';
 import { SummarizedVersionType } from '../components/containers/ProjectDetailTab';
 
 // Obj Type
@@ -76,13 +76,13 @@ export const generateLectureSW = (): LectureSWType => ({
 });
 
 export const generateProjectListItem = (): ProjectAttrType => ({
-  prjName: generateString(6),
-  createdDt: generateString(6),
-  releasedDt: generateString(6),
-  prjStatus: generateString(6),
-  license: generateString(6),
-  category: generateString(6),
-  owner: generateString(3),
+  projectName: generateString(6),
+  createDate: generateString(6),
+  updateDate: generateString(6),
+  projectStatus: generateString(6),
+  ossLicenseName: generateString(6),
+  projectCategoryName: generateString(6),
+  userId: generateString(3),
 });
 
 export const generateVersionListItem = (): SummarizedVersionType => ({

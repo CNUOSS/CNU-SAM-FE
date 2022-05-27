@@ -12,27 +12,20 @@ import Button from '@components/widgets/Button';
 import Input from '@components/widgets/Input';
 import Template from '@components/templates/ModalTemplate';
 
-import { getSubscribedSWAPI, createSubscribedSWAPI } from '@apis/subscribedsw';
+import { getSubscribedSWAPI, createSubscribedSWAPI, deleteSubscribedSWAPI } from '@apis/subscribedsw';
 import { createSubscribedRequestClient2Server } from '@converter/subscribedsw';
 import { SubscribedSWType, CreateSubscribedRequestBodyClientType } from '@@types/client';
 import * as Style from './styled';
 
 interface AddOrUpdateSubscribedSWModalProps {
   subscribedSW?: SubscribedSWType;
-  modalState: 'create' | 'update';
-  onDelete?: () => void;
   closeModal: () => void;
 }
 
 type InputType = Omit<CreateSubscribedRequestBodyClientType, 'updatorId'>;
 
-function AddOrUpdateSubscribedSWModal({
-  subscribedSW,
-  modalState,
-  closeModal,
-  onDelete,
-}: AddOrUpdateSubscribedSWModalProps) {
-  const headerText = `학내 구독중인 SW ${modalState === 'create' ? `등록` : `수정`}하기`;
+function AddOrUpdateSubscribedSWModal({ subscribedSW, closeModal }: AddOrUpdateSubscribedSWModalProps) {
+  const headerText = `학내 구독중인 SW ${subscribedSW ? `등록` : `수정`}하기`;
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const createMutationSuccess = async () => {
@@ -47,6 +40,11 @@ function AddOrUpdateSubscribedSWModal({
       request: createSubscribedRequestClient2Server,
     },
   });
+  const { mutate: deleteMutate } = useMutation({
+    url: deleteSubscribedSWAPI.url(0),
+    method: deleteSubscribedSWAPI.method,
+    onSuccess: createMutationSuccess,
+  });
   const { change, getValue, handleSubmit, error } = useForm<InputType>({
     swType: [{ error: 'required' }],
     swManufacturer: [{ error: 'required' }],
@@ -57,9 +55,11 @@ function AddOrUpdateSubscribedSWModal({
     firstSubscribeDate: [{ error: 'required' }],
   });
 
+  const onDelete = () => {
+    if (subscribedSW) deleteMutate({ dynamicUrl: deleteSubscribedSWAPI.url(subscribedSW.id) });
+  };
   const onSubmit = (data: InputType) => {
-    if (!user) return;
-    mutate({ updatorId: user.id, ...data });
+    if (user) mutate({ updatorId: user.id, ...data });
   };
 
   return (
@@ -91,12 +91,12 @@ function AddOrUpdateSubscribedSWModal({
         </Style.InputWrapper>
         {error && <Style.Error>모든 항목을(를) 채워주세요</Style.Error>}
         <Style.ButtonWrapper>
-          {modalState === 'update' && onDelete && (
+          {subscribedSW && (
             <Button theme="warning" onClick={onDelete}>
               삭제하기
             </Button>
           )}
-          <Button onClick={handleSubmit(onSubmit)}>{modalState === 'update' ? '수정하기' : '등록하기'}</Button>
+          <Button onClick={handleSubmit(onSubmit)}>{subscribedSW ? '수정하기' : '등록하기'}</Button>
         </Style.ButtonWrapper>
       </Style.Container>
     </Template>

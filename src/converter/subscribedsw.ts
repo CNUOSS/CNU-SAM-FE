@@ -19,11 +19,11 @@ export const subscribedswSearchRequestClient2Server = ({
 }: GetSubscribeSWRequestParamsClientType): GetSubscribeSWRequestParamsServerType => {
   return {
     size,
-    page,
-    sort,
-    'sw-mfr': swType,
-    'sw-name': swName,
-    'sw-type': swType,
+    page: page - 1,
+    sort: sort || null,
+    'sw-mfr': swType || null,
+    'sw-name': swName || null,
+    'sw-type': swType || null,
   };
 };
 

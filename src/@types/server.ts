@@ -116,3 +116,36 @@ export interface CreateSubscribedRequestBodyServerType {
   expire_date: string;
   first_subscribe_date: string;
 }
+
+/* Project */
+export interface ProjectServerType {
+  id: number;
+  project_name: string;
+  project_status: string;
+  create_date: string;
+  update_date: string;
+  oss_license_name: string;
+  project_category_name: string;
+  user_id: string;
+}
+
+// get
+export interface ProjectSearchRequestParamsServerType {
+  size: number;
+  page: number;
+  sort: string | null;
+  user: string | null;
+  category: string | null;
+  ['lc-id']: string | null;
+  ['pj-name']: string | null;
+}
+
+export interface ProjectSearchResponseServerType {
+  page_info: {
+    total_elements: number;
+    last: boolean;
+    total_pages: number;
+    size: number;
+  };
+  project: ProjectServerType[];
+}

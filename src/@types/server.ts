@@ -72,6 +72,40 @@ export interface LogoutRequestBodyServerType {
 }
 
 /* Subscribed SW */
+export interface SubscribedSWServerType {
+  id: number;
+  latest_updater_id: string;
+  sw_type: string;
+  sw_manufacturer: string;
+  sw_name: string;
+  usage_range: string;
+  license: string;
+  latest_update_date: string;
+  expire_date: string;
+  first_subscribe_date: string;
+}
+
+// get
+export interface GetSubscribeSWRequestParamsServerType {
+  size: number;
+  page: number;
+  sort: string;
+  ['sw-type']: string;
+  ['sw-mfr']: string;
+  ['sw-name']: string;
+}
+
+export interface GetSubscribeSWResponseServerType {
+  meta: {
+    total_elements: number;
+    last: boolean;
+    total_pages: number;
+    size: number;
+  };
+  subscription_sw: SubscribedSWServerType[];
+}
+
+// create
 export interface CreateSubscribedRequestBodyServerType {
   latest_updater_id: string;
   sw_type: string;

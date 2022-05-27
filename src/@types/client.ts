@@ -111,3 +111,36 @@ export interface GetSubscribeSWResponseClientType {
 
 // create
 export type CreateSubscribedRequestBodyClientType = Omit<SubscribedSWType, 'id' | 'latestUpdateDate'>;
+
+/* Project */
+export interface ProjectType {
+  id: number;
+  projectName: string;
+  projectStatus: string;
+  createDate: string;
+  updateDate: string;
+  ossLicenseName: string;
+  projectCategoryName: string;
+  userId: string;
+}
+
+// get
+export interface ProjectSearchRequestParamsClientType {
+  size: number;
+  page: number;
+  sort: string;
+  user: string;
+  category: string;
+  lcId: string;
+  pjName: string;
+}
+
+export interface ProjectSearchResponseClientType {
+  pageInfo: {
+    totalElements: number;
+    last: boolean;
+    totalPages: number;
+    size: number;
+  };
+  project: ProjectType[];
+}

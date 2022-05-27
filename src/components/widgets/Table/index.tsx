@@ -139,7 +139,7 @@ function Table<T extends ObjType, C extends string, Label extends string>({
         </AutoSizer>
       </Style.Container>
       {pageCount && (
-        <Style.PaginationWrapper>
+        <Style.PaginationWrapper titleExist={!!title}>
           <Pagination totalCount={pageCount} currentPage={currentPage} onClickPageButton={handleClickPageButton} />
         </Style.PaginationWrapper>
       )}

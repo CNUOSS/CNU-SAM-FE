@@ -35,7 +35,7 @@ interface TableProps<T, C, Label> {
   onClickPageButton?: (pageNumber: number) => void;
 }
 
-// TODO: infinite scrolling
+// FIXME: REFACTORING TYPES
 function Table<T extends ObjType, C extends string, Label extends string>({
   title,
   attributes,

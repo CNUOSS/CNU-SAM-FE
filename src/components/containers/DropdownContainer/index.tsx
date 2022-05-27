@@ -2,16 +2,25 @@ import React from 'react';
 import Dropdown from '@components/widgets/Dropdown';
 import useFetch from '@hooks/useFetch';
 
-interface DropdownContainerProps {
+interface DropdownContainerProps<T> {
   label?: string;
   width?: string;
   getUrl: string;
-  responseConverter: (response: any) => string[];
-  onClickItem: (item: string) => void;
+  // if result data is object array, to filter
+  itemKey?: string;
+  responseConverter: (response: any) => T[];
+  onClickItem: (item: T) => void;
 }
 
-function DropdownContainer({ label, width, getUrl, responseConverter, onClickItem }: DropdownContainerProps) {
-  const { data, refetch, isLoading } = useFetch<string[]>(
+function DropdownContainer<T>({
+  label,
+  width,
+  getUrl,
+  itemKey,
+  responseConverter,
+  onClickItem,
+}: DropdownContainerProps<T>) {
+  const { data, refetch, isLoading } = useFetch<T[]>(
     getUrl,
     {},
     { enabled: false, suspense: false },
@@ -22,13 +31,15 @@ function DropdownContainer({ label, width, getUrl, responseConverter, onClickIte
     if (data) onClickItem(data[clickIndex]);
   };
 
+  const resultIsObjectArray = itemKey && data && typeof data[0] === 'object';
+  const objectData = resultIsObjectArray && (data as any[]).map((d) => d[itemKey]);
   return (
     <Dropdown
       existNoneSelect
       label={label}
       width={width}
       isLoading={isLoading}
-      items={data || []}
+      items={objectData || data || []}
       onClickSelected={refetch}
       onClickItem={clickHandler}
     />

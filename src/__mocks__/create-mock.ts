@@ -2,7 +2,7 @@
 import { ItemType as TotalLectureSWItemAttrType } from '../components/containers/TotalLectureSWListTab';
 import { ItemType as AddLectureSWItemAttrType } from '../components/containers/AddOrUpdateLectureSWTab/Table';
 import { ItemType as LectureSWManagementAttrType } from '../components/containers/LectureSWManagementTab';
-import { ItemType as SubscribedSWAttrType } from '../components/containers/SubscribedSWTab';
+import { ItemType as SubscribedSWAttrType } from '../components/containers/SubscribedSWTab/Table';
 import { ItemType as LicenseAttrType } from '../components/containers/LicenseListTab/Table';
 import { ItemType as ProjectAttrType } from '../components/containers/ProjectListTab';
 import { SummarizedVersionType } from '../components/containers/ProjectDetailTab';
@@ -53,15 +53,15 @@ export const generateSWForLecture = (): LectureSWManagementAttrType => ({
 });
 
 export const generateSubscribedSW = (): SubscribedSWAttrType => ({
-  type: generateString(8),
-  manufacturing: generateString(5),
+  swType: generateString(8),
+  swManufacturer: generateString(5),
   swName: generateString(10),
   usageRange: generateString(5),
   license: generateString(8),
-  expireDt: generateString(7),
-  FirstSubscribeDt: generateString(7),
-  LatestUpdatedDt: generateString(7),
-  writer: generateString(3),
+  expireDate: generateString(7),
+  firstSubscribeDate: generateString(7),
+  latestUpdateDate: generateString(7),
+  updatorId: generateString(3),
 });
 
 export const generateLectureSW = (): LectureSWType => ({

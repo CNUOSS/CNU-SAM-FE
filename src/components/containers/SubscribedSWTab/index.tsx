@@ -1,32 +1,17 @@
 import React, { useState } from 'react';
 import TabTemplate from '@components/templates/TabTemplate';
-import Table from '@components/widgets/Table';
+import Table, { ItemType } from './Table';
 import Input from '@components/widgets/Input';
 import TabForm from '@components/widgets/TabForm';
-import Dropdown from '@components/widgets/Dropdown';
+import Error from '@components/widgets/Error';
 import AddOrUpdateSubscribedSWModal from '@components/modals/AddOrUpdateSubscribedSWModal';
-import { subscibedSWListAttr } from '@common/constants';
-import { SubscribedSWListAttr, Number } from '@@types/types';
 import * as Style from './styled';
+import AsyncBoundary from '@libs/AsyncBoundary';
+import LoadingModal from '@components/modals/LoadingModal';
 
-export type ItemType = {
-  [key in SubscribedSWListAttr]: string;
-};
-
-export interface RowType extends ItemType {
-  [Number]: number;
-}
-
-interface SubscribedSWTabProps {
-  items: ItemType[];
-  manufacturings: string[];
-  types: string[];
-}
-
-function SubscribedSWTab({ items, manufacturings, types }: SubscribedSWTabProps) {
+function SubscribedSWTab() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<ItemType>();
-  const parsedItems: RowType[] = items.map((item, index) => ({ ...item, number: index + 1 }));
 
   const onDelete = () => {};
   const toggleModal = () => {
@@ -52,18 +37,15 @@ function SubscribedSWTab({ items, manufacturings, types }: SubscribedSWTabProps)
       )}
       <TabTemplate description="Description" onCreate={toggleModal}>
         <TabForm onSubmit={handleSearchSW} buttonText="조회하기">
-          <Dropdown label="제품군" items={types} width="21rem" onClickItem={() => {}} />
-          <Dropdown label="제조사" items={manufacturings} width="21rem" onClickItem={() => {}} />
+          <Input label="제품군" value="" width="21rem" onChange={() => {}} />
+          <Input label="제조사" value="" width="21rem" onChange={() => {}} />
           <Input label="제품명" value="" width="21rem" onChange={() => {}} />
         </TabForm>
-        <Style.TableWrapper>
-          <Table
-            title="학내 구독 중인 SW"
-            attributes={subscibedSWListAttr}
-            items={parsedItems}
-            onRowClick={clickItem}
-          />
-        </Style.TableWrapper>
+        <AsyncBoundary pendingFallback={<LoadingModal />} rejectedFallback={Error}>
+          <Style.TableWrapper>
+            <Table onRowClick={clickItem} />
+          </Style.TableWrapper>
+        </AsyncBoundary>
       </TabTemplate>
     </>
   );

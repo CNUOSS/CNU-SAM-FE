@@ -1,34 +1,53 @@
 import React from 'react';
-import SelfDropdown from '@components/widgets/SelfDropdown';
 import Button from '@components/widgets/Button';
 import Input from '@components/widgets/Input';
 import Template from '@components/templates/ModalTemplate';
 import * as Style from './styled';
+import useForm from '@hooks/useForm';
+import { SubscribedSWType, CreateSubscribedRequestBodyClientType } from '@@types/client';
+import useMutation from '@hooks/useMutation';
+import { createSubscribedSWAPI } from '@apis/subscribedsw';
+import { useAuth } from '@libs/auth';
+import { createSubscribedRequestClient2Server } from '@converter/subscribedsw';
 
 interface AddOrUpdateSubscribedSWModalProps {
-  defaultLicense?: string;
-  defaultSWName?: string;
-  defaultExpireDate?: string;
-  defaultLastestUpdatedDate?: string;
+  subscribedSW?: SubscribedSWType;
   modalState: 'create' | 'update';
-  onSubmit: () => void;
   onDelete?: () => void;
   closeModal: () => void;
 }
 
-// TODO: make default prosp to state
+type InputType = Omit<CreateSubscribedRequestBodyClientType, 'updatorId'>;
+
 function AddOrUpdateSubscribedSWModal({
-  defaultLicense = '',
-  defaultSWName = '',
-  defaultExpireDate = '',
-  defaultLastestUpdatedDate = '',
+  subscribedSW,
   modalState,
   closeModal,
   onDelete,
-  onSubmit,
 }: AddOrUpdateSubscribedSWModalProps) {
-  const handleSubmit = () => onSubmit();
   const headerText = `학내 구독중인 SW ${modalState === 'create' ? `등록` : `수정`}하기`;
+  const { user } = useAuth();
+  const { mutate } = useMutation<SubscribedSWType>({
+    url: createSubscribedSWAPI.url,
+    method: createSubscribedSWAPI.method,
+    converter: {
+      request: createSubscribedRequestClient2Server,
+    },
+  });
+  const { change, getValue, handleSubmit, error } = useForm<InputType>({
+    swType: [{ error: 'required' }],
+    swManufacturer: [{ error: 'required' }],
+    swName: [{ error: 'required' }],
+    usageRange: [{ error: 'required' }],
+    license: [{ error: 'required' }],
+    expireDate: [{ error: 'required' }],
+    firstSubscribeDate: [{ error: 'required' }],
+  });
+
+  const onSubmit = (data: InputType) => {
+    if (!user) return;
+    mutate({ updatorId: user.id, ...data });
+  };
 
   return (
     <Template closeModal={closeModal}>
@@ -36,48 +55,35 @@ function AddOrUpdateSubscribedSWModal({
         <Style.Header>{headerText}</Style.Header>
         <Style.Description>화이팅</Style.Description>
         <Style.InputWrapper>
-          <SelfDropdown
-            items={['1', '2']}
-            label="제품군"
-            width={23}
-            inputWidth={10}
-            inputValue=""
-            onChange={() => {}}
+          <Input label="제품군" width="23rem" value={getValue('swType')} onChange={change('swType')} />
+          <Input label="이용범위" width="23rem" value={getValue('usageRange')} onChange={change('usageRange')} />
+          <Input label="제조사" width="23rem" value={getValue('swManufacturer')} onChange={change('swManufacturer')} />
+          <Input label="라이선스" width="23rem" value={getValue('license')} onChange={change('license')} />
+          <Input label="제품명" width="23rem" value={getValue('swName')} onChange={change('swName')} />
+          <Input
+            type="date"
+            label="만료일"
+            width="23rem"
+            value={getValue('expireDate')}
+            onChange={change('expireDate')}
           />
-          <SelfDropdown
-            items={['1', '2']}
-            label="이용범위"
-            width={23}
-            inputWidth={10}
-            inputValue=""
-            onChange={() => {}}
-          />
-          <SelfDropdown
-            items={['1', '2']}
-            label="제조사"
-            width={23}
-            inputWidth={10}
-            inputValue=""
-            onChange={() => {}}
-          />
-          <Input label="라이선스" width="23rem" value={defaultLicense} onChange={() => {}} />
-          <Input label="제품명" width="23rem" value={defaultSWName} onChange={() => {}} />
-          <Input label="만료일" width="23rem" value={defaultExpireDate} onChange={() => {}} />
           <Style.BlankSpace />
           <Input
-            label={defaultLastestUpdatedDate ? '갱신일' : '구독시작일'}
+            type="date"
+            label="최초구독일"
             width="23rem"
-            value={defaultLastestUpdatedDate}
-            onChange={() => {}}
+            value={getValue('firstSubscribeDate')}
+            onChange={change('firstSubscribeDate')}
           />
         </Style.InputWrapper>
+        {error && <Style.Error>모든 항목을(를) 채워주세요</Style.Error>}
         <Style.ButtonWrapper>
           {modalState === 'update' && onDelete && (
             <Button theme="warning" onClick={onDelete}>
               삭제하기
             </Button>
           )}
-          <Button onClick={handleSubmit}>{modalState === 'update' ? '수정하기' : '등록하기'}</Button>
+          <Button onClick={handleSubmit(onSubmit)}>{modalState === 'update' ? '수정하기' : '등록하기'}</Button>
         </Style.ButtonWrapper>
       </Style.Container>
     </Template>

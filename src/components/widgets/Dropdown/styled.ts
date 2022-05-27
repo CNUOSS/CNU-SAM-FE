@@ -63,6 +63,7 @@ export const Item = styled.li<ItemProps>`
   color: ${(props) => props.selected && props.theme.colors.primary};
   font-size: 1.5rem;
   font-weight: ${(props) => props.selected && 'bold'};
+  word-break: break-all;
   cursor: pointer;
 
   &:last-child {

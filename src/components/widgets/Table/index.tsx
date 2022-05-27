@@ -31,6 +31,7 @@ interface TableProps<T, C, Label> {
   items: T[];
   pageCount?: number;
   onRowClick?: (item: T) => void;
+  onSort?: (sortBy: string, sortDirection: SortDirectionType) => void;
   onClickPageButton?: (pageNumber: number) => void;
 }
 
@@ -41,6 +42,7 @@ function Table<T extends ObjType, C extends string, Label extends string>({
   pageCount,
   items,
   onRowClick,
+  onSort,
   onClickPageButton,
 }: TableProps<T, C, Label>) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -63,6 +65,7 @@ function Table<T extends ObjType, C extends string, Label extends string>({
   };
 
   const sort = (sortBy: string, sortDirection: SortDirectionType) => {
+    if (onSort) onSort(sortBy, sortDirection);
     const sortedList: T[] = sortList(sortBy, sortDirection);
 
     setSortBy(sortBy);

@@ -148,8 +148,24 @@ export interface ProjectMetaServerType {
   oss_license_id: number;
   project_category_name: string;
 }
+export interface ProjectDetailServerType {
+  id: number;
+  project_description: string;
+  project_name: string;
+  project_status: string;
+  create_date: string;
+  update_date: string;
+  project_category_name: string;
+  oss_license_name: string;
+  user_id: string;
+  version: {
+    id: number;
+    version_name: string;
+    create_date: string;
+  }[];
+}
 
-// get
+// search
 export interface ProjectSearchRequestParamsServerType {
   size: number;
   page: number;
@@ -169,6 +185,9 @@ export interface ProjectSearchResponseServerType {
   };
   project: ProjectListItemServerType[];
 }
+
+// get detail
+export interface GetProjectDetailResponseServerType extends ProjectDetailServerType {}
 
 // create
 export interface CreateProjectRequestServerType extends ProjectMetaServerType {

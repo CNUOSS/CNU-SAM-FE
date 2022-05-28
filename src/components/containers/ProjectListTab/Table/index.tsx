@@ -47,7 +47,7 @@ function Table({ searchInfo, onRowClick }: TableProps) {
   }, [searchInfo]);
 
   const onClickPageButton = (pageNumber: number) => {
-    setApiInfo((prev) => ({ ...prev, offset: pageNumber }));
+    setApiInfo((prev) => ({ ...prev, page: pageNumber }));
   };
   const onSort = (sortBy: string, sortDirection: SortDirectionType) => {
     setApiInfo((prev) => ({ ...prev, sort: `${sortBy},${sortDirection.toLowerCase()}` }));

@@ -5,12 +5,11 @@ import TabTemplate from '@components/templates/TabTemplate';
 
 // Components
 import Input from '@components/widgets/Input';
-import Error from '@components/widgets/Error';
 import TabForm from '@components/widgets/TabForm';
-import LoadingModal from '@components/modals/LoadingModal';
 import ProjectDetailTab from '@components/containers/ProjectDetailTab';
 import DropdownContainer from '../DropdownContainer';
 import Table, { SearchInfoType } from './Table';
+import AsyncBoundaryWrapper from '../AsyncBoundaryWrapper';
 
 // Apis
 import { getCategoryNamesAPI, getLicenseNamesAPI } from '@apis/data';
@@ -19,7 +18,6 @@ import { getCategoryNamesResponseServer2Client, getLicenseNamesResponseServer2Cl
 import useForm from '@hooks/useForm';
 import { tabState } from '@recoil/tab';
 import { compareTabs } from '@utils/manage-tabs';
-import AsyncBoundary from '@libs/AsyncBoundary';
 import { LicenseNamesType, ProjectListItemType } from '@@types/client';
 import * as Style from './styled';
 
@@ -66,11 +64,11 @@ function ProjectListTab() {
           />
         </Style.InputWrapper>
       </TabForm>
-      <AsyncBoundary pendingFallback={<LoadingModal />} rejectedFallback={Error}>
+      <AsyncBoundaryWrapper>
         <Style.TableWrapper>
           <Table searchInfo={infoStore} onRowClick={clickItem} />
         </Style.TableWrapper>
-      </AsyncBoundary>
+      </AsyncBoundaryWrapper>
     </TabTemplate>
   );
 }

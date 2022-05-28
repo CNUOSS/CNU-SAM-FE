@@ -1,5 +1,13 @@
-import { ProjectSearchRequestParamsClientType, ProjectSearchResponseClientType } from '@@types/client';
-import { ProjectSearchRequestParamsServerType, ProjectSearchResponseServerType } from '@@types/server';
+import {
+  CreateProjectResponseClientType,
+  ProjectSearchRequestParamsClientType,
+  ProjectSearchResponseClientType,
+} from '@@types/client';
+import {
+  CreateProjectResponseServerType,
+  ProjectSearchRequestParamsServerType,
+  ProjectSearchResponseServerType,
+} from '@@types/server';
 import { CreateProjectRequestClientType } from '../@types/client';
 import { CreateProjectRequestServerType } from '../@types/server';
 
@@ -59,7 +67,17 @@ export const createProjectRequestClient2Server = ({
     project_description: projectDescription,
     project_status: 'C',
     project_category_name: projectCategoryName,
-    oss_license_id: ossLicenseId,
+    oss_license_id: Number(ossLicenseId),
     user_id: userId,
+  };
+};
+
+export const createProjectResponseServer2Client = ({
+  id,
+  project_name,
+}: CreateProjectResponseServerType): CreateProjectResponseClientType => {
+  return {
+    id,
+    projectName: project_name,
   };
 };

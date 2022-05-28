@@ -161,3 +161,8 @@ export interface ProjectSearchResponseClientType {
 export interface CreateProjectRequestClientType extends ProjectMetaType {
   userId: string;
 }
+
+export interface CreateProjectResponseClientType {
+  id: number;
+  projectName: string;
+}

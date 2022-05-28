@@ -20,7 +20,7 @@ import useForm from '@hooks/useForm';
 import { tabState } from '@recoil/tab';
 import compareTabs from '@utils/compare-tabs';
 import AsyncBoundary from '@libs/AsyncBoundary';
-import { LicenseNamesType, ProjectType } from '@@types/client';
+import { LicenseNamesType, ProjectListItemType } from '@@types/client';
 import * as Style from './styled';
 
 function ProjectListTab() {
@@ -36,7 +36,7 @@ function ProjectListTab() {
   const selectCategory = (category: string) => change('category')(category);
   const selectLicense = (license: LicenseNamesType) => change('lcId')(String(license.id));
 
-  const clickItem = (item: ProjectType) => {
+  const clickItem = (item: ProjectListItemType) => {
     setTabState((oldState) =>
       compareTabs(oldState, `${item.projectName} 프로젝트`, <ProjectDetailTab versions={[]} />)
     );

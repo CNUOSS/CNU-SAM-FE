@@ -10,7 +10,11 @@ import useFetch from '@hooks/useFetch';
 import WidgetTable from '@components/widgets/Table';
 import { LIMIT, projectListAttr } from '@common/constants';
 import { ProjectListAttr, Number } from '@@types/types';
-import { ProjectSearchResponseClientType, ProjectSearchRequestParamsClientType, ProjectType } from '@@types/client';
+import {
+  ProjectSearchResponseClientType,
+  ProjectSearchRequestParamsClientType,
+  ProjectListItemType,
+} from '@@types/client';
 
 export type SearchInfoType = Omit<ProjectSearchRequestParamsClientType, 'size' | 'page' | 'sort'>;
 export type ItemType = { [key in ProjectListAttr]: string };
@@ -21,7 +25,7 @@ export interface RowType extends ItemType {
 
 interface TableProps {
   searchInfo: SearchInfoType;
-  onRowClick: (item: ProjectType) => void;
+  onRowClick: (item: ProjectListItemType) => void;
 }
 
 function Table({ searchInfo, onRowClick }: TableProps) {

@@ -131,7 +131,7 @@ export interface CreateSubscribedRequestBodyServerType {
 }
 
 /* Project */
-export interface ProjectServerType {
+export interface ProjectListItemServerType {
   id: number;
   project_name: string;
   project_status: string;

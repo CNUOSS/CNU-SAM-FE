@@ -119,7 +119,7 @@ export interface GetSubscribeSWResponseClientType {
 export type CreateSubscribedRequestBodyClientType = Omit<SubscribedSWType, 'id' | 'latestUpdateDate'>;
 
 /* Project */
-export interface ProjectType {
+export interface ProjectListItemType {
   id: number;
   projectName: string;
   projectStatus: string;

@@ -87,7 +87,7 @@ export const generateProjectListItem = (): ProjectAttrType => ({
 
 export const generateVersionListItem = (): SummarizedVersionType => ({
   versionName: generateString(8),
-  createdDt: generateString(8),
+  createDate: generateString(8),
 });
 
 // FIXME: Replace with license object in api-mock file

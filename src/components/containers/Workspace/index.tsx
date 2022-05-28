@@ -6,7 +6,7 @@ import Icon from '@components/widgets/Icon';
 import DnD, { TAB_NAME_ATTR } from '@components/widgets/DnD';
 import { tabState, tabSelector } from '@recoil/tab';
 import * as Style from './styled';
-import { deleteTabs } from '@utils/compare-tabs';
+import { deleteTabs } from '@utils/manage-tabs';
 
 export const TabList = forwardRef<LegacyRef<HTMLUListElement>, any>(({ children, ...props }, ref) => (
   <Style.TabList ref={ref} {...props}>

@@ -18,7 +18,7 @@ import SigninForm from './SigninForm';
 
 import logoImage from '@assets/images/logo.jpg';
 import { CategoryType, LANGUAGES, mgCategory, pjCategory, swCategory } from '@common/constants';
-import compareTabs from '@utils/compare-tabs';
+import { compareTabs } from '@utils/manage-tabs';
 import { tabState } from '@recoil/tab';
 import { NavItem } from '@@types/types';
 import { NOTLOGIN, RoleType } from '@@types/client';

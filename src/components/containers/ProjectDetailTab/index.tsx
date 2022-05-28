@@ -8,7 +8,7 @@ import EnrollVersionTab from '@components/containers/EnrollVersionTab';
 import { VersionListAttr } from '@@types/types';
 import { versionListAttr } from '@common/constants';
 import { tabState } from '@recoil/tab';
-import compareTabs from '@utils/compare-tabs';
+import { compareTabs } from '@utils/manage-tabs';
 import * as Style from './styled';
 
 export type SummarizedVersionType = {

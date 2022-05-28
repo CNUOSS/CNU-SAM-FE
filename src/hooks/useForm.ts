@@ -23,7 +23,7 @@ type Validator<T> = {
 
 interface useFormType<T> {
   error: Error<T> | undefined;
-  change: (key: keyof T) => (event: React.ChangeEvent<HTMLInputElement> | string) => void;
+  change: (key: keyof T) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | string) => void;
   getValue: (key: keyof T) => string;
   getAllValue: () => Partial<T>;
   getArrayValues: (key: keyof T) => string[];
@@ -36,7 +36,7 @@ function useForm<T extends object>(validators?: Validator<T>): useFormType<T> {
   const [arrayState, setArrayState] = useState<ArrayStateType<T>>({} as ArrayStateType<T>);
   const [error, setError] = useState<Error<T>>();
 
-  const change = (key: keyof T) => (event: React.ChangeEvent<HTMLInputElement> | string) => {
+  const change = (key: keyof T) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | string) => {
     if (typeof event === 'string' || !event) setState((prev) => ({ ...prev, [key]: event }));
     else setState((prev) => ({ ...prev, [key]: event.target.value }));
   };

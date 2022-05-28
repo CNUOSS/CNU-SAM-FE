@@ -1,10 +1,12 @@
 import {
   CreateProjectResponseClientType,
+  GetProjectDetailResponseClientType,
   ProjectSearchRequestParamsClientType,
   ProjectSearchResponseClientType,
 } from '@@types/client';
 import {
   CreateProjectResponseServerType,
+  GetProjectDetailResponseServerType,
   ProjectSearchRequestParamsServerType,
   ProjectSearchResponseServerType,
 } from '@@types/server';
@@ -51,6 +53,36 @@ export const projectSearchResponseServer2Client = ({
       ossLicenseName: pj.oss_license_name,
       projectCategoryName: pj.project_category_name,
       userId: pj.user_id,
+    })),
+  };
+};
+
+export const getProjectDetailResponseServer2Client = ({
+  id,
+  project_description,
+  project_name,
+  project_status,
+  create_date,
+  update_date,
+  project_category_name,
+  oss_license_name,
+  user_id,
+  version,
+}: GetProjectDetailResponseServerType): GetProjectDetailResponseClientType => {
+  return {
+    id,
+    projectDescription: project_description,
+    projectName: project_name,
+    projectStatus: project_status,
+    createDate: new Date(create_date).toLocaleDateString(),
+    updateDate: new Date(update_date).toLocaleDateString(),
+    projectCategoryName: project_category_name,
+    ossLicenseName: oss_license_name,
+    userId: user_id,
+    versionList: version.map((v) => ({
+      id: v.id,
+      versionName: v.version_name,
+      createDate: new Date(v.create_date).toLocaleDateString(),
     })),
   };
 };

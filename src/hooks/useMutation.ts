@@ -14,7 +14,7 @@ interface UseMutationType {
   onError?: (error: any) => void;
 }
 
-export type MethodType = 'POST' | 'UPDATE' | 'DELETE' | 'PUT';
+export type MethodType = 'POST' | 'UPDATE' | 'DELETE' | 'PUT' | 'GET';
 const fetcher =
   (url: string, method: MethodType, converter?: ConverterType) => async (data: object & { dynamicUrl?: string }) => {
     const convertedData = converter?.request ? converter?.request(data) : data;

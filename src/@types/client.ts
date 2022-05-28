@@ -135,8 +135,24 @@ export interface ProjectMetaType {
   ossLicenseId: number;
   projectCategoryName: string;
 }
+export interface ProjectDetailType {
+  id: number;
+  projectDescription: string;
+  projectName: string;
+  projectStatus: string;
+  createDate: string;
+  updateDate: string;
+  projectCategoryName: string;
+  ossLicenseName: string;
+  userId: string;
+  versionList: {
+    id: number;
+    versionName: string;
+    createDate: string;
+  }[];
+}
 
-// get
+// search
 export interface ProjectSearchRequestParamsClientType {
   size: number;
   page: number;
@@ -146,6 +162,9 @@ export interface ProjectSearchRequestParamsClientType {
   lcId: string;
   pjName: string;
 }
+
+// get detail
+export interface GetProjectDetailResponseClientType extends ProjectDetailType {}
 
 export interface ProjectSearchResponseClientType {
   pageInfo: {

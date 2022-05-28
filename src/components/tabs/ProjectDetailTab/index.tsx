@@ -8,8 +8,8 @@ import TabTemplate from '@components/templates/TabTemplate';
 import DefaultText from '@components/widgets/DefaultText';
 import Button from '@components/widgets/Button';
 import Table from '@components/widgets/Table';
-import EnrollVersionTab from '@components/containers/EnrollVersionTab';
-import AsyncBoundaryWrapper from '../AsyncBoundaryWrapper';
+import EnrollVersionTab from '@components/tabs/EnrollVersionTab';
+import AsyncBoundaryWrapper from '@components/containers/AsyncBoundaryWrapper';
 
 // APIs
 import { deleteProjectAPI, getProjectDetailAPI, getProjectListAPI } from '@apis/project';

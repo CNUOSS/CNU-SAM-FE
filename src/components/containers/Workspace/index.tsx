@@ -6,6 +6,7 @@ import Icon from '@components/widgets/Icon';
 import DnD, { TAB_NAME_ATTR } from '@components/widgets/DnD';
 import { tabState, tabSelector } from '@recoil/tab';
 import * as Style from './styled';
+import { deleteTabs } from '@utils/compare-tabs';
 
 export const TabList = forwardRef<LegacyRef<HTMLUListElement>, any>(({ children, ...props }, ref) => (
   <Style.TabList ref={ref} {...props}>
@@ -18,13 +19,7 @@ export const TabItem = forwardRef<LegacyRef<HTMLLIElement>, any>(({ children, ..
 
   const name = props[TAB_NAME_ATTR];
   const closeTab = () => {
-    setTabState(({ tabs, currentIdx }) => {
-      const tabIndex = tabs.findIndex((tab) => tab.name === name);
-      return {
-        tabs: tabs.filter((tab) => tab.name !== name),
-        currentIdx: tabIndex > currentIdx ? currentIdx : Math.max(currentIdx - 1, 0),
-      };
-    });
+    setTabState((prev) => deleteTabs(prev, name));
   };
 
   return (

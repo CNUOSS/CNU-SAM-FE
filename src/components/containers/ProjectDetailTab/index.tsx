@@ -17,10 +17,11 @@ export type SummarizedVersionType = {
 
 interface ProjectDetailTabProps {
   // FIXME: get project id instead of versions
-  versions: SummarizedVersionType[];
+  projectId: number;
+  versions?: SummarizedVersionType[];
 }
 
-function ProjectDetailTab({ versions }: ProjectDetailTabProps) {
+function ProjectDetailTab({ projectId, versions = [] }: ProjectDetailTabProps) {
   const setTabState = useSetRecoilState(tabState);
 
   const parsedVersions = versions.map((version, index) => ({

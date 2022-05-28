@@ -8,3 +8,8 @@ export const getProjectDetailAPI: { method: MethodType; url: (projectId: number)
 };
 
 export const createProjectAPI: { method: MethodType; url: string } = { method: 'POST', url: '/projects' };
+
+export const deleteProjectAPI: { method: MethodType; url: (projectId: number) => string } = {
+  method: 'DELETE',
+  url: (projectId) => `/projects/${projectId}`,
+};

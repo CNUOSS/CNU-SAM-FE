@@ -12,28 +12,29 @@ import EnrollVersionTab from '@components/containers/EnrollVersionTab';
 import AsyncBoundaryWrapper from '../AsyncBoundaryWrapper';
 
 // APIs
-import { getProjectDetailAPI } from '@apis/project';
+import { deleteProjectAPI, getProjectDetailAPI, getProjectListAPI } from '@apis/project';
 import { getProjectDetailResponseServer2Client } from '@converter/project';
 
 import useFetch from '@hooks/useFetch';
 import { VersionListAttr } from '@@types/types';
 import { versionListAttr } from '@common/constants';
 import { GetProjectDetailResponseClientType } from '@@types/client';
-import { compareTabs } from '@utils/manage-tabs';
+import { compareTabs, deleteTabs } from '@utils/manage-tabs';
 import { useAuth } from '@libs/auth';
 import * as Style from './styled';
+import useMutation from '@hooks/useMutation';
+import { useQueryClient } from 'react-query';
 
 export type SummarizedVersionType = {
   [key in VersionListAttr]: string;
 };
 
 interface ProjectDetailTabProps {
-  // FIXME: get project id instead of versions
   projectId: number;
-  versions?: SummarizedVersionType[];
 }
 
-function ProjectDetailTab({ projectId, versions = [] }: ProjectDetailTabProps) {
+function ProjectDetailTab({ projectId }: ProjectDetailTabProps) {
+  const queryClient = useQueryClient();
   const setTabState = useSetRecoilState(tabState);
   const { user } = useAuth();
   const { data } = useFetch<GetProjectDetailResponseClientType>(
@@ -43,6 +44,28 @@ function ProjectDetailTab({ projectId, versions = [] }: ProjectDetailTabProps) {
     { response: getProjectDetailResponseServer2Client }
   );
 
+  const deleteMutationSuccess = async () => {
+    if (!data) return;
+    await queryClient.invalidateQueries(getProjectListAPI);
+    setTabState((prev) => deleteTabs(prev, `${data.id} . ${data.projectName}`));
+  };
+  const { mutate: deleteMutate } = useMutation({
+    url: deleteProjectAPI.url(0),
+    method: deleteProjectAPI.method,
+    onSuccess: deleteMutationSuccess,
+  });
+
+  const clickEnrollVersionButton = () => {
+    if (!data) return;
+    setTabState((oldState) =>
+      compareTabs(oldState, `${data.id} . ${data.projectName}: 버전등록`, <EnrollVersionTab projectName="프로젝트명" />)
+    );
+  };
+
+  const deleteProject = () => {
+    if (data) deleteMutate({ dynamicUrl: deleteProjectAPI.url(data.id) });
+  };
+
   const parsedVersions =
     data?.versionList.map((version, index) => ({
       ...version,
@@ -50,15 +73,9 @@ function ProjectDetailTab({ projectId, versions = [] }: ProjectDetailTabProps) {
       temp: <Button>라이선스 지킴이</Button>,
     })) || [];
 
-  const clickEnrollVersionButton = () => {
-    setTabState((oldState) =>
-      compareTabs(oldState, `프로젝트명: 버전등록`, <EnrollVersionTab projectName="프로젝트명" />)
-    );
-  };
-
   if (!data) return <></>;
   return (
-    <TabTemplate description="Description">
+    <TabTemplate description="Description" onDelete={deleteProject}>
       <AsyncBoundaryWrapper>
         <Style.BackGroundBox>
           <Style.InputWrapper>

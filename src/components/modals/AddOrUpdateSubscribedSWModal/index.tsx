@@ -28,14 +28,14 @@ function AddOrUpdateSubscribedSWModal({ subscribedSW, closeModal }: AddOrUpdateS
   const headerText = `학내 구독중인 SW ${subscribedSW ? `등록` : `수정`}하기`;
   const { user } = useAuth();
   const queryClient = useQueryClient();
-  const createMutationSuccess = async () => {
+  const excuteMutationSuccess = async () => {
     await queryClient.invalidateQueries(getSubscribedSWAPI);
     closeModal();
   };
   const { mutate } = useMutation<SubscribedSWType>({
     url: createSubscribedSWAPI.url,
     method: createSubscribedSWAPI.method,
-    onSuccess: createMutationSuccess,
+    onSuccess: excuteMutationSuccess,
     converter: {
       request: createSubscribedRequestClient2Server,
     },
@@ -43,7 +43,7 @@ function AddOrUpdateSubscribedSWModal({ subscribedSW, closeModal }: AddOrUpdateS
   const { mutate: deleteMutate } = useMutation({
     url: deleteSubscribedSWAPI.url(0),
     method: deleteSubscribedSWAPI.method,
-    onSuccess: createMutationSuccess,
+    onSuccess: excuteMutationSuccess,
   });
   const { change, getValue, handleSubmit, error } = useForm<InputType>({
     swType: [{ error: 'required' }],

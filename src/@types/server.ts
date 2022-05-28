@@ -162,3 +162,13 @@ export interface ProjectSearchResponseServerType {
   };
   project: ProjectServerType[];
 }
+
+// create
+export interface CreateProjectRequestServerType {
+  project_description: string;
+  project_name: string;
+  project_status: string;
+  oss_license_id: number;
+  project_category_name: string;
+  user_id: string;
+}

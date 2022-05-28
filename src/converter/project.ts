@@ -1,5 +1,7 @@
 import { ProjectSearchRequestParamsClientType, ProjectSearchResponseClientType } from '@@types/client';
 import { ProjectSearchRequestParamsServerType, ProjectSearchResponseServerType } from '@@types/server';
+import { CreateProjectRequestClientType } from '../@types/client';
+import { CreateProjectRequestServerType } from '../@types/server';
 
 export const projectSearchRequestClient2Server = ({
   size,
@@ -42,5 +44,23 @@ export const projectSearchResponseServer2Client = ({
       projectCategoryName: pj.project_category_name,
       userId: pj.user_id,
     })),
+  };
+};
+
+export const createProjectRequestClient2Server = ({
+  projectName,
+  projectDescription,
+  projectStatus,
+  projectCategoryName,
+  ossLicenseId,
+  userId,
+}: CreateProjectRequestClientType): CreateProjectRequestServerType => {
+  return {
+    project_name: projectName,
+    project_description: projectDescription,
+    project_status: projectStatus,
+    project_category_name: projectCategoryName,
+    oss_license_id: ossLicenseId,
+    user_id: userId,
   };
 };

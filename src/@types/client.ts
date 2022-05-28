@@ -150,3 +150,13 @@ export interface ProjectSearchResponseClientType {
   };
   project: ProjectType[];
 }
+
+// create
+export interface CreateProjectRequestClientType {
+  projectDescription: string;
+  projectName: string;
+  projectStatus: string;
+  ossLicenseId: number;
+  projectCategoryName: string;
+  userId: string;
+}

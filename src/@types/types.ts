@@ -88,7 +88,7 @@ export type ProjectListAttr = typeof ProjectListAttr[keyof typeof ProjectListAtt
 
 export const VersionListAttr = {
   VersionName: 'versionName',
-  CreatedDt: 'createdDt',
+  CreatedDate: 'createDate',
 } as const;
 export type VersionListAttr = typeof VersionListAttr[keyof typeof VersionListAttr];
 

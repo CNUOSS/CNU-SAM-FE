@@ -38,7 +38,7 @@ function ProjectListTab() {
 
   const clickItem = (item: ProjectListItemType) => {
     setTabState((oldState) =>
-      compareTabs(oldState, `${item.projectName} 프로젝트`, <ProjectDetailTab versions={[]} />)
+      compareTabs(oldState, `${item.id} . ${item.projectName}`, <ProjectDetailTab projectId={item.id} />)
     );
   };
 

@@ -2,10 +2,8 @@ import React from 'react';
 import ProjectDetailTab from '.';
 import { render, screen, fireEvent } from '@libs/rtl-utils';
 import { versionListAttr } from '@common/constants';
-import { generateVersionListItem } from '../../../__mocks__/create-mock';
 
-const versions = [generateVersionListItem(), generateVersionListItem(), generateVersionListItem()];
-const renderApp = () => render(<ProjectDetailTab versions={versions} />);
+const renderApp = () => render(<ProjectDetailTab projectId={0} />);
 
 describe('Container/VersionListTab', () => {
   describe('rendering test', () => {

@@ -73,10 +73,7 @@ function Sidebar() {
           component: <AddOrUpdateLectureSWTab manufacturingList={[]} swNames={[]} tabState="create" />,
         };
       case 'EnrollPRJ':
-        return {
-          name: '프로젝트 등록',
-          component: <AddOrUpdateProjectTab tabState="create" />,
-        };
+        return { name: '프로젝트 등록', component: <AddOrUpdateProjectTab /> };
       default:
         return { name: 'error', component: <></> };
     }

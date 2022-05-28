@@ -75,7 +75,7 @@ function ProjectDetailTab({ projectId }: ProjectDetailTabProps) {
 
   if (!data) return <></>;
   return (
-    <TabTemplate description="Description" onDelete={deleteProject}>
+    <TabTemplate description="Description" onDelete={user?.id === data.userId ? deleteProject : undefined}>
       <AsyncBoundaryWrapper>
         <Style.BackGroundBox>
           <Style.InputWrapper>

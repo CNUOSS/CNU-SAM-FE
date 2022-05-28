@@ -10,7 +10,7 @@ import AddOrUpdateLectureSWTab from '@components/containers//AddOrUpdateLectureS
 import { TotalLectureSWListAttr } from '@@types/types';
 import { totalLectureSWListAttr } from '@common/constants';
 import { tabState } from '@recoil/tab';
-import compareTabs from '@utils/compare-tabs';
+import { compareTabs } from '@utils/manage-tabs';
 import * as Style from './styled';
 
 // FIXME: remove

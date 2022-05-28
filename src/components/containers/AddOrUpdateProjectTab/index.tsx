@@ -22,7 +22,7 @@ import useForm from '@hooks/useForm';
 import useMutation from '@hooks/useMutation';
 
 import { tabState } from '@recoil/tab';
-import compareTabs, { deleteTabs } from '@utils/compare-tabs';
+import { compareTabs, deleteTabs } from '@utils/manage-tabs';
 import {
   CreateProjectRequestClientType,
   CreateProjectResponseClientType,

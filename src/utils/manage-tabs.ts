@@ -1,7 +1,7 @@
 import React from 'react';
 import { TabState } from '@recoil/tab/atom';
 
-const compareTabs = (oldState: TabState, name: string, component: React.ReactElement): TabState => {
+export const compareTabs = (oldState: TabState, name: string, component: React.ReactElement): TabState => {
   const index = oldState.tabs.findIndex((tab) => tab.name === name);
   if (index === oldState.currentIdx) return oldState;
   return {
@@ -17,5 +17,3 @@ export const deleteTabs = ({ tabs, currentIdx }: TabState, name: string): TabSta
     currentIdx: tabIndex > currentIdx ? currentIdx : Math.max(currentIdx - 1, 0),
   };
 };
-
-export default compareTabs;

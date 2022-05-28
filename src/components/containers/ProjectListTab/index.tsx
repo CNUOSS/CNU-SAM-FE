@@ -18,7 +18,7 @@ import { getCategoryNamesResponseServer2Client, getLicenseNamesResponseServer2Cl
 
 import useForm from '@hooks/useForm';
 import { tabState } from '@recoil/tab';
-import compareTabs from '@utils/compare-tabs';
+import { compareTabs } from '@utils/manage-tabs';
 import AsyncBoundary from '@libs/AsyncBoundary';
 import { LicenseNamesType, ProjectListItemType } from '@@types/client';
 import * as Style from './styled';

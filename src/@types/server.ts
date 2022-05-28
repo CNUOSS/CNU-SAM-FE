@@ -141,6 +141,13 @@ export interface ProjectListItemServerType {
   project_category_name: string;
   user_id: string;
 }
+export interface ProjectMetaType {
+  project_description: string;
+  project_name: string;
+  project_status: string;
+  oss_license_id: number;
+  project_category_name: string;
+}
 
 // get
 export interface ProjectSearchRequestParamsServerType {
@@ -160,15 +167,10 @@ export interface ProjectSearchResponseServerType {
     total_pages: number;
     size: number;
   };
-  project: ProjectServerType[];
+  project: ProjectListItemServerType[];
 }
 
 // create
-export interface CreateProjectRequestServerType {
-  project_description: string;
-  project_name: string;
-  project_status: string;
-  oss_license_id: number;
-  project_category_name: string;
+export interface CreateProjectRequestServerType extends ProjectMetaType {
   user_id: string;
 }

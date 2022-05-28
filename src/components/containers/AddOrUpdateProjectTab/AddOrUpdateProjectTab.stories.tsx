@@ -6,6 +6,6 @@ export default {
   component: AddOrUpdateProjectTab,
 };
 
-export const createTab = () => <AddOrUpdateProjectTab tabState="create" />;
+export const createTab = () => <AddOrUpdateProjectTab />;
 
-export const updateTab = () => <AddOrUpdateProjectTab tabState="update" />;
+export const updateTab = () => <AddOrUpdateProjectTab />;

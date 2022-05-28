@@ -141,7 +141,7 @@ export interface ProjectListItemServerType {
   project_category_name: string;
   user_id: string;
 }
-export interface ProjectMetaType {
+export interface ProjectMetaServerType {
   project_description: string;
   project_name: string;
   project_status: string;
@@ -171,6 +171,13 @@ export interface ProjectSearchResponseServerType {
 }
 
 // create
-export interface CreateProjectRequestServerType extends ProjectMetaType {
+export interface CreateProjectRequestServerType extends ProjectMetaServerType {
+  user_id: string;
+}
+
+export interface CreateProjectResponseServerType extends ProjectMetaServerType {
+  id: number;
+  create_date: string;
+  update_date: string;
   user_id: string;
 }

@@ -1,14 +1,14 @@
 // Attribute Type
-import { ItemType as TotalLectureSWItemAttrType } from '../components/containers/TotalLectureSWListTab';
-import { ItemType as AddLectureSWItemAttrType } from '../components/containers/AddOrUpdateLectureSWTab/Table';
-import { ItemType as LectureSWManagementAttrType } from '../components/containers/LectureSWManagementTab';
-import { ItemType as SubscribedSWAttrType } from '../components/containers/SubscribedSWTab/Table';
-import { ItemType as LicenseAttrType } from '../components/containers/LicenseListTab/Table';
-import { ItemType as ProjectAttrType } from '../components/containers/ProjectListTab/Table';
-import { SummarizedVersionType } from '../components/containers/ProjectDetailTab';
+import { ItemType as TotalLectureSWItemAttrType } from '../components/tabs/TotalLectureSWListTab';
+import { ItemType as AddLectureSWItemAttrType } from '../components/tabs/AddOrUpdateLectureSWTab/Table';
+import { ItemType as LectureSWManagementAttrType } from '../components/tabs/LectureSWManagementTab';
+import { ItemType as SubscribedSWAttrType } from '../components/tabs/SubscribedSWTab/Table';
+import { ItemType as LicenseAttrType } from '../components/tabs/LicenseListTab/Table';
+import { ItemType as ProjectAttrType } from '../components/tabs/ProjectListTab/Table';
+import { SummarizedVersionType } from '../components/tabs/ProjectDetailTab';
 
 // Obj Type
-import { LectureSWType } from '../components/containers/AddOrUpdateLectureSWTab';
+import { LectureSWType } from '../components/tabs/AddOrUpdateLectureSWTab';
 
 export const generateString = (num: number = 9) =>
   Math.random()

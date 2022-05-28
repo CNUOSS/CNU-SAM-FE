@@ -9,7 +9,7 @@ import DefaultText from '@components/widgets/DefaultText';
 import Button from '@components/widgets/Button';
 import Input from '@components/widgets/Input';
 import ProjectDetailTab from '../ProjectDetailTab';
-import DropdownContainer from '../DropdownContainer';
+import DropdownContainer from '@components/containers/DropdownContainer';
 
 // APIs
 import { createProjectAPI, getProjectListAPI } from '@apis/project';

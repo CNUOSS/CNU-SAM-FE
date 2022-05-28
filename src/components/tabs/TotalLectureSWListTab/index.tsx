@@ -6,7 +6,7 @@ import Dropdown from '@components/widgets/Dropdown';
 import TabForm from '@components/widgets/TabForm';
 import Table from '@components/widgets/Table';
 import AddManagedSWModal from '@components/modals/AddManagedSWModal';
-import AddOrUpdateLectureSWTab from '@components/containers//AddOrUpdateLectureSWTab';
+import AddOrUpdateLectureSWTab from '@components/tabs//AddOrUpdateLectureSWTab';
 import { TotalLectureSWListAttr } from '@@types/types';
 import { totalLectureSWListAttr } from '@common/constants';
 import { tabState } from '@recoil/tab';

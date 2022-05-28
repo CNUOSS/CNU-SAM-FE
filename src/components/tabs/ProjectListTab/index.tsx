@@ -6,10 +6,10 @@ import TabTemplate from '@components/templates/TabTemplate';
 // Components
 import Input from '@components/widgets/Input';
 import TabForm from '@components/widgets/TabForm';
-import ProjectDetailTab from '@components/containers/ProjectDetailTab';
-import DropdownContainer from '../DropdownContainer';
+import ProjectDetailTab from '@components/tabs/ProjectDetailTab';
+import DropdownContainer from '@components/containers/DropdownContainer';
+import AsyncBoundaryWrapper from '@components/containers/AsyncBoundaryWrapper';
 import Table, { SearchInfoType } from './Table';
-import AsyncBoundaryWrapper from '../AsyncBoundaryWrapper';
 
 // Apis
 import { getCategoryNamesAPI, getLicenseNamesAPI } from '@apis/data';

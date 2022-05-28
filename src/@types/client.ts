@@ -129,6 +129,12 @@ export interface ProjectListItemType {
   projectCategoryName: string;
   userId: string;
 }
+export interface ProjectMetaType {
+  projectDescription: string;
+  projectName: string;
+  ossLicenseId: number;
+  projectCategoryName: string;
+}
 
 // get
 export interface ProjectSearchRequestParamsClientType {
@@ -148,15 +154,10 @@ export interface ProjectSearchResponseClientType {
     totalPages: number;
     size: number;
   };
-  project: ProjectType[];
+  project: ProjectListItemType[];
 }
 
 // create
-export interface CreateProjectRequestClientType {
-  projectDescription: string;
-  projectName: string;
-  projectStatus: string;
-  ossLicenseId: number;
-  projectCategoryName: string;
+export interface CreateProjectRequestClientType extends ProjectMetaType {
   userId: string;
 }

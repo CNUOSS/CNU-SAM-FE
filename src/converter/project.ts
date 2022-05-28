@@ -50,7 +50,6 @@ export const projectSearchResponseServer2Client = ({
 export const createProjectRequestClient2Server = ({
   projectName,
   projectDescription,
-  projectStatus,
   projectCategoryName,
   ossLicenseId,
   userId,
@@ -58,7 +57,7 @@ export const createProjectRequestClient2Server = ({
   return {
     project_name: projectName,
     project_description: projectDescription,
-    project_status: projectStatus,
+    project_status: 'C',
     project_category_name: projectCategoryName,
     oss_license_id: ossLicenseId,
     user_id: userId,

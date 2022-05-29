@@ -13,10 +13,10 @@ export const decorators = [
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
         <ThemeProvider theme={theme}>
-          <AuthProvider>
-            <Story />
-            <GlobalStyle />
-          </AuthProvider>
+          {/* <AuthProvider> */}
+          <Story />
+          <GlobalStyle />
+          {/* </AuthProvider> */}
         </ThemeProvider>
       </RecoilRoot>
     </QueryClientProvider>

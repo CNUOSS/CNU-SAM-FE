@@ -10,16 +10,17 @@ interface UserInfoProps {
 }
 
 function UserInfo({ addNewTab }: UserInfoProps) {
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
   const { t } = useTranslation();
 
   const handleLogout = () => logout();
 
+  if (!user) return <></>;
   return (
     <Style.Container>
       <Style.InfoWrapper>
         <Icon size="3rem" icon="gear" />
-        <Style.Name>user-name</Style.Name>
+        <Style.Name>{user.id}</Style.Name>
         <Style.Logout onClick={handleLogout}>{t('page:logout')}</Style.Logout>
       </Style.InfoWrapper>
       <Style.ButtonWrapper>

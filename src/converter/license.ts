@@ -26,13 +26,15 @@ export const licenseSearchRequestClient2Server = ({
 };
 
 export const licenseSearchResponseServer2Client = ({
-  meta,
+  page_info,
   oss_license,
 }: GetLicenseListResponseServerType): GetLicenseListResponseClientType => {
   return {
-    meta: {
-      totalCount: meta.total_count,
-      isEnd: meta.is_end,
+    pageInfo: {
+      totalElements: page_info.total_elements,
+      last: page_info.last,
+      totalPages: page_info.total_pages,
+      size: page_info.size,
     },
     licenses: oss_license.map((li) => ({
       id: li.id,

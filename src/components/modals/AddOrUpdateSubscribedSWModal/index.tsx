@@ -25,7 +25,7 @@ interface AddOrUpdateSubscribedSWModalProps {
 type InputType = Omit<CreateSubscribedRequestBodyClientType, 'updatorId'>;
 
 function AddOrUpdateSubscribedSWModal({ subscribedSW, closeModal }: AddOrUpdateSubscribedSWModalProps) {
-  const headerText = `학내 구독중인 SW ${subscribedSW ? `등록` : `수정`}하기`;
+  const headerText = `학내 구독중인 SW ${subscribedSW ? `수정` : `등록`}하기`;
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const excuteMutationSuccess = async () => {

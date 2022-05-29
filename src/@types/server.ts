@@ -46,9 +46,11 @@ export interface GetLicenseListRequestParamsServerType {
 }
 
 export interface GetLicenseListResponseServerType {
-  meta: {
-    total_count: number;
-    is_end: boolean;
+  page_info: {
+    total_elements: number;
+    last: boolean;
+    total_pages: number;
+    size: number;
   };
   oss_license: LicenseServerType[];
 }

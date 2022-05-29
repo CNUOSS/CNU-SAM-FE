@@ -40,9 +40,11 @@ export interface GetLicenseListRequestParamsClientType {
 }
 
 export interface GetLicenseListResponseClientType {
-  meta: {
-    totalCount: number;
-    isEnd: boolean;
+  pageInfo: {
+    totalElements: number;
+    last: boolean;
+    totalPages: number;
+    size: number;
   };
   licenses: LicenseType[];
 }

@@ -9,6 +9,7 @@ import TabForm from '@components/widgets/TabForm';
 import ProjectDetailTab from '@components/tabs/ProjectDetailTab';
 import DropdownContainer from '@components/containers/DropdownContainer';
 import AsyncBoundaryWrapper from '@components/containers/AsyncBoundaryWrapper';
+import SearchDropdownContainer from '@components/containers/SearchDropdownContainer';
 import Table, { SearchInfoType } from './Table';
 
 // Apis
@@ -54,13 +55,12 @@ function ProjectListTab() {
             responseConverter={getCategoryNamesResponseServer2Client}
             onClickItem={selectCategory}
           />
-          {/* FIXME: SearchDropdown */}
-          <DropdownContainer
+          <SearchDropdownContainer
             label="라이선스"
             getUrl={getLicenseNamesAPI}
             itemKey="licenseName"
             responseConverter={getLicenseNamesResponseServer2Client}
-            onClickItem={selectLicense}
+            onChangeValue={selectLicense}
           />
         </Style.InputWrapper>
       </TabForm>

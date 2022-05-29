@@ -10,6 +10,7 @@ import Button from '@components/widgets/Button';
 import Input from '@components/widgets/Input';
 import ProjectDetailTab from '../ProjectDetailTab';
 import DropdownContainer from '@components/containers/DropdownContainer';
+import SearchDropdownContainer from '@components/containers/SearchDropdownContainer';
 
 // APIs
 import { createProjectAPI, getProjectListAPI } from '@apis/project';
@@ -82,13 +83,12 @@ function AddOrUpdateProjectTab({ projectMeta }: AddOrUpdateProjectTabProps) {
             responseConverter={getCategoryNamesResponseServer2Client}
             onClickItem={selectCategory}
           />
-          {/* FIXME: SearchDropdown */}
-          <DropdownContainer
+          <SearchDropdownContainer
             label="라이선스"
             getUrl={getLicenseNamesAPI}
             itemKey="licenseName"
             responseConverter={getLicenseNamesResponseServer2Client}
-            onClickItem={selectLicense}
+            onChangeValue={selectLicense}
           />
         </Style.InputWrapper>
         <Style.DescriptionWrapper>

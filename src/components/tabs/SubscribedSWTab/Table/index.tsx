@@ -63,7 +63,7 @@ function Table({ searchInfo, onRowClick }: TableProps) {
       title="학내 구독 중인 SW"
       items={parsedItems}
       attributes={subscibedSWListAttr}
-      pageCount={data?.meta.totalPages}
+      pageCount={data?.pageInfo.totalPages}
       onSort={onSort}
       onRowClick={onRowClick}
       onClickPageButton={onClickPageButton}

@@ -28,15 +28,15 @@ export const subscribedswSearchRequestClient2Server = ({
 };
 
 export const subscribedswSearchResponseServer2Client = ({
-  meta,
+  page_info,
   subscription_sw,
 }: GetSubscribeSWResponseServerType): GetSubscribeSWResponseClientType => {
   return {
-    meta: {
-      totalElements: meta.total_elements,
-      last: meta.last,
-      totalPages: meta.total_pages,
-      size: meta.size,
+    pageInfo: {
+      totalElements: page_info.total_elements,
+      last: page_info.last,
+      totalPages: page_info.total_pages,
+      size: page_info.size,
     },
     subscriptionSWList: subscription_sw.map((sw) => ({
       id: sw.id,

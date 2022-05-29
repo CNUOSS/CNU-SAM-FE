@@ -106,7 +106,7 @@ export interface GetSubscribeSWRequestParamsClientType {
 }
 
 export interface GetSubscribeSWResponseClientType {
-  meta: {
+  pageInfo: {
     totalElements: number;
     last: boolean;
     totalPages: number;

@@ -9,3 +9,6 @@ export const getLicenseNamesAPI = '/license-names';
 
 // Get Category Name
 export const getCategoryNamesAPI = '/category-names';
+
+// Get Manufacturers
+export const getManufacturersNamesAPI = '/manufacturers';

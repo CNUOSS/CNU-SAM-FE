@@ -3,6 +3,7 @@ import {
   CategoryNamesServerType,
   LicenseNamesServerType,
   LicenseTypeServerType,
+  ManufacturerNameServerType,
   RestrictionServerType,
 } from '@@types/server';
 
@@ -24,4 +25,14 @@ export const getCategoryNamesResponseServer2Client = (categoryNames: CategoryNam
 // Get License Names
 export const getLicenseNamesResponseServer2Client = (licenseNames: LicenseNamesServerType[]): LicenseNamesType[] => {
   return licenseNames.map((names) => ({ id: names.id, licenseName: names.license_name }));
+};
+
+// Get Manufacturer Names
+export const getManufacturerNamesResponseServer2Client = ({
+  manufacturers,
+}: {
+  manufacturers: ManufacturerNameServerType[];
+}): string[] => {
+  if (!manufacturers) return [];
+  return manufacturers.map((names) => names.manufacturer);
 };

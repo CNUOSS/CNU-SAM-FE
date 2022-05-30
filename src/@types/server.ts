@@ -14,6 +14,10 @@ export interface CategoryNamesServerType {
   project_category_name: string;
 }
 
+export interface ManufacturerNameServerType {
+  manufacturer: string;
+}
+
 export interface LicenseNamesServerType {
   id: number;
   license_name: string;

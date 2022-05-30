@@ -12,12 +12,22 @@ interface SelfDropdown {
   /* input */
   inputValue: string;
   inputWidth: number; // rem
+  onClickSelected?: () => void;
   onChange: (text: string) => void;
 }
 
 const SELFINPUT = '직접 입력';
 
-function SelfDropdown({ label, items, width, currentIdx = 0, inputValue, inputWidth, onChange }: SelfDropdown) {
+function SelfDropdown({
+  label,
+  items,
+  width,
+  currentIdx = 0,
+  inputValue,
+  inputWidth,
+  onChange,
+  onClickSelected,
+}: SelfDropdown) {
   const itemsWithSelf = [...items, SELFINPUT];
   const [selectedItem, setItem] = useState(items[currentIdx]);
 
@@ -40,6 +50,7 @@ function SelfDropdown({ label, items, width, currentIdx = 0, inputValue, inputWi
         items={itemsWithSelf}
         width={`${selectedItem === SELFINPUT ? width - inputWidth - 1 : width}rem`}
         currentIdx={currentIdx}
+        onClickSelected={onClickSelected}
         onClickItem={handleDropdownClickItem}
       />
       {selectedItem === SELFINPUT && (

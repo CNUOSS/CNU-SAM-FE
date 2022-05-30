@@ -1,53 +1,42 @@
 import React, { useState } from 'react';
 import TabTemplate from '@components/templates/TabTemplate';
-import Table from '@components/widgets/Table';
+import Table, { SearchInfoType } from './Table';
 import Input from '@components/widgets/Input';
 import TabForm from '@components/widgets/TabForm';
 import Dropdown from '@components/widgets/Dropdown';
 import AddManagedSWModal from '@components/modals/AddManagedSWModal';
-import { registrationSWListAttr } from '@common/constants';
-import { RegistrationSWListAttr, Number } from '@@types/types';
+import AsyncBoundaryWrapper from '@components/containers/AsyncBoundaryWrapper';
 import * as Style from './styled';
+import { RegistrationSWType } from '@@types/client';
+import useForm from '@hooks/useForm';
 
-export type ItemType = {
-  [key in RegistrationSWListAttr]: string;
-};
-
-export interface RowType extends ItemType {
-  [Number]: number;
-}
-
-interface RegistrationSWTabProps {
-  // FIXME: remove all
-  items: ItemType[];
-  manufacturings: string[];
-}
-
-function RegistrationSWTab({ items, manufacturings }: RegistrationSWTabProps) {
+function RegistrationSWTab() {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<ItemType>();
-  const parsedItems: RowType[] = items.map((item, index) => ({ ...item, number: index + 1 }));
+  const [selectedItem, setSelectedItem] = useState<RegistrationSWType>();
+  const { change, getValue, getAllValue } = useForm<SearchInfoType>();
+  const [infoStore, setInfoStore] = useState<SearchInfoType>({
+    swMfr: '',
+    swName: '',
+  });
 
-  const onSubmit = () => {};
   const addNewSW = () => {};
   const onDelete = () => {};
   const toggleModal = () => {
     setIsOpen((prev) => !prev);
     setSelectedItem(undefined);
   };
-  const clickItem = (item: ItemType) => {
+  const onRowClick = (item: RegistrationSWType) => {
     toggleModal();
     setSelectedItem(item);
   };
+  const handleSearch = () => setInfoStore((store) => ({ ...store, ...getAllValue() }));
 
   return (
     <>
       {isOpen && (
         <AddManagedSWModal
-          defaultCompanyList={manufacturings}
-          defaultCompanyIndex={manufacturings.findIndex(
-            (manufacturing) => manufacturing === selectedItem?.swManufacturer
-          )}
+          defaultCompanyList={[]}
+          defaultCompanyIndex={0}
           defaultSWName={selectedItem?.swName}
           isEditable={!!selectedItem}
           closeModal={toggleModal}
@@ -56,15 +45,17 @@ function RegistrationSWTab({ items, manufacturings }: RegistrationSWTabProps) {
         />
       )}
       <TabTemplate description="Description" onCreate={toggleModal}>
-        <TabForm onSubmit={onSubmit} buttonText="조회하기">
+        <TabForm onSubmit={handleSearch} buttonText="조회하기">
           <Style.InputWrapper>
-            <Dropdown label="제조사" items={manufacturings} width="21rem" onClickItem={() => {}} />
-            <Input label="제품명" value="" width="21rem" onChange={() => {}} />
+            <Dropdown label="제조사" items={[]} width="21rem" onClickItem={() => {}} />
+            <Input label="제품명" value={getValue('swName')} width="21rem" onChange={change('swName')} />
           </Style.InputWrapper>
         </TabForm>
-        <Style.TableWrapper>
-          <Table title="수업용 SW관리" attributes={registrationSWListAttr} items={parsedItems} onRowClick={clickItem} />
-        </Style.TableWrapper>
+        <AsyncBoundaryWrapper>
+          <Style.TableWrapper>
+            <Table searchInfo={infoStore} onRowClick={onRowClick} />
+          </Style.TableWrapper>
+        </AsyncBoundaryWrapper>
       </TabTemplate>
     </>
   );

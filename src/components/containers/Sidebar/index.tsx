@@ -64,7 +64,7 @@ function Sidebar() {
       case 'UserManagement':
         return { name: '유저 관리', component: <></> };
       case 'SWManagement':
-        return { name: '수업 용 SW 관리', component: <RegistrationSWTab items={[]} manufacturings={[]} /> };
+        return { name: '수업 용 SW 관리', component: <RegistrationSWTab /> };
       case 'UserGuide':
         return { name: '사용자 가이드', component: <></> };
       case 'EnrollSW':

@@ -142,6 +142,26 @@ export interface RegistrationSWServerType {
   managed: boolean;
 }
 
+// get
+export interface GetRegistrationswListRequestParamsServerType {
+  size: number;
+  page: number;
+  sort: string | null;
+  ['sw-mfr']: string | null;
+  ['sw-name']: string | null;
+}
+
+export interface GetRegistrationSWListResponseServerType {
+  page_info: {
+    total_elements: number;
+    last: boolean;
+    total_pages: number;
+    size: number;
+  };
+  registration_sw: RegistrationSWServerType[];
+}
+
+// create
 export type CreateRegistrationSWRequestBodyServerType = Omit<RegistrationSWServerType, 'id' | 'latest_update_date'>;
 
 /* Project */

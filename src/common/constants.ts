@@ -128,11 +128,10 @@ export const registrationSWListAttr: AttributeType<
   LectureSWManagementListTableLabelType
 >[] = [
   { label: 'No', dataKey: 'number', widthPercent: 10, disableSort: true },
-  { label: '제조사', dataKey: 'manufacturing', widthPercent: 18, disableSort: false },
-  { label: '제품명', dataKey: 'swName', widthPercent: 18, disableSort: false },
-  { label: '사용 개수', dataKey: 'usedCount', widthPercent: 18, disableSort: false },
-  { label: '등록자', dataKey: 'writer', widthPercent: 18, disableSort: true },
-  { label: '등록 날짜', dataKey: 'enrollDate', widthPercent: 18, disableSort: false },
+  { label: '제조사', dataKey: 'swManufacturer', widthPercent: 22, disableSort: false },
+  { label: '제품명', dataKey: 'swName', widthPercent: 23, disableSort: false },
+  { label: '등록자', dataKey: 'latestUpdatorId', widthPercent: 23, disableSort: true },
+  { label: '등록 날짜', dataKey: 'latestUpdateDate', widthPercent: 22, disableSort: false },
 ];
 
 export const subscibedSWListAttr: AttributeType<SubscribedSWListAttr | Number, SubscribedSWListTableLabelType>[] = [

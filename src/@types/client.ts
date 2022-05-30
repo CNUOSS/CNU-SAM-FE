@@ -123,7 +123,7 @@ export type CreateSubscribedRequestBodyClientType = Omit<SubscribedSWType, 'id' 
 /* Registrations SW */
 export interface RegistrationSWType {
   id: number;
-  latestUpdatorId: string;
+  latestUpdaterId: string;
   swManufacturer: string;
   swName: string;
   latestUpdateDate: string;
@@ -150,7 +150,10 @@ export interface GetRegistrationSWListResponseClientType {
 }
 
 // create
-export type CreateRegistrationSWRequestBodyClientType = Omit<RegistrationSWType, 'id' | 'latestUpdateDate'>;
+export type CreateRegistrationSWRequestBodyClientType = Omit<
+  RegistrationSWType,
+  'id' | 'latestUpdateDate' | 'managed'
+> & { isManaged: boolean };
 
 /* Project */
 export interface ProjectListItemType {

@@ -10,12 +10,17 @@ import {
 } from '@@types/server';
 
 export const createRegistrationSWRequestClient2Server = ({
-  latestUpdatorId,
+  latestUpdaterId,
   swManufacturer,
   swName,
-  managed,
+  isManaged,
 }: CreateRegistrationSWRequestBodyClientType): CreateRegistrationSWRequestBodyServerType => {
-  return { managed, latest_updator_id: latestUpdatorId, sw_manufacturer: swManufacturer, sw_name: swName };
+  return {
+    is_managed: isManaged,
+    latest_updater_id: latestUpdaterId,
+    sw_manufacturer: swManufacturer,
+    sw_name: swName,
+  };
 };
 
 export const getRegistrationSWRequestClient2Server = ({
@@ -49,7 +54,7 @@ export const getRegistrationSWResponseServer2Client = ({
       id: sw.id,
       swManufacturer: sw.sw_manufacturer,
       swName: sw.sw_name,
-      latestUpdatorId: sw.latest_updator_id,
+      latestUpdaterId: sw.latest_updater_id,
       latestUpdateDate: new Date(sw.latest_update_date).toLocaleDateString(),
       managed: sw.managed,
     })),

@@ -33,8 +33,6 @@ interface TotalLectureSWListProps {
 function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
   const [selectedItem, setSelectedItem] = useState<ItemType>();
   const setTabState = useSetRecoilState(tabState);
-  // FIXME: not this list, list fetched from server. here is not exist all manufacturing's information
-  const manufacturingList = items.map((item) => item.manufacturing as string);
 
   const clickItemAddButton = (item: ItemType) => () => setSelectedItem(item);
   const clickItem = (item: any) => {
@@ -68,22 +66,11 @@ function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
   });
 
   const closeModal = () => setSelectedItem(undefined);
-  const addNewManagedSW = () => {};
   const searchList = () => {};
 
   return (
     <>
-      {selectedItem && (
-        <AddManagedSWModal
-          defaultCompanyList={manufacturingList}
-          defaultCompanyIndex={manufacturingList.findIndex(
-            (manufacturing) => manufacturing === selectedItem.manufacturing
-          )}
-          defaultSWName={selectedItem.swName as string}
-          onSubmit={addNewManagedSW}
-          closeModal={closeModal}
-        />
-      )}
+      {selectedItem && <AddManagedSWModal closeModal={closeModal} />}
       <TabTemplate description="Description">
         <TabForm onSubmit={searchList} buttonText="조회하기">
           <Dropdown items={ORGANIZATION} label="조직분류" width="16rem" onClickItem={() => {}} />

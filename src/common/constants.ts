@@ -130,7 +130,7 @@ export const registrationSWListAttr: AttributeType<
   { label: 'No', dataKey: 'number', widthPercent: 10, disableSort: true },
   { label: '제조사', dataKey: 'swManufacturer', widthPercent: 22, disableSort: false },
   { label: '제품명', dataKey: 'swName', widthPercent: 23, disableSort: false },
-  { label: '등록자', dataKey: 'latestUpdatorId', widthPercent: 23, disableSort: true },
+  { label: '등록자', dataKey: 'latestUpdaterId', widthPercent: 23, disableSort: true },
   { label: '등록 날짜', dataKey: 'latestUpdateDate', widthPercent: 22, disableSort: false },
 ];
 

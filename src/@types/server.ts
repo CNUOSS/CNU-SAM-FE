@@ -139,7 +139,7 @@ export interface CreateSubscribedRequestBodyServerType {
 /* Registration SW */
 export interface RegistrationSWServerType {
   id: number;
-  latest_updator_id: string;
+  latest_updater_id: string;
   sw_manufacturer: string;
   sw_name: string;
   latest_update_date: string;
@@ -166,7 +166,10 @@ export interface GetRegistrationSWListResponseServerType {
 }
 
 // create
-export type CreateRegistrationSWRequestBodyServerType = Omit<RegistrationSWServerType, 'id' | 'latest_update_date'>;
+export type CreateRegistrationSWRequestBodyServerType = Omit<
+  RegistrationSWServerType,
+  'id' | 'latest_update_date' | 'managed'
+> & { is_managed: boolean };
 
 /* Project */
 export interface ProjectListItemServerType {

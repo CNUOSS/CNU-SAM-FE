@@ -14,7 +14,7 @@ import { createRegistrationSWRequestClient2Server } from '@converter/registratio
 import { useAuth } from '@libs/auth';
 import { getManufacturersNamesAPI } from '@apis/data';
 
-interface AddManagedSWModalProps {
+interface AddOrUpdateRegistrationSWModalProps {
   registrationSW?: RegistrationSWType;
   isEditable?: boolean;
   closeModal: () => void;
@@ -22,7 +22,11 @@ interface AddManagedSWModalProps {
 
 type FormType = Pick<RegistrationSWType, 'swName' | 'swManufacturer'>;
 
-function AddManagedSWModal({ registrationSW, isEditable = false, closeModal }: AddManagedSWModalProps) {
+function AddOrUpdateRegistrationSWModal({
+  registrationSW,
+  isEditable = false,
+  closeModal,
+}: AddOrUpdateRegistrationSWModalProps) {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const createMutationSuccess = async () => {
@@ -79,4 +83,4 @@ function AddManagedSWModal({ registrationSW, isEditable = false, closeModal }: A
   );
 }
 
-export default AddManagedSWModal;
+export default AddOrUpdateRegistrationSWModal;

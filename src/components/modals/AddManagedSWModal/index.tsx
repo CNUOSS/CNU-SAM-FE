@@ -4,10 +4,15 @@ import Input from '@components/widgets/Input';
 import Template from '@components/templates/ModalTemplate';
 import SelfDropdownContainer from '@components/containers/SelfDropdownContainer';
 import { RegistrationSWType } from '@@types/client';
-import { getRestrictionsAPI } from '@apis/data';
 import useForm from '@hooks/useForm';
 import * as Style from './styled';
 import { getManufacturerNamesResponseServer2Client } from '@converter/data';
+import { useQueryClient } from 'react-query';
+import useMutation from '@hooks/useMutation';
+import { createRegistrationSWAPI, getRegistrationSWListAPI } from '../../../apis/registrationsw';
+import { createRegistrationSWRequestClient2Server } from '@converter/registrationsw';
+import { useAuth } from '@libs/auth';
+import { getManufacturersNamesAPI } from '@apis/data';
 
 interface AddManagedSWModalProps {
   registrationSW?: RegistrationSWType;
@@ -18,13 +23,31 @@ interface AddManagedSWModalProps {
 type FormType = Pick<RegistrationSWType, 'swName' | 'swManufacturer'>;
 
 function AddManagedSWModal({ registrationSW, isEditable = false, closeModal }: AddManagedSWModalProps) {
+  const { user } = useAuth();
+  const queryClient = useQueryClient();
+  const createMutationSuccess = async () => {
+    await queryClient.invalidateQueries(getRegistrationSWListAPI);
+    closeModal();
+  };
+  const { mutate: createMutate } = useMutation({
+    url: createRegistrationSWAPI.url,
+    method: createRegistrationSWAPI.method,
+    onSuccess: createMutationSuccess,
+    converter: {
+      request: createRegistrationSWRequestClient2Server,
+    },
+  });
   const { change, getValue, error, handleSubmit } = useForm<FormType>({
     swName: [{ error: 'required' }],
     swManufacturer: [{ error: 'required' }],
   });
 
   const selectManufacturer = (manufacturer: string) => change('swManufacturer')(manufacturer);
-  const onSubmit = (data: FormType) => {};
+  const onSubmit = (data: FormType) => {
+    if (!user) return;
+    const isManaged = user.role === 'ADMIN';
+    createMutate({ ...data, isManaged, latestUpdaterId: user.id });
+  };
 
   return (
     <Template closeModal={closeModal}>
@@ -36,7 +59,7 @@ function AddManagedSWModal({ registrationSW, isEditable = false, closeModal }: A
             label="SW 제조사"
             width={35}
             inputWidth={20}
-            getUrl={getRestrictionsAPI}
+            getUrl={getManufacturersNamesAPI}
             responseConverter={getManufacturerNamesResponseServer2Client}
             onChangeValue={selectManufacturer}
           />

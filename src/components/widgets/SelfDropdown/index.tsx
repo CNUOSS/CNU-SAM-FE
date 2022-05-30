@@ -22,14 +22,14 @@ function SelfDropdown({
   label,
   items,
   width,
-  currentIdx = 0,
+  currentIdx,
   inputValue,
   inputWidth,
   onChange,
   onClickSelected,
 }: SelfDropdown) {
   const itemsWithSelf = [...items, SELFINPUT];
-  const [selectedItem, setItem] = useState(items[currentIdx]);
+  const [selectedItem, setItem] = useState(currentIdx ? items[currentIdx] : SELFINPUT);
 
   const handleDropdownClickItem = (index: number) => {
     setItem(itemsWithSelf[index]);
@@ -40,7 +40,7 @@ function SelfDropdown({
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => onChange(event.target.value);
 
   useEffect(() => {
-    onChange(items[currentIdx]);
+    if (currentIdx) onChange(items[currentIdx]);
   }, []);
 
   return (

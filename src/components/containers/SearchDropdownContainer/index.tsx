@@ -1,25 +1,25 @@
 import React from 'react';
-import Dropdown from '@components/widgets/Dropdown';
+import SearchDropdown from '@components/widgets/SearchDropdown';
 import useFetch from '@hooks/useFetch';
 
-interface DropdownContainerProps<T> {
+interface SearchDropdownContainerProps<T> {
   label?: string;
   width?: string;
   getUrl: string;
   // if result data is object array, to filter
   itemKey?: string;
   responseConverter: (response: any) => T[];
-  onClickItem: (item: T) => void;
+  onChangeValue: (item: T) => void;
 }
 
-function DropdownContainer<T>({
+function SearchDropdownContainer<T>({
   label,
   width,
   getUrl,
   itemKey,
   responseConverter,
-  onClickItem,
-}: DropdownContainerProps<T>) {
+  onChangeValue,
+}: SearchDropdownContainerProps<T>) {
   const { data, refetch, isLoading } = useFetch<T[]>(
     getUrl,
     {},
@@ -27,23 +27,24 @@ function DropdownContainer<T>({
     { response: responseConverter }
   );
 
-  const clickHandler = (clickIndex: number) => {
-    if (data) onClickItem(data[clickIndex]);
-  };
-
   const resultIsObjectArray = itemKey && data && typeof data[0] === 'object';
   const objectData = resultIsObjectArray && (data as any[]).map((d) => d[itemKey]);
+  const items = objectData || data || [];
+  const changeHandler = (value: string) => {
+    const index = items.findIndex((item) => item === value);
+    if (data && index >= 0) onChangeValue(data[index]);
+  };
+
   return (
-    <Dropdown
-      existNoneSelect
+    <SearchDropdown
+      items={items}
       label={label}
       width={width}
       isLoading={isLoading}
-      items={objectData || data || []}
+      onChangeValue={changeHandler}
       onClickSelected={refetch}
-      onClickItem={clickHandler}
     />
   );
 }
 
-export default DropdownContainer;
+export default SearchDropdownContainer;

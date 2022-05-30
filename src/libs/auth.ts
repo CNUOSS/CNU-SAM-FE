@@ -14,12 +14,15 @@ const handleUserResponse = async (data: SigninResponseClientType): Promise<UserT
   return user;
 };
 
-// TODO: implement not yet
-// FIXME:
 const loadUser = async (): Promise<UserType> => {
-  if (storage.getToken(ACCESS_TOKEN)) {
-    const data = await reloadAPIFn();
-    return data;
+  try {
+    if (storage.getToken(ACCESS_TOKEN)) {
+      const data = await reloadAPIFn();
+      return data;
+    }
+  } catch (error) {
+    storage.clearToken(ACCESS_TOKEN);
+    storage.clearToken(REFRESH_TOKEN);
   }
   return {} as UserType;
 };

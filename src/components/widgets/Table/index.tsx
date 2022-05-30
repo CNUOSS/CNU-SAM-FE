@@ -31,16 +31,18 @@ interface TableProps<T, C, Label> {
   items: T[];
   pageCount?: number;
   onRowClick?: (item: T) => void;
+  onSort?: (sortBy: string, sortDirection: SortDirectionType) => void;
   onClickPageButton?: (pageNumber: number) => void;
 }
 
-// TODO: infinite scrolling
+// FIXME: REFACTORING TYPES
 function Table<T extends ObjType, C extends string, Label extends string>({
   title,
   attributes,
   pageCount,
   items,
   onRowClick,
+  onSort,
   onClickPageButton,
 }: TableProps<T, C, Label>) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -63,6 +65,7 @@ function Table<T extends ObjType, C extends string, Label extends string>({
   };
 
   const sort = (sortBy: string, sortDirection: SortDirectionType) => {
+    if (onSort) onSort(sortBy, sortDirection);
     const sortedList: T[] = sortList(sortBy, sortDirection);
 
     setSortBy(sortBy);
@@ -136,7 +139,7 @@ function Table<T extends ObjType, C extends string, Label extends string>({
         </AutoSizer>
       </Style.Container>
       {pageCount && (
-        <Style.PaginationWrapper>
+        <Style.PaginationWrapper titleExist={!!title}>
           <Pagination totalCount={pageCount} currentPage={currentPage} onClickPageButton={handleClickPageButton} />
         </Style.PaginationWrapper>
       )}

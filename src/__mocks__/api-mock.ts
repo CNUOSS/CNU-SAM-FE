@@ -16,9 +16,11 @@ export const generateLicenseMock = (): LicenseType => ({
  * response mock
  */
 export const generateGetLicensesResponseMock = (): GetLicenseListResponseClientType => ({
-  meta: {
-    totalCount: 10,
-    isEnd: false,
+  pageInfo: {
+    totalElements: 10,
+    last: false,
+    totalPages: 10,
+    size: 10,
   },
   licenses: [generateLicenseMock(), generateLicenseMock(), generateLicenseMock()],
 });

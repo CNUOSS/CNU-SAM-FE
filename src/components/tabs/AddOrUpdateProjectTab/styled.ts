@@ -42,3 +42,11 @@ export const ButtonWrapper = styled.div`
   display: flex;
   gap: 2rem;
 `;
+
+export const Error = styled.span`
+  display: block;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 2rem;
+  color: ${(props) => props.theme.colors.warning};
+`;

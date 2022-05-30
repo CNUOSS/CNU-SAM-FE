@@ -1,14 +1,14 @@
 // Attribute Type
-import { ItemType as TotalLectureSWItemAttrType } from '../components/containers/TotalLectureSWListTab';
-import { ItemType as AddLectureSWItemAttrType } from '../components/containers/AddOrUpdateLectureSWTab/Table';
-import { ItemType as LectureSWManagementAttrType } from '../components/containers/LectureSWManagementTab';
-import { ItemType as SubscribedSWAttrType } from '../components/containers/SubscribedSWTab';
-import { ItemType as LicenseAttrType } from '../components/containers/LicenseListTab/Table';
-import { ItemType as ProjectAttrType } from '../components/containers/ProjectListTab';
-import { SummarizedVersionType } from '../components/containers/ProjectDetailTab';
+import { ItemType as TotalLectureSWItemAttrType } from '../components/tabs/TotalLectureSWListTab';
+import { ItemType as AddLectureSWItemAttrType } from '../components/tabs/AddOrUpdateLectureSWTab/Table';
+import { ItemType as LectureSWManagementAttrType } from '../components/tabs/LectureSWManagementTab';
+import { ItemType as SubscribedSWAttrType } from '../components/tabs/SubscribedSWTab/Table';
+import { ItemType as LicenseAttrType } from '../components/tabs/LicenseListTab/Table';
+import { ItemType as ProjectAttrType } from '../components/tabs/ProjectListTab/Table';
+import { SummarizedVersionType } from '../components/tabs/ProjectDetailTab';
 
 // Obj Type
-import { LectureSWType } from '../components/containers/AddOrUpdateLectureSWTab';
+import { LectureSWType } from '../components/tabs/AddOrUpdateLectureSWTab';
 
 export const generateString = (num: number = 9) =>
   Math.random()
@@ -53,15 +53,15 @@ export const generateSWForLecture = (): LectureSWManagementAttrType => ({
 });
 
 export const generateSubscribedSW = (): SubscribedSWAttrType => ({
-  type: generateString(8),
-  manufacturing: generateString(5),
+  swType: generateString(8),
+  swManufacturer: generateString(5),
   swName: generateString(10),
   usageRange: generateString(5),
   license: generateString(8),
-  expireDt: generateString(7),
-  FirstSubscribeDt: generateString(7),
-  LatestUpdatedDt: generateString(7),
-  writer: generateString(3),
+  expireDate: generateString(7),
+  firstSubscribeDate: generateString(7),
+  latestUpdateDate: generateString(7),
+  updatorId: generateString(3),
 });
 
 export const generateLectureSW = (): LectureSWType => ({
@@ -76,18 +76,18 @@ export const generateLectureSW = (): LectureSWType => ({
 });
 
 export const generateProjectListItem = (): ProjectAttrType => ({
-  prjName: generateString(6),
-  createdDt: generateString(6),
-  releasedDt: generateString(6),
-  prjStatus: generateString(6),
-  license: generateString(6),
-  category: generateString(6),
-  owner: generateString(3),
+  projectName: generateString(6),
+  createDate: generateString(6),
+  updateDate: generateString(6),
+  projectStatus: generateString(6),
+  ossLicenseName: generateString(6),
+  projectCategoryName: generateString(6),
+  userId: generateString(3),
 });
 
 export const generateVersionListItem = (): SummarizedVersionType => ({
   versionName: generateString(8),
-  createdDt: generateString(8),
+  createDate: generateString(8),
 });
 
 // FIXME: Replace with license object in api-mock file

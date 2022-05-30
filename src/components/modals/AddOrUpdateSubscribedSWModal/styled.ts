@@ -26,7 +26,7 @@ export const Description = styled.p`
 
 export const InputWrapper = styled.div`
   width: 100%;
-  padding: 1rem 4rem 5rem 4rem;
+  padding: 1rem 4rem 4rem 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,4 +43,11 @@ export const ButtonWrapper = styled.div`
   float: right;
   gap: 1rem;
   margin: 0 3rem 2rem 0;
+`;
+
+export const Error = styled.span`
+  display: block;
+  text-align: center;
+  font-size: 2rem;
+  color: ${(props) => props.theme.colors.warning};
 `;

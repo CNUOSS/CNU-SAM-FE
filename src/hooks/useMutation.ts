@@ -14,12 +14,13 @@ interface UseMutationType {
   onError?: (error: any) => void;
 }
 
-export type MethodType = 'POST' | 'UPDATE' | 'DELETE' | 'PUT';
-const fetcher = (url: string, method: MethodType, converter?: ConverterType) => async (data: any) => {
-  const convertedData = converter?.request ? converter?.request(data) : data;
-  const { data: result } = await axios({ url: data.dynamicUrl || url, method, data: convertedData });
-  return converter?.response ? converter?.response(result) : result;
-};
+export type MethodType = 'POST' | 'UPDATE' | 'DELETE' | 'PUT' | 'GET';
+const fetcher =
+  (url: string, method: MethodType, converter?: ConverterType) => async (data: object & { dynamicUrl?: string }) => {
+    const convertedData = converter?.request ? converter?.request(data) : data;
+    const { data: result } = await axios({ url: data.dynamicUrl || url, method, data: convertedData });
+    return converter?.response ? converter?.response(result) : result;
+  };
 
 const useMutation = <T>({ url, method, converter, onSuccess, onError }: UseMutationType) => {
   const context = useReactMutation<T, unknown, object>(fetcher(url, method, converter), {

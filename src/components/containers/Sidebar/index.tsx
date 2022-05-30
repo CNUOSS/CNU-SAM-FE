@@ -4,13 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { useSetRecoilState } from 'recoil';
 import { useAuth } from '@libs/auth';
 
-import TotalLectureSWListTab from '@components/containers/TotalLectureSWListTab';
-import AddOrUpdateLectureSWTab from '@components/containers/AddOrUpdateLectureSWTab';
-import SubscribedSWTab from '@components/containers/SubscribedSWTab';
-import LectureSWManagementTab from '@components/containers/LectureSWManagementTab';
-import ProjectListTab from '@components/containers/ProjectListTab';
-import AddOrUpdateProjectTab from '@components/containers/AddOrUpdateProjectTab';
-import LicenseListTab from '@components/containers/LicenseListTab';
+import TotalLectureSWListTab from '@components/tabs/TotalLectureSWListTab';
+import AddOrUpdateLectureSWTab from '@components/tabs/AddOrUpdateLectureSWTab';
+import SubscribedSWTab from '@components/tabs/SubscribedSWTab';
+import LectureSWManagementTab from '@components/tabs/LectureSWManagementTab';
+import ProjectListTab from '@components/tabs/ProjectListTab';
+import AddOrUpdateProjectTab from '@components/tabs/AddOrUpdateProjectTab';
+import LicenseListTab from '@components/tabs/LicenseListTab';
 import Dropdown from '@components/widgets/Dropdown';
 import Accordion from '@components/widgets/Accordion';
 import UserInfo from './UserInfo';
@@ -18,7 +18,7 @@ import SigninForm from './SigninForm';
 
 import logoImage from '@assets/images/logo.jpg';
 import { CategoryType, LANGUAGES, mgCategory, pjCategory, swCategory } from '@common/constants';
-import compareTabs from '@utils/compare-tabs';
+import { compareTabs } from '@utils/manage-tabs';
 import { tabState } from '@recoil/tab';
 import { NavItem } from '@@types/types';
 import { NOTLOGIN, RoleType } from '@@types/client';
@@ -53,12 +53,12 @@ function Sidebar() {
       case 'SubscribingSWList':
         return {
           name: '학내 구독 중 SW',
-          component: <SubscribedSWTab items={[]} manufacturings={[]} types={[]} />,
+          component: <SubscribedSWTab />,
         };
       case 'SWDashboard':
         return { name: '대시보드', component: <></> };
       case 'PJList':
-        return { name: '프로젝트 목록', component: <ProjectListTab items={[]} /> };
+        return { name: '프로젝트 목록', component: <ProjectListTab /> };
       case 'LicenseList':
         return { name: '라이선스 목록', component: <LicenseListTab /> };
       case 'UserManagement':
@@ -73,10 +73,7 @@ function Sidebar() {
           component: <AddOrUpdateLectureSWTab manufacturingList={[]} swNames={[]} tabState="create" />,
         };
       case 'EnrollPRJ':
-        return {
-          name: '프로젝트 등록',
-          component: <AddOrUpdateProjectTab tabState="create" />,
-        };
+        return { name: '프로젝트 등록', component: <AddOrUpdateProjectTab /> };
       default:
         return { name: 'error', component: <></> };
     }

@@ -4,10 +4,6 @@ interface IconWrapperProps {
   isOpen: boolean;
 }
 
-interface ItemProps {
-  selected: boolean;
-}
-
 interface ContainerProps {
   width: string;
 }
@@ -25,7 +21,7 @@ export const Container = styled.div<ContainerProps>`
   z-index: 1;
 `;
 
-export const CurrentItem = styled.div`
+export const CurrentItem = styled.input`
   height: 3rem;
   padding: 0 1rem;
   display: flex;
@@ -57,12 +53,10 @@ export const List = styled.ul`
   background-color: white;
 `;
 
-export const Item = styled.li<ItemProps>`
+export const Item = styled.li`
   width: 100%;
   padding-bottom: 1rem;
-  color: ${(props) => props.selected && props.theme.colors.primary};
   font-size: 1.5rem;
-  font-weight: ${(props) => props.selected && 'bold'};
   word-break: break-all;
   cursor: pointer;
 

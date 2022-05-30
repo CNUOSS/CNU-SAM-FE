@@ -7,7 +7,7 @@ import { useAuth } from '@libs/auth';
 import TotalLectureSWListTab from '@components/tabs/TotalLectureSWListTab';
 import AddOrUpdateLectureSWTab from '@components/tabs/AddOrUpdateLectureSWTab';
 import SubscribedSWTab from '@components/tabs/SubscribedSWTab';
-import LectureSWManagementTab from '@components/tabs/LectureSWManagementTab';
+import RegistrationSWTab from '@components/tabs/RegistrationSWTab';
 import ProjectListTab from '@components/tabs/ProjectListTab';
 import AddOrUpdateProjectTab from '@components/tabs/AddOrUpdateProjectTab';
 import LicenseListTab from '@components/tabs/LicenseListTab';
@@ -64,7 +64,7 @@ function Sidebar() {
       case 'UserManagement':
         return { name: '유저 관리', component: <></> };
       case 'SWManagement':
-        return { name: '수업 용 SW 관리', component: <LectureSWManagementTab items={[]} manufacturings={[]} /> };
+        return { name: '수업 용 SW 관리', component: <RegistrationSWTab items={[]} manufacturings={[]} /> };
       case 'UserGuide':
         return { name: '사용자 가이드', component: <></> };
       case 'EnrollSW':

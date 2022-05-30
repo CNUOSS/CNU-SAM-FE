@@ -5,25 +5,25 @@ import Input from '@components/widgets/Input';
 import TabForm from '@components/widgets/TabForm';
 import Dropdown from '@components/widgets/Dropdown';
 import AddManagedSWModal from '@components/modals/AddManagedSWModal';
-import { lectureSWManagementListAttr } from '@common/constants';
-import { LectureSWManagementListAttr, Number } from '@@types/types';
+import { registrationSWListAttr } from '@common/constants';
+import { RegistrationSWListAttr, Number } from '@@types/types';
 import * as Style from './styled';
 
 export type ItemType = {
-  [key in LectureSWManagementListAttr]: string;
+  [key in RegistrationSWListAttr]: string;
 };
 
 export interface RowType extends ItemType {
   [Number]: number;
 }
 
-interface LecutreSWManagementTabProps {
+interface RegistrationSWTabProps {
   // FIXME: remove all
   items: ItemType[];
   manufacturings: string[];
 }
 
-function LectureSWManagementTab({ items, manufacturings }: LecutreSWManagementTabProps) {
+function RegistrationSWTab({ items, manufacturings }: RegistrationSWTabProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<ItemType>();
   const parsedItems: RowType[] = items.map((item, index) => ({ ...item, number: index + 1 }));
@@ -63,16 +63,11 @@ function LectureSWManagementTab({ items, manufacturings }: LecutreSWManagementTa
           </Style.InputWrapper>
         </TabForm>
         <Style.TableWrapper>
-          <Table
-            title="수업용 SW관리"
-            attributes={lectureSWManagementListAttr}
-            items={parsedItems}
-            onRowClick={clickItem}
-          />
+          <Table title="수업용 SW관리" attributes={registrationSWListAttr} items={parsedItems} onRowClick={clickItem} />
         </Style.TableWrapper>
       </TabTemplate>
     </>
   );
 }
 
-export default LectureSWManagementTab;
+export default RegistrationSWTab;

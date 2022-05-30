@@ -11,7 +11,7 @@ import {
   AddLectureSWListAttr,
   SubscribedSWListAttr,
   TotalLectureSWListAttr,
-  LectureSWManagementListAttr,
+  RegistrationSWListAttr,
 } from '@@types/types';
 
 export interface CategoryType {
@@ -123,8 +123,8 @@ export const addLectureSWListAttr: AttributeType<
   { label: '', dataKey: 'trash', widthPercent: 5, disableSort: true },
 ];
 
-export const lectureSWManagementListAttr: AttributeType<
-  LectureSWManagementListAttr | Number,
+export const registrationSWListAttr: AttributeType<
+  RegistrationSWListAttr | Number,
   LectureSWManagementListTableLabelType
 >[] = [
   { label: 'No', dataKey: 'number', widthPercent: 10, disableSort: true },

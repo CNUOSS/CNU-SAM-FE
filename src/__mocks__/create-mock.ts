@@ -48,7 +48,7 @@ export const generateSWForLecture = (): RegistrationSWItemAttrType => ({
   swManufacturer: generateString(5),
   latestUpdateDate: generateString(8),
   swName: generateString(10),
-  latestUpdatorId: generateString(3),
+  latestUpdaterId: generateString(3),
 });
 
 export const generateSubscribedSW = (): SubscribedSWAttrType => ({

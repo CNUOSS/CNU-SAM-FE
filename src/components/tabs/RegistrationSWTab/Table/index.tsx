@@ -9,7 +9,7 @@ import {
 } from '@@types/client';
 import { LIMIT, registrationSWListAttr } from '@common/constants';
 import { RegistrationSWListAttr, Number } from '@@types/types';
-import { getSubscribedSWAPI } from '@apis/registrationsw';
+import { getRegistrationSWListAPI } from '@apis/registrationsw';
 import {
   getRegistrationSWRequestClient2Server,
   getRegistrationSWResponseServer2Client,
@@ -40,7 +40,7 @@ function Table({ searchInfo, onRowClick }: TableProps) {
     ...searchInfo,
   });
   const { data } = useFetch<GetRegistrationSWListResponseClientType>(
-    getSubscribedSWAPI,
+    getRegistrationSWListAPI,
     apiInfo,
     {},
     { request: getRegistrationSWRequestClient2Server, response: getRegistrationSWResponseServer2Client }

@@ -4,7 +4,7 @@ import Table, { SearchInfoType } from './Table';
 import Input from '@components/widgets/Input';
 import TabForm from '@components/widgets/TabForm';
 import DropdownContainer from '@components/containers/DropdownContainer';
-import AddManagedSWModal from '@components/modals/AddManagedSWModal';
+import AddOrUpdateRegistrationSWModal from '@components/modals/AddOrUpdateRegistrationSWModal';
 import AsyncBoundaryWrapper from '@components/containers/AsyncBoundaryWrapper';
 import * as Style from './styled';
 import { RegistrationSWType } from '@@types/client';
@@ -35,7 +35,11 @@ function RegistrationSWTab() {
   return (
     <>
       {isOpen && (
-        <AddManagedSWModal registrationSW={selectedItem} isEditable={!!selectedItem} closeModal={toggleModal} />
+        <AddOrUpdateRegistrationSWModal
+          registrationSW={selectedItem}
+          isEditable={!!selectedItem}
+          closeModal={toggleModal}
+        />
       )}
       <TabTemplate description="Description" onCreate={toggleModal}>
         <TabForm onSubmit={handleSearch} buttonText="조회하기">

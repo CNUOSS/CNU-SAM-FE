@@ -46,7 +46,7 @@ function RegistrationSWTab({ items, manufacturings }: RegistrationSWTabProps) {
         <AddManagedSWModal
           defaultCompanyList={manufacturings}
           defaultCompanyIndex={manufacturings.findIndex(
-            (manufacturing) => manufacturing === selectedItem?.manufacturing
+            (manufacturing) => manufacturing === selectedItem?.swManufacturer
           )}
           defaultSWName={selectedItem?.swName}
           isEditable={!!selectedItem}

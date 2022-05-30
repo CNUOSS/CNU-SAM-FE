@@ -54,11 +54,10 @@ export const AddLectureSWListAttr = {
 export type AddLectureSWListAttr = typeof AddLectureSWListAttr[keyof typeof AddLectureSWListAttr];
 
 export const RegistrationSWListAttr = {
-  Manufacturing: 'manufacturing',
+  SWManufacturer: 'swManufacturer',
   SWName: 'swName',
-  UsedCount: 'usedCount',
-  Writer: 'writer',
-  EnrollDate: 'enrollDate',
+  LatestUpdatorId: 'latestUpdatorId',
+  LatestUpdateDate: 'latestUpdateDate',
 } as const;
 export type RegistrationSWListAttr = typeof RegistrationSWListAttr[keyof typeof RegistrationSWListAttr];
 

@@ -132,6 +132,18 @@ export interface CreateSubscribedRequestBodyServerType {
   first_subscribe_date: string;
 }
 
+/* Registration SW */
+export interface RegistrationSWServerType {
+  id: number;
+  latest_updator_id: string;
+  sw_manufacturer: string;
+  sw_name: string;
+  latest_update_date: string;
+  managed: boolean;
+}
+
+export type CreateRegistrationSWRequestBodyServerType = Omit<RegistrationSWServerType, 'id' | 'latest_update_date'>;
+
 /* Project */
 export interface ProjectListItemServerType {
   id: number;

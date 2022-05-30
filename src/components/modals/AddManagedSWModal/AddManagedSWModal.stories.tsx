@@ -7,32 +7,10 @@ export default {
   component: AddManagedSWModal,
 };
 
-const defaultCompanyList = ['LG', 'SAMSUNG'];
-const defaultSWName = 'fosslight';
 const closeModalAction = action('close modal');
-const onSubmitAction = action('on submit');
-const onDeleteAction = action('ond delete');
 
-export const selectedSW = () => (
-  <AddManagedSWModal
-    defaultCompanyList={defaultCompanyList}
-    defaultCompanyIndex={1}
-    defaultSWName={defaultSWName}
-    onSubmit={onSubmitAction}
-    closeModal={closeModalAction}
-  />
-);
+export const selectedSW = () => <AddManagedSWModal closeModal={closeModalAction} />;
 
-export const noSWName = () => (
-  <AddManagedSWModal defaultCompanyList={defaultCompanyList} onSubmit={onSubmitAction} closeModal={closeModalAction} />
-);
+export const noSWName = () => <AddManagedSWModal closeModal={closeModalAction} />;
 
-export const editable = () => (
-  <AddManagedSWModal
-    isEditable
-    defaultCompanyList={defaultCompanyList}
-    onSubmit={onSubmitAction}
-    onDelete={onDeleteAction}
-    closeModal={closeModalAction}
-  />
-);
+export const editable = () => <AddManagedSWModal isEditable closeModal={closeModalAction} />;

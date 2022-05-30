@@ -21,8 +21,6 @@ function RegistrationSWTab() {
     swName: '',
   });
 
-  const addNewSW = () => {};
-  const onDelete = () => {};
   const toggleModal = () => {
     setIsOpen((prev) => !prev);
     setSelectedItem(undefined);
@@ -37,15 +35,7 @@ function RegistrationSWTab() {
   return (
     <>
       {isOpen && (
-        <AddManagedSWModal
-          defaultCompanyList={[]}
-          defaultCompanyIndex={0}
-          defaultSWName={selectedItem?.swName}
-          isEditable={!!selectedItem}
-          closeModal={toggleModal}
-          onSubmit={addNewSW}
-          onDelete={onDelete}
-        />
+        <AddManagedSWModal registrationSW={selectedItem} isEditable={!!selectedItem} closeModal={toggleModal} />
       )}
       <TabTemplate description="Description" onCreate={toggleModal}>
         <TabForm onSubmit={handleSearch} buttonText="조회하기">

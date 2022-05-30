@@ -5,7 +5,7 @@ import Input from '@components/widgets/Input';
 import Dropdown from '@components/widgets/Dropdown';
 import TabForm from '@components/widgets/TabForm';
 import Table from '@components/widgets/Table';
-import AddManagedSWModal from '@components/modals/AddManagedSWModal';
+import AddOrUpdateRegistrationSWModal from '@components/modals/AddOrUpdateRegistrationSWModal';
 import AddOrUpdateLectureSWTab from '@components/tabs//AddOrUpdateLectureSWTab';
 import { TotalLectureSWListAttr } from '@@types/types';
 import { totalLectureSWListAttr } from '@common/constants';
@@ -70,7 +70,7 @@ function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
 
   return (
     <>
-      {selectedItem && <AddManagedSWModal closeModal={closeModal} />}
+      {selectedItem && <AddOrUpdateRegistrationSWModal closeModal={closeModal} />}
       <TabTemplate description="Description">
         <TabForm onSubmit={searchList} buttonText="조회하기">
           <Dropdown items={ORGANIZATION} label="조직분류" width="16rem" onClickItem={() => {}} />

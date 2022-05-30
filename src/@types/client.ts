@@ -130,6 +130,26 @@ export interface RegistrationSWType {
   managed: boolean;
 }
 
+// get
+export interface GetRegistrationSWListRequstParamsClientType {
+  size: number;
+  page: number;
+  sort: string;
+  swMfr: string;
+  swName: string;
+}
+
+export interface GetRegistrationSWListResponseClientType {
+  pageInfo: {
+    totalElements: number;
+    last: boolean;
+    totalPages: number;
+    size: number;
+  };
+  registrationSWList: RegistrationSWType[];
+}
+
+// create
 export type CreateRegistrationSWRequestBodyClientType = Omit<RegistrationSWType, 'id' | 'latestUpdateDate'>;
 
 /* Project */

@@ -9,7 +9,7 @@ import * as Style from './styled';
 import { getManufacturerNamesResponseServer2Client } from '@converter/data';
 import { useQueryClient } from 'react-query';
 import useMutation from '@hooks/useMutation';
-import { createRegistrationSWAPI, getRegistrationSWListAPI } from '../../../apis/registrationsw';
+import { createRegistrationSWAPI, deleteRegistrationSWAPI, getRegistrationSWListAPI } from '@apis/registrationsw';
 import { createRegistrationSWRequestClient2Server } from '@converter/registrationsw';
 import { useAuth } from '@libs/auth';
 import { getManufacturersNamesAPI } from '@apis/data';
@@ -29,17 +29,22 @@ function AddOrUpdateRegistrationSWModal({
 }: AddOrUpdateRegistrationSWModalProps) {
   const { user } = useAuth();
   const queryClient = useQueryClient();
-  const createMutationSuccess = async () => {
+  const executeMutationSuccess = async () => {
     await queryClient.invalidateQueries(getRegistrationSWListAPI);
     closeModal();
   };
   const { mutate: createMutate } = useMutation({
     url: createRegistrationSWAPI.url,
     method: createRegistrationSWAPI.method,
-    onSuccess: createMutationSuccess,
+    onSuccess: executeMutationSuccess,
     converter: {
       request: createRegistrationSWRequestClient2Server,
     },
+  });
+  const { mutate: deleteMutate } = useMutation({
+    url: deleteRegistrationSWAPI.url(0),
+    method: deleteRegistrationSWAPI.method,
+    onSuccess: executeMutationSuccess,
   });
   const { change, getValue, error, handleSubmit } = useForm<FormType>({
     swName: [{ error: 'required' }],
@@ -51,6 +56,9 @@ function AddOrUpdateRegistrationSWModal({
     if (!user) return;
     const isManaged = user.role === 'ADMIN';
     createMutate({ ...data, isManaged, latestUpdaterId: user.id });
+  };
+  const onDelete = () => {
+    if (registrationSW) deleteMutate({ dynamicUrl: deleteRegistrationSWAPI.url(registrationSW.id) });
   };
 
   return (
@@ -71,12 +79,12 @@ function AddOrUpdateRegistrationSWModal({
         </Style.InputWrapper>
         {error && <Style.Error>값을 모두 채워주세요</Style.Error>}
         <Style.ButtonWrapper>
-          {isEditable && registrationSW && (
-            <Button theme="warning" onClick={() => {}}>
+          {registrationSW && (
+            <Button theme="warning" onClick={onDelete}>
               삭제하기
             </Button>
           )}
-          <Button onClick={handleSubmit(onSubmit)}>{isEditable ? '수정하기' : '등록하기'}</Button>
+          <Button onClick={handleSubmit(onSubmit)}>{registrationSW ? '수정하기' : '등록하기'}</Button>
         </Style.ButtonWrapper>
       </Style.Container>
     </Template>

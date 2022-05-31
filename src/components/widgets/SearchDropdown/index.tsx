@@ -8,7 +8,7 @@ interface SearchDropdownProps {
   width?: string;
   isLoading?: boolean;
   onChangeValue: (value: string) => void;
-  onClickSelected: () => void;
+  onClickSelected?: () => void;
 }
 
 interface CoverProps {

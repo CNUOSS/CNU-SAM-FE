@@ -8,4 +8,4 @@ export default {
 };
 
 const projectName = generateString(6);
-export const tab = () => <EnrollVersionTab projectName={projectName} />;
+export const tab = () => <EnrollVersionTab projectId={0} projectName={projectName} />;

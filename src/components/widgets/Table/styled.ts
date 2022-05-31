@@ -30,12 +30,12 @@ export const Container = styled.div`
     }
   }
 
-  .ReactVirtualized__Table__rowColumn {
+  /* .ReactVirtualized__Table__rowColumn {
     display: block;
     white-space: nowrap;
     overflow: auto !important;
     text-overflow: ellipsis;
-  }
+  } */
 
   div[aria-label='grid'] {
     background-color: ${(props) => props.theme.colors.tertiary};

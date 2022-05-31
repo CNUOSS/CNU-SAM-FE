@@ -155,6 +155,9 @@ export type CreateRegistrationSWRequestBodyClientType = Omit<
   'id' | 'latestUpdateDate' | 'managed'
 > & { isManaged: boolean };
 
+// update
+export type UpdateRegistrationSWRequestBodyClientType = RegistrationSWType & { isManaged: boolean };
+
 /* Project */
 export interface ProjectListItemType {
   id: number;

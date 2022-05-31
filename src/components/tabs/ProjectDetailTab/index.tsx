@@ -58,7 +58,11 @@ function ProjectDetailTab({ projectId }: ProjectDetailTabProps) {
   const clickEnrollVersionButton = () => {
     if (!data) return;
     setTabState((oldState) =>
-      compareTabs(oldState, `${data.id} . ${data.projectName}: 버전등록`, <EnrollVersionTab projectName="프로젝트명" />)
+      compareTabs(
+        oldState,
+        `${data.id} . ${data.projectName}: 버전등록`,
+        <EnrollVersionTab projectId={data.id} projectName={data.projectName} />
+      )
     );
   };
 

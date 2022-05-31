@@ -225,3 +225,17 @@ export interface CreateProjectResponseClientType {
   id: number;
   projectName: string;
 }
+
+/* version */
+export interface CreateVersionRequestClientType {
+  projectId: number;
+  versionName: string;
+  versionDescription: string;
+  ossList: {
+    ossLocation: string;
+    ossName: string;
+    ossVersion: string;
+    ossUrl: string;
+    licenseId: number;
+  }[];
+}

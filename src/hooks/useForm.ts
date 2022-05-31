@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { inOrOut } from '@utils/module';
 
 type ErrorType = 'required' | 'maxLength' | 'minLength';
@@ -31,10 +31,14 @@ interface useFormType<T> {
   handleSubmit: (fn: (data: T) => void) => (event?: any) => void;
 }
 
-function useForm<T extends object>(validators?: Validator<T>): useFormType<T> {
+function useForm<T extends object>(validators?: Validator<T>, initialValue?: Partial<T>): useFormType<T> {
   const [state, setState] = useState<Partial<T>>({});
   const [arrayState, setArrayState] = useState<ArrayStateType<T>>({} as ArrayStateType<T>);
   const [error, setError] = useState<Error<T>>();
+
+  useEffect(() => {
+    if (initialValue) setState(initialValue);
+  }, []);
 
   const change = (key: keyof T) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | string) => {
     if (typeof event === 'string' || !event) setState((prev) => ({ ...prev, [key]: event }));

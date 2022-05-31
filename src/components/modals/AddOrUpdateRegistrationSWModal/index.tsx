@@ -42,7 +42,7 @@ function AddOrUpdateRegistrationSWModal({
     },
   });
   const { mutate: deleteMutate } = useMutation({
-    url: deleteRegistrationSWAPI.url(0),
+    url: deleteRegistrationSWAPI.url,
     method: deleteRegistrationSWAPI.method,
     onSuccess: executeMutationSuccess,
   });
@@ -58,7 +58,7 @@ function AddOrUpdateRegistrationSWModal({
     createMutate({ ...data, isManaged, latestUpdaterId: user.id });
   };
   const onDelete = () => {
-    if (registrationSW) deleteMutate({ dynamicUrl: deleteRegistrationSWAPI.url(registrationSW.id) });
+    if (registrationSW) deleteMutate({ dynamicUrl: deleteRegistrationSWAPI.dynamicUrl(registrationSW.id) });
   };
 
   return (

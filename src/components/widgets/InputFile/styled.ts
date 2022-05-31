@@ -16,6 +16,7 @@ export const InputBox = styled.div`
   display: flex;
   align-items: center;
   padding-left: 1rem;
+  overflow: auto;
 
   font-size: 1.5rem;
   border: 1px solid black;

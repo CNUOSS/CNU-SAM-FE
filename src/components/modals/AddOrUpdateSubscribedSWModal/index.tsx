@@ -41,7 +41,7 @@ function AddOrUpdateSubscribedSWModal({ subscribedSW, closeModal }: AddOrUpdateS
     },
   });
   const { mutate: deleteMutate } = useMutation({
-    url: deleteSubscribedSWAPI.url(0),
+    url: deleteSubscribedSWAPI.url,
     method: deleteSubscribedSWAPI.method,
     onSuccess: excuteMutationSuccess,
   });
@@ -56,7 +56,7 @@ function AddOrUpdateSubscribedSWModal({ subscribedSW, closeModal }: AddOrUpdateS
   });
 
   const onDelete = () => {
-    if (subscribedSW) deleteMutate({ dynamicUrl: deleteSubscribedSWAPI.url(subscribedSW.id) });
+    if (subscribedSW) deleteMutate({ dynamicUrl: deleteSubscribedSWAPI.dynamicUrl(subscribedSW.id) });
   };
   const onSubmit = (data: InputType) => {
     if (user) mutate({ updatorId: user.id, ...data });

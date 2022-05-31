@@ -46,4 +46,5 @@ export const EnrollButtonWrapper = styled.div`
   position: absolute;
   top: -1.5rem;
   right: 0;
+  z-index: 1;
 `;

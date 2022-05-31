@@ -249,3 +249,17 @@ export interface CreateProjectResponseServerType extends ProjectMetaServerType {
   update_date: string;
   user_id: string;
 }
+
+/* version */
+export interface CreateVersionRequestServerType {
+  project_id: number;
+  version_name: string;
+  version_description: string;
+  oss_analysis: {
+    oss_location: string;
+    oss_name: string;
+    oss_version: string;
+    oss_url: string;
+    license_id: number;
+  }[];
+}

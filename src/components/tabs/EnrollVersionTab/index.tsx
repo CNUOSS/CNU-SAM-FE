@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
+import { read, utils } from 'xlsx';
 import TabTemplate from '@components/templates/TabTemplate';
 import InputFile from '@components/widgets/InputFile';
 import Input from '@components/widgets/Input';
 import DefaultText from '@components/widgets/DefaultText';
 import Table, { ItemType } from './Table';
 import * as Style from './styled';
+import { excelType2OSSType } from '@converter/excelResult';
 
 interface EnrollVersionTabProps {
   projectName: string;
+}
+
+export interface ExcelType {
+  ID: string;
+  'Source Name or Path': string;
+  'OSS Name': string;
+  'OSS Version': string;
+  License: string;
+  'Download Location': string;
 }
 
 function EnrollVersionTab({ projectName }: EnrollVersionTabProps) {
@@ -15,6 +26,14 @@ function EnrollVersionTab({ projectName }: EnrollVersionTabProps) {
 
   const addNewItem = (newItem: ItemType) => setItems((prev) => [newItem, ...prev]);
   const deleteItem = (selectedIndex: number) => setItems((prev) => prev.filter((_, i: number) => i !== selectedIndex));
+
+  const getDependency = (data: string | ArrayBuffer | null) => {
+    const workBook = read(data, { type: 'binary' });
+    const result = utils
+      .sheet_to_json(workBook.Sheets[workBook.SheetNames[0]])
+      .map((item) => excelType2OSSType(item as ExcelType));
+    setItems((prev) => [...prev, ...result]);
+  };
 
   return (
     <TabTemplate description="Description" onCreate={() => {}}>
@@ -29,8 +48,7 @@ function EnrollVersionTab({ projectName }: EnrollVersionTabProps) {
         </Style.DescriptionWrapper>
       </Style.BackGroundBox>
       <Style.BackGroundBox direction="row">
-        <InputFile label="SRC" onChange={() => {}} />
-        <InputFile label="BIN" onChange={() => {}} />
+        <InputFile label="DEPENDENCY" onChange={getDependency} />
       </Style.BackGroundBox>
       <Style.TableWrapper>
         <Table items={items} licenses={[]} onAddNewItem={addNewItem} onDeleteItem={deleteItem} />

@@ -1,10 +1,12 @@
 import {
   CreateRegistrationSWRequestBodyClientType,
+  UpdateRegistrationSWRequestBodyClientType,
   GetRegistrationSWListRequstParamsClientType,
   GetRegistrationSWListResponseClientType,
 } from '@@types/client';
 import {
   CreateRegistrationSWRequestBodyServerType,
+  UpdateRegistrationSWRequestBodyServerType,
   GetRegistrationSWListResponseServerType,
   GetRegistrationswListRequestParamsServerType,
 } from '@@types/server';
@@ -20,6 +22,22 @@ export const createRegistrationSWRequestClient2Server = ({
     latest_updater_id: latestUpdaterId,
     sw_manufacturer: swManufacturer,
     sw_name: swName,
+  };
+};
+
+export const updateRegistrationSWRequestClient2Server = ({
+  id,
+  latestUpdaterId,
+  swManufacturer,
+  swName,
+  isManaged,
+}: UpdateRegistrationSWRequestBodyClientType): UpdateRegistrationSWRequestBodyServerType => {
+  return {
+    id,
+    latest_updater_id: latestUpdaterId,
+    sw_manufacturer: swManufacturer,
+    sw_name: swName,
+    is_managed: isManaged,
   };
 };
 

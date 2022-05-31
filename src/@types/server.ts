@@ -171,6 +171,14 @@ export type CreateRegistrationSWRequestBodyServerType = Omit<
   'id' | 'latest_update_date' | 'managed'
 > & { is_managed: boolean };
 
+// update
+export type UpdateRegistrationSWRequestBodyServerType = Omit<
+  RegistrationSWServerType,
+  'latest_update_date' | 'managed'
+> & {
+  is_managed: boolean;
+};
+
 /* Project */
 export interface ProjectListItemServerType {
   id: number;

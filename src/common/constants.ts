@@ -170,8 +170,8 @@ export const ossListAttr: AttributeType<OSSListAttr | Number | Trash, typeOSSLis
   { label: '소송 이름 또는 경로', dataKey: 'ossLocation', widthPercent: 15, disableSort: true },
   { label: 'OSS명', dataKey: 'ossName', widthPercent: 19, disableSort: true },
   { label: 'OSS 버전', dataKey: 'ossVersion', widthPercent: 7, disableSort: true },
-  { label: '라이선스', dataKey: 'license', widthPercent: 9, disableSort: true },
-  { label: 'OSS 관련 주소', dataKey: 'ossUrl', widthPercent: 40, disableSort: true },
+  { label: '라이선스', dataKey: 'license', widthPercent: 20, disableSort: true },
+  { label: 'OSS 관련 주소', dataKey: 'ossUrl', widthPercent: 30, disableSort: true },
   { label: '', dataKey: 'trash', widthPercent: 5, disableSort: true },
 ];
 

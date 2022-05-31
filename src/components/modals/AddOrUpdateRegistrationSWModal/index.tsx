@@ -9,8 +9,16 @@ import * as Style from './styled';
 import { getManufacturerNamesResponseServer2Client } from '@converter/data';
 import { useQueryClient } from 'react-query';
 import useMutation from '@hooks/useMutation';
-import { createRegistrationSWAPI, deleteRegistrationSWAPI, getRegistrationSWListAPI } from '@apis/registrationsw';
-import { createRegistrationSWRequestClient2Server } from '@converter/registrationsw';
+import {
+  createRegistrationSWAPI,
+  deleteRegistrationSWAPI,
+  getRegistrationSWListAPI,
+  updateRegistrationSWAPI,
+} from '@apis/registrationsw';
+import {
+  createRegistrationSWRequestClient2Server,
+  updateRegistrationSWRequestClient2Server,
+} from '@converter/registrationsw';
 import { useAuth } from '@libs/auth';
 import { getManufacturersNamesAPI } from '@apis/data';
 
@@ -46,16 +54,34 @@ function AddOrUpdateRegistrationSWModal({
     method: deleteRegistrationSWAPI.method,
     onSuccess: executeMutationSuccess,
   });
-  const { change, getValue, error, handleSubmit } = useForm<FormType>({
-    swName: [{ error: 'required' }],
-    swManufacturer: [{ error: 'required' }],
+  const { mutate: updateMutate } = useMutation({
+    url: updateRegistrationSWAPI.url,
+    method: updateRegistrationSWAPI.method,
+    onSuccess: executeMutationSuccess,
+    converter: { request: updateRegistrationSWRequestClient2Server },
   });
+  const { change, getValue, error, handleSubmit } = useForm<FormType>(
+    {
+      swName: [{ error: 'required' }],
+      swManufacturer: [{ error: 'required' }],
+    },
+    registrationSW ? { swName: registrationSW.swName, swManufacturer: registrationSW.swManufacturer } : {}
+  );
 
   const selectManufacturer = (manufacturer: string) => change('swManufacturer')(manufacturer);
   const onSubmit = (data: FormType) => {
     if (!user) return;
+
     const isManaged = user.role === 'ADMIN';
-    createMutate({ ...data, isManaged, latestUpdaterId: user.id });
+    if (!registrationSW) createMutate({ ...data, isManaged, latestUpdaterId: user.id });
+    else
+      updateMutate({
+        ...data,
+        id: registrationSW?.id,
+        isManaged,
+        latestUpdaterId: user.id,
+        dynamicUrl: updateRegistrationSWAPI.dynamicUrl(registrationSW.id),
+      });
   };
   const onDelete = () => {
     if (registrationSW) deleteMutate({ dynamicUrl: deleteRegistrationSWAPI.dynamicUrl(registrationSW.id) });
@@ -69,6 +95,7 @@ function AddOrUpdateRegistrationSWModal({
         <Style.InputWrapper>
           <SelfDropdownContainer
             label="SW 제조사"
+            defaultItem={registrationSW?.swManufacturer}
             width={35}
             inputWidth={20}
             getUrl={getManufacturersNamesAPI}

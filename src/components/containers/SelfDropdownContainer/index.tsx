@@ -4,6 +4,7 @@ import useFetch from '@hooks/useFetch';
 
 interface SelfDropdownContainerProps {
   label?: string;
+  defaultItem?: string;
   width: number;
   getUrl: string;
   inputWidth: number;
@@ -16,10 +17,11 @@ function SelfDropdownContainer({
   width,
   getUrl,
   inputWidth,
+  defaultItem = '',
   responseConverter,
   onChangeValue,
 }: SelfDropdownContainerProps) {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(defaultItem);
   const { data, refetch } = useFetch<string[]>(
     getUrl,
     {},
@@ -32,11 +34,14 @@ function SelfDropdownContainer({
     onChangeValue(value);
   };
 
+  const items = data || [];
+  const currentIdx = defaultItem ? items.findIndex((item) => item === defaultItem) : -1;
   return (
     <SelfDropdown
       label={label}
-      items={data || []}
+      items={items}
       width={width}
+      currentIdx={currentIdx < 0 ? undefined : currentIdx}
       inputValue={value}
       inputWidth={inputWidth}
       onChange={onChange}

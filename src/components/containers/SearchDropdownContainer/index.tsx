@@ -8,6 +8,7 @@ interface SearchDropdownContainerProps<T> {
   getUrl: string;
   // if result data is object array, to filter
   itemKey?: string;
+  defaultValue?: string;
   responseConverter: (response: any) => T[];
   onChangeValue: (item: T) => void;
 }
@@ -17,6 +18,7 @@ function SearchDropdownContainer<T>({
   width,
   getUrl,
   itemKey,
+  defaultValue = '',
   responseConverter,
   onChangeValue,
 }: SearchDropdownContainerProps<T>) {
@@ -41,6 +43,7 @@ function SearchDropdownContainer<T>({
       label={label}
       width={width}
       isLoading={isLoading}
+      defaultValue={defaultValue}
       onChangeValue={changeHandler}
       onClickSelected={refetch}
     />

@@ -1,4 +1,5 @@
 import { AttributeType } from '@components/widgets/Table';
+import { AttributeType as LineAttributeType } from '@components/widgets/LineTable';
 import {
   Temp,
   Trash,
@@ -12,6 +13,7 @@ import {
   SubscribedSWListAttr,
   TotalLectureSWListAttr,
   RegistrationSWListAttr,
+  OSSAnalysisListAttr,
 } from '@@types/types';
 
 export interface CategoryType {
@@ -65,6 +67,14 @@ export type typeOSSListTableLabelType =
   | 'OSS 관련 주소'
   | '';
 export type LicenseListTableLabelType = 'No' | '라이선스명' | '라이선스 타입' | '라이선스 주소' | '규제' | '';
+export type OSSAnalysisListTableLabelType =
+  | 'OSS 위치'
+  | 'OSS 이름'
+  | 'OSS 버전'
+  | 'OSS Url'
+  | '라이선스 이름'
+  | '라이선스 Url'
+  | '라이선스 타입';
 
 /**
  * Common
@@ -182,4 +192,14 @@ export const licenseListAttr: AttributeType<LicenseListAttr | Number | Trash, Li
   { label: '규제', dataKey: 'restriction', widthPercent: 30, disableSort: true },
   { label: '라이선스 주소', dataKey: 'licenseUrl', widthPercent: 30, disableSort: true },
   { label: '', dataKey: 'trash', widthPercent: 5, disableSort: true },
+];
+
+export const ossAnalysisListAttr: LineAttributeType<OSSAnalysisListAttr, OSSAnalysisListTableLabelType>[] = [
+  { label: 'OSS 위치', dataKey: 'ossLocation' },
+  { label: 'OSS 이름', dataKey: 'ossName' },
+  { label: 'OSS 버전', dataKey: 'ossVersion' },
+  { label: 'OSS Url', dataKey: 'ossUrl' },
+  { label: '라이선스 이름', dataKey: 'licenseName' },
+  { label: '라이선스 Url', dataKey: 'licenseUrl' },
+  { label: '라이선스 타입', dataKey: 'licenseTypeName' },
 ];

@@ -185,11 +185,12 @@ export interface ProjectDetailType {
   projectCategoryName: string;
   ossLicenseName: string;
   userId: string;
-  versionList: {
-    id: number;
-    versionName: string;
-    createDate: string;
-  }[];
+  versionList: VersionType[];
+}
+export interface VersionType {
+  id: number;
+  versionName: string;
+  createDate: string;
 }
 
 // search

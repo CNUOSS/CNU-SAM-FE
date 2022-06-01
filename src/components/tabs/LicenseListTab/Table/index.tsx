@@ -54,7 +54,7 @@ function Table({ searchInfo, openDeleteModal }: TableProps) {
     <WidgetTable
       items={parsedItem}
       attributes={licenseListAttr}
-      pageCount={Math.ceil((data?.pageInfo.totalPages || 0) / LIMIT)}
+      pageCount={data?.pageInfo.totalPages || 0}
       onClickPageButton={onClickPageButton}
     />
   );

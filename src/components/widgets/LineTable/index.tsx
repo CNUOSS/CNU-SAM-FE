@@ -1,3 +1,4 @@
+import generateGuid from '@utils/generate-id';
 import React from 'react';
 import * as Style from './styled';
 
@@ -18,15 +19,15 @@ function LineTable<DataKey, Label>({ columns, data }: LineTableProps<DataKey, La
       <thead>
         <tr>
           {columns.map((column) => (
-            <Style.Th key={column.label as unknown as string}>{column.label}</Style.Th>
+            <Style.Th key={generateGuid()}>{column.label}</Style.Th>
           ))}
         </tr>
       </thead>
       <tbody>
         {data.map((datum) => (
-          <Style.Tr key={datum.id}>
+          <Style.Tr key={generateGuid()}>
             {columns.map((column) => (
-              <Style.Td key={datum[column.dataKey]}>{datum[column.dataKey]}</Style.Td>
+              <Style.Td key={generateGuid()}>{datum[column.dataKey]}</Style.Td>
             ))}
           </Style.Tr>
         ))}

@@ -93,7 +93,7 @@ function EnrollVersionTab({ projectId, projectName }: EnrollVersionTabProps) {
     setItems((prev) =>
       prev.map((i) => {
         if (i.id === item.id) return item;
-        return item;
+        return i;
       })
     );
   };

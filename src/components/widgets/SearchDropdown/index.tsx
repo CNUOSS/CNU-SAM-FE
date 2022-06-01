@@ -7,6 +7,7 @@ interface SearchDropdownProps {
   label?: string;
   width?: string;
   isLoading?: boolean;
+  defaultValue?: string;
   onChangeValue: (value: string) => void;
   onClickSelected?: () => void;
 }
@@ -26,11 +27,12 @@ function SearchDropdown({
   label,
   width = 'fit-content',
   isLoading,
+  defaultValue = '',
   onChangeValue,
   onClickSelected,
 }: SearchDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [text, setText] = useState('');
+  const [text, setText] = useState(defaultValue);
 
   const changeInputValue = (event: React.ChangeEvent<HTMLInputElement>) => setText(event.target.value);
   const closeList = () => setIsOpen(false);

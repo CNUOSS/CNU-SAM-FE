@@ -5,10 +5,12 @@ import { ItemType as RegistrationSWItemAttrType } from '../components/tabs/Regis
 import { ItemType as SubscribedSWAttrType } from '../components/tabs/SubscribedSWTab/Table';
 import { ItemType as LicenseAttrType } from '../components/tabs/LicenseListTab/Table';
 import { ItemType as ProjectAttrType } from '../components/tabs/ProjectListTab/Table';
+import { ItemType as OSSAttrType } from '../components/tabs/EnrollVersionTab/Table';
 import { SummarizedVersionType } from '../components/tabs/ProjectDetailTab';
 
 // Obj Type
 import { LectureSWType } from '../components/tabs/AddOrUpdateLectureSWTab';
+import generateGuid from '@utils/generate-id';
 
 export const generateString = (num: number = 9) =>
   Math.random()
@@ -87,6 +89,15 @@ export const generateProjectListItem = (): ProjectAttrType => ({
 export const generateVersionListItem = (): SummarizedVersionType => ({
   versionName: generateString(8),
   createDate: generateString(8),
+});
+
+export const generateOSSListItem = (): OSSAttrType & { id: string } => ({
+  id: generateGuid(),
+  ossLocation: generateString(10),
+  ossName: generateString(6),
+  ossUrl: generateString(10),
+  ossVersion: generateString(4),
+  license: generateString(5),
 });
 
 // FIXME: Replace with license object in api-mock file

@@ -43,6 +43,8 @@ export const IconWrapper = styled.div<IconWrapperProps>`
 
 export const List = styled.ul`
   width: 100%;
+  max-height: 9rem;
+  overflow: auto;
   position: absolute;
   top: 3.5rem;
   padding: 1rem;

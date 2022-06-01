@@ -10,7 +10,7 @@ export type ItemType = {
   [key in OSSListAttr]: string;
 };
 
-type RowType = {
+export type RowType = {
   [key in OSSListAttr | Number | Trash]: number | string | React.ReactElement;
 };
 
@@ -19,9 +19,10 @@ interface TableProps {
   licenses: string[];
   onAddNewItem: (item: ItemType) => void;
   onDeleteItem: (index: number) => void;
+  onClickItem: (item: RowType) => void;
 }
 
-function Table({ items, onAddNewItem, licenses, onDeleteItem }: TableProps) {
+function Table({ items, onAddNewItem, licenses, onClickItem, onDeleteItem }: TableProps) {
   const [ossLocation, setOssLocation] = useState('');
   const [ossName, setOssName] = useState('');
   const [ossVersion, setOssVersion] = useState('');
@@ -62,7 +63,7 @@ function Table({ items, onAddNewItem, licenses, onDeleteItem }: TableProps) {
     trash: <></>,
   };
 
-  return <TableWidget items={[plugRow, ...parsedItems]} attributes={ossListAttr} />;
+  return <TableWidget items={[plugRow, ...parsedItems]} attributes={ossListAttr} onRowClick={onClickItem} />;
 }
 
 export default Table;

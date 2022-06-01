@@ -263,3 +263,24 @@ export interface CreateVersionRequestServerType {
     license_id: number;
   }[];
 }
+
+export interface GetVersionDetailResponseServerType {
+  versionId: number;
+  versionName: string;
+  versionDescription: string;
+  ossAnalysis: {
+    ossLocation: string;
+    ossName: string;
+    ossVersion: string;
+    ossUrl: string;
+    licenseName: string;
+    licenseUrl: string;
+    licenseTypeName: string;
+  }[];
+  analysisRestriction: {
+    licenseName: string;
+    restriction: {
+      restriction_name: string;
+    }[];
+  }[];
+}

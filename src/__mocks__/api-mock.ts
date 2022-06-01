@@ -1,4 +1,9 @@
-import { GetLicenseListResponseClientType, LicenseType } from '@@types/client';
+import {
+  AnalysisRestrictionType,
+  GetLicenseListResponseClientType,
+  LicenseType,
+  OSSAnalysisType,
+} from '@@types/client';
 import { generateString } from './create-mock';
 
 /**
@@ -26,3 +31,28 @@ export const generateGetLicensesResponseMock = (): GetLicenseListResponseClientT
 });
 
 export const generateCreateLicenseResponseMock = (): LicenseType => generateLicenseMock();
+
+export const generateOssAnalysis = (): OSSAnalysisType => ({
+  ossLocation: generateString(10),
+  ossName: generateString(7),
+  ossVersion: generateString(8),
+  ossUrl: generateString(10),
+  licenseName: generateString(7),
+  licenseUrl: generateString(10),
+  licenseTypeName: generateString(10),
+});
+
+export const generateAnalysisRestriction = (): AnalysisRestrictionType => ({
+  licenseName: generateString(10),
+  restriction: [
+    {
+      restrictionName: generateString(10),
+    },
+    {
+      restrictionName: generateString(10),
+    },
+    {
+      restrictionName: generateString(10),
+    },
+  ],
+});

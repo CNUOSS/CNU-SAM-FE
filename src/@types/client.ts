@@ -227,6 +227,22 @@ export interface CreateProjectResponseClientType {
 }
 
 /* version */
+export interface OSSAnalysisType {
+  ossLocation: string;
+  ossName: string;
+  ossVersion: string;
+  ossUrl: string;
+  licenseName: string;
+  licenseUrl: string;
+  licenseTypeName: string;
+}
+export interface AnalysisRestrictionType {
+  licenseName: string;
+  restriction: {
+    restrictionName: string;
+  }[];
+}
+
 export interface CreateVersionRequestClientType {
   projectId: number;
   versionName: string;
@@ -238,4 +254,12 @@ export interface CreateVersionRequestClientType {
     ossUrl: string;
     licenseId: number;
   }[];
+}
+
+export interface GetVersionDetailResponseClientType {
+  versionId: number;
+  versionName: string;
+  versionDescription: string;
+  ossAnalysis: OSSAnalysisType[];
+  analysisRestriction: AnalysisRestrictionType[];
 }

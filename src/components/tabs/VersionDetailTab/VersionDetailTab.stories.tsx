@@ -6,4 +6,4 @@ export default {
   component: VersionDetailTab,
 };
 
-export const tab = () => <VersionDetailTab projectId={0} versionId={0} />;
+export const tab = () => <VersionDetailTab projectId={0} versionId={0} tabName="" />;

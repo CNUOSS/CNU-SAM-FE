@@ -15,3 +15,13 @@ export const createVersionAPI: { method: MethodType; url: string; dynamicUrl: (i
   url: `projects/:project_id/versions`,
   dynamicUrl: (id: number) => `projects/${id}/versions`,
 };
+
+export const deleteVersionAPI: {
+  method: MethodType;
+  url: string;
+  dynamicUrl: (projectId: number, versionId: number) => string;
+} = {
+  method: 'DELETE',
+  url: `projects/:projectId/versions/:versionId`,
+  dynamicUrl: (projectId: number, versionId: number) => `projects/${projectId}/versions/${versionId}`,
+};

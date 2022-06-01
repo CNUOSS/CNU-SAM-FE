@@ -76,7 +76,11 @@ function ProjectDetailTab({ projectId }: ProjectDetailTabProps) {
       compareTabs(
         prev,
         `${projectId} . ${data?.projectName} . ${version.versionName}`,
-        <VersionDetailTab projectId={projectId} versionId={version.id} />
+        <VersionDetailTab
+          projectId={projectId}
+          versionId={version.id}
+          tabName={`${projectId} . ${data?.projectName} . ${version.versionName}`}
+        />
       )
     );
   };

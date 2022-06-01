@@ -58,7 +58,7 @@ export type ProjectListTableLabelType =
 export type VersionListTableLabelType = 'No' | '버전명' | '생성 날짜' | '라이선스 지킴이';
 export type typeOSSListTableLabelType =
   | 'No'
-  | '소송 이름 또는 경로'
+  | '소스 이름 또는 경로'
   | 'OSS명'
   | 'OSS 버전'
   | '라이선스'
@@ -167,7 +167,7 @@ export const versionListAttr: AttributeType<VersionListAttr | Number | Temp, Ver
 
 export const ossListAttr: AttributeType<OSSListAttr | Number | Trash, typeOSSListTableLabelType>[] = [
   { label: 'No', dataKey: 'number', widthPercent: 5, disableSort: true },
-  { label: '소송 이름 또는 경로', dataKey: 'ossLocation', widthPercent: 15, disableSort: true },
+  { label: '소스 이름 또는 경로', dataKey: 'ossLocation', widthPercent: 15, disableSort: true },
   { label: 'OSS명', dataKey: 'ossName', widthPercent: 19, disableSort: true },
   { label: 'OSS 버전', dataKey: 'ossVersion', widthPercent: 7, disableSort: true },
   { label: '라이선스', dataKey: 'license', widthPercent: 20, disableSort: true },

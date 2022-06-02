@@ -158,6 +158,46 @@ export type CreateRegistrationSWRequestBodyClientType = Omit<
 // update
 export type UpdateRegistrationSWRequestBodyClientType = RegistrationSWType & { isManaged: boolean };
 
+/* Lecture SW */
+export interface LectureSWType {
+  id: number;
+  year: string;
+  semester: string;
+  department: string;
+  lectureNum: string;
+  lectureName: string;
+  lectureType: string;
+  ownerId: string;
+  swName: string;
+  swManufacturer: string;
+  // license
+  updateDate: string;
+  isManaged: boolean;
+}
+
+export interface GetLectureSWListRequestParamsClientType {
+  size: number;
+  page: number;
+  sort: string;
+  department: string;
+  year: string;
+  lectureType: string;
+  semester: string;
+  lectureName: string;
+  lectureNum: string;
+  owner: string;
+}
+
+export interface GetLectureSWListResponseClientType {
+  pageInfo: {
+    totalElements: number;
+    last: boolean;
+    totalPages: number;
+    size: number;
+  };
+  lectureSWList: LectureSWType[];
+}
+
 /* Project */
 export interface ProjectListItemType {
   id: number;

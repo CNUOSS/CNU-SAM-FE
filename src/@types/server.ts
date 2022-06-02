@@ -179,6 +179,51 @@ export type UpdateRegistrationSWRequestBodyServerType = Omit<
   is_managed: boolean;
 };
 
+/* Lecture SW */
+export interface LectureSWServerType {
+  id: number;
+  owner_id: string;
+  year: string;
+  semester: string;
+  lecture_num: string;
+  lecture_name: string;
+  lecture_type: string;
+  department: string;
+  create_date: string;
+  latest_update_date: string;
+  registration_sw: {
+    id: number;
+    latestUpdaterId: string;
+    swManufacturer: string;
+    swName: string;
+    latestUpdateDate: string;
+    isManaged: boolean;
+  };
+}
+
+export interface GetLectureSWListRequestParamsServerType {
+  size: number;
+  page: number;
+  sort: string | null;
+  department: string | null;
+  year: string | null;
+  ['lecture-type']: string | null;
+  semester: string | null;
+  ['lecture-name']: string | null;
+  ['lecture-num']: string | null;
+  owner: string | null;
+}
+
+export interface GetLectureSWListResponseServerType {
+  page_info: {
+    total_elements: number;
+    last: boolean;
+    total_pages: number;
+    size: number;
+  };
+  lecture_sw: LectureSWServerType[];
+}
+
 /* Project */
 export interface ProjectListItemServerType {
   id: number;

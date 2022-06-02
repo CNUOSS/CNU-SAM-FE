@@ -7,8 +7,8 @@ import TabForm from '@components/widgets/TabForm';
 import Table from '@components/widgets/Table';
 import AddOrUpdateRegistrationSWModal from '@components/modals/AddOrUpdateRegistrationSWModal';
 import AddOrUpdateLectureSWTab from '@components/tabs//AddOrUpdateLectureSWTab';
-import { TotalLectureSWListAttr } from '@@types/types';
-import { totalLectureSWListAttr } from '@common/constants';
+import { LectureSWListAttr } from '@@types/types';
+import { lectureSWListAttr } from '@common/constants';
 import { tabState } from '@recoil/tab';
 import { compareTabs } from '@utils/manage-tabs';
 import * as Style from './styled';
@@ -21,7 +21,7 @@ const DIVISION = ['전공(핵심)', '교양(필수)'];
 const YEARS = [year - 1, year, year + 1].map((year) => String(year));
 
 export type ItemType = {
-  [key in TotalLectureSWListAttr]: string | boolean;
+  [key in LectureSWListAttr]: string | boolean;
 };
 
 // FIXME: remove this
@@ -46,8 +46,8 @@ function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
     );
   };
 
-  const getNewManaged = (managed: boolean | string, onClick: () => void) => {
-    if (!managed) return 'No';
+  const getNewManaged = (isManaged: boolean | string, onClick: () => void) => {
+    if (!isManaged) return 'No';
     if (!isAdmin) return 'Yes';
     const clickItem = (event: React.MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation();
@@ -60,9 +60,9 @@ function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
     );
   };
 
-  const parsedItem = items.map(({ managed, ...others }) => {
-    const newManaged = getNewManaged(managed, clickItemAddButton({ managed, ...others }));
-    return { ...others, managed: newManaged };
+  const parsedItem = items.map(({ isManaged, ...others }) => {
+    const newManaged = getNewManaged(isManaged, clickItemAddButton({ isManaged, ...others }));
+    return { ...others, isManaged: newManaged };
   });
 
   const closeModal = () => setSelectedItem(undefined);
@@ -82,12 +82,7 @@ function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
           <Input value="" label="등록자" width="14rem" onChange={() => {}} />
         </TabForm>
         <Style.TableWrapper>
-          <Table
-            title="등록된 수업용 SW"
-            items={parsedItem}
-            attributes={totalLectureSWListAttr}
-            onRowClick={clickItem}
-          />
+          <Table title="등록된 수업용 SW" items={parsedItem} attributes={lectureSWListAttr} onRowClick={clickItem} />
         </Style.TableWrapper>
       </TabTemplate>
     </>

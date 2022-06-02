@@ -170,7 +170,7 @@ export interface LectureSWType {
   ownerId: string;
   swName: string;
   swManufacturer: string;
-  // license
+  license: string;
   updateDate: string;
   isManaged: boolean;
 }

@@ -1,5 +1,5 @@
 // Attribute Type
-import { ItemType as LectureSWItemAttrType } from '../components/tabs/LectureSWListTab';
+import { ItemType as LectureSWItemAttrType } from '../components/tabs/LectureSWListTab/Table';
 import { ItemType as AddLectureSWItemAttrType } from '../components/tabs/AddOrUpdateLectureSWTab/Table';
 import { ItemType as RegistrationSWItemAttrType } from '../components/tabs/RegistrationSWTab/Table';
 import { ItemType as SubscribedSWAttrType } from '../components/tabs/SubscribedSWTab/Table';
@@ -34,7 +34,7 @@ export const generateTotalLectureSWItem = ({
   lectureType: generateString(5),
   ownerId: generateString(3),
   swName: generateString(10),
-  swManufacturing: generateString(5),
+  swManufacturer: generateString(5),
   license: generateString(8),
   updateDate: generateString(8),
   isManaged: managed || Math.random() < 0.5,

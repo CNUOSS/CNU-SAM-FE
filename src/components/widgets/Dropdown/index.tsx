@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NOT_CHOOSED } from '@common/constants';
 import Icon from '../Icon';
 import * as Style from './styled';
 
@@ -46,7 +47,7 @@ function Dropdown({
     onClickItem(existNoneSelect ? idx - 1 : idx);
   };
 
-  const newItems = [existNoneSelect ? '선택안함' : '', ...items].filter((item) => !!item);
+  const newItems = [existNoneSelect ? NOT_CHOOSED : '', ...items].filter((item) => !!item);
   return (
     <Cover label={label}>
       {label ? <Style.Label>{label}</Style.Label> : <></>}

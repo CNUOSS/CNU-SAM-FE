@@ -49,7 +49,7 @@ export const getLectureSWListResponseServer2Client = ({
       ownerId: sw.owner_id,
       swName: sw.registration_sw.swName,
       swManufacturer: sw.registration_sw.swManufacturer,
-      // license
+      license: '',
       updateDate: sw.latest_update_date,
       isManaged: sw.registration_sw.isManaged,
     })),

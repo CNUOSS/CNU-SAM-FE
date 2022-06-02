@@ -39,7 +39,7 @@ export const LectureSWListAttr = {
   LectureType: 'lectureType',
   OwnerId: 'ownerId',
   SWName: 'swName',
-  SWManufacturing: 'swManufacturing',
+  SWManufacturer: 'swManufacturer',
   License: 'license',
   UpdateDate: 'updateDate',
   isManaged: 'isManaged',

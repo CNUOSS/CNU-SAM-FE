@@ -27,6 +27,14 @@ export interface LicenseNamesServerType {
   };
 }
 
+export interface LectureTypeServerType {
+  lecture_type: string;
+}
+
+export interface DepartmentServerType {
+  department: string;
+}
+
 /* License */
 interface LicenseServerType {
   id: number;

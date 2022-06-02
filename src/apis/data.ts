@@ -12,3 +12,9 @@ export const getCategoryNamesAPI = '/category-names';
 
 // Get Manufacturers
 export const getManufacturersNamesAPI = '/manufacturers';
+
+// Get Lecture Type
+export const getLectureTypesAPI = '/lecture-types';
+
+// Get Department
+export const getDepartmentsAPI = '/departments';

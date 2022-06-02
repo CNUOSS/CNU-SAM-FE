@@ -1,6 +1,8 @@
 import { LicenseNamesType } from '@@types/client';
 import {
   CategoryNamesServerType,
+  DepartmentServerType,
+  LectureTypeServerType,
   LicenseNamesServerType,
   LicenseTypeServerType,
   ManufacturerNameServerType,
@@ -35,4 +37,24 @@ export const getManufacturerNamesResponseServer2Client = ({
 }): string[] => {
   if (!manufacturers) return [];
   return manufacturers.map((names) => names.manufacturer);
+};
+
+// Get Lecture Types
+export const getLectureTypesResponseServer2Client = ({
+  lectureTypes,
+}: {
+  lectureTypes: LectureTypeServerType[];
+}): string[] => {
+  if (!lectureTypes) return [];
+  return lectureTypes.map((lecture) => lecture.lecture_type);
+};
+
+// Get Departments
+export const getDepartmentResponseServer2Client = ({
+  departments,
+}: {
+  departments: DepartmentServerType[];
+}): string[] => {
+  if (!departments) return [];
+  return departments.map((department) => department.department);
 };

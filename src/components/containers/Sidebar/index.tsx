@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useSetRecoilState } from 'recoil';
 import { useAuth } from '@libs/auth';
 
-import TotalLectureSWListTab from '@components/tabs/TotalLectureSWListTab';
+import LectureSWListTab from '@components/tabs/LectureSWListTab';
 import AddOrUpdateLectureSWTab from '@components/tabs/AddOrUpdateLectureSWTab';
 import SubscribedSWTab from '@components/tabs/SubscribedSWTab';
 import RegistrationSWTab from '@components/tabs/RegistrationSWTab';
@@ -48,7 +48,7 @@ function Sidebar() {
       case 'TotalLectureSWList':
         return {
           name: '전체 수업 용 SW',
-          component: <TotalLectureSWListTab isAdmin items={[]} />,
+          component: <LectureSWListTab isAdmin items={[]} />,
         };
       case 'SubscribingSWList':
         return {

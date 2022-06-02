@@ -25,12 +25,12 @@ export type ItemType = {
 };
 
 // FIXME: remove this
-interface TotalLectureSWListProps {
+interface LectureSWListProps {
   items: ItemType[];
   isAdmin: boolean;
 }
 
-function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
+function LectureSWListTab({ items, isAdmin }: LectureSWListProps) {
   const [selectedItem, setSelectedItem] = useState<ItemType>();
   const setTabState = useSetRecoilState(tabState);
 
@@ -89,4 +89,4 @@ function TotalLectureSWListTab({ items, isAdmin }: TotalLectureSWListProps) {
   );
 }
 
-export default TotalLectureSWListTab;
+export default LectureSWListTab;

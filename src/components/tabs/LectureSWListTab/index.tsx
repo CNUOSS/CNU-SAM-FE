@@ -4,14 +4,14 @@ import TabTemplate from '@components/templates/TabTemplate';
 import Input from '@components/widgets/Input';
 import Dropdown from '@components/widgets/Dropdown';
 import TabForm from '@components/widgets/TabForm';
-import Table from '@components/widgets/Table';
+import Table, { ItemType, SearchInfoType } from './Table';
 import AddOrUpdateRegistrationSWModal from '@components/modals/AddOrUpdateRegistrationSWModal';
 import AddOrUpdateLectureSWTab from '@components/tabs//AddOrUpdateLectureSWTab';
-import { LectureSWListAttr } from '@@types/types';
-import { lectureSWListAttr } from '@common/constants';
 import { tabState } from '@recoil/tab';
 import { compareTabs } from '@utils/manage-tabs';
 import * as Style from './styled';
+import useForm from '@hooks/useForm';
+import AsyncBoundaryWrapper from '@components/containers/AsyncBoundaryWrapper';
 
 // FIXME: remove
 const year = new Date().getFullYear();
@@ -20,23 +20,22 @@ const SEMESTER = ['1학기', '2학기', '계절학기'];
 const DIVISION = ['전공(핵심)', '교양(필수)'];
 const YEARS = [year - 1, year, year + 1].map((year) => String(year));
 
-export type ItemType = {
-  [key in LectureSWListAttr]: string | boolean;
-};
-
-// FIXME: remove this
-interface LectureSWListProps {
-  items: ItemType[];
-  isAdmin: boolean;
-}
-
-function LectureSWListTab({ items, isAdmin }: LectureSWListProps) {
+function LectureSWListTab() {
+  const { change, getValue, getAllValue } = useForm<SearchInfoType>();
   const [selectedItem, setSelectedItem] = useState<ItemType>();
   const setTabState = useSetRecoilState(tabState);
+  const [infoStore, setInfoStore] = useState<SearchInfoType>({
+    department: '',
+    year: '',
+    semester: '',
+    lectureType: '',
+    lectureName: '',
+    lectureNum: '',
+    owner: '',
+  });
 
   const clickItemAddButton = (item: ItemType) => () => setSelectedItem(item);
   const clickItem = (item: any) => {
-    // TODO: if user, add authority compare logic
     setTabState((oldState) =>
       compareTabs(
         oldState,
@@ -46,44 +45,27 @@ function LectureSWListTab({ items, isAdmin }: LectureSWListProps) {
     );
   };
 
-  const getNewManaged = (isManaged: boolean | string, onClick: () => void) => {
-    if (!isManaged) return 'No';
-    if (!isAdmin) return 'Yes';
-    const clickItem = (event: React.MouseEvent<HTMLButtonElement>) => {
-      event.stopPropagation();
-      onClick();
-    };
-    return (
-      <Style.AddButton data-testid="add-btn" onClick={clickItem}>
-        추가
-      </Style.AddButton>
-    );
-  };
-
-  const parsedItem = items.map(({ isManaged, ...others }) => {
-    const newManaged = getNewManaged(isManaged, clickItemAddButton({ isManaged, ...others }));
-    return { ...others, isManaged: newManaged };
-  });
-
   const closeModal = () => setSelectedItem(undefined);
-  const searchList = () => {};
+  const handleSearch = () => setInfoStore((store) => ({ ...store, ...getAllValue() }));
 
   return (
     <>
       {selectedItem && <AddOrUpdateRegistrationSWModal closeModal={closeModal} />}
       <TabTemplate description="Description">
-        <TabForm onSubmit={searchList} buttonText="조회하기">
+        <TabForm onSubmit={handleSearch} buttonText="조회하기">
           <Dropdown items={ORGANIZATION} label="조직분류" width="16rem" onClickItem={() => {}} />
           <Dropdown items={YEARS} label="년도" width="10rem" onClickItem={() => {}} />
           <Dropdown items={SEMESTER} label="학기" width="8rem" onClickItem={() => {}} />
           <Dropdown items={DIVISION} label="이수구분" width="13rem" onClickItem={() => {}} />
-          <Input value="" label="과목이름" width="20rem" onChange={() => {}} />
-          <Input value="" label="과목번호" width="14rem" onChange={() => {}} />
-          <Input value="" label="등록자" width="14rem" onChange={() => {}} />
+          <Input value={getValue('lectureName')} label="과목이름" width="20rem" onChange={change('lectureName')} />
+          <Input value={getValue('lectureNum')} label="과목번호" width="14rem" onChange={change('lectureNum')} />
+          <Input value={getValue('owner')} label="등록자" width="14rem" onChange={change('owner')} />
         </TabForm>
-        <Style.TableWrapper>
-          <Table title="등록된 수업용 SW" items={parsedItem} attributes={lectureSWListAttr} onRowClick={clickItem} />
-        </Style.TableWrapper>
+        <AsyncBoundaryWrapper>
+          <Style.TableWrapper>
+            <Table searchInfo={infoStore} clickItem={clickItem} clickItemAddButton={clickItemAddButton} />
+          </Style.TableWrapper>
+        </AsyncBoundaryWrapper>
       </TabTemplate>
     </>
   );

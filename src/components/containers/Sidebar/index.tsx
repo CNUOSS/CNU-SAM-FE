@@ -46,10 +46,7 @@ function Sidebar() {
     // FIXME: these Components maybe will removed all props
     switch (navItem) {
       case 'TotalLectureSWList':
-        return {
-          name: '전체 수업 용 SW',
-          component: <LectureSWListTab isAdmin items={[]} />,
-        };
+        return { name: '전체 수업 용 SW', component: <LectureSWListTab /> };
       case 'SubscribingSWList':
         return {
           name: '학내 구독 중 SW',

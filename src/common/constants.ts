@@ -116,7 +116,7 @@ export const lectureSWListAttr: AttributeType<LectureSWListAttr, TotalLectureSWL
   { label: '이수구분', dataKey: 'lectureType', widthPercent: 8, disableSort: true },
   { label: '등록자', dataKey: 'ownerId', widthPercent: 6, disableSort: true },
   { label: '제품명', dataKey: 'swName', widthPercent: 9, disableSort: false },
-  { label: '제조사', dataKey: 'swManufacturing', widthPercent: 6, disableSort: true },
+  { label: '제조사', dataKey: 'swManufacturer', widthPercent: 6, disableSort: true },
   { label: '라이선스', dataKey: 'license', widthPercent: 9, disableSort: true },
   { label: '업데이트 날짜', dataKey: 'updateDate', widthPercent: 8, disableSort: false },
   { label: 'SW관리대상', dataKey: 'isManaged', widthPercent: 14, disableSort: false },

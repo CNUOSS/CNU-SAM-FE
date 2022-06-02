@@ -198,6 +198,7 @@ export interface LectureSWServerType {
     swName: string;
     latestUpdateDate: string;
     isManaged: boolean;
+    license: string;
   };
 }
 

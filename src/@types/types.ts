@@ -30,21 +30,21 @@ export type Trash = typeof Trash;
 export type Number = typeof Number;
 export type Temp = typeof Temp;
 
-export const TotalLectureSWListAttr = {
+export const LectureSWListAttr = {
   Year: 'year',
   Semester: 'semester',
   Department: 'department',
   LectureNum: 'lectureNum',
-  ClassNum: 'classNum',
   LectureName: 'lectureName',
   LectureType: 'lectureType',
-  Writer: 'writer',
+  OwnerId: 'ownerId',
   SWName: 'swName',
-  Manufacturing: 'manufacturing',
+  SWManufacturing: 'swManufacturing',
   License: 'license',
-  Managed: 'managed',
+  UpdateDate: 'updateDate',
+  isManaged: 'isManaged',
 } as const;
-export type TotalLectureSWListAttr = typeof TotalLectureSWListAttr[keyof typeof TotalLectureSWListAttr];
+export type LectureSWListAttr = typeof LectureSWListAttr[keyof typeof LectureSWListAttr];
 
 export const AddLectureSWListAttr = {
   Manufacturing: 'manufacturing',

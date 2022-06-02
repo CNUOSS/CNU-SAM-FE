@@ -175,6 +175,7 @@ export interface LectureSWType {
   isManaged: boolean;
 }
 
+// get
 export interface GetLectureSWListRequestParamsClientType {
   size: number;
   page: number;
@@ -196,6 +197,22 @@ export interface GetLectureSWListResponseClientType {
     size: number;
   };
   lectureSWList: LectureSWType[];
+}
+
+// create
+export interface CreateLectureSWRequestClientType {
+  ownerId: string;
+  year: string;
+  semester: string;
+  lectureNum: string;
+  lectureName: string;
+  lectureType: string;
+  department: string;
+  sw: {
+    swManufacturer: string;
+    swName: string;
+    license: string;
+  }[];
 }
 
 /* Project */

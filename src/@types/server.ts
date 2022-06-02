@@ -210,6 +210,7 @@ export interface LectureSWServerType {
   };
 }
 
+// get
 export interface GetLectureSWListRequestParamsServerType {
   size: number;
   page: number;
@@ -231,6 +232,21 @@ export interface GetLectureSWListResponseServerType {
     size: number;
   };
   lecture_sw: LectureSWServerType[];
+}
+
+// create
+export interface CreateLectureSWResponseServerType {
+  owner_id: string;
+  year: string;
+  semester: string;
+  lecture_num: string;
+  lecture_name: string;
+  lecture_type: string;
+  department: string;
+  sw: {
+    sw_manufacturer: string;
+    sw_name: string;
+  }[];
 }
 
 /* Project */

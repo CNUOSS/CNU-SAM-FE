@@ -1,5 +1,5 @@
 // Attribute Type
-import { ItemType as TotalLectureSWItemAttrType } from '../components/tabs/TotalLectureSWListTab';
+import { ItemType as LectureSWItemAttrType } from '../components/tabs/LectureSWListTab';
 import { ItemType as AddLectureSWItemAttrType } from '../components/tabs/AddOrUpdateLectureSWTab/Table';
 import { ItemType as RegistrationSWItemAttrType } from '../components/tabs/RegistrationSWTab/Table';
 import { ItemType as SubscribedSWAttrType } from '../components/tabs/SubscribedSWTab/Table';
@@ -25,7 +25,7 @@ export const generateTotalLectureSWItem = ({
 }: {
   managed?: boolean;
   lectureName?: string;
-}): TotalLectureSWItemAttrType => ({
+}): LectureSWItemAttrType => ({
   year: generateString(4),
   semester: generateString(3),
   department: generateString(5),

@@ -79,6 +79,7 @@ export type OSSAnalysisListTableLabelType =
 /**
  * Common
  */
+export const NOT_CHOOSED = '선택안함';
 export const LIMIT = 9;
 
 export const LANGUAGES = [
@@ -103,6 +104,10 @@ export const mgCategory = (disable: boolean = false): CategoryType => ({
   title: 'management',
   items: [NavItem.UserManagement, NavItem.SWManagement],
 });
+
+const year = new Date().getFullYear();
+export const YEARS = [year - 3, year - 2, year - 1, year].map((year) => String(year));
+export const SEMESTER = ['1학기', '하기계절학기', '2학기', '동기계절학기'];
 
 /**
  * List Attributes

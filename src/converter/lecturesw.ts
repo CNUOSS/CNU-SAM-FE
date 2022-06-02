@@ -1,5 +1,13 @@
-import { GetLectureSWListRequestParamsClientType, GetLectureSWListResponseClientType } from '@@types/client';
-import { GetLectureSWListRequestParamsServerType, GetLectureSWListResponseServerType } from '@@types/server';
+import {
+  CreateLectureSWRequestClientType,
+  GetLectureSWListRequestParamsClientType,
+  GetLectureSWListResponseClientType,
+} from '@@types/client';
+import {
+  CreateLectureSWResponseServerType,
+  GetLectureSWListRequestParamsServerType,
+  GetLectureSWListResponseServerType,
+} from '@@types/server';
 
 export const getLectureSWListRequestClient2Server = ({
   size,
@@ -53,5 +61,27 @@ export const getLectureSWListResponseServer2Client = ({
       updateDate: sw.latest_update_date,
       isManaged: sw.registration_sw.isManaged,
     })),
+  };
+};
+
+export const createLectureSWRequestClient2Server = ({
+  ownerId,
+  year,
+  semester,
+  lectureName,
+  lectureNum,
+  lectureType,
+  department,
+  sw,
+}: CreateLectureSWRequestClientType): CreateLectureSWResponseServerType => {
+  return {
+    owner_id: ownerId,
+    year,
+    semester,
+    lecture_name: lectureName,
+    lecture_num: lectureNum,
+    lecture_type: lectureType,
+    department,
+    sw: sw.map((sw) => ({ sw_manufacturer: sw.swManufacturer, sw_name: sw.swName })),
   };
 };

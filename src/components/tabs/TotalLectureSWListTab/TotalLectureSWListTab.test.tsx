@@ -1,7 +1,7 @@
 import React from 'react';
 import TotalLectureSWListTab, { ItemType } from '.';
 import { render, screen, fireEvent, waitFor } from '@libs/rtl-utils';
-import { totalLectureSWListAttr } from '@common/constants';
+import { lectureSWListAttr } from '@common/constants';
 import { generateTotalLectureSWItem } from '../../../__mocks__/create-mock';
 
 const items: ItemType[] = [
@@ -17,14 +17,14 @@ describe('Container/TotalLectureSWList', () => {
       renderApp(false);
 
       const attrs = screen.getAllByTestId('table-attr').map((attr) => attr.textContent);
-      expect(attrs).toEqual(totalLectureSWListAttr.map((attr) => attr.label));
+      expect(attrs).toEqual(lectureSWListAttr.map((attr) => attr.label));
     });
 
     it('manager case', () => {
       renderApp();
 
       const attrs = screen.getAllByTestId('table-attr').map((attr) => attr.textContent);
-      expect(attrs).toEqual(totalLectureSWListAttr.map((attr) => attr.label));
+      expect(attrs).toEqual(lectureSWListAttr.map((attr) => attr.label));
     });
   });
 

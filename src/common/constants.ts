@@ -9,9 +9,9 @@ import {
   LicenseListAttr,
   ProjectListAttr,
   VersionListAttr,
+  LectureSWListAttr,
   AddLectureSWListAttr,
   SubscribedSWListAttr,
-  TotalLectureSWListAttr,
   RegistrationSWListAttr,
   OSSAnalysisListAttr,
 } from '@@types/types';
@@ -27,13 +27,13 @@ export type TotalLectureSWListTableLabelType =
   | '학기'
   | '조직분류'
   | '과목번호'
-  | '분반'
   | '과목명'
   | '이수구분'
   | '등록자'
   | '제품명'
   | '제조사'
   | '라이선스'
+  | '업데이트 날짜'
   | 'SW관리대상';
 export type AddLectureSWListTableLabelType = 'No' | '소프트웨어 제조사' | '소프트웨어 제품명' | '라이선스' | '';
 export type LectureSWManagementListTableLabelType = 'No' | '제조사' | '제품명' | '사용 개수' | '등록자' | '등록 날짜';
@@ -107,19 +107,19 @@ export const mgCategory = (disable: boolean = false): CategoryType => ({
 /**
  * List Attributes
  */
-export const totalLectureSWListAttr: AttributeType<TotalLectureSWListAttr, TotalLectureSWListTableLabelType>[] = [
+export const lectureSWListAttr: AttributeType<LectureSWListAttr, TotalLectureSWListTableLabelType>[] = [
   { label: '년도', dataKey: 'year', widthPercent: 5, disableSort: true },
   { label: '학기', dataKey: 'semester', widthPercent: 8, disableSort: false },
   { label: '조직분류', dataKey: 'department', widthPercent: 8, disableSort: true },
   { label: '과목번호', dataKey: 'lectureNum', widthPercent: 11, disableSort: false },
-  { label: '분반', dataKey: 'classNum', widthPercent: 4, disableSort: true },
   { label: '과목명', dataKey: 'lectureName', widthPercent: 10, disableSort: false },
   { label: '이수구분', dataKey: 'lectureType', widthPercent: 8, disableSort: true },
-  { label: '등록자', dataKey: 'writer', widthPercent: 6, disableSort: true },
+  { label: '등록자', dataKey: 'ownerId', widthPercent: 6, disableSort: true },
   { label: '제품명', dataKey: 'swName', widthPercent: 9, disableSort: false },
-  { label: '제조사', dataKey: 'manufacturing', widthPercent: 6, disableSort: true },
+  { label: '제조사', dataKey: 'swManufacturing', widthPercent: 6, disableSort: true },
   { label: '라이선스', dataKey: 'license', widthPercent: 9, disableSort: true },
-  { label: 'SW관리대상', dataKey: 'managed', widthPercent: 14, disableSort: false },
+  { label: '업데이트 날짜', dataKey: 'updateDate', widthPercent: 8, disableSort: false },
+  { label: 'SW관리대상', dataKey: 'isManaged', widthPercent: 14, disableSort: false },
 ];
 
 export const addLectureSWListAttr: AttributeType<

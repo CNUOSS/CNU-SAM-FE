@@ -30,14 +30,14 @@ export const generateTotalLectureSWItem = ({
   semester: generateString(3),
   department: generateString(5),
   lectureNum: generateString(6),
-  classNum: generateString(1),
   lectureName: lectureName || generateString(8),
   lectureType: generateString(5),
-  writer: generateString(3),
+  ownerId: generateString(3),
   swName: generateString(10),
-  manufacturing: generateString(5),
+  swManufacturing: generateString(5),
   license: generateString(8),
-  managed: managed || Math.random() < 0.5,
+  updateDate: generateString(8),
+  isManaged: managed || Math.random() < 0.5,
 });
 
 export const generateAddLectureSWItem = (): AddLectureSWItemAttrType => ({

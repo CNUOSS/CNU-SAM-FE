@@ -47,7 +47,7 @@ export const LectureSWListAttr = {
 export type LectureSWListAttr = typeof LectureSWListAttr[keyof typeof LectureSWListAttr];
 
 export const AddLectureSWListAttr = {
-  Manufacturing: 'manufacturing',
+  swManufacturer: 'swManufacturer',
   SWName: 'swName',
   License: 'license',
 } as const;

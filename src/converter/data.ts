@@ -7,6 +7,7 @@ import {
   LicenseTypeServerType,
   ManufacturerNameServerType,
   RestrictionServerType,
+  SWNameServerType,
 } from '@@types/server';
 
 // Get Restrictions
@@ -30,31 +31,25 @@ export const getLicenseNamesResponseServer2Client = (licenseNames: LicenseNamesS
 };
 
 // Get Manufacturer Names
-export const getManufacturerNamesResponseServer2Client = ({
-  manufacturers,
-}: {
-  manufacturers: ManufacturerNameServerType[];
-}): string[] => {
+export const getManufacturerNamesResponseServer2Client = (manufacturers: ManufacturerNameServerType[]): string[] => {
   if (!manufacturers) return [];
   return manufacturers.map((names) => names.manufacturer);
 };
 
+// Get SW Names
+export const getSWNamesResponseServer2Client = (swNames: SWNameServerType[]): string[] => {
+  if (!swNames) return [];
+  return swNames.map((sw) => sw.sw_name);
+};
+
 // Get Lecture Types
-export const getLectureTypesResponseServer2Client = ({
-  lectureTypes,
-}: {
-  lectureTypes: LectureTypeServerType[];
-}): string[] => {
+export const getLectureTypesResponseServer2Client = (lectureTypes: LectureTypeServerType[]): string[] => {
   if (!lectureTypes) return [];
   return lectureTypes.map((lecture) => lecture.lecture_type);
 };
 
 // Get Departments
-export const getDepartmentResponseServer2Client = ({
-  departments,
-}: {
-  departments: DepartmentServerType[];
-}): string[] => {
+export const getDepartmentResponseServer2Client = (departments: DepartmentServerType[]): string[] => {
   if (!departments) return [];
   return departments.map((department) => department.department);
 };

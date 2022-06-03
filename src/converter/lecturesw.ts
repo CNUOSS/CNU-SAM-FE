@@ -23,7 +23,7 @@ export const getLectureSWListRequestClient2Server = ({
 }: GetLectureSWListRequestParamsClientType): GetLectureSWListRequestParamsServerType => {
   return {
     size,
-    page,
+    page: page - 1,
     sort: sort || null,
     department: department || null,
     year: year || null,
@@ -58,7 +58,7 @@ export const getLectureSWListResponseServer2Client = ({
       swName: sw.registration_sw.swName,
       swManufacturer: sw.registration_sw.swManufacturer,
       license: '',
-      updateDate: sw.latest_update_date,
+      updateDate: new Date(sw.latest_update_date).toLocaleDateString(),
       isManaged: sw.registration_sw.isManaged,
     })),
   };
@@ -75,13 +75,13 @@ export const createLectureSWRequestClient2Server = ({
   sw,
 }: CreateLectureSWRequestClientType): CreateLectureSWResponseServerType => {
   return {
-    owner_id: ownerId,
     year,
     semester,
+    department,
+    owner_id: ownerId,
     lecture_name: lectureName,
     lecture_num: lectureNum,
     lecture_type: lectureType,
-    department,
     sw: sw.map((sw) => ({ sw_manufacturer: sw.swManufacturer, sw_name: sw.swName })),
   };
 };

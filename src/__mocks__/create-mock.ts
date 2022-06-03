@@ -9,8 +9,8 @@ import { ItemType as OSSAttrType } from '../components/tabs/EnrollVersionTab/Tab
 import { SummarizedVersionType } from '../components/tabs/ProjectDetailTab';
 
 // Obj Type
-import { LectureSWType } from '../components/tabs/AddOrUpdateLectureSWTab';
 import generateGuid from '@utils/generate-id';
+import { LectureSWType } from '@@types/client';
 
 export const generateString = (num: number = 9) =>
   Math.random()
@@ -41,7 +41,7 @@ export const generateTotalLectureSWItem = ({
 });
 
 export const generateAddLectureSWItem = (): AddLectureSWItemAttrType => ({
-  manufacturing: generateString(5),
+  swManufacturer: generateString(5),
   swName: generateString(10),
   license: generateString(8),
 });
@@ -66,14 +66,19 @@ export const generateSubscribedSW = (): SubscribedSWAttrType => ({
 });
 
 export const generateLectureSW = (): LectureSWType => ({
-  organization: generateString(5),
+  id: 0,
+  department: generateString(5),
   lectureNum: generateString(6),
   lectureName: generateString(8),
   semester: generateString(3),
-  division: generateString(5),
+  lectureType: generateString(5),
   year: generateString(4),
-  writer: generateString(3),
-  receivedItems: [generateAddLectureSWItem(), generateAddLectureSWItem(), generateAddLectureSWItem()],
+  ownerId: generateString(3),
+  swName: generateString(3),
+  swManufacturer: generateString(3),
+  license: generateString(3),
+  updateDate: generateString(3),
+  isManaged: false,
 });
 
 export const generateProjectListItem = (): ProjectAttrType => ({

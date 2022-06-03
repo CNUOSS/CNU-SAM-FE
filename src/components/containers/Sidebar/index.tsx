@@ -48,10 +48,7 @@ function Sidebar() {
       case 'TotalLectureSWList':
         return { name: '전체 수업 용 SW', component: <LectureSWListTab /> };
       case 'SubscribingSWList':
-        return {
-          name: '학내 구독 중 SW',
-          component: <SubscribedSWTab />,
-        };
+        return { name: '학내 구독 중 SW', component: <SubscribedSWTab /> };
       case 'SWDashboard':
         return { name: '대시보드', component: <></> };
       case 'PJList':
@@ -65,10 +62,7 @@ function Sidebar() {
       case 'UserGuide':
         return { name: '사용자 가이드', component: <></> };
       case 'EnrollSW':
-        return {
-          name: '수업용 SW 등록',
-          component: <AddOrUpdateLectureSWTab manufacturingList={[]} swNames={[]} tabState="create" />,
-        };
+        return { name: '수업용 SW 등록', component: <AddOrUpdateLectureSWTab /> };
       case 'EnrollPRJ':
         return { name: '프로젝트 등록', component: <AddOrUpdateProjectTab /> };
       default:

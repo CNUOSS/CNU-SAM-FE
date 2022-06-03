@@ -39,7 +39,9 @@ function LectureSWListTab() {
 
   const clickItemAddButton = (item: ItemType) => () => setSelectedItem(item);
   const clickItem = (item: any) => {
-    setTabState((oldState) => compareTabs(oldState, '강의 수정', <AddOrUpdateLectureSWTab />));
+    setTabState((oldState) =>
+      compareTabs(oldState, `${item.id} . 강의 수정`, <AddOrUpdateLectureSWTab lectureSWId={item.id} />)
+    );
   };
 
   const closeModal = () => setSelectedItem(undefined);

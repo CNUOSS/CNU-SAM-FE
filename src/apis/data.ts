@@ -13,6 +13,9 @@ export const getCategoryNamesAPI = '/category-names';
 // Get Manufacturers
 export const getManufacturersNamesAPI = '/manufacturers';
 
+// GET SW Name
+export const getSWNamesAPI = '/sw-names';
+
 // Get Lecture Type
 export const getLectureTypesAPI = '/lecture-types';
 

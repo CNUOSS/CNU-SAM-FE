@@ -39,19 +39,13 @@ function LectureSWListTab() {
 
   const clickItemAddButton = (item: ItemType) => () => setSelectedItem(item);
   const clickItem = (item: any) => {
-    setTabState((oldState) =>
-      compareTabs(
-        oldState,
-        '강의 수정',
-        <AddOrUpdateLectureSWTab tabState="update" manufacturingList={[]} swNames={[]} />
-      )
-    );
+    setTabState((oldState) => compareTabs(oldState, '강의 수정', <AddOrUpdateLectureSWTab />));
   };
 
   const closeModal = () => setSelectedItem(undefined);
   const changeDepartment = (department: string) => change('department')(department);
-  const changeYear = (yearIdx: number) => change('year')(yearIdx ? YEARS[yearIdx] : '');
-  const changeSemester = (semesterIdx: number) => change('semester')(semesterIdx ? SEMESTER[semesterIdx] : '');
+  const changeYear = (yearIdx: number) => change('year')(yearIdx ? YEARS[yearIdx - 1] : '');
+  const changeSemester = (semesterIdx: number) => change('semester')(semesterIdx ? SEMESTER[semesterIdx - 1] : '');
   const changeLectureType = (lectureType: string) => change('lectureType')(lectureType);
   const handleSearch = () => setInfoStore((store) => ({ ...store, ...getAllValue() }));
 

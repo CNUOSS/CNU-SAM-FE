@@ -41,3 +41,11 @@ export const TableWrapper = styled.div`
   margin-top: 3rem;
   height: 50rem;
 `;
+
+export const Error = styled.span`
+  display: block;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 2rem;
+  color: ${(props) => props.theme.colors.warning};
+`;

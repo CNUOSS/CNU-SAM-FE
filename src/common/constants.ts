@@ -34,7 +34,7 @@ export type TotalLectureSWListTableLabelType =
   | '제조사'
   | '라이선스'
   | '업데이트 날짜'
-  | 'SW관리대상';
+  | '관리대상';
 export type AddLectureSWListTableLabelType = 'No' | '소프트웨어 제조사' | '소프트웨어 제품명' | '라이선스' | '';
 export type LectureSWManagementListTableLabelType = 'No' | '제조사' | '제품명' | '사용 개수' | '등록자' | '등록 날짜';
 export type SubscribedSWListTableLabelType =
@@ -123,8 +123,8 @@ export const lectureSWListAttr: AttributeType<LectureSWListAttr, TotalLectureSWL
   { label: '제품명', dataKey: 'swName', widthPercent: 9, disableSort: false },
   { label: '제조사', dataKey: 'swManufacturer', widthPercent: 6, disableSort: true },
   { label: '라이선스', dataKey: 'license', widthPercent: 9, disableSort: true },
-  { label: '업데이트 날짜', dataKey: 'updateDate', widthPercent: 8, disableSort: false },
-  { label: 'SW관리대상', dataKey: 'isManaged', widthPercent: 14, disableSort: false },
+  { label: '업데이트 날짜', dataKey: 'updateDate', widthPercent: 12, disableSort: false },
+  { label: '관리대상', dataKey: 'isManaged', widthPercent: 12, disableSort: false },
 ];
 
 export const addLectureSWListAttr: AttributeType<
@@ -132,7 +132,7 @@ export const addLectureSWListAttr: AttributeType<
   AddLectureSWListTableLabelType
 >[] = [
   { label: 'No', dataKey: 'number', widthPercent: 10, disableSort: true },
-  { label: '소프트웨어 제조사', dataKey: 'manufacturing', widthPercent: 20, disableSort: true },
+  { label: '소프트웨어 제조사', dataKey: 'swManufacturer', widthPercent: 20, disableSort: true },
   { label: '소프트웨어 제품명', dataKey: 'swName', widthPercent: 30, disableSort: true },
   { label: '라이선스', dataKey: 'license', widthPercent: 35, disableSort: true },
   { label: '', dataKey: 'trash', widthPercent: 5, disableSort: true },

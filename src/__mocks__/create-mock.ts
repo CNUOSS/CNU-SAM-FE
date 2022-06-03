@@ -74,6 +74,7 @@ export const generateLectureSW = (): LectureSWType => ({
   lectureType: generateString(5),
   year: generateString(4),
   ownerId: generateString(3),
+  swId: 0,
   swName: generateString(3),
   swManufacturer: generateString(3),
   license: generateString(3),

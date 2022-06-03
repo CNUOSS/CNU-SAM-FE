@@ -28,8 +28,8 @@ function SelfDropdown({
   onChange,
   onClickSelected,
 }: SelfDropdown) {
-  const itemsWithSelf = [...items, SELFINPUT];
-  const [selectedItem, setItem] = useState(currentIdx ? items[currentIdx] : SELFINPUT);
+  const itemsWithSelf = [SELFINPUT, ...items];
+  const [selectedItem, setItem] = useState(currentIdx !== undefined ? items[currentIdx] : SELFINPUT);
 
   const handleDropdownClickItem = (index: number) => {
     setItem(itemsWithSelf[index]);

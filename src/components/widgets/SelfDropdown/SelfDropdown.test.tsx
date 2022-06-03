@@ -36,7 +36,7 @@ describe('Widget/SelfDropdown', () => {
     it('click item', () => {
       renderApp();
 
-      const selected = screen.getByText(itemsMock[0]);
+      const selected = screen.getByText('직접 입력');
       fireEvent.click(selected);
       const secondItem = screen.getByText(itemsMock[1]);
       fireEvent.click(secondItem);
@@ -47,8 +47,6 @@ describe('Widget/SelfDropdown', () => {
       renderApp();
 
       // click
-      const selected = screen.getByText(itemsMock[0]);
-      fireEvent.click(selected);
       const selfInput = screen.getByText('직접 입력');
       fireEvent.click(selfInput);
 

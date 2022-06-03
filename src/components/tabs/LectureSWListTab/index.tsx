@@ -22,8 +22,10 @@ import useForm from '@hooks/useForm';
 import { compareTabs } from '@utils/manage-tabs';
 import { NOT_CHOOSED, SEMESTER, YEARS } from '@common/constants';
 import * as Style from './styled';
+import { useAuth } from '@libs/auth';
 
 function LectureSWListTab() {
+  const { user } = useAuth();
   const { change, getValue, getAllValue } = useForm<SearchInfoType>();
   const [selectedItem, setSelectedItem] = useState<ItemType>();
   const setTabState = useSetRecoilState(tabState);
@@ -39,9 +41,11 @@ function LectureSWListTab() {
 
   const clickItemAddButton = (item: ItemType) => () => setSelectedItem(item);
   const clickItem = (item: any) => {
-    setTabState((oldState) =>
-      compareTabs(oldState, `${item.id} . 강의 수정`, <AddOrUpdateLectureSWTab lectureSWId={item.id} />)
-    );
+    if (user && item.ownerId === user.id) {
+      setTabState((oldState) =>
+        compareTabs(oldState, `${item.id} . 강의 수정`, <AddOrUpdateLectureSWTab lectureSWId={item.id} />)
+      );
+    }
   };
 
   const closeModal = () => setSelectedItem(undefined);

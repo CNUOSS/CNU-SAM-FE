@@ -12,7 +12,7 @@ import DropdownContainer from '@components/containers/DropdownContainer';
 import AsyncBoundaryWrapper from '@components/containers/AsyncBoundaryWrapper';
 import AddOrUpdateLectureSWTab from '@components/tabs//AddOrUpdateLectureSWTab';
 import AddOrUpdateRegistrationSWModal from '@components/modals/AddOrUpdateRegistrationSWModal';
-import Table, { ItemType, SearchInfoType } from './Table';
+import Table, { SearchInfoType } from './Table';
 
 // Apis
 import { getDepartmentsAPI, getLectureTypesAPI } from '@apis/data';
@@ -23,11 +23,13 @@ import { compareTabs } from '@utils/manage-tabs';
 import { NOT_CHOOSED, SEMESTER, YEARS } from '@common/constants';
 import * as Style from './styled';
 import { useAuth } from '@libs/auth';
+import { SummarizedRegistrationSWType } from '@@types/client';
+import { lectureSW2RegistrationSW } from '@converter/lecturesw';
 
 function LectureSWListTab() {
   const { user } = useAuth();
   const { change, getValue, getAllValue } = useForm<SearchInfoType>();
-  const [selectedItem, setSelectedItem] = useState<ItemType>();
+  const [selectedItem, setSelectedItem] = useState<SummarizedRegistrationSWType>();
   const setTabState = useSetRecoilState(tabState);
   const [infoStore, setInfoStore] = useState<SearchInfoType>({
     department: '',
@@ -39,7 +41,10 @@ function LectureSWListTab() {
     owner: '',
   });
 
-  const clickItemAddButton = (item: ItemType) => () => setSelectedItem(item);
+  const clickItemAddButton = (item: any) => () => {
+    const registrationSW = lectureSW2RegistrationSW(item);
+    setSelectedItem(registrationSW);
+  };
   const clickItem = (item: any) => {
     if (user && item.ownerId === user.id) {
       setTabState((oldState) =>
@@ -57,7 +62,7 @@ function LectureSWListTab() {
 
   return (
     <>
-      {selectedItem && <AddOrUpdateRegistrationSWModal closeModal={closeModal} />}
+      {selectedItem && <AddOrUpdateRegistrationSWModal registrationSW={selectedItem as any} closeModal={closeModal} />}
       <TabTemplate description="Description">
         <TabForm onSubmit={handleSearch} buttonText="조회하기">
           <DropdownContainer

@@ -1,10 +1,13 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import TableWidget from '@components/widgets/Table';
-import SelfDropdown from '@components/widgets/SelfDropdown';
 import Input from '@components/widgets/Input';
 import Icon from '@components/widgets/Icon';
 import { AddLectureSWListAttr, Trash, Number } from '@@types/types';
 import { addLectureSWListAttr } from '@common/constants';
+import SelfDropdownContainer from '@components/containers/SelfDropdownContainer';
+import { getManufacturersNamesAPI, getSWNamesAPI } from '@apis/data';
+import { getManufacturerNamesResponseServer2Client, getSWNamesResponseServer2Client } from '@converter/data';
+import useForm from '@hooks/useForm';
 
 export type ItemType = {
   [key in AddLectureSWListAttr]: string | React.ReactElement;
@@ -15,28 +18,29 @@ export interface RowType extends ItemType {
   [Trash]: React.ReactElement;
 }
 
+interface FormType {
+  swName: string;
+  license: string;
+  swManufacturer: string;
+}
+
 interface TableProps {
   items: ItemType[];
-  manufacturings: string[];
-  swNames: string[];
   onAddNewItem: (item: ItemType) => void;
   onDeleteItem: (index: number) => void;
 }
 
-function Table({ items, manufacturings, swNames, onAddNewItem, onDeleteItem }: TableProps) {
-  const [manufacturing, setCompany] = useState('');
-  const [swName, setSWName] = useState('');
-  const [license, setLicense] = useState('');
+function Table({ items, onAddNewItem, onDeleteItem }: TableProps) {
+  const { change, getValue, getAllValue } = useForm<FormType>();
 
-  const changeLicenseName = (event: React.ChangeEvent<HTMLInputElement>) => setLicense(event.target.value);
-  const changeCompany = (manufacturing: string) => setCompany(manufacturing);
-  const changeSWName = (swName: string) => setSWName(swName);
+  const changeManufacturer = (swManufacturer: string) => change('swManufacturer')(swManufacturer);
+  const changeSWName = (swName: string) => change('swName')(swName);
   const deleteItem = (selectedIndex: number) => onDeleteItem(selectedIndex);
   const addNewItem = () => {
-    setCompany('');
-    setSWName('');
-    setLicense('');
-    onAddNewItem({ swName, manufacturing, license });
+    changeSWName('');
+    changeManufacturer('');
+    change('license')('');
+    onAddNewItem(getAllValue() as ItemType);
   };
 
   const parsedItems: RowType[] = useMemo(
@@ -51,17 +55,25 @@ function Table({ items, manufacturings, swNames, onAddNewItem, onDeleteItem }: T
 
   const addRow: RowType = {
     number: <Icon onClick={addNewItem} size="2rem" icon="plus" />,
-    manufacturing: (
-      <SelfDropdown
-        items={manufacturings}
-        width={18}
-        inputValue={manufacturing}
+    swManufacturer: (
+      <SelfDropdownContainer
+        getUrl={getManufacturersNamesAPI}
+        width={20}
         inputWidth={8}
-        onChange={changeCompany}
+        responseConverter={getManufacturerNamesResponseServer2Client}
+        onChangeValue={changeManufacturer}
       />
     ),
-    swName: <SelfDropdown items={swNames} width={25} inputValue={swName} inputWidth={15} onChange={changeSWName} />,
-    license: <Input value={license} width="25rem" onChange={changeLicenseName} />,
+    swName: (
+      <SelfDropdownContainer
+        getUrl={getSWNamesAPI}
+        width={25}
+        inputWidth={15}
+        responseConverter={getSWNamesResponseServer2Client}
+        onChangeValue={changeSWName}
+      />
+    ),
+    license: <Input value={getValue('license')} width="25rem" onChange={change('license')} />,
     trash: <></>,
   };
 

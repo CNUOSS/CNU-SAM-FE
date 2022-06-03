@@ -18,6 +18,10 @@ export interface ManufacturerNameServerType {
   manufacturer: string;
 }
 
+export interface SWNameServerType {
+  sw_name: string;
+}
+
 export interface LicenseNamesServerType {
   id: number;
   license_name: string;

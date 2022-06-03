@@ -21,10 +21,11 @@ import {
 } from '@converter/registrationsw';
 import { useAuth } from '@libs/auth';
 import { getManufacturersNamesAPI } from '@apis/data';
+import { getLectureSWListAPI } from '@apis/lecturesw';
 
 interface AddOrUpdateRegistrationSWModalProps {
   registrationSW?: RegistrationSWType;
-  isEditable?: boolean;
+  isFromLectureSWListTab?: boolean;
   closeModal: () => void;
 }
 
@@ -32,13 +33,14 @@ type FormType = Pick<RegistrationSWType, 'swName' | 'swManufacturer'>;
 
 function AddOrUpdateRegistrationSWModal({
   registrationSW,
-  isEditable = false,
+  isFromLectureSWListTab,
   closeModal,
 }: AddOrUpdateRegistrationSWModalProps) {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const executeMutationSuccess = async () => {
     await queryClient.invalidateQueries(getRegistrationSWListAPI);
+    await queryClient.invalidateQueries(getLectureSWListAPI);
     closeModal();
   };
   const { mutate: createMutate } = useMutation({
@@ -77,8 +79,8 @@ function AddOrUpdateRegistrationSWModal({
     else
       updateMutate({
         ...data,
-        id: registrationSW?.id,
         isManaged,
+        id: registrationSW?.id,
         latestUpdaterId: user.id,
         dynamicUrl: updateRegistrationSWAPI.dynamicUrl(registrationSW.id),
       });
@@ -111,7 +113,9 @@ function AddOrUpdateRegistrationSWModal({
               삭제하기
             </Button>
           )}
-          <Button onClick={handleSubmit(onSubmit)}>{registrationSW ? '수정하기' : '등록하기'}</Button>
+          <Button onClick={handleSubmit(onSubmit)}>
+            {!registrationSW || isFromLectureSWListTab ? '수정하기' : '등록하기'}
+          </Button>
         </Style.ButtonWrapper>
       </Style.Container>
     </Template>

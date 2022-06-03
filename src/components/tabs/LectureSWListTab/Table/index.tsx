@@ -43,8 +43,8 @@ function Table({ searchInfo, clickItemAddButton, clickItem }: TableProps) {
   }, [searchInfo]);
 
   const getNewManaged = (isManaged: boolean | string, onClick: () => void) => {
-    if (!isManaged) return 'No';
-    if (user?.role !== 'ADMIN') return 'Yes';
+    if (isManaged) return 'Yes';
+    if (user?.role !== 'ADMIN') return 'No';
     const clickItem = (event: React.MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation();
       onClick();
@@ -61,6 +61,7 @@ function Table({ searchInfo, clickItemAddButton, clickItem }: TableProps) {
       const newManaged = getNewManaged(isManaged, clickItemAddButton({ isManaged, ...others }));
       return { ...others, isManaged: newManaged };
     }) || [];
+
   return (
     <WidgetTable
       title="등록된 수업용 SW"

@@ -34,13 +34,7 @@ function RegistrationSWTab() {
 
   return (
     <>
-      {isOpen && (
-        <AddOrUpdateRegistrationSWModal
-          registrationSW={selectedItem}
-          isEditable={!!selectedItem}
-          closeModal={toggleModal}
-        />
-      )}
+      {isOpen && <AddOrUpdateRegistrationSWModal registrationSW={selectedItem} closeModal={toggleModal} />}
       <TabTemplate description="Description" onCreate={toggleModal}>
         <TabForm onSubmit={handleSearch} buttonText="조회하기">
           <Style.InputWrapper>

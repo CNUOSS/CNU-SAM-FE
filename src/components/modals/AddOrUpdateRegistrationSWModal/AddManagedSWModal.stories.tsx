@@ -13,4 +13,4 @@ export const selectedSW = () => <AddOrUpdateRegistrationSWModal closeModal={clos
 
 export const noSWName = () => <AddOrUpdateRegistrationSWModal closeModal={closeModalAction} />;
 
-export const editable = () => <AddOrUpdateRegistrationSWModal isEditable closeModal={closeModalAction} />;
+export const editable = () => <AddOrUpdateRegistrationSWModal closeModal={closeModalAction} />;

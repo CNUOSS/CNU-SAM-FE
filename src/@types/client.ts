@@ -130,6 +130,8 @@ export interface RegistrationSWType {
   managed: boolean;
 }
 
+export type SummarizedRegistrationSWType = Pick<RegistrationSWType, 'id' | 'swName' | 'swManufacturer'>;
+
 // get
 export interface GetRegistrationSWListRequstParamsClientType {
   size: number;
@@ -168,6 +170,7 @@ export interface LectureSWType {
   lectureName: string;
   lectureType: string;
   ownerId: string;
+  swId: number;
   swName: string;
   swManufacturer: string;
   license: string;

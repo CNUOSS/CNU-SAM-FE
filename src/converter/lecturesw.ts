@@ -2,12 +2,26 @@ import {
   CreateLectureSWRequestClientType,
   GetLectureSWListRequestParamsClientType,
   GetLectureSWListResponseClientType,
+  LectureSWType,
+  SummarizedRegistrationSWType,
 } from '@@types/client';
 import {
   CreateLectureSWResponseServerType,
   GetLectureSWListRequestParamsServerType,
   GetLectureSWListResponseServerType,
 } from '@@types/server';
+
+export const lectureSW2RegistrationSW = ({
+  swId,
+  swManufacturer,
+  swName,
+}: LectureSWType): SummarizedRegistrationSWType => {
+  return {
+    id: swId,
+    swName,
+    swManufacturer,
+  };
+};
 
 export const getLectureSWListRequestClient2Server = ({
   size,
@@ -55,6 +69,7 @@ export const getLectureSWListResponseServer2Client = ({
       lectureName: sw.lecture_name,
       lectureType: sw.lecture_type,
       ownerId: sw.owner_id,
+      swId: sw.registration_sw.id,
       swName: sw.registration_sw.swName,
       swManufacturer: sw.registration_sw.swManufacturer,
       license: '',

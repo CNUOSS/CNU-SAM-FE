@@ -202,6 +202,11 @@ export interface GetLectureSWListResponseClientType {
   lectureSWList: LectureSWType[];
 }
 
+export interface GetLectureChartResponseClientType {
+  swName: string;
+  count: number;
+}
+
 // create
 export interface CreateLectureSWRequestClientType {
   ownerId: string;

@@ -71,12 +71,12 @@ export const getLectureSWListResponseServer2Client = ({
       lectureName: sw.lecture_name,
       lectureType: sw.lecture_type,
       ownerId: sw.owner_id,
-      swId: sw.registration_sw.id,
-      swName: sw.registration_sw.swName,
-      swManufacturer: sw.registration_sw.swManufacturer,
-      license: '',
+      swId: sw.registration_swid,
+      swName: sw.sw_name,
+      swManufacturer: sw.sw_manufacturer,
+      license: sw.license,
       updateDate: new Date(sw.latest_update_date).toLocaleDateString(),
-      isManaged: sw.registration_sw.isManaged,
+      isManaged: sw.isManaged,
     })),
   };
 };

@@ -207,7 +207,7 @@ export interface LectureSWServerType {
   sw_manufacturer: string;
   sw_name: string;
   license: string;
-  isManaged: boolean;
+  is_managed: boolean;
 }
 
 // get

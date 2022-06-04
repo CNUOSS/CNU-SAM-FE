@@ -30,13 +30,6 @@ export const Container = styled.div`
     }
   }
 
-  /* .ReactVirtualized__Table__rowColumn {
-    display: block;
-    white-space: nowrap;
-    overflow: auto !important;
-    text-overflow: ellipsis;
-  } */
-
   div[aria-label='grid'] {
     background-color: ${(props) => props.theme.colors.tertiary};
   }
@@ -67,6 +60,14 @@ export const HeaderItem = styled.div<HeaderItemProps>`
 export const CellItem = styled.div`
   display: flex;
   justify-content: center;
+
+  span {
+    position: relative;
+    display: block;
+    white-space: nowrap;
+    overflow-x: hidden !important;
+    text-overflow: ellipsis;
+  }
 `;
 
 export const PaginationWrapper = styled.div<PaginationWrapperProps>`

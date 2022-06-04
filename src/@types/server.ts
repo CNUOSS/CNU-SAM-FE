@@ -203,15 +203,11 @@ export interface LectureSWServerType {
   department: string;
   create_date: string;
   latest_update_date: string;
-  registration_sw: {
-    id: number;
-    latestUpdaterId: string;
-    swManufacturer: string;
-    swName: string;
-    latestUpdateDate: string;
-    isManaged: boolean;
-    license: string;
-  };
+  registration_swid: number;
+  sw_manufacturer: string;
+  sw_name: string;
+  license: string;
+  isManaged: boolean;
 }
 
 // get

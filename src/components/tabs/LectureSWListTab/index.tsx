@@ -62,7 +62,13 @@ function LectureSWListTab() {
 
   return (
     <>
-      {selectedItem && <AddOrUpdateRegistrationSWModal registrationSW={selectedItem as any} closeModal={closeModal} />}
+      {selectedItem && (
+        <AddOrUpdateRegistrationSWModal
+          registrationSW={selectedItem as any}
+          closeModal={closeModal}
+          isFromLectureSWListTab
+        />
+      )}
       <TabTemplate description="Description">
         <TabForm onSubmit={handleSearch} buttonText="조회하기">
           <DropdownContainer

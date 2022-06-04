@@ -114,7 +114,7 @@ function AddOrUpdateRegistrationSWModal({
             </Button>
           )}
           <Button onClick={handleSubmit(onSubmit)}>
-            {!registrationSW || isFromLectureSWListTab ? '수정하기' : '등록하기'}
+            {!registrationSW || isFromLectureSWListTab ? '등록하기' : '수정하기'}
           </Button>
         </Style.ButtonWrapper>
       </Style.Container>

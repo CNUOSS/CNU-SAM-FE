@@ -238,6 +238,20 @@ export interface GetLectureSWListResponseServerType {
   lecture_sw: LectureSWServerType[];
 }
 
+export interface GetLectureChartResponseServerType {
+  lecture_sw_for_chart: {
+    registration_sw: {
+      id: number;
+      latestUpdaterId: string;
+      swManufacturer: string;
+      swName: string;
+      latestUpdateDate: string;
+      isManaged: boolean;
+    };
+    count: number;
+  }[];
+}
+
 // create
 export interface CreateLectureSWResponseServerType {
   owner_id: string;

@@ -1,5 +1,6 @@
 import {
   CreateLectureSWRequestClientType,
+  GetLectureChartResponseClientType,
   GetLectureSWListRequestParamsClientType,
   GetLectureSWListResponseClientType,
   LectureSWType,
@@ -7,6 +8,7 @@ import {
 } from '@@types/client';
 import {
   CreateLectureSWResponseServerType,
+  GetLectureChartResponseServerType,
   GetLectureSWListRequestParamsServerType,
   GetLectureSWListResponseServerType,
 } from '@@types/server';
@@ -77,6 +79,15 @@ export const getLectureSWListResponseServer2Client = ({
       isManaged: sw.registration_sw.isManaged,
     })),
   };
+};
+
+export const getLectureChartResponseServer2Client = ({
+  lecture_sw_for_chart,
+}: GetLectureChartResponseServerType): GetLectureChartResponseClientType[] => {
+  return lecture_sw_for_chart.map((item) => ({
+    swName: item.registration_sw.swName,
+    count: item.count,
+  }));
 };
 
 export const createLectureSWRequestClient2Server = ({

@@ -106,7 +106,7 @@ export const mgCategory = (disable: boolean = false): CategoryType => ({
 });
 
 const year = new Date().getFullYear();
-export const YEARS = [year - 3, year - 2, year - 1, year].map((year) => String(year));
+export const YEARS = [year, year - 1, year - 2, year - 3, year - 4].map((year) => String(year));
 export const SEMESTER = ['1학기', '하기계절학기', '2학기', '동기계절학기'];
 
 /**

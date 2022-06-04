@@ -11,6 +11,7 @@ import RegistrationSWTab from '@components/tabs/RegistrationSWTab';
 import ProjectListTab from '@components/tabs/ProjectListTab';
 import AddOrUpdateProjectTab from '@components/tabs/AddOrUpdateProjectTab';
 import LicenseListTab from '@components/tabs/LicenseListTab';
+import DashboardTab from '@components/tabs/DashboardTab';
 import Dropdown from '@components/widgets/Dropdown';
 import Accordion from '@components/widgets/Accordion';
 import UserInfo from './UserInfo';
@@ -50,7 +51,7 @@ function Sidebar() {
       case 'SubscribingSWList':
         return { name: '학내 구독 중 SW', component: <SubscribedSWTab /> };
       case 'SWDashboard':
-        return { name: '대시보드', component: <></> };
+        return { name: '대시보드', component: <DashboardTab /> };
       case 'PJList':
         return { name: '프로젝트 목록', component: <ProjectListTab /> };
       case 'LicenseList':

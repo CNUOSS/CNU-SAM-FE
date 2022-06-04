@@ -98,7 +98,9 @@ function Table<T extends ObjType, C extends string, Label extends string>({
   );
 
   const cellRenderer = (info: TableCellProps, dataKey: string) => (
-    <Style.CellItem data-testid={`table-cell-${dataKey}`}>{info.cellData}</Style.CellItem>
+    <Style.CellItem data-testid={`table-cell-${dataKey}`}>
+      {typeof info.cellData === 'string' ? <span>{info.cellData}</span> : info.cellData}
+    </Style.CellItem>
   );
 
   const handleClickPageButton = (pageNumber: number) => {

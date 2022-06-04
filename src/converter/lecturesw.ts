@@ -76,7 +76,7 @@ export const getLectureSWListResponseServer2Client = ({
       swManufacturer: sw.sw_manufacturer,
       license: sw.license,
       updateDate: new Date(sw.latest_update_date).toLocaleDateString(),
-      isManaged: sw.isManaged,
+      isManaged: sw.is_managed,
     })),
   };
 };

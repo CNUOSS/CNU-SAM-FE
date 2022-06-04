@@ -264,6 +264,7 @@ export interface CreateLectureSWResponseServerType {
   sw: {
     sw_manufacturer: string;
     sw_name: string;
+    license: string;
   }[];
 }
 

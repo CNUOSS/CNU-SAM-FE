@@ -108,6 +108,6 @@ export const createLectureSWRequestClient2Server = ({
     lecture_name: lectureName,
     lecture_num: lectureNum,
     lecture_type: lectureType,
-    sw: sw.map((sw) => ({ sw_manufacturer: sw.swManufacturer, sw_name: sw.swName })),
+    sw: sw.map((sw) => ({ sw_manufacturer: sw.swManufacturer, sw_name: sw.swName, license: sw.license })),
   };
 };

@@ -105,6 +105,31 @@ export const mgCategory = (disable: boolean = false): CategoryType => ({
   items: [NavItem.UserManagement, NavItem.SWManagement],
 });
 
+export const DESCRIPTION = {
+  // tab
+  subscribedSWTab: '학교에서 라이선스를 구매해서 관리하는 SW의 목록',
+  versionDetailTab: '프로젝트의 해당 버전에서 사용 중인 오픈소스 소프트웨어와 라이선스의 규제 목록',
+  registrationSWTab: '수업에서 사용하는 SW 중 현재 관리하고 있는 SW 목록',
+  projectListTab: '학교 구성원이 개발한 프로젝트 목록',
+  projectDetailTab: '프로젝트 세부 내용',
+  licenseListTab: '오픈소스 라이선스 목록',
+  lectureSWListTab: '강의에서 사용하는 SW들의 목록',
+  enrollVersionTab: '프로젝트의 새로운 버전 등록하기',
+  dashboardTab: '강의에서 사용하는 SW들의 통계',
+  addProjectTab: '새로운 프로젝트 생성하기',
+  updateProjectTab: '해당 프로젝트 수정하기',
+  addLectureSWTab: '새로운 강의 생성하기',
+  updateLectureSWTab: '해당 강의 수정하기',
+  // modal
+  addLicenseModal: '새로운 오픈소스 라이선스 추가하기',
+  updateOSSModal: '오픈소스 소프트웨어 정보 수정하기',
+  deleteModal: '정말 삭제하시겠습니까?',
+  addSubscribedSWModal: '학교에서 구독 중인 소프트웨어 생성하기',
+  updateSubscribedSWModal: '학교에서 구독 중인 소프트웨어 수정하기',
+  addLectureSWModal: '강의에서 사용되는 SW 생성하기',
+  updateLectureSWModal: '강의에서 사용되는 SW 수정하기',
+};
+
 const year = new Date().getFullYear();
 export const YEARS = [year, year - 1, year - 2, year - 3, year - 4].map((year) => String(year));
 export const SEMESTER = ['1학기', '하기계절학기', '2학기', '동기계절학기'];

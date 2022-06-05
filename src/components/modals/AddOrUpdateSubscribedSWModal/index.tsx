@@ -15,6 +15,7 @@ import Template from '@components/templates/ModalTemplate';
 import { getSubscribedSWAPI, createSubscribedSWAPI, deleteSubscribedSWAPI } from '@apis/subscribedsw';
 import { createSubscribedRequestClient2Server } from '@converter/subscribedsw';
 import { SubscribedSWType, CreateSubscribedRequestBodyClientType } from '@@types/client';
+import { DESCRIPTION } from '@common/constants';
 import * as Style from './styled';
 
 interface AddOrUpdateSubscribedSWModalProps {
@@ -62,11 +63,12 @@ function AddOrUpdateSubscribedSWModal({ subscribedSW, closeModal }: AddOrUpdateS
     if (user) mutate({ updatorId: user.id, ...data });
   };
 
+  const description = subscribedSW ? DESCRIPTION.updateSubscribedSWModal : DESCRIPTION.addSubscribedSWModal;
   return (
     <Template closeModal={closeModal}>
       <Style.Container>
         <Style.Header>{headerText}</Style.Header>
-        <Style.Description>화이팅</Style.Description>
+        <Style.Description>{description}</Style.Description>
         <Style.InputWrapper>
           <Input label="제품군" width="23rem" value={getValue('swType')} onChange={change('swType')} />
           <Input label="이용범위" width="23rem" value={getValue('usageRange')} onChange={change('usageRange')} />

@@ -10,6 +10,7 @@ import generateGuid from '@utils/generate-id';
 import TabTemplate from '@components/templates/TabTemplate';
 import InputFile from '@components/widgets/InputFile';
 import Input from '@components/widgets/Input';
+import UpdateOSSModal from '@components/modals/UpdateOSSModal';
 import DefaultText from '@components/widgets/DefaultText';
 import ProjectDetailTab from '../ProjectDetailTab';
 import Table, { ItemType } from './Table';
@@ -27,10 +28,10 @@ import { excelType2OSSType } from '@converter/excelResult';
 import { getLicenseNamesResponseServer2Client } from '@converter/data';
 import { createVersionRequestClient2Server } from '@converter/version';
 
-import * as Style from './styled';
 import { CreateVersionRequestClientType } from '@@types/client';
 import { compareTabs, deleteTabs } from '@utils/manage-tabs';
-import UpdateOSSModal from '@components/modals/UpdateOSSModal';
+import { DESCRIPTION } from '@common/constants';
+import * as Style from './styled';
 
 interface EnrollVersionTabProps {
   projectName: string;
@@ -123,7 +124,7 @@ function EnrollVersionTab({ projectId, projectName }: EnrollVersionTabProps) {
       {selectedItem && (
         <UpdateOSSModal oss={selectedItem} licenses={licenses} changeOSS={updateSelectedItem} closeModal={closeModal} />
       )}
-      <TabTemplate description="Description" onCreate={handleSubmit(onSubmit)}>
+      <TabTemplate description={DESCRIPTION.enrollVersionTab} onCreate={handleSubmit(onSubmit)}>
         <Style.BackGroundBox direction="column">
           <Style.InputWrapper>
             <DefaultText label="프로젝트명">{projectName}</DefaultText>

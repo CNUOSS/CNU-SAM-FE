@@ -1,21 +1,27 @@
+// Dependencies
 import React from 'react';
+import { useQueryClient } from 'react-query';
+import { useSetRecoilState } from 'recoil';
+import { tabState } from '@recoil/tab';
+
+// Components
 import TabTemplate from '@components/templates/TabTemplate';
 import Button from '@components/widgets/Button';
 import LineTable from '@components/widgets/LineTable';
-import { ossAnalysisListAttr } from '@common/constants';
-import * as Style from './styled';
-import { GetVersionDetailResponseClientType } from '@@types/client';
-import useFetch from '@hooks/useFetch';
+
+// Apis
+import { getRestrictionsAPI } from '@apis/data';
+import { getProjectDetailAPI } from '@apis/project';
 import { deleteVersionAPI, getVersionDetailAPI } from '@apis/version';
 import { getVersionDetailResponseServer2Client } from '@converter/version';
-import { getRestrictionsAPI } from '@apis/data';
 import { getRestrictionResponseServer2Client } from '@converter/data';
-import useMutation from '@hooks/useMutation';
-import { useSetRecoilState } from 'recoil';
-import { tabState } from '@recoil/tab';
+
+import { DESCRIPTION, ossAnalysisListAttr } from '@common/constants';
+import { GetVersionDetailResponseClientType } from '@@types/client';
 import { deleteTabs } from '@utils/manage-tabs';
-import { useQueryClient } from 'react-query';
-import { getProjectDetailAPI } from '@apis/project';
+import useMutation from '@hooks/useMutation';
+import useFetch from '@hooks/useFetch';
+import * as Style from './styled';
 
 interface VersionDetailTabProps {
   projectId: number;
@@ -67,7 +73,7 @@ function VersionDetailTab({ projectId, versionId, tabName }: VersionDetailTabPro
     }) || [];
 
   return (
-    <TabTemplate description="버전 상세보기">
+    <TabTemplate description={DESCRIPTION.versionDetailTab}>
       <Style.ButtonWrapper>
         <Button theme="warning" onClick={deleteVersion}>
           삭제하기

@@ -1,5 +1,7 @@
 // Dependencies
 import React from 'react';
+import { useAuth } from '@libs/auth';
+import { useQueryClient } from 'react-query';
 import { useSetRecoilState } from 'recoil';
 import { tabState } from '@recoil/tab';
 
@@ -10,21 +12,19 @@ import Button from '@components/widgets/Button';
 import Table from '@components/widgets/Table';
 import EnrollVersionTab from '@components/tabs/EnrollVersionTab';
 import AsyncBoundaryWrapper from '@components/containers/AsyncBoundaryWrapper';
+import VersionDetailTab from '../VersionDetailTab';
 
 // APIs
 import { deleteProjectAPI, getProjectDetailAPI, getProjectListAPI } from '@apis/project';
 import { getProjectDetailResponseServer2Client } from '@converter/project';
 
 import useFetch from '@hooks/useFetch';
+import useMutation from '@hooks/useMutation';
 import { VersionListAttr } from '@@types/types';
-import { versionListAttr } from '@common/constants';
+import { DESCRIPTION, versionListAttr } from '@common/constants';
 import { GetProjectDetailResponseClientType, VersionType } from '@@types/client';
 import { compareTabs, deleteTabs } from '@utils/manage-tabs';
-import { useAuth } from '@libs/auth';
 import * as Style from './styled';
-import useMutation from '@hooks/useMutation';
-import { useQueryClient } from 'react-query';
-import VersionDetailTab from '../VersionDetailTab';
 
 export type SummarizedVersionType = {
   [key in VersionListAttr]: string;
@@ -94,7 +94,10 @@ function ProjectDetailTab({ projectId }: ProjectDetailTabProps) {
 
   if (!data) return <></>;
   return (
-    <TabTemplate description="Description" onDelete={user?.id === data.userId ? deleteProject : undefined}>
+    <TabTemplate
+      description={DESCRIPTION.projectDetailTab}
+      onDelete={user?.id === data.userId ? deleteProject : undefined}
+    >
       <AsyncBoundaryWrapper>
         <Style.BackGroundBox>
           <Style.InputWrapper>

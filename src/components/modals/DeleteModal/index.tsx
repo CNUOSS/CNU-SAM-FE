@@ -1,6 +1,7 @@
 import React from 'react';
 import Template from '@components/templates/ModalTemplate';
 import Button from '@components/widgets/Button';
+import { DESCRIPTION } from '@common/constants';
 import * as Style from './styled';
 
 interface DeleteModalProps {
@@ -13,7 +14,7 @@ function DeleteModal({ onDelete, closeModal }: DeleteModalProps) {
     <Template closeModal={closeModal}>
       <Style.Container>
         <Style.Header>삭제하기</Style.Header>
-        <Style.Description>정말 삭제하시겠습니까?</Style.Description>
+        <Style.Description>{DESCRIPTION.deleteModal}</Style.Description>
         <Style.ButtonWrapper>
           <Button theme="warning" onClick={onDelete}>
             삭제

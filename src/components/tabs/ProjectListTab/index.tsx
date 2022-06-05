@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import TabTemplate from '@components/templates/TabTemplate';
+import { tabState } from '@recoil/tab';
 
 // Components
 import Input from '@components/widgets/Input';
@@ -17,9 +18,9 @@ import { getCategoryNamesAPI, getLicenseNamesAPI } from '@apis/data';
 import { getCategoryNamesResponseServer2Client, getLicenseNamesResponseServer2Client } from '@converter/data';
 
 import useForm from '@hooks/useForm';
-import { tabState } from '@recoil/tab';
 import { compareTabs } from '@utils/manage-tabs';
 import { LicenseNamesType, ProjectListItemType } from '@@types/client';
+import { DESCRIPTION } from '@common/constants';
 import * as Style from './styled';
 
 function ProjectListTab() {
@@ -44,7 +45,7 @@ function ProjectListTab() {
   const handleSearch = () => setInfoStore((store) => ({ ...store, ...getAllValue() }));
 
   return (
-    <TabTemplate description="Description">
+    <TabTemplate description={DESCRIPTION.projectListTab}>
       <TabForm buttonText="조회하기" onSubmit={handleSearch}>
         <Style.InputWrapper>
           <Input label="프로젝트명" value={getValue('pjName')} onChange={change('pjName')} />

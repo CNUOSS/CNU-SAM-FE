@@ -1,27 +1,36 @@
+// Dependencies
 import React from 'react';
+import { useQueryClient } from 'react-query';
+
+// Components
 import Button from '@components/widgets/Button';
 import Input from '@components/widgets/Input';
 import Template from '@components/templates/ModalTemplate';
 import SelfDropdownContainer from '@components/containers/SelfDropdownContainer';
-import { RegistrationSWType } from '@@types/client';
-import useForm from '@hooks/useForm';
-import * as Style from './styled';
-import { getManufacturerNamesResponseServer2Client } from '@converter/data';
-import { useQueryClient } from 'react-query';
-import useMutation from '@hooks/useMutation';
+
+// Apis
 import {
   createRegistrationSWAPI,
   deleteRegistrationSWAPI,
   getRegistrationSWListAPI,
   updateRegistrationSWAPI,
 } from '@apis/registrationsw';
+import { getManufacturersNamesAPI } from '@apis/data';
+import { getLectureSWListAPI } from '@apis/lecturesw';
+import { getManufacturerNamesResponseServer2Client } from '@converter/data';
 import {
   createRegistrationSWRequestClient2Server,
   updateRegistrationSWRequestClient2Server,
 } from '@converter/registrationsw';
+
+// Hooks
+import useForm from '@hooks/useForm';
+import useMutation from '@hooks/useMutation';
+
+import { RegistrationSWType } from '@@types/client';
+import { DESCRIPTION } from '@common/constants';
 import { useAuth } from '@libs/auth';
-import { getManufacturersNamesAPI } from '@apis/data';
-import { getLectureSWListAPI } from '@apis/lecturesw';
+import * as Style from './styled';
 
 interface AddOrUpdateRegistrationSWModalProps {
   registrationSW?: RegistrationSWType;
@@ -89,11 +98,13 @@ function AddOrUpdateRegistrationSWModal({
     if (registrationSW) deleteMutate({ dynamicUrl: deleteRegistrationSWAPI.dynamicUrl(registrationSW.id) });
   };
 
+  const description =
+    !registrationSW || isFromLectureSWListTab ? DESCRIPTION.addLectureSWModal : DESCRIPTION.updateLectureSWModal;
   return (
     <Template closeModal={closeModal}>
       <Style.Container>
         <Style.Header>수업 용 SW 관리 항목에 추가하기</Style.Header>
-        <Style.Description>당신의 행동으로 db의 운명이 달렸습니다. 알아서 책임지길 바라요.</Style.Description>
+        <Style.Description>{description}</Style.Description>
         <Style.InputWrapper>
           <SelfDropdownContainer
             label="SW 제조사"

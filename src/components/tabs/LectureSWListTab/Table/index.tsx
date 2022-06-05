@@ -42,6 +42,10 @@ function Table({ searchInfo, clickItemAddButton, clickItem }: TableProps) {
     setApiInfo((prev) => ({ ...prev, ...searchInfo }));
   }, [searchInfo]);
 
+  const onClickPageButton = (pageNumber: number) => {
+    setApiInfo((prev) => ({ ...prev, page: pageNumber }));
+  };
+
   const getNewManaged = (isManaged: boolean | string, onClick: () => void) => {
     if (isManaged) return 'Yes';
     if (user?.role !== 'ADMIN') return 'No';
@@ -67,8 +71,9 @@ function Table({ searchInfo, clickItemAddButton, clickItem }: TableProps) {
       title="등록된 수업용 SW"
       items={parsedItem}
       attributes={lectureSWListAttr}
-      onRowClick={clickItem}
       pageCount={data?.pageInfo.totalPages || 0}
+      onRowClick={clickItem}
+      onClickPageButton={onClickPageButton}
     />
   );
 }

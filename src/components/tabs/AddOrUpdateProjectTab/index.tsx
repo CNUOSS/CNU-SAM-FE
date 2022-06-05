@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSetRecoilState } from 'recoil';
 import { useQueryClient } from 'react-query';
+import { tabState } from '@recoil/tab';
 import { useAuth } from '@libs/auth';
 
 // Components
@@ -22,8 +23,8 @@ import { getCategoryNamesResponseServer2Client, getLicenseNamesResponseServer2Cl
 import useForm from '@hooks/useForm';
 import useMutation from '@hooks/useMutation';
 
-import { tabState } from '@recoil/tab';
 import { compareTabs, deleteTabs } from '@utils/manage-tabs';
+import { DESCRIPTION } from '@common/constants';
 import {
   CreateProjectRequestClientType,
   CreateProjectResponseClientType,
@@ -64,7 +65,7 @@ function AddOrUpdateProjectTab({ projectMeta }: AddOrUpdateProjectTabProps) {
   });
   const { user } = useAuth();
 
-  const DESCRIPTION = projectMeta ? '해당 프로젝트를 수정하세요' : '새로운 프로젝트를 생성하세요';
+  const description = projectMeta ? DESCRIPTION.updateProjectTab : DESCRIPTION.addProjectTab;
   const selectCategory = (category: string) => change('projectCategoryName')(category);
   const selectLicense = (license: LicenseNamesType) => change('ossLicenseId')(String(license.id));
 
@@ -72,7 +73,7 @@ function AddOrUpdateProjectTab({ projectMeta }: AddOrUpdateProjectTabProps) {
 
   if (!user) return <></>;
   return (
-    <TabTemplate description={DESCRIPTION}>
+    <TabTemplate description={description}>
       <Style.BackGroundBox>
         <Style.InputWrapper>
           <Input label="프로젝트명" value={getValue('projectName')} onChange={change('projectName')} width="21rem" />

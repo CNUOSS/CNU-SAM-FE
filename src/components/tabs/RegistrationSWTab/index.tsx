@@ -6,11 +6,12 @@ import TabForm from '@components/widgets/TabForm';
 import DropdownContainer from '@components/containers/DropdownContainer';
 import AddOrUpdateRegistrationSWModal from '@components/modals/AddOrUpdateRegistrationSWModal';
 import AsyncBoundaryWrapper from '@components/containers/AsyncBoundaryWrapper';
-import * as Style from './styled';
 import { RegistrationSWType } from '@@types/client';
 import useForm from '@hooks/useForm';
 import { getManufacturersNamesAPI } from '@apis/data';
 import { getManufacturerNamesResponseServer2Client } from '@converter/data';
+import { DESCRIPTION } from '@common/constants';
+import * as Style from './styled';
 
 function RegistrationSWTab() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +36,7 @@ function RegistrationSWTab() {
   return (
     <>
       {isOpen && <AddOrUpdateRegistrationSWModal registrationSW={selectedItem} closeModal={toggleModal} />}
-      <TabTemplate description="Description" onCreate={toggleModal}>
+      <TabTemplate description={DESCRIPTION.registrationSWTab} onCreate={toggleModal}>
         <TabForm onSubmit={handleSearch} buttonText="조회하기">
           <Style.InputWrapper>
             <DropdownContainer

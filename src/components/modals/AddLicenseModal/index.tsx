@@ -20,13 +20,13 @@ import AsyncBoundary from '@libs/AsyncBoundary';
 // Apis
 import { getLicenseTypesAPI } from '@apis/data';
 import { createLicenseAPI, getLicenseListAPI } from '@apis/license';
+import { createLicenseRequestClient2Server } from '@converter/license';
+import { getLicenseTypesResponseServer2Client } from '@converter/data';
 
 // Styles
-import { getLicenseTypesResponseServer2Client } from '@converter/data';
-import { createLicenseRequestClient2Server } from '@converter/license';
+import { DESCRIPTION, LicenseListTableLabelType } from '@common/constants';
 import { LicenseType } from '@@types/client';
 import * as Style from './styled';
-import { LicenseListTableLabelType } from '@common/constants';
 
 interface AddLicenseModalInterface {
   closeModal: () => void;
@@ -69,7 +69,7 @@ function AddLicenseModal({ closeModal }: AddLicenseModalInterface) {
     <Template closeModal={closeModal}>
       <Style.Container>
         <Style.Header>라이선스 생성하기</Style.Header>
-        <Style.Description>화이팅</Style.Description>
+        <Style.Description>{DESCRIPTION.addLicenseModal}</Style.Description>
         <Style.InputWrapper>
           <Input label="라이선스명" width="20rem" value={getValue('licenseName')} onChange={change('licenseName')} />
           <DropdownContainer

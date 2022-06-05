@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import TabTemplate from '@components/templates/TabTemplate';
+import AsyncBoundary from '@libs/AsyncBoundary';
 import Table, { SearchInfoType } from './Table';
 import Input from '@components/widgets/Input';
 import TabForm from '@components/widgets/TabForm';
 import Error from '@components/widgets/Error';
-import AddOrUpdateSubscribedSWModal from '@components/modals/AddOrUpdateSubscribedSWModal';
-import * as Style from './styled';
-import AsyncBoundary from '@libs/AsyncBoundary';
+import TabTemplate from '@components/templates/TabTemplate';
 import LoadingModal from '@components/modals/LoadingModal';
+import AddOrUpdateSubscribedSWModal from '@components/modals/AddOrUpdateSubscribedSWModal';
 import useForm from '@hooks/useForm';
 import { SubscribedSWType } from '@@types/client';
+import { DESCRIPTION } from '@common/constants';
+import * as Style from './styled';
 
 function SubscribedSWTab() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +35,7 @@ function SubscribedSWTab() {
   return (
     <>
       {isOpen && <AddOrUpdateSubscribedSWModal subscribedSW={selectedItem} closeModal={toggleModal} />}
-      <TabTemplate description="Description" onCreate={toggleModal}>
+      <TabTemplate description={DESCRIPTION.subscribedSWTab} onCreate={toggleModal}>
         <TabForm onSubmit={handleSearch} buttonText="조회하기">
           <Input label="제품군" value={getValue('swType')} width="21rem" onChange={change('swType')} />
           <Input label="제조사" value={getValue('swMfr')} width="21rem" onChange={change('swMfr')} />

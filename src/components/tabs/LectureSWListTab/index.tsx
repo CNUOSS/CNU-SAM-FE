@@ -17,14 +17,14 @@ import Table, { SearchInfoType } from './Table';
 // Apis
 import { getDepartmentsAPI, getLectureTypesAPI } from '@apis/data';
 import { getDepartmentResponseServer2Client, getLectureTypesResponseServer2Client } from '@converter/data';
+import { lectureSW2RegistrationSW } from '@converter/lecturesw';
 
 import useForm from '@hooks/useForm';
 import { compareTabs } from '@utils/manage-tabs';
-import { NOT_CHOOSED, SEMESTER, YEARS } from '@common/constants';
-import * as Style from './styled';
-import { useAuth } from '@libs/auth';
+import { DESCRIPTION, NOT_CHOOSED, SEMESTER, YEARS } from '@common/constants';
 import { SummarizedRegistrationSWType } from '@@types/client';
-import { lectureSW2RegistrationSW } from '@converter/lecturesw';
+import { useAuth } from '@libs/auth';
+import * as Style from './styled';
 
 function LectureSWListTab() {
   const { user } = useAuth();
@@ -62,8 +62,14 @@ function LectureSWListTab() {
 
   return (
     <>
-      {selectedItem && <AddOrUpdateRegistrationSWModal registrationSW={selectedItem as any} closeModal={closeModal} />}
-      <TabTemplate description="Description">
+      {selectedItem && (
+        <AddOrUpdateRegistrationSWModal
+          registrationSW={selectedItem as any}
+          closeModal={closeModal}
+          isFromLectureSWListTab
+        />
+      )}
+      <TabTemplate description={DESCRIPTION.lectureSWListTab}>
         <TabForm onSubmit={handleSearch} buttonText="조회하기">
           <DropdownContainer
             label="조직분류"

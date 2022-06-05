@@ -24,7 +24,7 @@ import useForm from '@hooks/useForm';
 import useMutation from '@hooks/useMutation';
 
 import { CreateLectureSWRequestClientType } from '@@types/client';
-import { NOT_CHOOSED, SEMESTER, YEARS } from '@common/constants';
+import { DESCRIPTION, NOT_CHOOSED, SEMESTER, YEARS } from '@common/constants';
 import { deleteTabs } from '@utils/manage-tabs';
 import { useAuth } from '@libs/auth';
 import * as Style from './styled';
@@ -90,8 +90,10 @@ function AddOrUpdateLectureSWTab({ lectureSWId }: AddOrUpdateLectureSWTabProps) 
     deleteMutate({ dynamicUrl: deleteLectureSWAPI.dynamicUrl(lectureSWId) });
   };
 
+  const description = lectureSWId ? DESCRIPTION.updateLectureSWTab : DESCRIPTION.addLectureSWTab;
+
   return (
-    <TabTemplate description="Description">
+    <TabTemplate description={description}>
       <Style.FormTitleWrapper>
         <Style.FormTitle>수업 정보 작성</Style.FormTitle>
         {error && <Style.Error>모든 값을 입력해주십시오</Style.Error>}

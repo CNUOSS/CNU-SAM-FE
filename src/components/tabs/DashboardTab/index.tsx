@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import TabTemplate from '@components/templates/TabTemplate';
 import TabForm from '@components/widgets/TabForm';
 import Dropdown from '@components/widgets/Dropdown';
-import { YEARS } from '@common/constants';
 import ToggleSwitch, { ToggleDirection } from '@components/widgets/ToggleSwitch';
+import AsyncBoundaryWrapper from '@components/containers/AsyncBoundaryWrapper';
+import { DESCRIPTION, YEARS } from '@common/constants';
 import useForm from '@hooks/useForm';
 import Chart, { ChartType } from './Chart';
 import * as Style from './styled';
-import AsyncBoundaryWrapper from '@components/containers/AsyncBoundaryWrapper';
 
 interface FormType {
   year: string;
@@ -21,7 +21,7 @@ function DashboardTab() {
 
   const toggleSwitch = (direction: ToggleDirection) => setChart(direction === 'left' ? 'bar' : 'pie');
   return (
-    <TabTemplate description="">
+    <TabTemplate description={DESCRIPTION.dashboardTab}>
       <TabForm onSubmit={() => {}}>
         <Style.FormContainer>
           <Dropdown label="연도" items={YEARS} onClickItem={changeYears} />

@@ -21,9 +21,10 @@ import useMutation from '@hooks/useMutation';
 
 // Apis
 import { deleteLicenseAPI, getLicenseListAPI } from '@apis/license';
+import { getLicenseTypesResponseServer2Client, getRestrictionResponseServer2Client } from '@converter/data';
 
 // Others
-import { getLicenseTypesResponseServer2Client, getRestrictionResponseServer2Client } from '@converter/data';
+import { DESCRIPTION } from '@common/constants';
 import * as Style from './styled';
 
 type ModalType = 'add' | 'none' | number;
@@ -64,7 +65,7 @@ function LicenseListTab() {
     <>
       {modalState === 'add' && <AddLicenseModal closeModal={closeModal} />}
       {typeof modalState === 'number' && <DeleteModal closeModal={closeModal} onDelete={deleteLicense} />}
-      <TabTemplate description="Description" onCreate={openAddLicenseModal}>
+      <TabTemplate description={DESCRIPTION.licenseListTab} onCreate={openAddLicenseModal}>
         <TabForm buttonText="조회하기" onSubmit={handleSearch}>
           <Style.InputWrapper>
             <Input label="라이선스명" value={getValue('licenseName')} onChange={change('licenseName')} />

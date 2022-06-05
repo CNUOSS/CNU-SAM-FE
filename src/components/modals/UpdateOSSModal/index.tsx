@@ -1,11 +1,12 @@
 import React from 'react';
 import { OSSType } from '@components/tabs/EnrollVersionTab';
 import Template from '@components/templates/ModalTemplate';
-import useForm from '@hooks/useForm';
-import * as Style from './styled';
 import Button from '@components/widgets/Button';
 import Input from '@components/widgets/Input';
 import SearchDropdown from '@components/widgets/SearchDropdown';
+import useForm from '@hooks/useForm';
+import { DESCRIPTION } from '@common/constants';
+import * as Style from './styled';
 
 interface UpdateOSSModalProps {
   oss: OSSType;
@@ -37,7 +38,7 @@ function UpdateOSSModal({ oss, licenses, changeOSS, closeModal }: UpdateOSSModal
     <Template closeModal={closeModal}>
       <Style.Container>
         <Style.Header>OSS 수정하기</Style.Header>
-        <Style.Description>OSS를 수정해주세요</Style.Description>
+        <Style.Description>{DESCRIPTION.updateOSSModal}</Style.Description>
         <Style.InputWrapper>
           <Input
             width="23rem"

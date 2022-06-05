@@ -109,7 +109,7 @@ export const DESCRIPTION = {
   // tab
   subscribedSWTab: '학교에서 라이선스를 구매해서 관리하는 SW의 목록',
   versionDetailTab: '프로젝트의 해당 버전에서 사용 중인 오픈소스 소프트웨어와 라이선스의 규제 목록',
-  registrationSWTab: '수업에서 사용하는 SW 중 현재 관리하고 있는 SW 목록',
+  registrationSWTab: '강의에서 사용하는 SW 중 현재 관리하고 있는 SW 목록',
   projectListTab: '학교 구성원이 개발한 프로젝트 목록',
   projectDetailTab: '프로젝트 세부 내용',
   licenseListTab: '오픈소스 라이선스 목록',

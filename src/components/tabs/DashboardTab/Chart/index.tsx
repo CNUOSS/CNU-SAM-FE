@@ -50,7 +50,7 @@ function Chart({ year, chart }: ChartProps) {
         (data.length ? (
           <>
             <Style.ChartTitle>소프트웨어 사용비율</Style.ChartTitle>
-            <PieChart width={1220} height={700}>
+            <PieChart width={1220} height={600}>
               <Pie
                 data={pieChartData}
                 dataKey="count"
@@ -85,7 +85,7 @@ function Chart({ year, chart }: ChartProps) {
         (data.length ? (
           <>
             <Style.ChartTitle>소프트웨어 별 사용량</Style.ChartTitle>
-            <BarChart width={1220} height={700} data={sortedData}>
+            <BarChart width={1220} height={600} data={sortedData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="swName" />
               <YAxis />

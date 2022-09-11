@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { ThemeProvider } from '@emotion/react';
 import { AuthProvider } from './libs/auth';
+import { ModalProvider } from './contexts/ModalContext';
 import GlobalStyle from './style/GlobalStyle';
 import App from './App';
 import Helmet from './libs/Helmet';
@@ -21,9 +22,11 @@ ReactDOM.render(
       <RecoilRoot>
         <ThemeProvider theme={theme}>
           <AuthProvider>
-            <Helmet />
-            <App />
-            <GlobalStyle />
+            <ModalProvider>
+              <Helmet />
+              <App />
+              <GlobalStyle />
+            </ModalProvider>
           </AuthProvider>
           <ReactQueryDevtools initialIsOpen={false} />
         </ThemeProvider>

@@ -45,3 +45,16 @@ export const Workspace = styled.main<WorkspaceProps>`
   height: calc(100% - 6rem);
   display: ${(props) => (props.selected ? 'block' : 'none')};
 `;
+
+export const ImageWrapper = styled.div`
+  position: relative;
+  height: 80vh;
+`;
+
+export const Image = styled.img`
+  width: 20vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;

@@ -58,11 +58,17 @@ function Workspace() {
         selectedIndex={currentIdx}
         clickItem={(idx) => changeTab(idx)}
       />
-      {tabs.map((tab, idx) => (
-        <Style.Workspace key={tab.name} selected={idx === currentIdx}>
-          {tab.component}
-        </Style.Workspace>
-      ))}
+      {tabs.length ? (
+        tabs.map((tab, idx) => (
+          <Style.Workspace key={tab.name} selected={idx === currentIdx}>
+            {tab.component}
+          </Style.Workspace>
+        ))
+      ) : (
+        <Style.ImageWrapper>
+          <Style.Image src="/images/logo.png" alt="logo" />
+        </Style.ImageWrapper>
+      )}
     </Style.Container>
   );
 }
